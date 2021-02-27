@@ -1,0 +1,3 @@
+.next
+src/__generated__
+**/*.generated.ts

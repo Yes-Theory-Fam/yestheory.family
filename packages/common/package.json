@@ -1,0 +1,11 @@
+{
+  "name": "@project/common",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --no-error-on-unmatched-pattern"
+  },
+  "devDependencies": {
+    "@project/eslint-config": "^1.0.0"
+  }
+}

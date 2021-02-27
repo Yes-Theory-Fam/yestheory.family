@@ -1,0 +1,44 @@
+{
+  "name": "@project/web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "dev": "next",
+    "lint": "eslint \"pages/**/*.{js,jsx,ts,tsx}\"",
+    "start": "next start"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.21.1",
+    "@graphql-codegen/near-operation-file-preset": "^1.17.13",
+    "@graphql-codegen/typescript": "1.21.0",
+    "@graphql-codegen/typescript-operations": "^1.17.14",
+    "@graphql-codegen/typescript-urql": "^2.0.3",
+    "@project/eslint-config": "^1.0.0",
+    "eslint-config-preact": "^1.1.3",
+    "webpack": "4.46.0"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.3.3",
+    "@prefresh/next": "^1.4.4",
+    "@project/ui": "1.0.0",
+    "@urql/preact": "^2.0.0",
+    "graphql": "^15.5.0",
+    "next": "^10.0.7",
+    "next-plugin-preact": "^3.0.3",
+    "next-transpile-modules": "^6.3.0",
+    "preact": "^10.5.5",
+    "preact-render-to-string": "^5.1.11",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.1.2"
+  },
+  "license": "MIT",
+  "workspaces": {
+    "nohoist": [
+      "next",
+      "next/**"
+    ]
+  }
+}

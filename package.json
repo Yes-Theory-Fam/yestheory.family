@@ -1,0 +1,22 @@
+{
+  "name": "project",
+  "private": true,
+  "scripts": {
+    "eslint:check": "yarn workspaces run lint",
+    "eslint:write": "yarn workspaces run lint --fix",
+    "format:check": "prettier --check packages",
+    "format:write": "prettier --write packages",
+    "server:dev": "yarn workspace @project/server start",
+    "server:generate": "yarn workspace @project/server prisma generate",
+    "storybook": "yarn workspace @project/ui storybook",
+    "web:dev": "yarn workspace @project/web dev",
+    "web:generate": "yarn workspace @project/web codegen"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "prettier": "^2.2.1"
+  }
+}
