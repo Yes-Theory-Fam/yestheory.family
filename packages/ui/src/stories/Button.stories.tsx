@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { Button, ButtonProps } from "./Button";
+import { Button, ButtonProps } from "@chakra-ui/react";
 import { Meta, Story } from "@storybook/preact/types-6-0";
 
 export default {
@@ -16,7 +16,9 @@ export default {
   },
 } as Meta<ButtonProps>;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: Story<ButtonProps & { label: string }> = (args) => (
+  <Button {...args}>{args.label}</Button>
+);
 
 export const SolidButton = Template.bind({});
 SolidButton.args = {
