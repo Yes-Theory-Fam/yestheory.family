@@ -18,14 +18,14 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
-export const Test = Template.bind({});
-Test.args = {
-  label: "Example/Button",
-  variant: "outlined",
+export const SolidButton = Template.bind({});
+SolidButton.args = {
+  label: "Button",
+  variant: "solid",
 };
 
-export const SolidButton = () => <Button label={"Button"} variant={"solid"} />;
-export const OutlinedButton = () => (
-  <Button label={"Button"} variant={"outlined"} />
-);
-export const CustomButton = (args: ButtonProps) => <Button {...args} />;
+export const OutlinedButton = Template.bind({});
+OutlinedButton.args = {
+  label: "Button",
+  variant: "outlined",
+};
