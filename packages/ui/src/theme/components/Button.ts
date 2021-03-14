@@ -37,8 +37,7 @@ const Button: PatchedOverride["Button"] = {
         width: "90%",
         zIndex: -1,
         transition: "transform,opacity 300ms",
-        background:
-          "radial-gradient(ellipse at center, #009eff -15%, rgba(0, 0, 0, 0) 72%)",
+        bgGradient: "radial(brand.500 -15%, rgba(0, 0, 0, 0) 72%)",
       },
       _hover: {
         bg: "brand.500",
