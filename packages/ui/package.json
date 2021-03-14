@@ -28,6 +28,7 @@
     "@project/eslint-config": "^1.0.0",
     "@storybook/addon-a11y": "^6.2.0-beta.14",
     "@storybook/addon-actions": "^6.2.0-beta.14",
+    "@storybook/addon-console": "^1.2.3",
     "@storybook/addon-essentials": "^6.2.0-beta.14",
     "@storybook/addon-links": "^6.2.0-beta.14",
     "@storybook/builder-webpack4": "^6.2.0-beta.14",

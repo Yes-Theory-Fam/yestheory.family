@@ -10,6 +10,7 @@ import {
 import { h } from "preact";
 import { withPerformance } from "storybook-addon-performance";
 import { theme } from "../src/theme";
+import "@storybook/addon-console";
 
 /**
  * Add global context for RTL-LTR switching
