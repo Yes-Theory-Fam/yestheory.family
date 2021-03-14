@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Example/Button Outlined Button 1`] = `
+<Button
+  label="Button"
+  variant="outlined"
+>
+  Button
+</Button>
+`;
+
+exports[`Storyshots Example/Button Solid Button 1`] = `
+<Button
+  label="Button"
+  variant="solid"
+>
+  Button
+</Button>
+`;

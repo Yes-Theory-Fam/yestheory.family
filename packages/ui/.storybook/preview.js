@@ -1,12 +1,5 @@
 /** @jsx h */
-import {
-  ChakraProvider,
-  extendTheme,
-  Flex,
-  IconButton,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { h } from "preact";
 import { withPerformance } from "storybook-addon-performance";
 import { theme } from "../src/theme";
@@ -40,4 +33,5 @@ const withChakra = (StoryFn, context) => {
   );
 };
 
-export const decorators = [withChakra, withPerformance];
+export const decorators =
+  process.env.NODE_ENV === "test" ? [] : [withChakra, withPerformance];
