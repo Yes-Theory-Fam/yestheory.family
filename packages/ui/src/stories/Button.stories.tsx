@@ -8,9 +8,9 @@ export default {
   argTypes: {
     label: { control: "text" },
     variant: {
+      options: ["solid", "outlined"],
       control: {
         type: "select",
-        options: ["solid", "outlined"],
       },
     },
   },
