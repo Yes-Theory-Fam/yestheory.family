@@ -26,6 +26,7 @@
     "@babel/core": "^7.12.13",
     "@babel/plugin-transform-react-jsx": "^7.12.13",
     "@project/eslint-config": "^1.0.0",
+    "@storybook/addon-a11y": "^6.1.21",
     "@storybook/addon-actions": "^6.2.0-alpha.32",
     "@storybook/addon-essentials": "^6.2.0-alpha.32",
     "@storybook/addon-links": "^6.2.0-alpha.32",

@@ -15,6 +15,7 @@ module.exports = {
       },
     },
     "@storybook/addon-essentials",
+    "@storybook/addon-a11y",
   ],
   typescript: {
     check: true,
