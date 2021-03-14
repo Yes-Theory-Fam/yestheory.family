@@ -1,17 +1,28 @@
 import { extendTheme } from "@chakra-ui/react";
 
-import styles from "./styles";
-import colors from "./colors";
-import { Button } from "./components";
+import {
+  breakpoints,
+  colors,
+  fonts,
+  shadows,
+  sizes,
+  styles,
+} from "./foundations";
 
-if (!Button) {
-  throw new Error("Yoink");
-}
+import { Button, Link, Heading } from "./components";
+
+if (!Button || !Link || !Heading) throw new Error("Yoink");
 
 export default extendTheme({
+  breakpoints,
   colors,
+  fonts,
+  shadows,
+  sizes,
   styles,
   components: {
     Button,
+    Heading,
+    Link,
   },
 });

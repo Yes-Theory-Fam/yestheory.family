@@ -1,4 +1,5 @@
 const withPreact = require("next-plugin-preact");
-const withTM = require("next-transpile-modules")(["@project/ui"]);
+const withTM = require("next-transpile-modules")(["@yestheory.family/ui"]);
+const withImages = require("next-images");
 
-module.exports = withPreact(withTM({}));
+module.exports = withImages(withPreact(withTM()));

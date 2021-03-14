@@ -1,17 +1,17 @@
 {
-  "name": "project",
+  "name": "yestheory.family",
   "private": true,
   "scripts": {
     "eslint:check": "yarn workspaces foreach run lint",
     "eslint:write": "yarn workspaces foreach run lint --fix",
     "format:check": "prettier --check packages",
     "format:write": "prettier --write packages",
-    "server:dev": "yarn workspace @project/server start",
-    "server:generate": "yarn workspace @project/server prisma generate",
-    "storybook": "yarn workspace @project/ui storybook",
+    "server:dev": "yarn workspace @yestheory.family/server start",
+    "server:generate": "yarn workspace @yestheory.family/server packages/server/prisma generate",
+    "storybook": "yarn workspace @yestheory.family/ui storybook",
     "test": "yarn workspaces foreach run test",
-    "web:dev": "yarn workspace @project/web dev",
-    "web:generate": "yarn workspace @project/web codegen"
+    "web:dev": "yarn workspace @yestheory.family/web dev",
+    "web:generate": "yarn workspace @yestheory.family/web codegen"
   },
   "workspaces": [
     "packages/*"

@@ -1,5 +1,5 @@
 {
-  "name": "@project/server",
+  "name": "@yestheory.family/server",
   "version": "1.0.0",
   "scripts": {
     "build": "tsc",
@@ -9,13 +9,13 @@
   },
   "private": true,
   "devDependencies": {
-    "@project/eslint-config": "^1.0.0",
     "@types/graphql-fields": "^1.3.3",
     "@types/koa": "^2.13.1",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa__cors": "^3.0.2",
     "@types/koa__router": "^8.0.4",
     "@types/node": "^14.14.41",
+    "@yestheory.family/eslint-config": "^1.0.0",
     "class-validator": "^0.13.1",
     "eslint": "^7.25.0",
     "prisma": "~2.20.1",

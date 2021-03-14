@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Common/Image Image 1`] = `
+  <img
+    alt="Example image"
+    class="chakra-image__placeholder css-1nkcj0w"
+   />
+`;

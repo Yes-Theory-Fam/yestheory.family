@@ -1,5 +1,5 @@
 {
-  "extends": ["preact", "@project/eslint-config"],
+  "extends": ["preact", "@yestheory.family/eslint-config"],
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],

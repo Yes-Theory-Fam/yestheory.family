@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Home/Parallax Parallax 1`] = `
+  <div class="css-j7qwjs">
+    <div class="css-m8dnq0">
+      <div class="css-ugispo">
+        <p class="chakra-text css-piruwc">Yes</p>
+      </div>
+      <div class="css-16aaiyh">
+        <img
+          src=""
+          class="chakra-image__placeholder css-1s7ix7d"
+         />
+      </div>
+      <div class="css-dtrux7">
+        <img
+          src=""
+          class="chakra-image__placeholder css-bett13"
+         />
+      </div>
+      <div class="css-142a24i">
+        <div class="css-13n3cme">
+          <img
+            src=""
+            class="chakra-image__placeholder css-18543gu"
+           />
+        </div>
+        <div class="css-13n3cme">
+          <img
+            src=""
+            class="chakra-image__placeholder css-18543gu"
+           />
+        </div>
+        <div class="css-13n3cme">
+          <img
+            src=""
+            class="chakra-image__placeholder css-9b71k"
+           />
+        </div>
+        <div class="css-13n3cme">
+          <img
+            src=""
+            class="chakra-image__placeholder css-9b71k"
+           />
+        </div>
+      </div>
+    </div>
+    <div class="css-15vcxpl"></div>
+  </div>
+`;

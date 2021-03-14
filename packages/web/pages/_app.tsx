@@ -3,7 +3,7 @@ import {
   OverrideComponentContext,
   OverrideComponentType,
   theme,
-} from "@project/ui";
+} from "@yestheory.family/ui";
 import { AppProps } from "next/app";
 import Image from "next/image";
 import Link from "next/link";

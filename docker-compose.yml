@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_DB_NAME}
   migration:
-    image: fullstack-typescript-boilerplate-example-migration:latest
+    image: yestheory-family-migration:latest
     build:
       context: .
       dockerfile: packages/server/migration/Dockerfile
@@ -19,7 +19,7 @@ services:
     depends_on:
       - postgres
   server:
-    image: fullstack-typescript-boilerplate-example-server:latest
+    image: yestheory-family-server:latest
     build:
       args:
         BACKEND_PORT: ${BACKEND_PORT:-5000}
@@ -34,7 +34,7 @@ services:
       - postgres
       - migration
   web:
-    image: fullstack-typescript-boilerplate-example-web:latest
+    image: yestheory-family-web:latest
     build:
       context: .
       dockerfile: packages/web/Dockerfile

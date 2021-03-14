@@ -1,3 +1,3 @@
-export * from "./NavLink/NavLink";
-export * from "./ScssExample/ScssExample";
+export * from "./common";
+export * from "./home";
 export * from "./util";

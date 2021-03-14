@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Common/Heading Heading 1`] = `
+  <div class="chakra-stack css-wulyol">
+    <div class="css-gmuwbf">
+      <h1 class="chakra-heading css-9zuima">
+        Photo
+        <h1 class="chakra-heading css-szoov">wall</h1>
+      </h1>
+    </div>
+    <div class="css-gmuwbf">
+      <h2 class="chakra-heading css-e47k3m">
+        Photo
+        <h2 class="chakra-heading css-1skkb38">wall</h2>
+      </h2>
+    </div>
+  </div>
+`;
+
+exports[`Storyshots Common/Heading Interactive Heading 1`] = `
+  <div class="css-gmuwbf">
+    <h1 class="chakra-heading css-9zuima">
+      Photo
+      <h1 class="chakra-heading css-szoov">wall</h1>
+    </h1>
+  </div>
+`;
