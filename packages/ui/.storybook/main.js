@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -15,7 +13,17 @@ module.exports = {
     },
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",
-    "@storybook/preset-scss",
+    {
+      name: "@storybook/preset-scss",
+      options: {
+        cssLoaderOptions: {
+          modules: {
+            auto: true,
+            localIdentName: "[name]__[local]--[hash:base64:5]",
+          },
+        },
+      },
+    },
   ],
   typescript: {
     check: true,
