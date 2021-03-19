@@ -15,6 +15,7 @@ module.exports = {
     },
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",
+    "@storybook/preset-scss",
   ],
   typescript: {
     check: true,
@@ -27,11 +28,6 @@ module.exports = {
     },
   },
   webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: ["styles-loader", "css-loader", "sass-loader"],
-      include: path.resolve(__dirname, "../"),
-    });
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       loader: require.resolve("babel-loader"),
