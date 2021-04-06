@@ -20,4 +20,4 @@ generates:
       - typescript-urql
     config:
       preResolveTypes: true
-      urqlImportFrom: "@urql/preact"
+      gqlImport: "urql#gql"
