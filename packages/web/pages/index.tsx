@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { theme } from "@project/ui";
-import { ChakraProvider, Button } from "@chakra-ui/react";
+import { Button, ChakraProvider } from "@chakra-ui/react";
 import { useExampleQuery } from "../src/example.generated";
+import { withUrqlClient } from "next-urql";
 
-export default function Home() {
+function Home() {
   const [query] = useExampleQuery();
   const { data, fetching, error } = query;
 
@@ -37,3 +38,7 @@ export default function Home() {
     </ChakraProvider>
   );
 }
+
+export default withUrqlClient(() => ({ url: "http://localhost:5000/graphql" }))(
+  Home
+);

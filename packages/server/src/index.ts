@@ -31,7 +31,7 @@ const main = async () => {
     schema,
     context: (): PrismaContext => ({ prisma }),
   });
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, cors: { origin: "*" } });
 
   app.listen({ port }, () => console.log(`Backend listening on port ${port}`));
 };
