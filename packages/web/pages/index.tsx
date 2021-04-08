@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { theme } from "@project/ui";
+import { ScssExample, theme } from "@project/ui";
 import { Button, ChakraProvider } from "@chakra-ui/react";
 import { useExampleQuery } from "../src/example.generated";
 import { withUrqlClient } from "next-urql";
@@ -14,6 +14,8 @@ function Home() {
 
   return (
     <ChakraProvider theme={theme}>
+      <ScssExample />
+
       <div>
         <Button variant="outlined">SuperButton</Button>
         Hello World.{" "}

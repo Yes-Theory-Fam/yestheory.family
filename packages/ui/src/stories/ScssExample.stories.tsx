@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
-import { ScssExample } from "../components/ScssExample/ScssExample";
+import { ScssExample } from "../components";
 
 export default {
   title: "Example/ScssExample",
