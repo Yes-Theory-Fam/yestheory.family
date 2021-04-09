@@ -41,8 +41,16 @@
     "nohoist": [
       "next",
       "next/**",
+      "react-dom",
+      "react-dom/**",
       "next-urql",
-      "next-urql/"
+      "next-urql/**",
+      "preact-render-to-string",
+      "preact-render-to-string/**",
+      "react-ssr-prepass",
+      "react-ssr-prepass/**",
+      "preact-ssr-prepass",
+      "preact-ssr-prepass/**"
     ]
   }
 }
