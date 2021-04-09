@@ -24,6 +24,7 @@ module.exports = {
         },
       },
     },
+    "storybook-addon-performance/register",
   ],
   typescript: {
     check: true,
