@@ -1,8 +1,4 @@
-import { ThemeOverride } from "@chakra-ui/react";
-
-type PatchedOverride = Exclude<ThemeOverride["components"], undefined>;
-
-const Button: PatchedOverride["Button"] = {
+const Button = {
   baseStyle: {
     border: "1px",
     textTransform: "uppercase",
