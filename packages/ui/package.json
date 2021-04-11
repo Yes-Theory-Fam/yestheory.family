@@ -36,7 +36,6 @@
     "@storybook/addon-links": "^6.2.7",
     "@storybook/addon-storyshots": "^6.2.7",
     "@storybook/builder-webpack4": "^6.2.7",
-    "@storybook/builder-webpack5": "^6.2.7",
     "@storybook/client-api": "^6.2.7",
     "@storybook/preact": "^6.2.7",
     "@storybook/preset-scss": "^1.0.3",
