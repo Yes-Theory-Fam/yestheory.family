@@ -24,7 +24,7 @@ const main = async () => {
   const resolvers: [Function, ...Function[]] = [TestResolver];
   const schema = await buildSchema({ resolvers });
 
-  const port = 5000;
+  const port = process.env["BACKEND_PORT"] ?? 5000;
   const app = new koa();
 
   const server = new ApolloServer({

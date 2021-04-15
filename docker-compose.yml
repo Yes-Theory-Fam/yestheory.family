@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB_NAME}
+  migration:
+    image: projectname-migration:latest
+    build:
+      context: .
+      dockerfile: packages/server/migration/Dockerfile
+    environment:
+      DATABASE_URL: "postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:5432/${DATABASE_DB_NAME}?schema=public"
+    depends_on:
+      - postgres
+  server:
+    image: projectname-server:latest
+    build:
+      args:
+        BACKEND_PORT: ${BACKEND_PORT}
+      context: .
+      dockerfile: packages/server/Dockerfile
+    hostname: ${BACKEND_HOST}
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    environment:
+      DATABASE_URL: "postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:5432/${DATABASE_DB_NAME}?schema=public"
+    depends_on:
+      - postgres
+      - migration
+  web:
+    image: projectname-web:latest
+    build:
+      context: .
+      dockerfile: packages/web/Dockerfile
+    ports:
+      - 3000:3000

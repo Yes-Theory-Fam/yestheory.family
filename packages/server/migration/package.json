@@ -1,0 +1,10 @@
+{
+  "name": "migration",
+  "version": "1.0.0",
+  "devDependencies": {
+    "prisma": "latest"
+  },
+  "dependencies": {
+    "@prisma/client": "latest"
+  }
+}

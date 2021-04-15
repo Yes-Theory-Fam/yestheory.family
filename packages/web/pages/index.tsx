@@ -5,12 +5,12 @@ import { useExampleQuery } from "../src/example.generated";
 import { withUrqlClient } from "next-urql";
 
 function Home() {
-  // const [query] = useExampleQuery();
-  // const { data, fetching, error } = query;
-  //
-  // if (fetching) return <div>Loading...</div>;
-  // if (error) return <div>Error...</div>;
-  // console.log(data);
+  const [query] = useExampleQuery();
+  const { data, fetching, error } = query;
+
+  if (fetching) return <div>Loading...</div>;
+  if (error) return <div>Error...</div>;
+  console.log(data);
 
   return (
     <ChakraProvider theme={theme}>
@@ -41,8 +41,9 @@ function Home() {
   );
 }
 
-export default Home;
-
-// export default withUrqlClient(() => ({ url: "http://localhost:5000/graphql" }))(
-//   Home
-// );
+export default withUrqlClient(() => ({
+  url:
+    typeof window === "undefined"
+      ? process.env.SERVER_BACKEND_URL
+      : process.env.NEXT_PUBLIC_BACKEND_URL,
+}))(Home);

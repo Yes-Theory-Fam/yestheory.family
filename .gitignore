@@ -79,7 +79,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
-.env*.local
+packages/server/.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -254,3 +254,6 @@ modules.xml
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Env
+*.env

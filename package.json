@@ -16,6 +16,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "lerna": "^3.22.1",
     "prettier": "^2.2.1"
   }
