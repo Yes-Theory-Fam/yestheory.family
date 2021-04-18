@@ -84,7 +84,7 @@ The docker setup expects a series of environment variables to be set:
 `DATABASE_USER` - The user to use for database login  
 `DATABASE_PASSWORD` - The password to use for database login  
 `BACKEND_PORT`* - The port to run the backend on (default: 5000)  
-`BACKEND_HOST` - The hostname used inside the docker-network to connect to the server
+`BACKEND_HOST` - The hostname used inside the docker-network to connect to the server (default: server)
 
 `*` This value is used during build-time of the container already to expose the correct port. If you change it, you have
 to rebuild the container!
