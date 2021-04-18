@@ -32,7 +32,7 @@ COPY yarn.lock .
 COPY package.json .
 COPY packages/server /app/packages/server
 WORKDIR /app/packages/server
-RUN yarn prisma generate; exit 0
+RUN yarn prisma generate
 RUN yarn build
 
 # Copy generated source to dist manually
