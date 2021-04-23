@@ -10,10 +10,10 @@
     "start": "next start"
   },
   "devDependencies": {
+    "@atmina/local-typescript-operations": "^0.4.7",
+    "@atmina/only-enum-types": "^0.3.1",
     "@graphql-codegen/cli": "1.21.1",
     "@graphql-codegen/near-operation-file-preset": "^1.17.13",
-    "@graphql-codegen/typescript": "1.21.0",
-    "@graphql-codegen/typescript-operations": "^1.17.14",
     "@graphql-codegen/typescript-urql": "^2.0.3",
     "@project/eslint-config": "^1.0.0",
     "eslint-config-preact": "^1.1.3",

@@ -15,13 +15,13 @@ export type Scalars = {
   Float: number;
 };
 
-export type Query = {
-  __typename?: "Query";
-  examples: Array<Example>;
-};
-
 export type Example = {
   __typename?: "Example";
   id: Scalars["Int"];
   title: Scalars["String"];
+};
+
+export type Query = {
+  __typename?: "Query";
+  examples: Array<Example>;
 };
