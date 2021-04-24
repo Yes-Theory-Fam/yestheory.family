@@ -1,24 +1,8 @@
 import Link from "next/link";
-import {
-  ScssExample,
-  theme,
-  NavLink,
-  OverrideComponentContext,
-  OverrideComponentType,
-} from "@project/ui";
-import { Button, ChakraProvider } from "@chakra-ui/react";
+import { ScssExample, NavLink } from "@project/ui";
+import { Button } from "@chakra-ui/react";
 import { useExampleQuery } from "../src/example.generated";
 import { withUrqlClient } from "next-urql";
-import Image from "next/image";
-
-const componentOverrides: OverrideComponentType = {
-  Image,
-  wrapLink: (child, href) => (
-    <Link href={href} passHref>
-      {child}
-    </Link>
-  ),
-};
 
 function Home() {
   const [query] = useExampleQuery();
@@ -29,31 +13,29 @@ function Home() {
   console.log(data);
 
   return (
-    <ChakraProvider theme={theme}>
-      <OverrideComponentContext.Provider value={componentOverrides}>
-        <ScssExample />
+    <>
+      <ScssExample />
 
-        <div>
-          <Button variant="outlined">SuperButton</Button>
-          Hello World.{" "}
-          <ul>
-            <li>
-              <NavLink href="/about">About</NavLink>
-            </li>
-            <li>
-              <Link href="/ssr">
-                <a>SSR</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/ssg">
-                <a>SSG</a>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </OverrideComponentContext.Provider>
-    </ChakraProvider>
+      <div>
+        <Button variant="outlined">SuperButton</Button>
+        Hello World.{" "}
+        <ul>
+          <li>
+            <NavLink href="/about">About</NavLink>
+          </li>
+          <li>
+            <Link href="/ssr">
+              <a>SSR</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/ssg">
+              <a>SSG</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
 
