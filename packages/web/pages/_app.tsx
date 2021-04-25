@@ -11,11 +11,13 @@ import { FunctionalComponent } from "preact";
 
 const componentOverrides: OverrideComponentType = {
   Image,
-  wrapLink: (child, href) => (
-    <Link href={href} passHref>
-      {child}
-    </Link>
-  ),
+  wrapLink: function LinkWrap(child, href) {
+    return (
+      <Link href={href} passHref>
+        {child}
+      </Link>
+    );
+  },
 };
 
 const App: FunctionalComponent<AppProps> = ({ Component, pageProps }) => (

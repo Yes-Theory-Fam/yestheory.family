@@ -1,7 +1,4 @@
 import { h, FunctionalComponent } from "preact";
-import { useContext } from "preact/hooks";
-import { OverrideComponentContext } from "..";
-import { Link } from "@chakra-ui/react";
 import { WrappedLink } from "../util/WrappedLink";
 
 export interface NavLinkProps {

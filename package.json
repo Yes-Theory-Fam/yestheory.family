@@ -2,8 +2,8 @@
   "name": "project",
   "private": true,
   "scripts": {
-    "eslint:check": "yarn workspaces run lint",
-    "eslint:write": "yarn workspaces run lint --fix",
+    "eslint:check": "yarn workspaces foreach run lint",
+    "eslint:write": "yarn workspaces foreach run lint --fix",
     "format:check": "prettier --check packages",
     "format:write": "prettier --write packages",
     "server:dev": "yarn workspace @project/server start",

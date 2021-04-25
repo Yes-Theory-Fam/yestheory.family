@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { PrismaClient } from "@prisma/client";
-import { buildSchema, Ctx, Query, Resolver } from "type-graphql";
+import { buildSchema, Ctx, NonEmptyArray, Query, Resolver } from "type-graphql";
 import { Example } from "./__generated__/type-graphql";
 import koa from "koa";
 import { ApolloServer } from "apollo-server-koa";
@@ -21,7 +21,8 @@ class TestResolver {
 const prisma = new PrismaClient();
 
 const main = async () => {
-  const resolvers: [Function, ...Function[]] = [TestResolver];
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const resolvers: NonEmptyArray<Function> = [TestResolver];
   const schema = await buildSchema({ resolvers });
 
   const port = process.env["BACKEND_PORT"] ?? 5000;

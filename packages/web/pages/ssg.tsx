@@ -1,9 +1,14 @@
-export default function SSG({ framework }) {
-  return <div>{framework} ssg example</div>;
+import { FunctionalComponent } from "preact";
+
+interface SSGProps {
+  framework: string;
 }
 
-export function getStaticProps() {
-  return {
-    props: { framework: "preact" },
-  };
-}
+const SSG: FunctionalComponent<SSGProps> = ({ framework }) => (
+  <div>{framework} ssg example</div>
+);
+export default SSG;
+
+export const getStaticProps = (): { props: SSGProps } => ({
+  props: { framework: "preact" },
+});

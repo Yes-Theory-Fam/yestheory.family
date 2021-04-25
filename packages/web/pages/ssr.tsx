@@ -1,9 +1,14 @@
-export default function SSR({ framework }) {
-  return <div>{framework} ssr example</div>;
+import { FunctionalComponent } from "preact";
+
+interface SSRProps {
+  framework: string;
 }
 
-export function getServerSideProps() {
-  return {
-    props: { framework: "preact" },
-  };
-}
+const SSR: FunctionalComponent<SSRProps> = ({ framework }) => (
+  <div>{framework} ssr example</div>
+);
+export default SSR;
+
+export const getServerSideProps = (): { props: SSRProps } => ({
+  props: { framework: "preact" },
+});
