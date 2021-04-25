@@ -2,6 +2,7 @@ import { h, FunctionalComponent } from "preact";
 import { useContext } from "preact/hooks";
 import { OverrideComponentContext } from "..";
 import { Link } from "@chakra-ui/react";
+import { WrappedLink } from "../util/WrappedLink";
 
 export interface NavLinkProps {
   href: string;
@@ -13,6 +14,9 @@ export const NavLink: FunctionalComponent<NavLinkProps> = ({
   href,
   children,
 }) => {
-  const { wrapLink } = useContext(OverrideComponentContext);
-  return wrapLink(<Link color={"red"}>{children}</Link>, href);
+  return (
+    <WrappedLink href={href} color={"red"}>
+      {children}
+    </WrappedLink>
+  );
 };
