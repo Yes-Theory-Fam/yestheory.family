@@ -1,5 +1,5 @@
 import { h, FunctionalComponent } from "preact";
-import { WrappedLink } from "../util/WrappedLink";
+import { WrappedLink } from "..";
 
 export interface NavLinkProps {
   href: string;
