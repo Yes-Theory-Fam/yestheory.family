@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM node:alpine AS deps
+FROM node:14-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -20,7 +20,7 @@ WORKDIR /app/packages/server
 RUN yarn workspaces focus
 
 # Rebuild the source code only when needed
-FROM node:alpine AS builder
+FROM node:14-alpine AS builder
 WORKDIR /app
 
 # Copy node_modules and other side products from deps
@@ -39,7 +39,7 @@ RUN yarn build
 RUN cp -r /app/packages/server/src/__generated__ /app/packages/server/dist
 
 # Build the actual running server
-FROM node:alpine
+FROM node:14-alpine
 WORKDIR /app
 
 # Copy relevant data from builder
