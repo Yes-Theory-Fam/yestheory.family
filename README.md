@@ -27,17 +27,23 @@ This project provides a monorepo setup for a Fullstack TypeScript project and co
 
 - [Prettier](https://github.com/prettier/prettier/)
 - [ESLint](https://github.com/eslint/eslint/)
-- [Docker](https://www.docker.com/)
+- [Docker](https://github.com/moby/moby)
 
 ## How do I use this?
 
-1. Local development:  
-   Clone, `yarn install`, and use one of the [available scripts](#available-scripts)! Everything should just work
-   together in the setup you download.
+0. Clone this repository
+1. Create the env files mentioned in [.env files](#env-files). For a starter setup you can just copy the .example files
+   to their name without the .example.
 
-2. Docker setup:
-   Clone, `docker-compose up`, have a look at the [ports](#ports), where the built production instances should be
-   running (Note: The docker setup is not suitable for development as it doesn't use volumes).
+2. **Local development**:  
+   Run `yarn install`, then `yarn server:generate` and use one of the [available scripts](#available-scripts)!
+   Everything should just work together in the setup you download (Note: `yarn web:generate` requires the backend to be
+   running because the code generator loads the schema directly from the server).
+
+3. **Docker setup**:
+   Run `docker-compose up`, wait for the images to build, then have a look at the [ports](#ports), where the built
+   production instances will be running (Note: The docker setup is not suitable for development as it doesn't use
+   volumes, storybook won't be launched in containers either).
 
 If you are building a serious project with this, I highly recommend replacing `@project/` with `@<projectname>/` in
 all `package.json` files as well as `projectname` with the actual project's name in `docker-compose.yml`.
@@ -55,7 +61,10 @@ available from the root directory of the project and listed here:
 `yarn server:generate` - Generates backend source and packages using prisma.  
 `yarn storybook` - Runs and opens the Storybook project.  
 `yarn web:dev` - Runs the next frontend for development.  
-`yarn web:generate` - Generates GraphQL types and hooks for the frontend.
+`yarn web:generate`* - Generates GraphQL types and hooks for the frontend.
+
+`*` - This script requires the backend to be running on `http://localhost:5000/graphql` because the code generator loads
+the schema directly from the server.
 
 ## `.env` files
 
