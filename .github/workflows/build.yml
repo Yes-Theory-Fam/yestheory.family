@@ -1,5 +1,8 @@
 name: 'Docker Build'
-on: pull_request
+on:
+  pull_request: null
+  push:
+    branches: [master]
 
 jobs:
   docker-build-migration:
@@ -18,9 +21,18 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Login to DockerHub
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build migration container
         uses: docker/build-push-action@v2
         with:
+          push: ${{ github.ref == 'refs/heads/master' }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-typescript-boilerplate-example-migration:latest
           context: ./
           file: ./packages/server/migration/Dockerfile
           builder: ${{ steps.buildx.output.name }}
@@ -43,9 +55,18 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Login to DockerHub
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build server container
         uses: docker/build-push-action@v2
         with:
+          push: ${{ github.ref == 'refs/heads/master' }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-typescript-boilerplate-example-server:latest
           context: ./
           file: ./packages/server/Dockerfile
           builder: ${{ steps.buildx.output.name }}
@@ -68,9 +89,18 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Login to DockerHub
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build web container
         uses: docker/build-push-action@v2
         with:
+          push: ${{ github.ref == 'refs/heads/master' }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-typescript-boilerplate-example-web:latest
           context: ./
           file: ./packages/web/Dockerfile
           builder: ${{ steps.buildx.output.name }}

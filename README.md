@@ -45,8 +45,29 @@ This project provides a monorepo setup for a Fullstack TypeScript project and co
    production instances will be running (Note: The docker setup is not suitable for development as it doesn't use
    volumes, storybook won't be launched in containers either).
 
-If you are building a serious project with this, I highly recommend replacing `@project/` with `@<projectname>/` in
-all `package.json` files as well as `projectname` with the actual project's name in `docker-compose.yml`.
+### Required steps for an actual project
+
+If you are building a serious project with this, there are a few additional changes required to get everything running
+smoothly:
+
+#### General
+
+You should follow these steps whenever you start a new project with this boilerplate.
+
+- Replace `@project/` with `@<projectname>/` in all package.json files
+- Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `docker-compose.yml`
+  and `docker-compose.yml`
+
+#### GitHub Actions
+
+You should follow these steps when you have this repository on GitHub and want to use Actions as CI/CD tool.
+
+- Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `.github/workflows/build.yml`
+- Create three Docker repositories on [Docker Hub](https://hub.docker.com), named `<name>-migration`, `<name>-server`
+  and `<name>-web` replacing `<name>` with your project's name
+- Go to your repository > Settings > Secrets and create two secrets:
+    - `DOCKERHUB_USERNAME` - contains the username you created the repositories in
+    - `DOCKERHUB_TOKEN` - contains a Docker Hub access token
 
 ## Available scripts
 
