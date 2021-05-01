@@ -8,7 +8,8 @@
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook:build": "yarn build-storybook",
+    "chromatic": "env-cmd chromatic"
   },
   "dependencies": {
     "@babel/preset-env": "^7.13.10",
@@ -42,8 +43,10 @@
     "@types/jest": "^26.0.22",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "chromatic": "^5.8.0",
     "core-js": "^3.11.0",
     "css-loader": "^5.2.4",
+    "env-cmd": "^10.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^3.1.0",
     "eslint": "^7.25.0",

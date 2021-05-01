@@ -14,6 +14,7 @@ This project provides a monorepo setup for a Fullstack TypeScript project and co
 - [Preact](https://github.com/preactjs/preact/)
 - [Chakra-UI](https://github.com/chakra-ui/chakra-ui/)
 - [Storybook](https://github.com/storybookjs/storybook/)
+- [Chromatic](https://github.com/chromaui/chromatic-cli)
 
 ## Frontend
 
@@ -28,12 +29,14 @@ This project provides a monorepo setup for a Fullstack TypeScript project and co
 - [Prettier](https://github.com/prettier/prettier/)
 - [ESLint](https://github.com/eslint/eslint/)
 - [Docker](https://github.com/moby/moby)
+- [GitHub Action](https://github.com/features/actions)
 
 ## How do I use this?
 
 0. Clone this repository
+
 1. Create the env files mentioned in [.env files](#env-files). For a starter setup you can just copy the .example files
-   to their name without the .example.
+   to their name without the .example (for Chromatic, see the [general steps below](#general)).
 
 2. **Local development**:  
    Run `yarn install`, then `yarn server:generate` and use one of the [available scripts](#available-scripts)!
@@ -57,6 +60,8 @@ You should follow these steps whenever you start a new project with this boilerp
 - Replace `@project/` with `@<projectname>/` in all package.json files
 - Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `docker-compose.yml`
   and `docker-compose.yml`
+- Create a new project on [Chromatic](https://www.chromatic.com/) and place your project token in `packages/ui/.env`
+  as `CHROMATIC_PROJECT_TOKEN=token`
 
 #### GitHub Actions
 
@@ -65,7 +70,8 @@ You should follow these steps when you have this repository on GitHub and want t
 - Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `.github/workflows/build.yml`
 - Create three Docker repositories on [Docker Hub](https://hub.docker.com), named `<name>-migration`, `<name>-server`
   and `<name>-web` replacing `<name>` with your project's name
-- Go to your repository > Settings > Secrets and create two secrets:
+- Go to your repository > Settings > Secrets and create these secrets:
+    - `CHROMATIC_PROJECT_TOKEN` - contains the Chromatic token for the project 
     - `DOCKERHUB_USERNAME` - contains the username you created the repositories in
     - `DOCKERHUB_TOKEN` - contains a Docker Hub access token
 
@@ -95,6 +101,7 @@ suggesting an approach to only use one):
 - `.env` contains environment variables used in the [Docker setup](#docker)
 - `packages/server/.env` contains environment variables local to the server package, currently only used for providing
   the `DATABASE_URL` variable to prisma
+- `packages/ui/.env` contains the chromatic project token  
 - `packages/web/.env.local` contains variables usable in
   Next.js ([docs](https://nextjs.org/docs/basic-features/environment-variables))
 
@@ -107,7 +114,7 @@ The server and web packages have been dockerized, and a docker-compose setup usi
 
 ### Environment variables
 
-The docker setup expects a series of environment variables to be set:
+The docker-compose setup expects a series of environment variables to be set:
 
 `DATABASE_HOST` - The host on which to find the database on  
 `DATABASE_DB_NAME` - The name of the database to use  
