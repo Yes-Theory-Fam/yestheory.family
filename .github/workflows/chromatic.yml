@@ -1,6 +1,9 @@
 name: 'Chromatic'
 
-on: pull_request
+on:
+  pull_request: null
+  push:
+    branches: [master]
 
 jobs:
   chromatic-deployment:
