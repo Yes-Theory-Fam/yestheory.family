@@ -4,7 +4,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev src/index.ts",
+    "test": "echo server: ok"
   },
   "private": true,
   "devDependencies": {

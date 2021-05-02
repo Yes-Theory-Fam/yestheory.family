@@ -9,6 +9,7 @@
     "server:dev": "yarn workspace @project/server start",
     "server:generate": "yarn workspace @project/server prisma generate",
     "storybook": "yarn workspace @project/ui storybook",
+    "test": "yarn workspaces foreach run test",
     "web:dev": "yarn workspace @project/web dev",
     "web:generate": "yarn workspace @project/web codegen"
   },

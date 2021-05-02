@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "echo eslint-config: ok"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
