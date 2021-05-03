@@ -14,5 +14,8 @@ module.exports = {
     "^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx",
   },
   transformIgnorePatterns,
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png|scss|svg|webp)$": "<rootDir>/.jest/fileMock.js",
+  },
   setupFiles: ["<rootDir>/.jest/setup.js"],
 };
