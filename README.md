@@ -87,6 +87,7 @@ available from the root directory of the project and listed here:
 `yarn server:dev` - Runs the backend for development (using ts-node-dev).  
 `yarn server:generate` - Generates backend source and packages using prisma.  
 `yarn storybook` - Runs and opens the Storybook project.  
+`yarn test` - Runs the test script in all workspaces.  
 `yarn web:dev` - Runs the next frontend for development.  
 `yarn web:generate`* - Generates GraphQL types and hooks for the frontend.
 
