@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Example/NavLink NavLink 1`] = `
-<NavLink
-  href="https://example.com"
->
-  Example
-</NavLink>
+  <a
+    href="https://example.com"
+    class="chakra-link css-tokvmb"
+  >
+    Example
+  </a>
 `;

@@ -7,6 +7,7 @@ module.exports = babelJest.createTransformer({
       "@babel/preset-typescript",
       {
         jsxPragma: "h",
+        jsxPragmaFrag: "Fragment",
       },
     ],
     ["@babel/preset-env", { targets: { esmodules: true } }],

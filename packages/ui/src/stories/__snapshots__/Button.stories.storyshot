@@ -1,19 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Example/Button Outlined Button 1`] = `
-<Button
-  label="Button"
-  variant="outlined"
->
-  Button
-</Button>
+  <button
+    type="button"
+    label="Button"
+    class="chakra-button css-oqfhsh"
+  >
+    Button
+  </button>
 `;
 
 exports[`Storyshots Example/Button Solid Button 1`] = `
-<Button
-  label="Button"
-  variant="solid"
->
-  Button
-</Button>
+  <button
+    type="button"
+    label="Button"
+    class="chakra-button css-oqfhsh"
+  >
+    Button
+  </button>
 `;
