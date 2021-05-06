@@ -1,8 +1,35 @@
+const shadowEffects = {
+  _before: {
+    content: '""',
+    height: "10px",
+    left: "5%",
+    opacity: 0,
+    pointerEvents: "none",
+    position: "absolute",
+    top: "100%",
+    width: "90%",
+    zIndex: -1,
+    transition: "transform,opacity 300ms",
+    bgGradient: "radial(brand.800 -15%, rgba(0, 0, 0, 0) 72%)",
+  },
+  _hover: {
+    bg: "brand.800",
+    color: "white",
+    transform: "translateY(-3px)",
+    _before: {
+      opacity: 1,
+      transform: "translateY(3px)",
+    },
+  },
+  transition: "all 300ms",
+};
+
 const Button = {
   baseStyle: {
     border: "1px",
+    fontWeight: 400,
     textTransform: "uppercase",
-    borderRadius: "9999px",
+    borderRadius: "full",
   },
   sizes: {
     md: {
@@ -13,41 +40,21 @@ const Button = {
     sm: {
       height: "unset",
       py: "3",
-      minWidth: "200",
+      minWidth: "200px",
     },
   },
   variants: {
     solid: {
+      ...shadowEffects,
       color: "white",
-      bg: "brand.500",
+      bg: "brand.800",
+      border: "none",
     },
     outlined: {
-      _before: {
-        content: '""',
-        height: "10px",
-        left: "5%",
-        opacity: 0,
-        pointerEvents: "none",
-        position: "absolute",
-        top: "100%",
-        width: "90%",
-        zIndex: -1,
-        transition: "transform,opacity 300ms",
-        bgGradient: "radial(brand.500 -15%, rgba(0, 0, 0, 0) 72%)",
-      },
-      _hover: {
-        bg: "brand.500",
-        color: "white",
-        transform: "translateY(-3px)",
-        _before: {
-          opacity: 1,
-          transform: "translateY(3px)",
-        },
-      },
-      transition: "all 300ms",
-      color: "brand.500",
+      ...shadowEffects,
+      color: "brand.800",
       bg: "white",
-      borderColor: "brand.500",
+      borderColor: "brand.800",
     },
   },
 };

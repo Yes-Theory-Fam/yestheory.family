@@ -1,19 +1,15 @@
-# ui
+#ui
 
-## CLI Commands
+This part of the monorepo contains the UI component definitions and a Storybook of all the UI components of the https://yestheory.family website.
 
-- `npm install`: Installs dependencies
+## Secrets
 
-- `npm run dev`: Run a development, HMR server
+If you need to publish your storybook through chromatic (which you shouldn't need to do), contact one of the developers for the project token.
 
-- `npm run serve`: Run a production-like server
+## Available scripts
 
-- `npm run build`: Production-ready build
-
-- `npm run lint`: Pass TypeScript files using ESLint
-
-- `npm run test`: Run Jest and Enzyme with
-  [`enzyme-adapter-preact-pure`](https://github.com/preactjs/enzyme-adapter-preact-pure) for
-  your tests
-
-For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
+`yarn lint` - Runs ESLint on the project
+`yarn test` - Runs Jest to create text-snapshots of all stories
+`yarn storybook` - Launch the storybook
+`yarn build-storybook` - Build the storybook
+`yarn chromatic` - Build and publish the storybook to Chromatic

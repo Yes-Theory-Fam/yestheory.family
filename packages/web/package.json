@@ -1,5 +1,5 @@
 {
-  "name": "@project/web",
+  "name": "@yestheory.family/web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "@graphql-codegen/cli": "1.21.4",
     "@graphql-codegen/near-operation-file-preset": "^1.18.0",
     "@graphql-codegen/typescript-urql": "^2.0.6",
-    "@project/eslint-config": "^1.0.0",
+    "@yestheory.family/eslint-config": "^1.0.0",
     "eslint": "^7.25.0",
     "eslint-config-preact": "^1.1.3",
     "typescript": "^4.2.4"
@@ -24,9 +24,10 @@
   "dependencies": {
     "@chakra-ui/react": "^1.6.0",
     "@prefresh/next": "^1.4.6",
-    "@project/ui": "1.0.0",
+    "@yestheory.family/ui": "1.0.0",
     "graphql": "^15.5.0",
     "next": "10.0.6",
+    "next-images": "^1.7.0",
     "next-plugin-preact": "^3.0.4",
     "next-transpile-modules": "^6.4.0",
     "next-urql": "^3.0.1",

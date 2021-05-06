@@ -1,5 +1,5 @@
 {
-  "name": "@project/eslint-config",
+  "name": "@yestheory.family/eslint-config",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

@@ -1,5 +1,5 @@
 {
-  "name": "@project/common",
+  "name": "@yestheory.family/common",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "test": "echo common: ok"
   },
   "devDependencies": {
-    "@project/eslint-config": "^1.0.0",
+    "@yestheory.family/eslint-config": "^1.0.0",
     "eslint": "^7.25.0",
     "typescript": "^4.2.4"
   }

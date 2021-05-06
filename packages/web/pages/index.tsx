@@ -1,47 +1,73 @@
-import Link from "next/link";
-import { ScssExample, NavLink } from "@project/ui";
-import { Button } from "@chakra-ui/react";
-import { useExampleQuery } from "../src/example.generated";
-import { withUrqlClient } from "next-urql";
+import { h, FunctionalComponent, Fragment } from "preact";
+import {
+  HomeRow,
+  HomeParallax,
+  Navigation,
+  Footer,
+  HomeRowProps,
+  HeadingProps,
+  Fonts,
+} from "@yestheory.family/ui";
+import { VStack, Container } from "@chakra-ui/react";
 
-function Home() {
-  const [query] = useExampleQuery();
-  const { data, fetching, error } = query;
+const image = {
+  src:
+    "https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg",
+  alt: "Image of a cute kitten :)",
+};
 
-  if (fetching) return <div>Loading...</div>;
-  if (error) return <div>Error...</div>;
-  console.log(data);
+const heading: HeadingProps = {
+  frontText: "Discover ",
+  blueText: "empowering stories",
+  size: "h2",
+};
 
+const exampleData: HomeRowProps[] = [
+  {
+    direction: "ltr",
+    image,
+    paragraph: {
+      heading,
+      buttonHref: "/about",
+      paragraphs: [],
+    },
+  },
+  {
+    direction: "rtl",
+    image,
+    paragraph: {
+      heading,
+      buttonHref: "/about",
+      paragraphs: [],
+    },
+  },
+  {
+    direction: "ltr",
+    image,
+    paragraph: {
+      heading,
+      buttonHref: "/about",
+      paragraphs: [],
+    },
+  },
+];
+
+const Index: FunctionalComponent = () => {
   return (
     <>
-      <ScssExample />
-
-      <div>
-        <Button variant="outlined">SuperButton</Button>
-        Hello World.{" "}
-        <ul>
-          <li>
-            <NavLink href="/about">About</NavLink>
-          </li>
-          <li>
-            <Link href="/ssr">
-              <a>SSR</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/ssg">
-              <a>SSG</a>
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <Fonts />
+      <Navigation links={[]} />
+      <HomeParallax />
+      <Container maxW={"container.xxl"} p={0}>
+        <VStack bg={"white"} px={8} py={8} spacing={[8, null, null, 12]}>
+          {exampleData.map((d) => (
+            <HomeRow {...d} />
+          ))}
+        </VStack>
+      </Container>
+      <Footer links={[]} />
     </>
   );
-}
+};
 
-export default withUrqlClient(() => ({
-  url:
-    typeof window === "undefined"
-      ? process.env.SERVER_BACKEND_URL
-      : process.env.NEXT_PUBLIC_BACKEND_URL,
-}))(Home);
+export default Index;

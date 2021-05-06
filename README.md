@@ -57,7 +57,7 @@ smoothly:
 
 You should follow these steps whenever you start a new project with this boilerplate.
 
-- Replace `@project/` with `@<projectname>/` in all package.json files
+- Replace `@yestheory.family/` with `@<projectname>/` in all package.json files
 - Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `docker-compose.yml`
   and `docker-compose.yml`
 - Create a new project on [Chromatic](https://www.chromatic.com/) and place your project token in `packages/ui/.env`
@@ -71,7 +71,7 @@ You should follow these steps when you have this repository on GitHub and want t
 - Create three Docker repositories on [Docker Hub](https://hub.docker.com), named `<name>-migration`, `<name>-server`
   and `<name>-web` replacing `<name>` with your project's name
 - Go to your repository > Settings > Secrets and create these secrets:
-    - `CHROMATIC_PROJECT_TOKEN` - contains the Chromatic token for the project 
+    - `CHROMATIC_PROJECT_TOKEN` - contains the Chromatic token for the project
     - `DOCKERHUB_USERNAME` - contains the username you created the repositories in
     - `DOCKERHUB_TOKEN` - contains a Docker Hub access token
 
@@ -102,7 +102,7 @@ suggesting an approach to only use one):
 - `.env` contains environment variables used in the [Docker setup](#docker)
 - `packages/server/.env` contains environment variables local to the server package, currently only used for providing
   the `DATABASE_URL` variable to prisma
-- `packages/ui/.env` contains the chromatic project token  
+- `packages/ui/.env` contains the chromatic project token
 - `packages/web/.env.local` contains variables usable in
   Next.js ([docs](https://nextjs.org/docs/basic-features/environment-variables))
 
