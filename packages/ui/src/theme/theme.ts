@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react";
 
 import {
   breakpoints,
@@ -13,16 +13,19 @@ import { Button, Link, Heading } from "./components";
 
 if (!Button || !Link || !Heading) throw new Error("Yoink");
 
-export default extendTheme({
-  breakpoints,
-  colors,
-  fonts,
-  shadows,
-  sizes,
-  styles,
-  components: {
-    Button,
-    Heading,
-    Link,
+export default extendTheme(
+  {
+    breakpoints,
+    colors,
+    fonts,
+    shadows,
+    sizes,
+    styles,
+    components: {
+      Button,
+      Heading,
+      Link,
+    },
   },
-});
+  withDefaultColorScheme({ colorScheme: "brand" })
+);
