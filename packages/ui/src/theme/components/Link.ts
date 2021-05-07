@@ -4,7 +4,7 @@ const Link = {
     borderColor: "transparent",
     _hover: {
       textDecoration: "none",
-      borderColor: "brand.600",
+      borderColor: "brand.800",
     },
   },
 };

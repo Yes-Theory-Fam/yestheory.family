@@ -11,7 +11,11 @@ interface LinkRowProps {
 
 const definitionToLink = (definition: FooterLinkDefinition) => {
   const { text, ...args } = definition;
-  return <Link {...args}>{text}</Link>;
+  return (
+    <Link {...args} color={"gray.600"}>
+      {text}
+    </Link>
+  );
 };
 
 export const FooterLinkRow: FunctionalComponent<LinkRowProps> = ({ links }) => (

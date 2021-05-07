@@ -36,7 +36,7 @@ exports[`Storyshots Common/Footer Footer 1`] = `
         target="_blank"
         rel="noopener noreferrer"
         href="https://yestheory.com"
-        class="chakra-link css-0"
+        class="chakra-link css-djevj3"
       >
         Yes Theory
       </a>
@@ -44,7 +44,7 @@ exports[`Storyshots Common/Footer Footer 1`] = `
         target="_blank"
         rel="noopener noreferrer"
         href="https://seekdiscomfort.com"
-        class="chakra-link css-0"
+        class="chakra-link css-djevj3"
       >
         Seek Discomfort
       </a>
@@ -52,7 +52,7 @@ exports[`Storyshots Common/Footer Footer 1`] = `
         target="_blank"
         rel="noopener noreferrer"
         href="https://example.com"
-        class="chakra-link css-0"
+        class="chakra-link css-djevj3"
       >
         Example
       </a>
