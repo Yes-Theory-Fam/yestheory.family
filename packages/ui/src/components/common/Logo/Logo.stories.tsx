@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
-import { Logo, LogoProps } from "../../components";
+import { Logo, LogoProps } from "../..";
 import { HStack, VStack } from "@chakra-ui/react";
 
 export default {

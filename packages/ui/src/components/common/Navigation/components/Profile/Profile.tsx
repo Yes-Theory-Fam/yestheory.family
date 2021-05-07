@@ -1,6 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { Avatar, AvatarBadge, HStack, Text, VStack } from "@chakra-ui/react";
-import { User } from "../../../../types";
+import { User } from "../../../../../types";
 
 export interface ProfileProps {
   user: User;

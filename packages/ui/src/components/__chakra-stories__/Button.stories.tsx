@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { Button, ButtonProps } from "@chakra-ui/react";
 import { Meta, Story } from "@storybook/preact/types-6-0";
-import { LoginButton } from "../../components";
+import { LoginButton } from "..";
 
 export default {
   title: "Common/Button",

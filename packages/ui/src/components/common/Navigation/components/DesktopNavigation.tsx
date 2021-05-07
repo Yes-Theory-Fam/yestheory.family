@@ -1,8 +1,8 @@
 import { h, FunctionalComponent } from "preact";
-import { LoginButton, Logo, NavLink } from "../../index";
+import { LoginButton, Logo, NavLink } from "../..";
 import { NavigationProps } from "../Navigation";
 import { HStack, Box } from "@chakra-ui/react";
-import { Profile } from "./Profile";
+import { Profile } from "./Profile/Profile";
 import { WrappedLink } from "../../..";
 
 export const DesktopNavigation: FunctionalComponent<NavigationProps> = (

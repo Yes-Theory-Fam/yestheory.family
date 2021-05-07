@@ -2,8 +2,8 @@ import { h } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
 import { Box } from "@chakra-ui/react";
 
-import { Profile } from "../../../components";
-import { User } from "../../../types";
+import { Profile } from "../../../..";
+import { User } from "../../../../../types";
 
 export default {
   title: "Common/Navigation/Profile",

@@ -1,6 +1,6 @@
 import { h, Fragment } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
-import { Navigation, ScrollToActionContainer } from "../../components";
+import { Navigation, ScrollToActionContainer } from "../..";
 import { Box, Text } from "@chakra-ui/react";
 
 export default {

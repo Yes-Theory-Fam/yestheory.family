@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { Story, Meta } from "@storybook/preact/types-6-0";
-import { HomeParagraph } from "../../components";
-import { heading, paragraphs } from "./common";
+import { HomeParagraph } from "../..";
+import { heading, paragraphs } from "../_stories.data";
 
 export default {
   title: "Home/Paragraph",

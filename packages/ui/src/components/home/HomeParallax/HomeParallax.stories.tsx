@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
 
-import { HomeParallax } from "../../components";
+import { HomeParallax } from "../..";
 import { Box, Flex } from "@chakra-ui/react";
 
 export default {

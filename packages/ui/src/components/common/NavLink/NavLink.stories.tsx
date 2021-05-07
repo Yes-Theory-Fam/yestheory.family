@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
-import { NavLink } from "../../components";
+import { NavLink } from "../..";
 import { HStack, VStack, Box } from "@chakra-ui/react";
 
 export default {
