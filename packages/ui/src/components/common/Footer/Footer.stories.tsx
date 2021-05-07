@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Story, Meta } from "@storybook/preact/types-6-0";
-import { Footer, FooterProps, FooterLinkDefinition } from "../../components";
+import { Footer, FooterProps, FooterLinkDefinition } from "../..";
 
 export default {
   title: "Common/Footer",

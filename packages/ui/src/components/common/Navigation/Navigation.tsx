@@ -1,12 +1,12 @@
 import { h, FunctionalComponent } from "preact";
-import { NavLinkProps } from "../index";
+import { NavLinkProps } from "..";
 import { DesktopNavigation } from "./components/DesktopNavigation";
 import { MobileNavigation } from "./components/MobileNavigation";
 import { Box } from "@chakra-ui/react";
 import { User } from "../../../types";
 
-export { Profile } from "./components/Profile";
-export type { ProfileProps } from "./components/Profile";
+export { Profile } from "./components/Profile/Profile";
+export type { ProfileProps } from "./components/Profile/Profile";
 
 export interface NavigationLinkProps extends NavLinkProps {
   text: string;

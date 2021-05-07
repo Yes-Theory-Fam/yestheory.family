@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Story, Meta } from "@storybook/preact/types-6-0";
-import { Heading, HeadingProps, HeadingSize } from "../../components";
+import { Heading, HeadingProps, HeadingSize } from "../..";
 import { VStack } from "@chakra-ui/react";
 
 const sizes: HeadingSize[] = ["h1", "h2"];

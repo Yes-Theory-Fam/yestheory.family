@@ -1,4 +1,4 @@
-import { HeadingProps } from "../../components";
+import { HeadingProps } from "..";
 import { Text } from "@chakra-ui/react";
 import { h } from "preact";
 

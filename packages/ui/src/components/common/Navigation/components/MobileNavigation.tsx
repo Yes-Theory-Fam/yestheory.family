@@ -1,9 +1,9 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { NavigationProps } from "../Navigation";
-import { LoginButton, Logo, NavLink } from "../../index";
+import { LoginButton, Logo, NavLink } from "../..";
 import { Flex, useDisclosure, Slide, VStack } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Profile } from "./Profile";
+import { Profile } from "./Profile/Profile";
 import { WrappedLink } from "../../../util";
 
 interface NavBarProps {

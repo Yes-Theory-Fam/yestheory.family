@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
-import { Navigation, NavigationProps } from "../../../components";
+import { Navigation, NavigationProps } from "../..";
 
 export default {
   title: "Common/Navigation/Navigation",

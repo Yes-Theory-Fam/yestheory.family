@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { Meta, Story } from "@storybook/preact/types-6-0";
-import { HomeRow, HomeRowProps } from "../../components";
-import { heading, paragraphs } from "./common";
+import { HomeRow, HomeRowProps } from "../..";
+import { heading, paragraphs } from "../_stories.data";
 
 interface Args {
   direction: HomeRowProps["direction"];
