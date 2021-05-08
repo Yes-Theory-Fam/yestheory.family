@@ -1,11 +1,10 @@
 import { FunctionalComponent } from "preact";
 import {
-  Footer,
   HeadingProps,
   HomeParallax,
   HomeRow,
   HomeRowProps,
-  Navigation,
+  ScrollToActionContainer,
 } from "@yestheory.family/ui";
 import { Container, VStack } from "@chakra-ui/react";
 
@@ -54,7 +53,9 @@ const exampleData: HomeRowProps[] = [
 const Index: FunctionalComponent = () => {
   return (
     <>
-      <HomeParallax />
+      <ScrollToActionContainer text={"Scroll for more"} overlapContent>
+        <HomeParallax />
+      </ScrollToActionContainer>
       <Container maxW={"container.xxl"} p={0}>
         <VStack bg={"white"} px={8} py={8} spacing={[8, null, null, 12]}>
           {exampleData.map((d) => (
