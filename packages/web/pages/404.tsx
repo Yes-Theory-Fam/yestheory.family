@@ -51,7 +51,7 @@ const Wip: FunctionalComponent = () => {
       <Head>
         <title>Work In Progress!</title>
       </Head>
-      <Center>
+      <Center mt={[16, null, 24]}>
         <VStack spacing={8} w={"90%"}>
           <Box>
             <Image
