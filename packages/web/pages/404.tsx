@@ -1,4 +1,5 @@
 import { FunctionalComponent } from "preact";
+import Head from "next/head";
 import Image from "next/image";
 import NextLink from "next/link";
 import { Box, Button, Center, Link, Text, VStack } from "@chakra-ui/react";
@@ -29,7 +30,10 @@ const Paragraphs: FunctionalComponent = () => {
         and groupchats launch.
       </Text>
       <Text>
-        While you are waiting, check out our Discord server below or go{" "}
+        That being said: We couldn't find the page you were looking for. This
+        might be because you mistyped a link, something is broken or because the
+        page isn't completed yet. While you are waiting, check out our Discord
+        server below or go{" "}
         <Link href={"#"} onClick={navigateBack} color={"brand.800"}>
           back
         </Link>
@@ -43,23 +47,28 @@ const Wip: FunctionalComponent = () => {
   const imageSize = 400;
 
   return (
-    <Center>
-      <VStack spacing={8} w={"90%"}>
-        <Box>
-          <Image
-            src={underConstructionWebp}
-            alt={"YesBot building a sandcastle :)"}
-            width={imageSize}
-            height={imageSize}
-          />
-        </Box>
-        <Heading frontText={"Under construction"} />
-        <Paragraphs />
-        <NextLink href={"https://discord.gg/yestheory"}>
-          <Button variant={"solid"}>Join Now</Button>
-        </NextLink>
-      </VStack>
-    </Center>
+    <>
+      <Head>
+        <title>Work In Progress!</title>
+      </Head>
+      <Center>
+        <VStack spacing={8} w={"90%"}>
+          <Box>
+            <Image
+              src={underConstructionWebp}
+              alt={"YesBot building a sandcastle :)"}
+              width={imageSize}
+              height={imageSize}
+            />
+          </Box>
+          <Heading frontText={"Under construction"} />
+          <Paragraphs />
+          <NextLink href={"https://discord.gg/yestheory"}>
+            <Button variant={"solid"}>Join Now</Button>
+          </NextLink>
+        </VStack>
+      </Center>
+    </>
   );
 };
 

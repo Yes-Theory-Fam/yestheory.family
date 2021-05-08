@@ -1,14 +1,13 @@
-import { h, FunctionalComponent, Fragment } from "preact";
+import { FunctionalComponent } from "preact";
 import {
-  HomeRow,
-  HomeParallax,
-  Navigation,
   Footer,
-  HomeRowProps,
   HeadingProps,
-  Fonts,
+  HomeParallax,
+  HomeRow,
+  HomeRowProps,
+  Navigation,
 } from "@yestheory.family/ui";
-import { VStack, Container } from "@chakra-ui/react";
+import { Container, VStack } from "@chakra-ui/react";
 
 const image = {
   src:
@@ -55,8 +54,6 @@ const exampleData: HomeRowProps[] = [
 const Index: FunctionalComponent = () => {
   return (
     <>
-      <Fonts />
-      <Navigation links={[]} />
       <HomeParallax />
       <Container maxW={"container.xxl"} p={0}>
         <VStack bg={"white"} px={8} py={8} spacing={[8, null, null, 12]}>
@@ -65,7 +62,6 @@ const Index: FunctionalComponent = () => {
           ))}
         </VStack>
       </Container>
-      <Footer links={[]} />
     </>
   );
 };
