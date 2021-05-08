@@ -6,7 +6,7 @@ import { FrontCloudLayer } from "./components/FrontCloudLayer";
 import { TextLayer } from "./components/TextLayer";
 
 export const HomeParallax: FunctionalComponent = () => (
-  <Box height={"100vh"}>
+  <Box height={"100vh"} w={"full"}>
     <TextLayer />
     <BackCloudLayer />
     <DudeOnMountainLayer />

@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/ScrollToActionContainer ScrollToActionContainer 1`] = `
-  <div class="chakra-container css-jl20h1">
-    <div class="css-1djihfe">
+  <div class="css-jl20h1">
+    <div class="css-1755u5z">
       <div class="css-0"></div>
       <p class="chakra-text css-bbrcub">
         This is some example content of the scroll to action container
       </p>
       <div
         onClick={[Function scrollToContent]}
-        class="chakra-stack css-wje1om"
+        class="chakra-stack css-1qukuv7"
       >
         <p class="chakra-text css-zbtc4n">Click here</p>
         <svg
@@ -211,15 +211,15 @@ exports[`Storyshots Common/ScrollToActionContainer ScrollToActionContainer with 
       </div>
     </div>
   </div>
-  <div class="chakra-container css-jl20h1">
-    <div class="css-1djihfe">
+  <div class="css-jl20h1">
+    <div class="css-1755u5z">
       <div class="css-0"></div>
       <p class="chakra-text css-bbrcub">
         This is some example content of the scroll to action container
       </p>
       <div
         onClick={[Function scrollToContent]}
-        class="chakra-stack css-wje1om"
+        class="chakra-stack css-1qukuv7"
       >
         <p class="chakra-text css-zbtc4n">Click here</p>
         <svg
