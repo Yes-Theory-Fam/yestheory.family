@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from "preact";
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 import { Box, Image, useBreakpointValue } from "@chakra-ui/react";
-import { useWindowSize } from "react-use";
+import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
 import { getImageDimensions } from "./common";
 
 import * as Images from "../assets";
@@ -23,7 +23,7 @@ export const DudeOnMountainLayer: FunctionalComponent = () => {
   const windowSize = useWindowSize();
 
   // When dependencies change
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     getImageDimensions(Images.dudeWebp).then(({ height, width }) => {
       if (displayedFraction !== fractionRef.current) {
         return;

@@ -1,9 +1,10 @@
 import { FunctionalComponent, h } from "preact";
-import { useWindowSize } from "react-use";
+import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
 import { Box, Image } from "@chakra-ui/react";
 import * as Images from "../assets";
-import { useEffect, useRef, useState } from "preact/hooks";
-import { Positioned, fullWidth } from "./common";
+import { useRef, useState } from "preact/hooks";
+import { fullWidth, Positioned } from "./common";
+import { useNavbarHeight } from "../../..";
 
 interface FrontCloudProps {
   src: string;
@@ -29,7 +30,7 @@ const BigFrontCloud: FunctionalComponent<FrontCloudProps> = ({
   const bigCloudRef = useRef<HTMLImageElement>(null);
   const size = useWindowSize();
   const [state, setState] = useState({ bottom: 0, left: 0 });
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const img = bigCloudRef.current;
     if (!img) return;
     setState({ bottom: img.height * -0.3, left: img.width * 0.1 });
@@ -52,10 +53,12 @@ const BigFrontCloud: FunctionalComponent<FrontCloudProps> = ({
 
 export const FrontCloudLayer: FunctionalComponent = () => {
   const bottom = { ...fullWidth, bottom: 0 };
+  const navbarHeight = useNavbarHeight();
+  const fullWithoutNavbar = `calc(100vh - ${navbarHeight}px)`;
 
   return (
     <Box
-      height={"100vh"}
+      height={fullWithoutNavbar}
       position={"relative"}
       overflow={"hidden"}
       zIndex={-100}

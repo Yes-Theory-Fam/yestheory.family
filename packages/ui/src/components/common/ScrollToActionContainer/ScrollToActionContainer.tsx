@@ -1,6 +1,8 @@
-import { h, FunctionalComponent } from "preact";
-import { Text, BoxProps, Flex, Box, VStack } from "@chakra-ui/react";
+import { FunctionalComponent, h } from "preact";
+import { Box, BoxProps, Flex, Text, VStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useRef } from "preact/hooks";
+import { useNavbarHeight } from "..";
 
 export interface ScrollToActionContainerProps extends BoxProps {
   text: string;
@@ -12,22 +14,26 @@ export const ScrollToActionContainer: FunctionalComponent<ScrollToActionContaine
 ) => {
   const { text, children, overlapContent = false, ...rest } = props;
 
+  const selfRef = useRef<HTMLDivElement>();
+  const navbarHeight = useNavbarHeight();
+
   const scrollToContent = () => {
-    const nav = document.querySelector("#navigation");
-    const navHeight = nav?.getBoundingClientRect().height ?? 0;
+    const selfHeight = selfRef.current?.getBoundingClientRect().height ?? 0;
+
     window.scroll({
-      top: window.innerHeight - navHeight,
+      top: selfHeight - navbarHeight,
       behavior: "smooth",
     });
   };
 
   return (
-    <Box minH={"100vh"} {...rest} display={"flex"}>
+    <Box minH={"100vh"} {...rest} display={"flex"} ref={selfRef}>
       <Flex
         w={"full"}
         direction={"column"}
         justify={"space-between"}
         align={"center"}
+        pt={navbarHeight}
         position={overlapContent ? "relative" : undefined}
       >
         <Box />

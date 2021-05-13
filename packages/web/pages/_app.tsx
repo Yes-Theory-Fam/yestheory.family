@@ -34,10 +34,10 @@ const App: FunctionalComponent<AppProps> = ({ Component, pageProps }) => (
         />
       </Head>
       <Navigation links={[]} />
-      <Box mt={[16, null, 24]} mb={6}>
-        <Component {...pageProps} />
+      <Component {...pageProps} />
+      <Box pt={6} bg={"white"}>
+        <Footer links={[]} />
       </Box>
-      <Footer links={[]} />
     </OverrideComponentContext.Provider>
   </ChakraProvider>
 );
