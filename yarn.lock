@@ -6139,6 +6139,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/koa-mount@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@types/koa-mount@npm:4.0.0"
+  dependencies:
+    "@types/koa": "*"
+  checksum: 27bf97173400061ac29f2b72730710224b718e86228dcd7de0de010b01e75bb75cceb732b2e03e2d8397908e418a41507a3bcdd07bed69bd7431d8902f60cb2b
+  languageName: node
+  linkType: hard
+
+"@types/koa-session@npm:^5.10.3":
+  version: 5.10.3
+  resolution: "@types/koa-session@npm:5.10.3"
+  dependencies:
+    "@types/cookies": "*"
+    "@types/koa": "*"
+  checksum: 0a32309ffba9e2438148788ad1ddb5facf5593b7e56a05b92775237b206235b45545949a5cef13388cb21040aa591aa9f53f348cc256e5e2ae3014f623e89084
+  languageName: node
+  linkType: hard
+
 "@types/koa@npm:*, @types/koa@npm:^2.0.46, @types/koa@npm:^2.13.1":
   version: 2.13.1
   resolution: "@types/koa@npm:2.13.1"
@@ -7012,18 +7031,24 @@ __metadata:
     "@types/graphql-fields": ^1.3.3
     "@types/koa": ^2.13.1
     "@types/koa-bodyparser": ^4.3.0
+    "@types/koa-mount": ^4.0.0
+    "@types/koa-session": ^5.10.3
     "@types/koa__cors": ^3.0.2
     "@types/koa__router": ^8.0.4
     "@types/node": ^14.14.41
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: ^2.23.0
     class-validator: ^0.13.1
+    dotenv: ^9.0.2
     eslint: ^7.25.0
+    grant: ^5.4.13
     graphql: ^15.5.0
     graphql-fields: ^2.0.3
     graphql-type-json: ^0.3.2
     koa: ^2.13.1
     koa-bodyparser: ^4.3.0
+    koa-mount: ^4.0.0
+    koa-session: ^6.2.0
     prisma: ~2.20.1
     reflect-metadata: ^0.1.13
     ts-node: ^9.1.1
@@ -7986,7 +8011,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"asn1.js@npm:^5.2.0":
+"asn1.js@npm:^5.2.0, asn1.js@npm:^5.3.0":
   version: 5.4.1
   resolution: "asn1.js@npm:5.4.1"
   dependencies:
@@ -10244,10 +10269,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cookie-signature@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "cookie-signature@npm:1.1.0"
+  checksum: a4665a1fd45dc79168bdd1ffcd17de0083974ac427520bedac7c2f7bce261d2376a101566f7f4d833d52954f2af63412ee26daa00e9c695fadea2154b3d8ca24
+  languageName: node
+  linkType: hard
+
 "cookie@npm:0.4.0":
   version: 0.4.0
   resolution: "cookie@npm:0.4.0"
   checksum: 7aaef4b642c533600fdd001d963a507dfcd814267503374e51d9743475d024feeff8b0b4ddd0777a25791a2efbdfd8bc4a0fe0696104efa195e8f8584807d410
+  languageName: node
+  linkType: hard
+
+"cookie@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "cookie@npm:0.4.1"
+  checksum: b8e0928e3e7aba013087974b33a6eec730b0a68b7ec00fc3c089a56ba2883bcf671252fc2ed64775aa1ca64796b6e1f6fdddba25a66808aef77614d235fd3e06
   languageName: node
   linkType: hard
 
@@ -10358,7 +10397,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-util-is@npm:1.0.2, core-util-is@npm:~1.0.0":
+"core-util-is@npm:1.0.2, core-util-is@npm:^1.0.2, core-util-is@npm:~1.0.0":
   version: 1.0.2
   resolution: "core-util-is@npm:1.0.2"
   checksum: 089015ee3c462dfceba70faa1df83b42a7bb35db26dae6af283247b06fe3216c65fccd9f00eebcaf98300dc31e981d56aae9f90b624f8f6ff1153e235ff88b65
@@ -11159,7 +11198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^3.0.0, debug@npm:^3.1.1, debug@npm:^3.2.6":
+"debug@npm:^3.0.0, debug@npm:^3.1.0, debug@npm:^3.1.1, debug@npm:^3.2.6":
   version: 3.2.7
   resolution: "debug@npm:3.2.7"
   dependencies:
@@ -11858,6 +11897,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "dotenv@npm:9.0.2"
+  checksum: 062a31a2fd024a8a7efee4f2d3972d488a1485e0545b97ab3c338f59f17689a2ae84b6e8ddb9ebca2902cc9b4926e7b672a476f5e326c6902648312fc3da54d9
+  languageName: node
+  linkType: hard
+
 "downshift@npm:^6.0.15":
   version: 6.1.2
   resolution: "downshift@npm:6.1.2"
@@ -11973,7 +12019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"elliptic@npm:^6.5.3":
+"elliptic@npm:^6.5.3, elliptic@npm:^6.5.4":
   version: 6.5.4
   resolution: "elliptic@npm:6.5.4"
   dependencies:
@@ -14107,6 +14153,30 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"grant@npm:^5.4.13":
+  version: 5.4.13
+  resolution: "grant@npm:5.4.13"
+  dependencies:
+    cookie: ^0.4.1
+    cookie-signature: ^1.1.0
+    jwk-to-pem: ^2.0.3
+    jws: ^4.0.0
+    qs: ^6.10.0
+    request-compose: ^2.1.3
+    request-oauth: ^1.0.1
+  dependenciesMeta:
+    cookie:
+      optional: true
+    cookie-signature:
+      optional: true
+    jwk-to-pem:
+      optional: true
+    jws:
+      optional: true
+  checksum: 35d0395256adf12ea263621a962d445b3e55545414973974aaf391326551b4a793851282b6ac61efbbfbeafbb192564b97f989b57b717c9c27e7b52f05b2408e
+  languageName: node
+  linkType: hard
+
 "graphql-config@npm:^3.2.0":
   version: 3.2.0
   resolution: "graphql-config@npm:3.2.0"
@@ -15527,6 +15597,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"is-class-hotfix@npm:~0.0.6":
+  version: 0.0.6
+  resolution: "is-class-hotfix@npm:0.0.6"
+  checksum: 530b8df3433fa52468607b16dc27d5015e0e95bb599b0ddccda61db3241e70a1f77236b8d691a04a51ebc3c9542d6e8298b759fabd29cd0f4e6d07f256e26e83
+  languageName: node
+  linkType: hard
+
 "is-color-stop@npm:^1.0.0":
   version: 1.1.0
   resolution: "is-color-stop@npm:1.1.0"
@@ -16030,6 +16107,17 @@ fsevents@^1.2.7:
   dependencies:
     has-symbols: ^1.0.1
   checksum: 753aa0cf95069387521b110c6646df4e0b5cce76cf604521c26b4f5d30a997a95036ed5930c0cca9e850ac6fccb04de551cc95aab71df471ee88e04ed1a96f21
+  languageName: node
+  linkType: hard
+
+"is-type-of@npm:^1.0.0":
+  version: 1.2.1
+  resolution: "is-type-of@npm:1.2.1"
+  dependencies:
+    core-util-is: ^1.0.2
+    is-class-hotfix: ~0.0.6
+    isstream: ~0.1.2
+  checksum: fb927d28d3fdc91776424b49bfeeaadb790bcd745ec97bee69a4bdb5d23261c6a6c79cecf14af659a6a99daa164e3f0912358ae4ebfd2c566cfb86602b1208b2
   languageName: node
   linkType: hard
 
@@ -17159,6 +17247,28 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"jwa@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "jwa@npm:2.0.0"
+  dependencies:
+    buffer-equal-constant-time: 1.0.1
+    ecdsa-sig-formatter: 1.0.11
+    safe-buffer: ^5.0.1
+  checksum: 03f8af36a3adf27b55ef98ef09be5b4a02b4533e33c91225a38addea1b164e28349cdf78b0e54cce088c472e203e8910bb37e989663c577454d371c7eef1b870
+  languageName: node
+  linkType: hard
+
+"jwk-to-pem@npm:^2.0.3":
+  version: 2.0.5
+  resolution: "jwk-to-pem@npm:2.0.5"
+  dependencies:
+    asn1.js: ^5.3.0
+    elliptic: ^6.5.4
+    safe-buffer: ^5.0.1
+  checksum: d1a1601e48cd3b4821e554341953a8b1db72fe596095b568ac97b8797f84ce6907e8f7e7d94eaf33a9bbdcfbcd344a0878ab798d40a24b0eca26bd47d70d3d50
+  languageName: node
+  linkType: hard
+
 "jws@npm:^3.2.2":
   version: 3.2.2
   resolution: "jws@npm:3.2.2"
@@ -17166,6 +17276,16 @@ fsevents@^1.2.7:
     jwa: ^1.4.1
     safe-buffer: ^5.0.1
   checksum: 3990b26ebb6f368bf6c53bf580cd327f207052adedeb7900dde665e143fff9ea5d96d0b4282e85a631a6e3af76ada281a1ccc450b1916d579d07e9d36b564a19
+  languageName: node
+  linkType: hard
+
+"jws@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "jws@npm:4.0.0"
+  dependencies:
+    jwa: ^2.0.0
+    safe-buffer: ^5.0.1
+  checksum: fb7d2725da5f4a9669024e3e743a3c4bfc193265614e03d52ea24a5251717107491004892d3524fdee525341d91212928bc19b8253f42f0df3dc35bf478dc92e
   languageName: node
   linkType: hard
 
@@ -17292,6 +17412,28 @@ fsevents@^1.2.7:
     co: ^4.6.0
     koa-compose: ^3.0.0
   checksum: d74bafebae527ef5b26f9f7d66928ca9f62cabba2eb8cc8fff1742a5ed5de21a32ca9ddb0a63b0e6a3e3ae04163be95b3a0efdaed662303f921c655527e16955
+  languageName: node
+  linkType: hard
+
+"koa-mount@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "koa-mount@npm:4.0.0"
+  dependencies:
+    debug: ^4.0.1
+    koa-compose: ^4.1.0
+  checksum: 085075a52d9a0b826ac4c9d2d0454f56fa7632920d5f2b1a842f23995bd5b45998b5569416c27b4921338df807ba338273b99e746379659329481c6754797305
+  languageName: node
+  linkType: hard
+
+"koa-session@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "koa-session@npm:6.2.0"
+  dependencies:
+    crc: ^3.4.4
+    debug: ^3.1.0
+    is-type-of: ^1.0.0
+    uuid: ^3.3.2
+  checksum: 7dda96108be2ec55bbda93a10310f5792df37e3bd89e45c48317224e0c8e01877102f44707f37eff8935301116f788d53676dd43d92a65cbc61860d78b4003cb
   languageName: node
   linkType: hard
 
@@ -19300,7 +19442,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"oauth-sign@npm:~0.9.0":
+"oauth-sign@npm:^0.9.0, oauth-sign@npm:~0.9.0":
   version: 0.9.0
   resolution: "oauth-sign@npm:0.9.0"
   checksum: af1ab60297c3a687d1d2de5c43c6453c4df6939de3e6114ada4a486ac51fa7ab1769f33000b94c0e8ffced5ae4c57c4f5d36b517792d83e9e9742578a728682e
@@ -21345,7 +21487,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.0, qs@npm:^6.5.2":
+"qs@npm:^6.10.0, qs@npm:^6.5.2, qs@npm:^6.9.6":
   version: 6.10.1
   resolution: "qs@npm:6.10.1"
   dependencies:
@@ -22350,6 +22492,24 @@ fsevents@^1.2.7:
   version: 0.1.6
   resolution: "replaceall@npm:0.1.6"
   checksum: 80186192d91fdf2fbfdf836b338957b8bcb1b90cdd20e619f360244ddb11fee49f137c4e4c913f2d1feb0d66c77eb8189fe5b5fee517a9e3a1f666e99df67dca
+  languageName: node
+  linkType: hard
+
+"request-compose@npm:^2.1.3":
+  version: 2.1.4
+  resolution: "request-compose@npm:2.1.4"
+  checksum: 63611707d0fa91878a8699bbdbae87cca759b81a9fcddb634c2af7ac922a621eb8dec15969dfebb62ce79f42aa4f279289e73fab14c43957090c7c515417690e
+  languageName: node
+  linkType: hard
+
+"request-oauth@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "request-oauth@npm:1.0.1"
+  dependencies:
+    oauth-sign: ^0.9.0
+    qs: ^6.9.6
+    uuid: ^8.3.2
+  checksum: 4b70356a8dba097260ac54be6da048353282a013a55e71132cd87b4824c173a45074c2be5b7b13203a5f10bf68193aebf1479e8ba93686f5f512ba8ddea2f044
   languageName: node
   linkType: hard
 

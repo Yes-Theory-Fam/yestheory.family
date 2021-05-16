@@ -26,6 +26,7 @@ interface NavigationStackProps extends NavigationProps {
 const NavigationStack: FunctionalComponent<NavigationStackProps> = ({
   links,
   user,
+  onLoginButtonClick,
   onCloseClick,
 }) => {
   const linkElements = links.map((l) => {
@@ -55,7 +56,7 @@ const NavigationStack: FunctionalComponent<NavigationStackProps> = ({
       {user ? (
         <Profile user={user} variant={"mobile"} />
       ) : (
-        <LoginButton variant={"outlined"} />
+        <LoginButton variant={"outlined"} onClick={onLoginButtonClick} />
       )}
     </VStack>
   );

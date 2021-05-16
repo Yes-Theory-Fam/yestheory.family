@@ -23,7 +23,7 @@ export const DesktopNavigation: FunctionalComponent<NavigationProps> = (
         {props.user ? (
           <Profile user={props.user} variant={"desktop"} />
         ) : (
-          <LoginButton />
+          <LoginButton onClick={props.onLoginButtonClick} />
         )}
       </HStack>
     </Box>

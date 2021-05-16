@@ -1,50 +1,50 @@
 import "reflect-metadata";
+import { config } from "dotenv";
+config();
 
 import { PrismaClient } from "@prisma/client";
-import { buildSchema, Ctx, NonEmptyArray, Query, Resolver } from "type-graphql";
-import { Example } from "./__generated__/type-graphql";
-import koa from "koa";
+import { buildSchema } from "type-graphql";
+import Koa, { Context } from "koa";
+import koaSession from "koa-session";
 import { ApolloServer } from "apollo-server-koa";
+import grant from "grant";
+import grantConfig from "./config/grant";
+import sessionConfig from "./config/session";
 import { createServerLogger } from "./services/logging/log";
-import { Logger } from "./services/logging/logService";
-import winston from "winston";
-import { Container, Service } from "typedi";
+import mount from "koa-mount";
+import { authenticationRouter, resolvers } from "./features";
+import { YtfApolloContext } from "./types";
+import { Container } from "typedi";
 
 const logger = createServerLogger("src", "index");
-
-interface PrismaContext {
-  prisma: PrismaClient;
-}
-
-@Service()
-@Resolver(Example)
-class TestResolver {
-  constructor(
-    @Logger("index", "testresolver") private logger: winston.Logger
-  ) {}
-
-  @Query(() => [Example])
-  async examples(@Ctx() { prisma }: PrismaContext): Promise<Example[]> {
-    this.logger.info("Test");
-    return await prisma.example.findMany();
-  }
-}
 
 const prisma = new PrismaClient();
 
 const main = async () => {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  const resolvers: NonEmptyArray<Function> = [TestResolver];
   const schema = await buildSchema({ resolvers, container: Container });
 
   const port = process.env["BACKEND_PORT"] ?? 5000;
-  const app = new koa();
+  const koaGrant = grant.koa();
+  const app = new Koa();
+  app.keys = ["grant"];
+  app.use(koaSession(sessionConfig, app));
+  app.use(mount("/oauth", koaGrant(grantConfig)));
+  app.use(authenticationRouter.routes());
 
   const server = new ApolloServer({
     schema,
-    context: (): PrismaContext => ({ prisma }),
+    context: (req): YtfApolloContext => {
+      const ctx: Context = req.ctx;
+      const maybeUser = ctx.session?.user;
+
+      return { prisma, user: maybeUser };
+    },
   });
-  server.applyMiddleware({ app, cors: { origin: "*" } });
+  server.applyMiddleware({
+    app,
+    cors: { origin: "http://localhost:3000", credentials: true },
+  });
 
   app.listen({ port }, () => logger.info(`Backend listening on port ${port}`));
 };

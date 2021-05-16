@@ -1,20 +1,20 @@
 overwrite: true
 schema: http://localhost:5000/graphql
-documents: ./src/**/*.graphql
+documents: ./pages/**/*.graphql
 hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
-  src/__generated__/types.ts:
+  __generated__/types.ts:
     plugins:
       - typescript
     config:
       scalars:
         DateTime: string
-  src/:
+  pages/:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: __generated__/types.ts
+      baseTypesPath: ../__generated__/types.ts
     plugins:
       - typescript-operations
       - typescript-urql

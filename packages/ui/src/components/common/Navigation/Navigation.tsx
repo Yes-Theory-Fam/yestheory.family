@@ -15,6 +15,7 @@ export interface NavigationLinkProps extends NavLinkProps {
 
 export interface NavigationProps {
   links: NavigationLinkProps[];
+  onLoginButtonClick: () => void;
   user?: User | undefined;
 }
 
