@@ -5,6 +5,9 @@ import { buildSchema, Ctx, NonEmptyArray, Query, Resolver } from "type-graphql";
 import { Example } from "./__generated__/type-graphql";
 import koa from "koa";
 import { ApolloServer } from "apollo-server-koa";
+import { createServerLogger } from "./log";
+
+const logger = createServerLogger("src", "index");
 
 interface PrismaContext {
   prisma: PrismaClient;
@@ -34,7 +37,7 @@ const main = async () => {
   });
   server.applyMiddleware({ app, cors: { origin: "*" } });
 
-  app.listen({ port }, () => console.log(`Backend listening on port ${port}`));
+  app.listen({ port }, () => logger.info(`Backend listening on port ${port}`));
 };
 
-main();
+main().then(() => logger.debug("Launched server"));
