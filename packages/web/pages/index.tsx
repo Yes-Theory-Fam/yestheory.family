@@ -3,6 +3,8 @@ import { ScssExample, NavLink } from "@project/ui";
 import { Button } from "@chakra-ui/react";
 import { useExampleQuery } from "../src/example.generated";
 import { withUrqlClient } from "next-urql";
+import { defaultExchanges } from "urql";
+import { devtoolsExchange } from "@urql/devtools";
 
 function Home() {
   const [query] = useExampleQuery();
@@ -40,6 +42,7 @@ function Home() {
 }
 
 export default withUrqlClient(() => ({
+  exchanges: [devtoolsExchange, ...defaultExchanges],
   url:
     typeof window === "undefined"
       ? process.env.SERVER_BACKEND_URL
