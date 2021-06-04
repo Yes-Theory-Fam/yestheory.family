@@ -21,7 +21,6 @@ const logger = createServerLogger("src", "index");
 const prisma = new PrismaClient();
 
 const main = async () => {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   const schema = await buildSchema({ resolvers, container: Container });
 
   const port = process.env["BACKEND_PORT"] ?? 5000;
@@ -37,6 +36,7 @@ const main = async () => {
     context: (req): YtfApolloContext => {
       const ctx: Context = req.ctx;
       const maybeUser = ctx.session?.user;
+      logger.debug("Creating context with user", maybeUser);
 
       return { prisma, user: maybeUser };
     },

@@ -12,6 +12,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FunctionalComponent } from "preact";
 import { withUrqlClient } from "next-urql";
+import { defaultExchanges } from "urql";
+import { devtoolsExchange } from "@urql/devtools";
 
 const componentOverrides: OverrideComponentType = {
   Image,
@@ -54,6 +56,7 @@ const App: FunctionalComponent<AppProps> = ({ Component, pageProps }) => {
 };
 
 export default withUrqlClient(() => ({
+  exchanges: [devtoolsExchange, ...defaultExchanges],
   url:
     typeof window === "undefined"
       ? process.env.SERVER_BACKEND_URL
