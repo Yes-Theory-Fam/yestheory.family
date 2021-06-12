@@ -99,6 +99,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@apollo/protobufjs@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@apollo/protobufjs@npm:1.2.2"
+  dependencies:
+    "@protobufjs/aspromise": ^1.1.2
+    "@protobufjs/base64": ^1.1.2
+    "@protobufjs/codegen": ^2.0.4
+    "@protobufjs/eventemitter": ^1.1.0
+    "@protobufjs/fetch": ^1.1.0
+    "@protobufjs/float": ^1.0.2
+    "@protobufjs/inquire": ^1.1.0
+    "@protobufjs/path": ^1.1.2
+    "@protobufjs/pool": ^1.1.0
+    "@protobufjs/utf8": ^1.1.0
+    "@types/long": ^4.0.0
+    "@types/node": ^10.1.0
+    long: ^4.0.0
+  bin:
+    apollo-pbjs: bin/pbjs
+    apollo-pbts: bin/pbts
+  checksum: 75940f213d39728f2fdd662732eb6c085fb393bea01ccb58c5084a18559d1d7342bac3ebb44f93c9e86b8237c675ae81a04427866d156f93b16b691d020bfd44
+  languageName: node
+  linkType: hard
+
 "@apollo/protobufjs@npm:^1.0.3":
   version: 1.0.5
   resolution: "@apollo/protobufjs@npm:1.0.5"
@@ -2611,6 +2635,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@discordjs/collection@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@discordjs/collection@npm:0.1.6"
+  checksum: da87faf9975e9320a4aa5e8a78312849e4767eb5b0c3348612a0f2d07b5bad4bb91c8c65a5a8ffecc007574c5eebd4790d2e13880af6fd2ae865ba3161495f9a
+  languageName: node
+  linkType: hard
+
+"@discordjs/form-data@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@discordjs/form-data@npm:3.0.1"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 2ddf4c9bba170ea325cabae28d8d4f3e2e132a4eded64d242dbaafb514d0109c338a18bd0cab4d3464dca8f2da1c6ddc870ef96b89d7b5ed16f155cd171bf1a4
+  languageName: node
+  linkType: hard
+
 "@emotion/babel-plugin@npm:^11.3.0":
   version: 11.3.0
   resolution: "@emotion/babel-plugin@npm:11.3.0"
@@ -4140,38 +4182,38 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:~2.20.1":
-  version: 2.20.1
-  resolution: "@prisma/client@npm:2.20.1"
+"@prisma/client@npm:~2.22.1":
+  version: 2.22.1
+  resolution: "@prisma/client@npm:2.22.1"
   dependencies:
-    "@prisma/engines-version": 2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e
+    "@prisma/engines-version": 2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: fc5d82072a760d5b08cec3fb880137414bc89f529da73662960594b44d4cf07897da0848cbb132aa2b484856654acee74da95fecd73ecab70e59f0268a365715
+  checksum: 0ea7bd3c5f9d6fbb939ccf1b9ef1a8e15f7d98b47557851bdc1a448484281c61cc573cccfeb8219d2d1f52b0011e0efb2cda3391c3d5ffb7b4e13761fbd6dd1e
   languageName: node
   linkType: hard
 
-"@prisma/debug@npm:2.20.1":
-  version: 2.20.1
-  resolution: "@prisma/debug@npm:2.20.1"
+"@prisma/debug@npm:2.22.1":
+  version: 2.22.1
+  resolution: "@prisma/debug@npm:2.22.1"
   dependencies:
     debug: 4.3.2
     ms: ^2.1.3
-  checksum: af6982778715bebfa54e53a59a894df5165cb3c3dcc2d54d198ffa3270fa4ed2a7d50d8b91a5731732b2420b08b2165ade0f482c6da0f3f07cddf37400862307
+  checksum: 372b97ef51b332d8b95617354ea2075e0d6ad119abc19553ee8174995794d0e877a2d5efd47c234de63219c9207d7fbc24fd9b5a80799490ebd35cb0bc05dfa4
   languageName: node
   linkType: hard
 
-"@prisma/engine-core@npm:2.20.1":
-  version: 2.20.1
-  resolution: "@prisma/engine-core@npm:2.20.1"
+"@prisma/engine-core@npm:2.22.1":
+  version: 2.22.1
+  resolution: "@prisma/engine-core@npm:2.22.1"
   dependencies:
-    "@prisma/debug": 2.20.1
-    "@prisma/engines": 2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e
-    "@prisma/generator-helper": 2.20.1
-    "@prisma/get-platform": 2.20.1
+    "@prisma/debug": 2.22.1
+    "@prisma/engines": 2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c
+    "@prisma/generator-helper": 2.22.1
+    "@prisma/get-platform": 2.22.1
     chalk: ^4.0.0
     execa: ^5.0.0
     get-stream: ^6.0.0
@@ -4179,31 +4221,31 @@ __metadata:
     new-github-issue-url: ^0.2.1
     p-retry: ^4.2.0
     terminal-link: ^2.1.1
-    undici: 3.3.3
-  checksum: 58dfb15ac9fe13e4e8f50a034ef62ce33bab1447616d2546b7238f4cf6c5a551a93eea9e239bef8be12fcb0fcbe50b14bb6f3e1ec61e122006e7319612809a72
+    undici: 3.3.6
+  checksum: c934480f035c0def490957826545e73cd71c1775e4140c71e529df21ab33c4897936bd49c157b3dbad09801cc8665a1afaf29bf27ee6111127d251c5e2a0baa5
   languageName: node
   linkType: hard
 
-"@prisma/engines-version@npm:2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e":
-  version: 2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e
-  resolution: "@prisma/engines-version@npm:2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e"
-  checksum: ae386ba7d0a99abba409619b9737bb275ace9d220f372ee128967b0e6733f92674f3a7a80432fdc8c5fb036b4dd50168f57a0268055668cb4c9c2a89454d2bad
+"@prisma/engines-version@npm:2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c":
+  version: 2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c
+  resolution: "@prisma/engines-version@npm:2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c"
+  checksum: 0329e50c7e2a1dc2d78d7cc90c7c41bcfaa377977a0d458c5c240c06a5c243bdc8ebd133ff06ebd286969205304998fb58e785dc708ad5885e36c944372883b4
   languageName: node
   linkType: hard
 
-"@prisma/engines@npm:2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e":
-  version: 2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e
-  resolution: "@prisma/engines@npm:2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e"
-  checksum: 4b6ea96c2392a4c0fa99b2f4833b9104ceca784949eba47d9c67a9ef6ce73ff2f362b7f8deddc7ff86d9b0a39306719a1785d248f39e52efaa30919fb77b271e
+"@prisma/engines@npm:2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c":
+  version: 2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c
+  resolution: "@prisma/engines@npm:2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c"
+  checksum: 9903d376ca9c6ae0a9990ba8a02d93b4a71b0bcce821f9ce8024ac6b2521d2df5e487ebb531162ad550e6727513ea3699f1ec74bb1403821fc0a5c3d29ff2b48
   languageName: node
   linkType: hard
 
-"@prisma/fetch-engine@npm:2.20.1":
-  version: 2.20.1
-  resolution: "@prisma/fetch-engine@npm:2.20.1"
+"@prisma/fetch-engine@npm:2.22.1":
+  version: 2.22.1
+  resolution: "@prisma/fetch-engine@npm:2.22.1"
   dependencies:
-    "@prisma/debug": 2.20.1
-    "@prisma/get-platform": 2.20.1
+    "@prisma/debug": 2.22.1
+    "@prisma/get-platform": 2.22.1
     chalk: ^4.0.0
     execa: ^5.0.0
     find-cache-dir: ^3.3.1
@@ -4219,46 +4261,46 @@ __metadata:
     rimraf: ^3.0.2
     temp-dir: ^2.0.0
     tempy: ^1.0.0
-  checksum: 55daf4291995c8da039184054b83b3df250a2b950935bd26afc59fde04c3b78df1ef344f5b0be2d574c3d72ee219a1ec45961b7cd5f5045480bf2edc67936693
+  checksum: 4d3cb11832a30dad4315d563a111cd2da079564fbca3ba75d45dbc3e8aa7ab4b462ccd25c7f4f6f5c7eca292c403e1eddb6f79478a787550ba787d4a4ab6d145
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:2.20.1, @prisma/generator-helper@npm:~2.20.1":
-  version: 2.20.1
-  resolution: "@prisma/generator-helper@npm:2.20.1"
+"@prisma/generator-helper@npm:2.22.1, @prisma/generator-helper@npm:~2.22.0":
+  version: 2.22.1
+  resolution: "@prisma/generator-helper@npm:2.22.1"
   dependencies:
-    "@prisma/debug": 2.20.1
+    "@prisma/debug": 2.22.1
     "@types/cross-spawn": ^6.0.1
     chalk: ^4.0.0
     cross-spawn: ^7.0.2
-  checksum: f2f9253dd66b04f921d5fe4a734b709e668f9c07639eed6f24ac1c7f1d7b7093ab2e2116b355eb97bdff984c42d8b7bf584bec6bf24cbf2fc3a998f5b33cd4de
+  checksum: db93f1132fab02a7bd4e4f1d725aca7c7a78f503e39dfed0ba75f14c3ab9e4a0a950cad3f99461326cfea72e9d355474517263e8c14f3b3bdf70dbc110e7ba3d
   languageName: node
   linkType: hard
 
-"@prisma/get-platform@npm:2.20.1":
-  version: 2.20.1
-  resolution: "@prisma/get-platform@npm:2.20.1"
+"@prisma/get-platform@npm:2.22.1":
+  version: 2.22.1
+  resolution: "@prisma/get-platform@npm:2.22.1"
   dependencies:
-    "@prisma/debug": 2.20.1
-  checksum: 8ee2e85f99f1d4f681897bd62f1a28f585e22662fce307695d9452b4ac33a05b7062fbbd008df9b3309a20e74d2ad035c067e0adf833f72c15eb366b67198066
+    "@prisma/debug": 2.22.1
+  checksum: 6be6c103e0619a726fd2369ba9e922c30fc24820934f9b2419c057b9f22fc957997c64892f47dcc96f425b1335a394177cd7918f39d0b167318b74fa4aa54996
   languageName: node
   linkType: hard
 
-"@prisma/sdk@npm:~2.20.1":
-  version: 2.20.1
-  resolution: "@prisma/sdk@npm:2.20.1"
+"@prisma/sdk@npm:~2.22.0":
+  version: 2.22.1
+  resolution: "@prisma/sdk@npm:2.22.1"
   dependencies:
-    "@prisma/debug": 2.20.1
-    "@prisma/engine-core": 2.20.1
-    "@prisma/engines": 2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e
-    "@prisma/fetch-engine": 2.20.1
-    "@prisma/generator-helper": 2.20.1
-    "@prisma/get-platform": 2.20.1
+    "@prisma/debug": 2.22.1
+    "@prisma/engine-core": 2.22.1
+    "@prisma/engines": 2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c
+    "@prisma/fetch-engine": 2.22.1
+    "@prisma/generator-helper": 2.22.1
+    "@prisma/get-platform": 2.22.1
     "@timsuchanek/copy": ^1.4.5
     archiver: ^4.0.0
     arg: ^5.0.0
-    chalk: 4.1.0
-    checkpoint-client: 1.1.19
+    chalk: 4.1.1
+    checkpoint-client: 1.1.20
     cli-truncate: ^2.1.0
     dotenv: ^8.2.0
     execa: ^5.0.0
@@ -4283,8 +4325,7 @@ __metadata:
     tempy: ^1.0.0
     terminal-link: ^2.1.1
     tmp: 0.2.1
-    url-parse: ^1.4.7
-  checksum: cade5c1bdf15d1680fa1049c004f96ef5849f840f7953ae307a17957de3a2d220f49f086f7b5e23d5ed48fbb8b9231ff867468681c86805d0d435c43a26bc704
+  checksum: a30d1280ed97cd661b24963c98079a66969b128cf10df581154291a8c6770be56109a2ef8d55cb82649636edb2215ac089de0a00becd6fa0f9493783f402ab6a
   languageName: node
   linkType: hard
 
@@ -7000,6 +7041,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@yes-theory-fam/database@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@yes-theory-fam/database@npm:0.5.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40yes-theory-fam%2Fdatabase%2F0.5.1%2F7445f9088c45420306c4fd0a49e00c25c318e5d5d0b9b195273d6a6c90617b84"
+  dependencies:
+    "@prisma/client": ~2.22.1
+  peerDependencies:
+    prisma: ~2.22.1
+    typegraphql-prisma: ^0.14.2
+  checksum: 5f41ee00d375829ba21652a5d8cbddc0ceb5b3c77cd0f7e90a275720488aadcacd51182ec617f414d3947a3d609a659870a61ec29e85284c9a4bf24393baa28c
+  languageName: node
+  linkType: hard
+
 "@yestheory.family/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@yestheory.family/common@workspace:packages/common"
@@ -7027,7 +7080,6 @@ __metadata:
   dependencies:
     "@koa/cors": ^3.1.0
     "@koa/router": ^10.0.0
-    "@prisma/client": ~2.20.1
     "@types/graphql-fields": ^1.3.3
     "@types/koa": ^2.13.1
     "@types/koa-bodyparser": ^4.3.0
@@ -7036,9 +7088,12 @@ __metadata:
     "@types/koa__cors": ^3.0.2
     "@types/koa__router": ^8.0.4
     "@types/node": ^14.14.41
+    "@yes-theory-fam/database": ^0.5.1
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: ^2.23.0
+    apollo-server-plugin-base: ^0.13.0
     class-validator: ^0.13.1
+    discord.js: ^12.5.3
     dotenv: ^9.0.2
     eslint: ^7.25.0
     grant: ^5.4.13
@@ -7049,13 +7104,13 @@ __metadata:
     koa-bodyparser: ^4.3.0
     koa-mount: ^4.0.0
     koa-session: ^6.2.0
-    prisma: ~2.20.1
+    prisma: ~2.22.1
     reflect-metadata: ^0.1.13
     ts-node: ^9.1.1
     ts-node-dev: ^1.1.6
     type-graphql: ^1.1.1
     typedi: ^0.10.0
-    typegraphql-prisma: ^0.13.1
+    typegraphql-prisma: 0.14.2
     typescript: ^4.2.4
     winston: ^3.3.3
   languageName: unknown
@@ -7164,7 +7219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abort-controller@npm:3.0.0":
+"abort-controller@npm:3.0.0, abort-controller@npm:^3.0.0":
   version: 3.0.0
   resolution: "abort-controller@npm:3.0.0"
   dependencies:
@@ -7602,12 +7657,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"apollo-reporting-protobuf@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "apollo-reporting-protobuf@npm:0.8.0"
+  dependencies:
+    "@apollo/protobufjs": 1.2.2
+  checksum: 8e0076257f5f36acdd53be8f7e0e8a079190c4082757d163fd86bff305d5b2cabddba62f66e6f76e0ac7ed507f8d016d960748a107aa922eedbca67702977735
+  languageName: node
+  linkType: hard
+
 "apollo-server-caching@npm:^0.6.0":
   version: 0.6.0
   resolution: "apollo-server-caching@npm:0.6.0"
   dependencies:
     lru-cache: ^6.0.0
   checksum: 21107686250724fc23068a23cbf42743fadaa6b6c519036eefd64fd9c4502501ab3694b63882dd08ddb408f03781f93a4488b81cb73560332e64a0cb36e14fee
+  languageName: node
+  linkType: hard
+
+"apollo-server-caching@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "apollo-server-caching@npm:0.7.0"
+  dependencies:
+    lru-cache: ^6.0.0
+  checksum: 33ef29534174d9acbad608361f27c0b016a822a1209fa879327db2c266099b344b476c23fe5fb12ec2d5e12a939fe0a80c3cf126c54266548a06669d906ee680
   languageName: node
   linkType: hard
 
@@ -7657,6 +7730,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"apollo-server-env@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "apollo-server-env@npm:3.1.0"
+  dependencies:
+    node-fetch: ^2.6.1
+    util.promisify: ^1.0.0
+  checksum: d5ef05cbd94f95d96fa2bb09f32ed8363882ba4be9a3cea9a8c1442dc0069512c38e73da26b2a802a6ab8b03e479e4f4247d25e439a6e10b121e380184d99605
+  languageName: node
+  linkType: hard
+
 "apollo-server-errors@npm:^2.5.0":
   version: 2.5.0
   resolution: "apollo-server-errors@npm:2.5.0"
@@ -7703,6 +7786,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"apollo-server-plugin-base@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "apollo-server-plugin-base@npm:0.13.0"
+  dependencies:
+    apollo-server-types: ^0.9.0
+  peerDependencies:
+    graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: ee8224a0d7aadc799f0a9766002f72f5c373b889eba731c22acf74dfd193378eb9b188b05ec21139384bc3108e9202b71dc9f8057e49f2aad294bb7c46f0e76c
+  languageName: node
+  linkType: hard
+
 "apollo-server-types@npm:^0.7.0":
   version: 0.7.0
   resolution: "apollo-server-types@npm:0.7.0"
@@ -7713,6 +7807,19 @@ __metadata:
   peerDependencies:
     graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
   checksum: 8120fa39e424c074731482ec968258c09f165a38e2ae813d34f447647ed964827ddae72c9011b9479f07792f03c474bb4224e04f5d2fcd2dadba322959f8d959
+  languageName: node
+  linkType: hard
+
+"apollo-server-types@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "apollo-server-types@npm:0.9.0"
+  dependencies:
+    apollo-reporting-protobuf: ^0.8.0
+    apollo-server-caching: ^0.7.0
+    apollo-server-env: ^3.1.0
+  peerDependencies:
+    graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 1841d91431fa2300064d6e92013c27cf757e16e34dfebe390b19058e844c06e5fc0ee8e5f5d263c2184988a8573816a574b0a0cff08461a337e555e45f685b4e
   languageName: node
   linkType: hard
 
@@ -9377,13 +9484,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:4.1.0, chalk@npm:^4.0.0, chalk@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "chalk@npm:4.1.0"
+"chalk@npm:4.1.1":
+  version: 4.1.1
+  resolution: "chalk@npm:4.1.1"
   dependencies:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
-  checksum: f860285b419f9e925c2db0f45ffa88aa8794c14b80cc5d01ff30930bcfc384996606362706f0829cf557f6d36152a5fb2d227ad63c4bc90e2ec9e9dbed4a3c07
+  checksum: 445c12db7aeed0046500a1e4184d31209a77d165654c885a789c41c8598a6a95bd2392180987cac572c967b93a2a730dda778bb7f87fa06ca63fd8592f8cc59f
   languageName: node
   linkType: hard
 
@@ -9407,6 +9514,16 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: 4018b0c812880da595d0d7b8159939527b72f58d3370e2fdc1a24d9abd460bab851695d7eca014082f110d5702d1221b05493fec430ccce375de907d50cc48c1
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "chalk@npm:4.1.0"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: f860285b419f9e925c2db0f45ffa88aa8794c14b80cc5d01ff30930bcfc384996606362706f0829cf557f6d36152a5fb2d227ad63c4bc90e2ec9e9dbed4a3c07
   languageName: node
   linkType: hard
 
@@ -9490,18 +9607,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"checkpoint-client@npm:1.1.19":
-  version: 1.1.19
-  resolution: "checkpoint-client@npm:1.1.19"
+"checkpoint-client@npm:1.1.20":
+  version: 1.1.20
+  resolution: "checkpoint-client@npm:1.1.20"
   dependencies:
     ci-info: 3.1.1
-    env-paths: 2.2.0
+    env-paths: 2.2.1
     fast-write-atomic: 0.2.1
     make-dir: 3.1.0
     ms: 2.1.3
     node-fetch: 2.6.1
     uuid: 8.3.2
-  checksum: ecd8429747f63ad1f9f42833ef8d5a2e418eb4fd87a3c99f61ab8f55ff9852d9013c0edcc94862be310c62561d6de6b72ac03677006b1908219768ce91b2a2cd
+  checksum: 73077fd0636cee7ddf36e0b494aac88ff7952f539799e54377b8e592344ebcaf24d996e720ca406411dddf6f7d64e2dc1551e6b06eb44506361228f9946987a2
   languageName: node
   linkType: hard
 
@@ -11640,6 +11757,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"discord.js@npm:^12.5.3":
+  version: 12.5.3
+  resolution: "discord.js@npm:12.5.3"
+  dependencies:
+    "@discordjs/collection": ^0.1.6
+    "@discordjs/form-data": ^3.0.1
+    abort-controller: ^3.0.0
+    node-fetch: ^2.6.1
+    prism-media: ^1.2.9
+    setimmediate: ^1.0.5
+    tweetnacl: ^1.0.3
+    ws: ^7.4.4
+  checksum: 365e21b12496c47be80a4e2cd6d81665653908fcd22a5f46a5507ad8771cb20c40fab893ebb192af23e2bdb0db5c1eca8c5228c9f689951d0fd1139c3bcd567f
+  languageName: node
+  linkType: hard
+
 "dns-equal@npm:^1.0.0":
   version: 1.0.0
   resolution: "dns-equal@npm:1.0.0"
@@ -12188,14 +12321,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"env-paths@npm:2.2.0":
-  version: 2.2.0
-  resolution: "env-paths@npm:2.2.0"
-  checksum: 09de4fd1c068d5965aa8aede852a764b7fb6fa8f1299ba7789bc29c22840ab1985e0c9c55bc6bf40b4276834b8adfa1baf82ec9bc58445d9e75800dc32d78a4f
-  languageName: node
-  linkType: hard
-
-"env-paths@npm:^2.2.0":
+"env-paths@npm:2.2.1, env-paths@npm:^2.2.0":
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
   checksum: 9579868bc73526de31682625d89aa08c83f3c87850218f9251f953bf4242428a1020e75cb201ca16b42f2874c3ca175ffc8aa47a88423b546711b7dbf86f79a8
@@ -21202,15 +21328,36 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prisma@npm:~2.20.1":
-  version: 2.20.1
-  resolution: "prisma@npm:2.20.1"
+"prism-media@npm:^1.2.9":
+  version: 1.3.1
+  resolution: "prism-media@npm:1.3.1"
+  peerDependencies:
+    "@discordjs/opus": ^0.5.0
+    ffmpeg-static: ^4.2.7 || ^3.0.0 || ^2.4.0
+    node-opus: ^0.3.3
+    opusscript: ^0.0.8
+  peerDependenciesMeta:
+    "@discordjs/opus":
+      optional: true
+    ffmpeg-static:
+      optional: true
+    node-opus:
+      optional: true
+    opusscript:
+      optional: true
+  checksum: 5d20527179c413b1b8ac8e5036f37641272855ba0d4d49cdd1f9260acb39705cd6dec0dabee0a9c0781919dbf1a301f76e0230ac4913e3a95ca67ae05456b293
+  languageName: node
+  linkType: hard
+
+"prisma@npm:~2.22.1":
+  version: 2.22.1
+  resolution: "prisma@npm:2.22.1"
   dependencies:
-    "@prisma/engines": 2.20.0-26.60ba6551f29b17d7d6ce479e5733c70d9c00860e
+    "@prisma/engines": 2.22.0-21.60cc71d884972ab4e897f0277c4b84383dddaf6c
   bin:
     prisma: build/index.js
     prisma2: build/index.js
-  checksum: a851cfe4cef0de9aade4a2e66d983b823df6e6c463d6ffbdaf949b9126157fa04a08f25e31c6e1237cbcc63876bf6ae75724d4ab6826be8039d05150e82e08c3
+  checksum: 2128d459112aece0f1ce6be9ac1dfb1f00002757c1d85f22b4ab55246b859c441d62f907231f2df70475cf8c8951eba5f638e449089dd9150703fc7860168ff5
   languageName: node
   linkType: hard
 
@@ -25429,6 +25576,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"tweetnacl@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tweetnacl@npm:1.0.3"
+  checksum: 1188f3ef85db04d6dba632d211e481ae0a5805974491633ff60bd56ae3362312dfea1515e0d200685867b69ff212e8778e26923f8203e3c335064b07f620a6c7
+  languageName: node
+  linkType: hard
+
 "type-check@npm:^0.4.0, type-check@npm:~0.4.0":
   version: 0.4.0
   resolution: "type-check@npm:0.4.0"
@@ -25562,27 +25716,27 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"typegraphql-prisma@npm:^0.13.1":
-  version: 0.13.1
-  resolution: "typegraphql-prisma@npm:0.13.1"
+"typegraphql-prisma@npm:0.14.2":
+  version: 0.14.2
+  resolution: "typegraphql-prisma@npm:0.14.2"
   dependencies:
-    "@prisma/generator-helper": ~2.20.1
-    "@prisma/sdk": ~2.20.1
+    "@prisma/generator-helper": ~2.22.0
+    "@prisma/sdk": ~2.22.0
     pluralize: ^8.0.0
     semver: ^7.3.5
     ts-morph: ^10.0.2
     tslib: ^2.2.0
   peerDependencies:
-    "@prisma/client": ~2.20.1
+    "@prisma/client": ~2.22.0
     "@types/graphql-fields": ^1.3.3
     "@types/node": "*"
     graphql-fields: ^2.0.3
-    graphql-scalars: ^1.9.0
-    prisma: ~2.20.1
+    graphql-scalars: ^1.9.3
+    prisma: ~2.22.0
     type-graphql: ^1.1.1
   bin:
     typegraphql-prisma: lib/generator.js
-  checksum: 9a3ef3768396bd2a882e1a2743e9abdb3ad4eec44d792096bd0d201b5bdb8549b2e4d3af16ed44b67f3a6d73b2536ea610927f484c230b170a01483fe0847cc3
+  checksum: 0844a342542d5ba2c873692d8305bf6040e709c98566c46e675526f4e573a80df28882f5718f0e57720155dca846157b548261959a534477c1ac8a0d4a5324a1
   languageName: node
   linkType: hard
 
@@ -25664,10 +25818,10 @@ typescript@^4.2.4:
   languageName: node
   linkType: hard
 
-"undici@npm:3.3.3":
-  version: 3.3.3
-  resolution: "undici@npm:3.3.3"
-  checksum: f22939c00dffafed4e0e71ee41125ac07d3bc995ae24b7e4b41b3e60ebbc7ff237ee0c01e3c83a68d570957cd4166330eb396f8e734a6b778dbfabba4032a586
+"undici@npm:3.3.6":
+  version: 3.3.6
+  resolution: "undici@npm:3.3.6"
+  checksum: fc6aa922f2a6ecc8982f9ca1db9b8c29bf38ab8ae915b6c1bb4703fa98e0c0e70a25deb613c77044efc29f972e8b24b9366dc208435a54f8c54fcb5a9e4d7c36
   languageName: node
   linkType: hard
 
@@ -26020,7 +26174,7 @@ typescript@^4.2.4:
   languageName: node
   linkType: hard
 
-"url-parse@npm:^1.4.3, url-parse@npm:^1.4.7, url-parse@npm:^1.5.1":
+"url-parse@npm:^1.4.3, url-parse@npm:^1.5.1":
   version: 1.5.1
   resolution: "url-parse@npm:1.5.1"
   dependencies:

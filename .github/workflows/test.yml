@@ -1,6 +1,9 @@
 name: 'Test'
 on: push
 
+env:
+  YTF_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   test:
     runs-on: ubuntu-latest

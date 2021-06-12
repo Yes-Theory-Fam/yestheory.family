@@ -11,7 +11,7 @@ generates:
     config:
       scalars:
         DateTime: string
-  pages/:
+  components/:
     preset: near-operation-file
     presetConfig:
       baseTypesPath: ../__generated__/types.ts

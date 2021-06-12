@@ -4,7 +4,7 @@ import { isDevelopment } from "../../config";
 import { AuthenticatedUser } from "../user";
 import { createServerLogger } from "../../services/logging/log";
 
-const logger = createServerLogger("authentication", "DiscordCallback");
+const logger = createServerLogger("auth", "DiscordCallback");
 
 const domain = isDevelopment ? "localhost" : "yestheory.family";
 const fallbackRedirect = isDevelopment

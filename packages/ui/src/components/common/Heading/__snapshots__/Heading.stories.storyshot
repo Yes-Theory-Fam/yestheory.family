@@ -3,15 +3,15 @@
 exports[`Storyshots Common/Heading Heading 1`] = `
   <div class="chakra-stack css-wulyol">
     <div class="css-gmuwbf">
-      <h1 class="chakra-heading css-9zuima">
+      <h1 class="chakra-heading css-zdriq2">
         Photo
-        <h1 class="chakra-heading css-szoov">wall</h1>
+        <h1 class="chakra-heading css-1ls7px6">wall</h1>
       </h1>
     </div>
     <div class="css-gmuwbf">
-      <h2 class="chakra-heading css-e47k3m">
+      <h2 class="chakra-heading css-r3wqqr">
         Photo
-        <h2 class="chakra-heading css-1skkb38">wall</h2>
+        <h2 class="chakra-heading css-16tf5s8">wall</h2>
       </h2>
     </div>
   </div>
@@ -19,9 +19,9 @@ exports[`Storyshots Common/Heading Heading 1`] = `
 
 exports[`Storyshots Common/Heading Interactive Heading 1`] = `
   <div class="css-gmuwbf">
-    <h1 class="chakra-heading css-9zuima">
+    <h1 class="chakra-heading css-zdriq2">
       Photo
-      <h1 class="chakra-heading css-szoov">wall</h1>
+      <h1 class="chakra-heading css-1ls7px6">wall</h1>
     </h1>
   </div>
 `;

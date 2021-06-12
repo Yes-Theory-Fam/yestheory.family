@@ -1,6 +1,9 @@
 name: 'Lint'
 on: push
 
+env:
+  YTF_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   eslint:
     runs-on: ubuntu-latest

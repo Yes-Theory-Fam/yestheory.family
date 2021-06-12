@@ -5,4 +5,5 @@ import { NonEmptyArray } from "type-graphql";
 export const resolvers: NonEmptyArray<Function> = [...userResolvers];
 
 export * from "./user";
-export { default as authenticationRouter } from "./authentication";
+export * as Discord from "./discord";
+export { default as authenticationRouter } from "./auth";

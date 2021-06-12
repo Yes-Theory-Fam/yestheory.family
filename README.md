@@ -101,7 +101,7 @@ suggesting an approach to only use one):
 
 - `.env` contains environment variables used in the [Docker setup](#docker)
 - `packages/server/.env` contains environment variables local to the server package, currently only used for providing
-  the `DATABASE_URL` variable to prisma
+  the `PRISMA_DATABASE_URL` variable to prisma
 - `packages/ui/.env` contains the chromatic project token
 - `packages/web/.env.local` contains variables usable in
   Next.js ([docs](https://nextjs.org/docs/basic-features/environment-variables))

@@ -1,5 +1,0 @@
-query AuthPoc {
-    me {
-        username
-    }
-}

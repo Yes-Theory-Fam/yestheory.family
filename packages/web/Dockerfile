@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.2
+
 # Install dependencies only when needed
 FROM node:14-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
@@ -15,10 +17,13 @@ COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/ui/package.json ./packages/ui/
 COPY packages/web/package.json ./packages/web/
 
+ARG YTF_NPM_AUTH_TOKEN
+COPY yarn-with-secrets ./
+
 # Install dependencies for the workspace
-RUN yarn plugin import workspace-tools
+RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets plugin import workspace-tools
 WORKDIR /app/packages/web
-RUN yarn workspaces focus
+RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN /app/yarn-with-secrets workspaces focus
 
 # Rebuild the source code only when needed
 FROM node:14-alpine AS builder
@@ -35,7 +40,11 @@ COPY package.json .
 COPY packages/web/ ./packages/web
 COPY packages/ui/ ./packages/ui
 WORKDIR /app/packages/web
-RUN yarn build
+
+COPY yarn-with-secrets ./
+
+ARG YTF_NPM_AUTH_TOKEN
+RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets build
 
 # Production image, copy all the files and run next
 FROM node:14-alpine AS runner

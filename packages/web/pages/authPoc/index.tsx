@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import { useAuthPocQuery } from "./authPoc.generated";
+import { useAuthPocQuery } from "../../components/auth/authPoc.generated";
 import { Box } from "@chakra-ui/react";
 
 const E = () => {
