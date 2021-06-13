@@ -8,6 +8,7 @@ export default {
 } as Meta;
 
 const props: NavigationProps = {
+  onLoginButtonClick: () => undefined,
   links: [
     {
       text: "Blog",

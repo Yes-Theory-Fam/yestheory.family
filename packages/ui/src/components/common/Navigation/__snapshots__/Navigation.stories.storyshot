@@ -121,6 +121,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
           </div>
           <button
             type="button"
+            onClick={[Function onLoginButtonClick]}
             role="group"
             class="chakra-button css-oqfhsh"
           >
@@ -192,6 +193,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
           </a>
           <button
             type="button"
+            onClick={[Function onLoginButtonClick]}
             role="group"
             class="chakra-button css-oqfhsh"
           >
