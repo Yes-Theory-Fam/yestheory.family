@@ -47,6 +47,18 @@ const main = async () => {
 
       return { prisma, user: maybeUser };
     },
+    formatResponse: (response, reqContext) => {
+      const authErrors =
+        response.errors?.filter((e) =>
+          e.message.startsWith("Access denied!")
+        ) ?? [];
+      const user = (reqContext.context as YtfApolloContext).user;
+      for (const authError of authErrors) {
+        const code = user ? "UNAUTHORIZED" : "UNAUTHENTICATED";
+        if (authError.extensions) authError.extensions.code = code;
+      }
+      return response;
+    },
   });
   server.applyMiddleware({
     app,
