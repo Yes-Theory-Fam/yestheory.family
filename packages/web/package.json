@@ -6,7 +6,7 @@
     "build": "next build",
     "codegen": "graphql-codegen --config codegen.yml",
     "dev": "next",
-    "lint": "eslint \"pages/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
     "start": "next start",
     "test": "echo web: ok"
   },
@@ -24,8 +24,10 @@
   "dependencies": {
     "@chakra-ui/react": "^1.6.0",
     "@prefresh/next": "^1.4.6",
+    "@types/cookie": "^0.4.0",
     "@urql/devtools": "^2.0.3",
     "@yestheory.family/ui": "1.0.0",
+    "cookie": "^0.4.1",
     "graphql": "^15.5.0",
     "next": "10.0.6",
     "next-images": "^1.7.0",

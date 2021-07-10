@@ -22,21 +22,21 @@ export const Profile: FunctionalComponent<ProfileProps> = (props) => {
     </Text>
   );
 
-  const { discordTag, avatarUrl } = props.user;
+  const { username, avatarUrl } = props.user;
 
   return (
     <VStack align={"flex-start"} spacing={1}>
       {getText(true)}
       <HStack spacing={2}>
         <Avatar
-          name={discordTag}
+          name={username}
           src={avatarUrl}
           color={textColor}
           bg={"transparent"}
         >
           <AvatarBadge boxSize={4} background={"green"} />
         </Avatar>
-        <Text color={tagColor}>{discordTag}</Text>
+        <Text color={tagColor}>{username}</Text>
       </HStack>
       {getText(false)}
     </VStack>

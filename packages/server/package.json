@@ -41,6 +41,7 @@
     "grant": "^5.4.13",
     "graphql": "^15.5.0",
     "graphql-fields": "^2.0.3",
+    "graphql-tools": "^7.0.5",
     "graphql-type-json": "^0.3.2",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",

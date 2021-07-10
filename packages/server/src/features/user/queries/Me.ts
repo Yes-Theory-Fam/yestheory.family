@@ -10,7 +10,7 @@ import winston from "winston";
 export class MeResolver {
   constructor(@Logger("user", "Me") private logger: winston.Logger) {}
 
-  @Authorized("Support")
+  @Authorized()
   @Query(() => AuthenticatedUser, { nullable: true })
   me(@Ctx() { user }: YtfApolloContext): AuthenticatedUser | null {
     this.logger.debug("Returning user", user);

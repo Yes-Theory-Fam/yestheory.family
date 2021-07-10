@@ -1,22 +1,22 @@
 overwrite: true
 schema: http://localhost:5000/graphql
-documents: ./pages/**/*.graphql
+documents: ./**/*.graphql
 hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
   __generated__/types.ts:
     plugins:
-      - typescript
+      - "@atmina/only-enum-types"
     config:
       scalars:
         DateTime: string
-  components/:
+  ./:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: ../__generated__/types.ts
+      baseTypesPath: ./__generated__/types.ts
     plugins:
-      - typescript-operations
+      - "@atmina/local-typescript-operations"
       - typescript-urql
     config:
       preResolveTypes: true

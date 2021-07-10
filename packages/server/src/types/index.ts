@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { AuthenticatedUser } from "../features/user";
+import { AuthenticatedUser } from "../features";
 
 export interface YtfApolloContext {
   prisma: PrismaClient;

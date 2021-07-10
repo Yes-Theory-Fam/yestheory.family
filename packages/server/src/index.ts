@@ -3,7 +3,7 @@ import { config } from "dotenv";
 config();
 
 import { PrismaClient } from "@yes-theory-fam/database";
-import { buildSchema } from "type-graphql";
+import { buildSchema, buildSchemaSync } from "type-graphql";
 import Koa, { Context } from "koa";
 import koaSession from "koa-session";
 import { ApolloServer } from "apollo-server-koa";
@@ -16,6 +16,7 @@ import { authenticationRouter, resolvers, Discord } from "./features";
 import { YtfApolloContext } from "./types";
 import { Container } from "typedi";
 import { authChecker } from "./features/auth/graphqlAuthChecker";
+import { ExportDirective } from "./ExportDirective";
 
 const logger = createServerLogger("src", "index");
 
@@ -24,7 +25,8 @@ const prisma = new PrismaClient();
 const main = async () => {
   await Discord.initialize();
 
-  const schema = await buildSchema({
+  const schema = buildSchemaSync({
+    directives: [ExportDirective],
     resolvers,
     container: Container,
     authChecker,

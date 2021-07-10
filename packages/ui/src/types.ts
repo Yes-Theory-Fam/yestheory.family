@@ -1,4 +1,4 @@
 export interface User {
-  discordTag: string;
+  username: string;
   avatarUrl: string;
 }

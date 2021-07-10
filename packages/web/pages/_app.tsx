@@ -1,23 +1,31 @@
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import {
+  Footer,
+  Navigation,
   OverrideComponentContext,
   OverrideComponentType,
   theme,
-  Footer,
-  Navigation,
 } from "@yestheory.family/ui";
-import { AppProps } from "next/app";
+import { AppContext, AppProps, default as App } from "next/app";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { FunctionalComponent } from "preact";
 import { withUrqlClient } from "next-urql";
-import { defaultExchanges } from "urql";
+import { dedupExchange, cacheExchange, ssrExchange, fetchExchange } from "urql";
 import { devtoolsExchange } from "@urql/devtools";
+import { UserConsumer, UserProvider } from "../context/user/user";
+import cookie from "cookie";
+
+interface YTFAppProps extends AppProps {
+  authenticated: boolean;
+}
 
 const componentOverrides: OverrideComponentType = {
   Image,
   wrapLink: function LinkWrap(child, href) {
+    console.log("Wrapping a link with href", href, "in a Next link");
+
     return (
       <Link href={href} passHref>
         {child}
@@ -33,30 +41,53 @@ const storeAndNavigate = () => {
   window.location.href = "http://localhost:5000/oauth/discord";
 };
 
-const App: FunctionalComponent<AppProps> = ({ Component, pageProps }) => {
+const YTFApp: FunctionalComponent<YTFAppProps> = ({ Component, pageProps, authenticated }) => {
   return (
     <ChakraProvider theme={theme}>
-      <OverrideComponentContext.Provider value={componentOverrides}>
-        <Head>
-          <title>YesTheory Family</title>
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
-        <Navigation links={[]} onLoginButtonClick={storeAndNavigate} />
-        <Component {...pageProps} />
-        <Box pt={6} bg={"white"}>
-          <Footer links={[]} />
-        </Box>
-      </OverrideComponentContext.Provider>
+      <UserProvider serverAuthenticated={authenticated}>
+        <OverrideComponentContext.Provider value={componentOverrides}>
+          <Head>
+            <title>YesTheory Family</title>
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+              rel="stylesheet"
+            />
+          </Head>
+          <UserConsumer>
+            {(context) => (
+              <Navigation
+                links={[]}
+                onLoginButtonClick={storeAndNavigate}
+                user={context.user}
+              />
+            )}
+          </UserConsumer>
+          <Component {...pageProps} />
+          <Box pt={6} bg={"white"}>
+            <Footer links={[]} />
+          </Box>
+        </OverrideComponentContext.Provider>
+      </UserProvider>
     </ChakraProvider>
   );
 };
 
-export default withUrqlClient(() => ({
-  exchanges: [devtoolsExchange, ...defaultExchanges],
+const isServerSide = typeof window === "undefined";
+
+const ssr = ssrExchange({
+  isClient: !isServerSide,
+  initialState: !isServerSide ? window.__URQL_DATA__ : undefined,
+});
+
+const IdkApp = withUrqlClient(() => ({
+  exchanges: [
+    devtoolsExchange,
+    dedupExchange,
+    cacheExchange,
+    ssr,
+    fetchExchange,
+  ],
   url:
     typeof window === "undefined"
       ? process.env.SERVER_BACKEND_URL
@@ -64,4 +95,18 @@ export default withUrqlClient(() => ({
   fetchOptions: {
     credentials: "include",
   },
-}))(App);
+}))(YTFApp);
+
+export default IdkApp;
+
+// IdkApp.getInitialProps = async (
+//   context: AppContext
+// ): Promise<Partial<YTFAppProps>> => {
+//   const appProps = App.getInitialProps(context);
+
+//   const request = context.ctx.req;
+//   const cookies = request ? cookie.parse(request.headers.cookie || "") : {};
+
+//   const authenticated = !!cookies["koa.sess"];
+//   return { ...appProps, authenticated };
+// };
