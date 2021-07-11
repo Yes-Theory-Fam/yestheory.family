@@ -27,9 +27,3 @@ declare module "*.svg" {
   const content: string;
   export default content;
 }
-
-declare global {
-  interface Windows {
-    __URQL_DATA__: any | undefined;
-  }
-}

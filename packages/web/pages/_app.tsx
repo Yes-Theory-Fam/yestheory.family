@@ -17,6 +17,12 @@ import { devtoolsExchange } from "@urql/devtools";
 import { UserConsumer, UserProvider } from "../context/user/user";
 import cookie from "cookie";
 
+declare global {
+  interface Window {
+    __URQL_DATA__?: never;
+  }
+}
+
 interface YTFAppProps extends AppProps {
   authenticated: boolean;
 }
@@ -24,8 +30,6 @@ interface YTFAppProps extends AppProps {
 const componentOverrides: OverrideComponentType = {
   Image,
   wrapLink: function LinkWrap(child, href) {
-    console.log("Wrapping a link with href", href, "in a Next link");
-
     return (
       <Link href={href} passHref>
         {child}
@@ -41,7 +45,11 @@ const storeAndNavigate = () => {
   window.location.href = "http://localhost:5000/oauth/discord";
 };
 
-const YTFApp: FunctionalComponent<YTFAppProps> = ({ Component, pageProps, authenticated }) => {
+const YTFApp: FunctionalComponent<YTFAppProps> = ({
+  Component,
+  pageProps,
+  authenticated,
+}) => {
   return (
     <ChakraProvider theme={theme}>
       <UserProvider serverAuthenticated={authenticated}>
@@ -80,7 +88,7 @@ const ssr = ssrExchange({
   initialState: !isServerSide ? window.__URQL_DATA__ : undefined,
 });
 
-const IdkApp = withUrqlClient(() => ({
+const UrqlWrappedApp = withUrqlClient(() => ({
   exchanges: [
     devtoolsExchange,
     dedupExchange,
@@ -88,25 +96,26 @@ const IdkApp = withUrqlClient(() => ({
     ssr,
     fetchExchange,
   ],
-  url:
-    typeof window === "undefined"
-      ? process.env.SERVER_BACKEND_URL
-      : process.env.NEXT_PUBLIC_BACKEND_URL,
+  url: isServerSide
+    ? process.env.SERVER_BACKEND_URL
+    : process.env.NEXT_PUBLIC_BACKEND_URL,
   fetchOptions: {
     credentials: "include",
   },
 }))(YTFApp);
 
-export default IdkApp;
+export default UrqlWrappedApp;
 
-// IdkApp.getInitialProps = async (
-//   context: AppContext
-// ): Promise<Partial<YTFAppProps>> => {
-//   const appProps = App.getInitialProps(context);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - next-urql doesn't have proper tying for getInitialProps on _app see https://github.com/FormidableLabs/urql/issues/1794
+UrqlWrappedApp.getInitialProps = async (
+  context: AppContext
+): Promise<Partial<YTFAppProps>> => {
+  const appProps = App.getInitialProps(context);
 
-//   const request = context.ctx.req;
-//   const cookies = request ? cookie.parse(request.headers.cookie || "") : {};
+  const request = context.ctx.req;
+  const cookies = request ? cookie.parse(request.headers.cookie || "") : {};
 
-//   const authenticated = !!cookies["koa.sess"];
-//   return { ...appProps, authenticated };
-// };
+  const authenticated = !!cookies["koa.sess"];
+  return { ...appProps, authenticated };
+};
