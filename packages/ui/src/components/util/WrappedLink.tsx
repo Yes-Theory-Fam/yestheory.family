@@ -13,6 +13,6 @@ export const WrappedLink: FunctionalComponent<WrappedLinkProps> = ({
   ...rest
 }) => {
   const { wrapLink } = useContext(OverrideComponentContext);
-  if (!isExternal) return <Link href={href} {...rest} />;
+  if (isExternal) return <Link href={href} {...rest} />;
   return wrapLink(<Link {...rest} />, href);
 };
