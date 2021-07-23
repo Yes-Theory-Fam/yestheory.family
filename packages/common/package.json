@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --no-error-on-unmatched-pattern",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --no-error-on-unmatched-pattern --max-warnings=0",
     "test": "echo common: ok"
   },
   "devDependencies": {
