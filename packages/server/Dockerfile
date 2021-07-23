@@ -49,6 +49,8 @@ COPY --from=builder /app/packages/server/dist ./dist
 # Set environment data, export and launch
 ARG BACKEND_PORT=5000
 ENV BACKEND_PORT=$BACKEND_PORT
+ENV NODE_ENV="production"
+
 EXPOSE $BACKEND_PORT
 
 CMD ["node", "dist"]
