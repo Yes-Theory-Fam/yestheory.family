@@ -1,4 +1,4 @@
-import { Authorized, Ctx, Mutation, Resolver } from "type-graphql";
+import { Authorized, Ctx, Mutation } from "type-graphql";
 import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { YtfApolloContext } from "../../../types";
@@ -7,11 +7,10 @@ import {
   BuddyProjectStatus,
   BuddyProjectStatusPayload,
 } from "../buddy-project-status";
-import { Service } from "typedi";
+import { Resolver } from "../../../services/resolvers/resolver-directive";
 
-@Service()
 @Resolver()
-export class SignUp {
+class SignUpMutation {
   constructor(
     @Logger("buddy-project", "signup") private logger: winston.Logger
   ) {}

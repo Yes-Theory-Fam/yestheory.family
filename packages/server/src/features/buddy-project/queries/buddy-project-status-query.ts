@@ -1,16 +1,15 @@
-import { Ctx, Resolver, Authorized, Query } from "type-graphql";
+import { Authorized, Ctx, Query } from "type-graphql";
 import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { YtfApolloContext } from "../../../types";
-import { Service } from "typedi";
 import {
   BuddyProjectStatus,
   BuddyProjectStatusPayload,
 } from "../buddy-project-status";
+import { Resolver } from "../../../services/resolvers/resolver-directive";
 
-@Service()
 @Resolver()
-export class BuddyProjectStatusQuery {
+class BuddyProjectStatusQuery {
   constructor(
     @Logger("buddy-project", "status") private logger: winston.Logger
   ) {}

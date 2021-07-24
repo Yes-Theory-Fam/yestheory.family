@@ -2,8 +2,8 @@ import "reflect-metadata";
 import { config } from "dotenv";
 config();
 
-import { PrismaClient } from "@yes-theory-fam/database";
-import { buildSchema, buildSchemaSync } from "type-graphql";
+import { PrismaClient } from "@yes-theory-fam/database/client";
+import { buildSchemaSync } from "type-graphql";
 import Koa, { Context } from "koa";
 import koaSession from "koa-session";
 import { ApolloServer } from "apollo-server-koa";
@@ -12,11 +12,13 @@ import grantConfig from "./config/grant";
 import sessionConfig from "./config/session";
 import { createServerLogger } from "./services/logging/log";
 import mount from "koa-mount";
-import { authenticationRouter, resolvers, Discord } from "./features";
+import { authenticationRouter, Discord } from "./features";
 import { YtfApolloContext } from "./types";
 import { Container } from "typedi";
 import { authChecker } from "./features/auth/graphqlAuthChecker";
 import { ExportDirective } from "./ExportDirective";
+
+import { getResolvers } from "./services/resolvers/resolver-directive";
 
 const logger = createServerLogger("src", "index");
 
@@ -24,6 +26,8 @@ const prisma = new PrismaClient();
 
 const main = async () => {
   await Discord.initialize();
+
+  const resolvers = await getResolvers();
 
   const schema = buildSchemaSync({
     directives: [ExportDirective],

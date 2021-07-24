@@ -1,13 +1,12 @@
-import { Authorized, Ctx, Query, Resolver } from "type-graphql";
+import { Authorized, Ctx, Query } from "type-graphql";
 import { AuthenticatedUser } from "../AuthenticatedUser";
 import { YtfApolloContext } from "../../../types";
-import { Service } from "typedi";
 import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
+import { Resolver } from "../../../services/resolvers/resolver-directive";
 
-@Service()
 @Resolver(AuthenticatedUser)
-export class MeResolver {
+class MeResolver {
   constructor(@Logger("user", "Me") private logger: winston.Logger) {}
 
   @Authorized()
