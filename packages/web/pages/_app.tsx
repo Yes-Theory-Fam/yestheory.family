@@ -14,7 +14,11 @@ import { FunctionalComponent } from "preact";
 import { withUrqlClient } from "next-urql";
 import { dedupExchange, cacheExchange, ssrExchange, fetchExchange } from "urql";
 import { devtoolsExchange } from "@urql/devtools";
-import { UserConsumer, UserProvider } from "../context/user/user";
+import {
+  navigateToLogin,
+  UserConsumer,
+  UserProvider,
+} from "../context/user/user";
 import cookie from "cookie";
 
 declare global {
@@ -38,13 +42,6 @@ const componentOverrides: OverrideComponentType = {
   },
 };
 
-const storeAndNavigate = () => {
-  const lastLocation = window.location.href;
-  const domain = window.location.hostname;
-  document.cookie = `last_location=${lastLocation};domain=${domain};path=/`;
-  window.location.href = "http://localhost:5000/oauth/discord";
-};
-
 const YTFApp: FunctionalComponent<YTFAppProps> = ({
   Component,
   pageProps,
@@ -66,7 +63,7 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
             {(context) => (
               <Navigation
                 links={[]}
-                onLoginButtonClick={storeAndNavigate}
+                onLoginButtonClick={navigateToLogin}
                 user={context.user}
               />
             )}

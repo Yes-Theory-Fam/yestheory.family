@@ -3,18 +3,24 @@ import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { YtfApolloContext } from "../../../types";
 import { AuthProvider } from "../../user";
+import {
+  BuddyProjectStatus,
+  BuddyProjectStatusPayload,
+} from "../buddy-project-status";
+import { Service } from "typedi";
 
+@Service()
 @Resolver()
 export class SignUp {
   constructor(
     @Logger("buddy-project", "signup") private logger: winston.Logger
   ) {}
 
-  @Mutation()
   @Authorized()
+  @Mutation(() => BuddyProjectStatusPayload)
   public async signUp(
     @Ctx() { prisma, user }: YtfApolloContext
-  ): Promise<boolean> {
+  ): Promise<BuddyProjectStatusPayload> {
     if (!user || user.type !== AuthProvider.DISCORD) {
       throw new Error("Cannot sign up user who isn't logged in with Discord!");
     }
@@ -28,9 +34,11 @@ export class SignUp {
       if (e.code === uniqueConstraintFailedCode) {
         throw new Error("User already signed up!");
       }
+
+      throw e;
     }
 
     this.logger.debug(`Signed up ${user.id} to the buddy project.`);
-    return true;
+    return new BuddyProjectStatusPayload(BuddyProjectStatus.SIGNED_UP, null);
   }
 }

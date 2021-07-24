@@ -1,30 +1,22 @@
-import {
-  Ctx,
-  Resolver,
-  Mutation,
-  Authorized,
-  ObjectType,
-  Field,
-} from "type-graphql";
+import { Ctx, Resolver, Authorized, Query } from "type-graphql";
 import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { YtfApolloContext } from "../../../types";
-import { BuddyProjectEntry } from "@yes-theory-fam/database";
+import { Service } from "typedi";
+import {
+  BuddyProjectStatus,
+  BuddyProjectStatusPayload,
+} from "../buddy-project-status";
 
-enum BuddyProjectStatus {
-  NOT_SIGNED_UP,
-  SIGNED_UP,
-  MATCHED,
-}
-
+@Service()
 @Resolver()
-export class BuddyProjectStatusMutation {
+export class BuddyProjectStatusQuery {
   constructor(
     @Logger("buddy-project", "status") private logger: winston.Logger
   ) {}
 
   @Authorized()
-  @Mutation()
+  @Query(() => BuddyProjectStatusPayload)
   public async getBuddyProjectStatus(
     @Ctx() { user, prisma }: YtfApolloContext
   ): Promise<BuddyProjectStatusPayload> {
@@ -45,19 +37,5 @@ export class BuddyProjectStatusMutation {
       : BuddyProjectStatus.SIGNED_UP;
 
     return new BuddyProjectStatusPayload(status, buddy);
-  }
-}
-
-@ObjectType()
-class BuddyProjectStatusPayload {
-  @Field()
-  status: BuddyProjectStatus;
-
-  @Field()
-  buddy?: BuddyProjectEntry | null;
-
-  constructor(status: BuddyProjectStatus, buddy?: BuddyProjectEntry | null) {
-    this.status = status;
-    this.buddy = buddy;
   }
 }

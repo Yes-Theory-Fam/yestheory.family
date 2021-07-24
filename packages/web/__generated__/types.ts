@@ -6,3 +6,9 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
   { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
   { [SubKey in K]: Maybe<T[SubKey]> };
+
+export enum BuddyProjectStatus {
+  NotSignedUp = "NOT_SIGNED_UP",
+  SignedUp = "SIGNED_UP",
+  Matched = "MATCHED",
+}

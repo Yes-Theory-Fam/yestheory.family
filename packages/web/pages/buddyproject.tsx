@@ -3,11 +3,7 @@ import { ScrollToActionContainer, Heading } from "@yestheory.family/ui";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  buddyProjectSvg,
-  yesbotBuddyProjectPng,
-  yesbotBuddyProjectWebp,
-} from "../assets";
+import { buddyProjectSvg, yesbotBuddyProjectWebp } from "../assets";
 import {
   Box,
   Button,
@@ -19,6 +15,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { BuddyProjectProvider } from "../components/buddyproject/context/context";
+import { BuddyProjectButton } from "../components/buddyproject/button";
 
 const CTA: FunctionalComponent = () => {
   return (
@@ -153,12 +151,16 @@ const BuddyProject: FunctionalComponent = () => {
         <title>Buddy Project</title>
       </Head>
       <CTA />
-      <Container maxW="container.xl" mx={"auto"} px={4} my={6}>
-        <Flex direction={"column"} align={"center"}>
-          <Info />
-          <Button mt={6}>Login with Discord</Button>
-        </Flex>
-      </Container>
+      <BuddyProjectProvider>
+        <Container maxW="container.xl" mx={"auto"} px={4} my={6}>
+          <Flex direction={"column"} align={"center"}>
+            <Info />
+            <Box mt={6}>
+              <BuddyProjectButton />
+            </Box>
+          </Flex>
+        </Container>
+      </BuddyProjectProvider>
     </>
   );
 };
