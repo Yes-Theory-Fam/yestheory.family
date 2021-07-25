@@ -2,44 +2,100 @@
 
 exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
   <div class="css-2rlxtj">
-    <div class="chakra-stack css-192p3t8">
-      <p class="chakra-text css-x13lj8">Logged in as:</p>
-      <div class="chakra-stack css-15lgeks">
-        <span class="chakra-avatar css-vkvvxo">
-          <div
-            role="img"
-            aria-label="geisterfurz007#5952"
-            class="chakra-avatar__initials css-0"
-          >
-            g
+    <button
+      id="menu-button-undefined"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      aria-controls="menu-list-undefined"
+      onClick={[Function func]}
+      onKeyDown={[Function func]}
+      class="chakra-menu__menu-button css-1cet676"
+    >
+      <span class="css-xl71ch">
+        <div class="chakra-stack css-192p3t8">
+          <p class="chakra-text css-x13lj8">Logged in as:</p>
+          <div class="chakra-stack css-15lgeks">
+            <span class="chakra-avatar css-vkvvxo">
+              <div
+                role="img"
+                aria-label="geisterfurz007#5952"
+                class="chakra-avatar__initials css-0"
+              >
+                g
+              </div>
+              <div class="chakra-avatar__badge css-1plriyt"></div>
+            </span>
+            <p class="chakra-text css-8wu8jt">geisterfurz007#5952</p>
           </div>
-          <div class="chakra-avatar__badge css-1plriyt"></div>
-        </span>
-        <p class="chakra-text css-8wu8jt">geisterfurz007#5952</p>
+          <p class="chakra-text css-1aj8j1t">Logged in as:</p>
+        </div>
+      </span>
+    </button>
+    <div
+      style="visibility: hidden; position: absolute; min-width: max-content;"
+      class="css-0"
+    >
+      <div
+        tabIndex={-1}
+        role="menu"
+        id="menu-list-undefined"
+        style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
+        aria-orientation="vertical"
+        onKeyDown={[Function func]}
+        class="chakra-menu__menu-list css-1jj07fx"
+      >
       </div>
-      <p class="chakra-text css-1aj8j1t">Logged in as:</p>
+      
     </div>
   </div>
 `;
 
 exports[`Storyshots Common/Navigation/Profile Mobile Profile 1`] = `
   <div class="css-1agdl1f">
-    <div class="chakra-stack css-192p3t8">
-      <p class="chakra-text css-amg4kb">Logged in as:</p>
-      <div class="chakra-stack css-15lgeks">
-        <span class="chakra-avatar css-18zvmmx">
-          <div
-            role="img"
-            aria-label="geisterfurz007#5952"
-            class="chakra-avatar__initials css-0"
-          >
-            g
+    <button
+      id="menu-button-undefined"
+      aria-expanded="false"
+      aria-haspopup="menu"
+      aria-controls="menu-list-undefined"
+      onClick={[Function func]}
+      onKeyDown={[Function func]}
+      class="chakra-menu__menu-button css-1cet676"
+    >
+      <span class="css-xl71ch">
+        <div class="chakra-stack css-192p3t8">
+          <p class="chakra-text css-amg4kb">Logged in as:</p>
+          <div class="chakra-stack css-15lgeks">
+            <span class="chakra-avatar css-18zvmmx">
+              <div
+                role="img"
+                aria-label="geisterfurz007#5952"
+                class="chakra-avatar__initials css-0"
+              >
+                g
+              </div>
+              <div class="chakra-avatar__badge css-1plriyt"></div>
+            </span>
+            <p class="chakra-text css-kbn7if">geisterfurz007#5952</p>
           </div>
-          <div class="chakra-avatar__badge css-1plriyt"></div>
-        </span>
-        <p class="chakra-text css-kbn7if">geisterfurz007#5952</p>
+          <p class="chakra-text css-1661vxi">Logged in as:</p>
+        </div>
+      </span>
+    </button>
+    <div
+      style="visibility: hidden; position: absolute; min-width: max-content;"
+      class="css-0"
+    >
+      <div
+        tabIndex={-1}
+        role="menu"
+        id="menu-list-undefined"
+        style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8) translateZ(0);"
+        aria-orientation="vertical"
+        onKeyDown={[Function func]}
+        class="chakra-menu__menu-list css-1jj07fx"
+      >
       </div>
-      <p class="chakra-text css-1661vxi">Logged in as:</p>
+      
     </div>
   </div>
 `;

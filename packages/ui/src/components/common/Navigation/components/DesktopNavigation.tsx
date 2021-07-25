@@ -21,7 +21,11 @@ export const DesktopNavigation: FunctionalComponent<NavigationProps> = (
         </WrappedLink>
         {links}
         {props.user ? (
-          <Profile user={props.user} variant={"desktop"} />
+          <Profile
+            user={props.user}
+            variant={"desktop"}
+            menuItems={props.menuItems}
+          />
         ) : (
           <LoginButton onClick={props.onLoginButtonClick} />
         )}

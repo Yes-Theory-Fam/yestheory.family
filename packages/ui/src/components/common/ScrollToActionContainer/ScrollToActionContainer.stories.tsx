@@ -23,7 +23,11 @@ ScrollToActionContainerStory.parameters = { layout: "fullscreen" };
 
 export const ScrollToActionContainerWithNavigationStory: Story = () => (
   <Fragment>
-    <Navigation links={[]} onLoginButtonClick={() => undefined} />
+    <Navigation
+      links={[]}
+      onLoginButtonClick={() => undefined}
+      menuItems={[]}
+    />
     <ScrollToActionContainer text={"Click here"}>
       <Text fontSize={"xl"} color={"brand.800"} align={"center"} mb={4}>
         This is some example content of the scroll to action container
