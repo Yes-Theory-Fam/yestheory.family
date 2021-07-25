@@ -20,6 +20,7 @@ import {
   UserProvider,
 } from "../context/user/user";
 import cookie from "cookie";
+import { useLogoutMutation } from "../components/auth/logout.generated";
 
 declare global {
   interface Window {
@@ -47,6 +48,8 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
   pageProps,
   authenticated,
 }) => {
+  const [, logout] = useLogoutMutation();
+
   return (
     <ChakraProvider theme={theme}>
       <UserProvider serverAuthenticated={authenticated}>
@@ -64,6 +67,15 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
               <Navigation
                 links={[]}
                 onLoginButtonClick={navigateToLogin}
+                menuItems={[
+                  {
+                    onClick: () =>
+                      logout().then(({ data }) => {
+                        if (data?.logout) context.clearUser();
+                      }),
+                    label: "Logout",
+                  },
+                ]}
                 user={context.user}
               />
             )}

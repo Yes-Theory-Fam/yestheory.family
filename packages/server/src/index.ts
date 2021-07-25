@@ -51,7 +51,7 @@ const main = async () => {
       const maybeUser = ctx.session?.user;
       logger.debug("Creating context with user", maybeUser);
 
-      return { prisma, user: maybeUser };
+      return { prisma, user: maybeUser, requestContext: ctx };
     },
     formatResponse: (response, reqContext) => {
       const authErrors =

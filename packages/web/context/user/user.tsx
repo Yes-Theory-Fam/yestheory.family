@@ -5,16 +5,15 @@ import { useCurrentUserQuery, User } from "./user.generated";
 interface UserContextProps {
   readonly loggedIn: boolean;
   user: User | undefined;
+  clearUser: () => void;
 }
-
-// const getIsLoggedIn = () =>
-//   document.cookie.split(";").some((c) => c.trim().startsWith(cookieName));
 
 const UserContext: Context<UserContextProps> = createContext<UserContextProps>({
   get loggedIn() {
     return false;
   },
   user: undefined,
+  clearUser: () => {},
 });
 
 interface UserProviderProps {
@@ -47,7 +46,9 @@ export const UserProvider: FunctionalComponent<UserProviderProps> = ({
   }, [data]);
 
   return (
-    <UserContext.Provider value={{ loggedIn, user }}>
+    <UserContext.Provider
+      value={{ loggedIn, user, clearUser: () => setUser(undefined) }}
+    >
       {children}
     </UserContext.Provider>
   );
