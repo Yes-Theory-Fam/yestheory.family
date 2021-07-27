@@ -1,7 +1,14 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { NavigationProps } from "../Navigation";
 import { LoginButton, Logo, NavLink } from "../..";
-import { Flex, useDisclosure, Slide, VStack } from "@chakra-ui/react";
+import {
+  Flex,
+  useDisclosure,
+  Slide,
+  VStack,
+  DrawerContent,
+  Drawer,
+} from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Profile } from "./Profile/Profile";
 import { WrappedLink } from "../../../util";
@@ -71,9 +78,11 @@ export const MobileNavigation: FunctionalComponent<NavigationProps> = (
   return (
     <>
       <NavBar onMenuOpenClick={onOpen} />
-      <Slide direction={"right"} in={isOpen}>
-        <NavigationStack {...props} onCloseClick={onClose} />
-      </Slide>
+      <Drawer isOpen={isOpen} onClose={onClose} size={"full"} w={"full"}>
+        <DrawerContent>
+          <NavigationStack {...props} onCloseClick={onClose} />
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };

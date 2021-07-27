@@ -61,7 +61,7 @@ export const Profile: FunctionalComponent<ProfileProps> = (props) => {
         </VStack>
       </MenuButton>
       <Portal>
-        <MenuList zIndex={"dropdown"}>
+        <MenuList zIndex={"popover"}>
           {props.menuItems.map((i) => (
             <MenuItem onClick={i.onClick}>{i.label}</MenuItem>
           ))}
