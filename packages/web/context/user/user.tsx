@@ -45,6 +45,13 @@ export const UserProvider: FunctionalComponent<UserProviderProps> = ({
     }
   }, [data]);
 
+  useEffect(() => {
+    if (!serverAuthenticated) {
+      setUser(undefined);
+      return;
+    }
+  }, [serverAuthenticated]);
+
   return (
     <UserContext.Provider
       value={{ loggedIn, user, clearUser: () => setUser(undefined) }}
