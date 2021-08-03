@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.web.service.name }}
+  labels: {{ .Values.web.service.labels | toYaml | nindent 4 }}
+spec:
+  ports:
+    - port: 80
+      targetPort: {{ .Values.web.deployment.port.name }}
+  selector: {{ .Values.web.service.labels | toYaml | nindent 4 }}
+  type: NodePort

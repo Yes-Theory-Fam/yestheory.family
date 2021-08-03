@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.database.deployment.name }}
+spec:
+  selector:
+    matchLabels: {{ .Values.database.service.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.database.service.labels | toYaml | nindent 8 }}
+        deployedOn: {{ now | date .Values.dateformat }}
+    spec:
+      containers:
+        - name: {{ .Values.database.deployment.name }}
+          image: postgres:13
+          ports:
+            - {{ .Values.database.deployment.port | toYaml | nindent 14 }}
+          env:
+            - name: POSTGRES_USER
+              value: yesbot
+            - name: POSTGRES_PASSWORD
+              value: yesbot
+            - name: POSTGRES_DB
+              value: yesbot

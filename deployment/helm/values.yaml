@@ -1,0 +1,89 @@
+# Default values for helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+imagePullSecrets:
+  github: github-pull-secret
+
+dateformat: "2015-01-02-15-04-05"
+
+web:
+  ingress:
+    name: ytf-web-ingress
+    host: yestheory.family
+  service:
+    name: ytf-web-service
+    port: 80
+    labels:
+      app: ytf-web
+  deployment:
+    name: ytf-web-deployment
+    image: geisterfurz007/fullstack-typescript-boilerplate-example-web
+    port:
+      name: next
+      containerPort: 3000
+
+backend:
+  ingress:
+    name: ytf-backend-ingress
+    host: api.yestheory.family
+  service:
+    name: ytf-backend-service
+    port: 80
+    labels:
+      app: ytf-backend
+  deployment:
+    name: ytf-backend-deployment
+    image: geisterfurz007/fullstack-typescript-boilerplate-example-server
+    port:
+      name: node
+      containerPort: 5000
+
+database:
+  service:
+    port: 5432
+    name: ytf-database-service
+    labels:
+      app: ytf-database
+  deployment:
+    name: ytf-database-deployment
+    image: postgres:13
+    port:
+      name: postgres
+      containerPort: 5432
+    user:
+
+migration:
+  job:
+    name: ytf-migration-job
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80

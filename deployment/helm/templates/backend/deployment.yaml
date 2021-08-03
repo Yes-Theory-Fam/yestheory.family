@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.backend.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels: {{ .Values.backend.service.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.backend.service.labels | toYaml | nindent 8 }}
+        deployedOn: {{ now | date .Values.dateformat }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.github }}
+      containers:
+        - name: {{ .Values.backend.deployment.name }}
+          image: {{ .Values.backend.deployment.image }}
+          ports:
+            - {{ .Values.backend.deployment.port | toYaml | nindent 14}}
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://yesbot:yesbot@{{ .Values.database.service.name }}:{{ .Values.database.service.port }}"
