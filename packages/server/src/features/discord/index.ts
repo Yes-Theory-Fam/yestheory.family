@@ -1,13 +1,18 @@
-import { Client, Guild } from "discord.js";
+import { Client, Guild, Intents } from "discord.js";
 import { createServerLogger } from "../../services/logging/log";
 
 const logger = createServerLogger("discord", "index");
 
-const bot = new Client();
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS],
+});
 
-export let targetGuild: Guild | undefined;
+interface DiscordValues {
+  client: Client;
+  guild: Guild;
+}
 
-export const initialize = async (skipLogin = false): Promise<void> => {
+export const initialize = async (skipLogin = false): Promise<DiscordValues> => {
   const guildId = process.env.DISCORD_TARGET_GUILD;
   if (!guildId) {
     throw new Error("Guild ID not specified!");
@@ -15,10 +20,10 @@ export const initialize = async (skipLogin = false): Promise<void> => {
 
   if (!skipLogin) {
     logger.info("Logging in with Discord client");
-    await bot.login(process.env.DISCORD_BOT_TOKEN);
+    await client.login(process.env.DISCORD_BOT_TOKEN);
   }
 
-  if (!bot.readyAt) {
+  if (!client.readyAt) {
     logger.info(
       "Client is not ready, delaying, retrying remaining initialization in a second."
     );
@@ -28,6 +33,8 @@ export const initialize = async (skipLogin = false): Promise<void> => {
   }
 
   logger.debug("Client is ready, fetching guild!");
-  targetGuild = await bot.guilds.fetch(guildId, true);
+  const guild = await client.guilds.fetch(guildId);
   logger.info("Client initialized!");
+
+  return { client, guild };
 };

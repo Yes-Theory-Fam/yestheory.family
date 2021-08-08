@@ -4,6 +4,9 @@ import { isDevelopment } from "../../config";
 import { AuthenticatedUser } from "../user";
 import { createServerLogger } from "../../services/logging/log";
 
+import Cookies from "cookies";
+import { AuthService } from "./auth-service";
+
 const logger = createServerLogger("auth", "DiscordCallback");
 
 const domain = isDevelopment ? "localhost" : "yestheory.family";
@@ -21,13 +24,16 @@ const discordCallback: KoaHandler = (ctx) => {
 
   const response = ctx.session?.grant.response as GrantResponse;
 
-  ctx.cookies.set("access_token", response.access_token, {
+  const cookieOptions: Cookies.SetOption = {
     httpOnly: true,
     secure: !isDevelopment,
     sameSite: "strict",
     path: "/",
     domain,
-  });
+  };
+
+  ctx.cookies.set("access_token", response.access_token, cookieOptions);
+  ctx.cookies.set("refresh_token", response.refresh_token, cookieOptions);
 
   const lastLocationKey = "last_location";
   const lastLocation = ctx.cookies.get(lastLocationKey);

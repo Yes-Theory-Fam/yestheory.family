@@ -15,17 +15,20 @@ import mount from "koa-mount";
 import { authenticationRouter, Discord } from "./features";
 import { YtfApolloContext } from "./types";
 import { Container } from "typedi";
-import { authChecker } from "./features/auth/graphqlAuthChecker";
+import { authChecker } from "./features/auth/graphql-auth-checker";
 import { ExportDirective } from "./ExportDirective";
 
 import { getResolvers } from "./services/resolvers/resolver-directive";
+import { Client, Guild } from "discord.js";
 
 const logger = createServerLogger("src", "index");
 
 const prisma = new PrismaClient();
 
 const main = async () => {
-  await Discord.initialize();
+  const { client, guild } = await Discord.initialize();
+  Container.set(Client, client);
+  Container.set(Guild, guild);
 
   const resolvers = await getResolvers();
 
@@ -33,7 +36,7 @@ const main = async () => {
     directives: [ExportDirective],
     resolvers,
     container: Container,
-    authChecker,
+    authChecker: authChecker(guild),
   });
 
   const port = process.env["BACKEND_PORT"] ?? 5000;
@@ -51,7 +54,16 @@ const main = async () => {
       const maybeUser = ctx.session?.user;
       logger.debug("Creating context with user", maybeUser);
 
-      return { prisma, user: maybeUser, requestContext: ctx };
+      const accessToken = ctx.cookies.get("access_token");
+      const refreshToken = ctx.cookies.get("refresh_token");
+
+      return {
+        prisma,
+        user: maybeUser,
+        requestContext: ctx,
+        accessToken,
+        refreshToken,
+      };
     },
     formatResponse: (response, reqContext) => {
       const authErrors =

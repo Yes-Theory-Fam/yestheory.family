@@ -7,6 +7,8 @@ export interface DiscordProfile {
   discriminator: string;
 }
 
+// TODO if there are ever more auth providers, go through all parts of logout to make sure there are no hardcoded values
+//  for Discord; I might have been a little lazy on that matter, sorry 'bout that.
 export enum AuthProvider {
   DISCORD,
 }

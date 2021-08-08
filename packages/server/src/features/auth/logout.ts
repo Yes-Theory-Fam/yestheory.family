@@ -4,18 +4,16 @@ import winston from "winston";
 import { Authorized, Ctx, Mutation } from "type-graphql";
 import { YtfApolloContext } from "../../types";
 import { AuthProvider } from "../user";
-import fetch from "node-fetch";
-import { URLSearchParams } from "url";
 
 import Cookies from "cookies";
-
-const revokeUrls: Record<AuthProvider, string> = {
-  [AuthProvider.DISCORD]: "https://discord.com/api/oauth2/token/revoke",
-};
+import { AuthService } from "./auth-service";
 
 @Resolver()
 class LogoutMutation {
-  constructor(@Logger("auth", "logout") private logger: winston.Logger) {}
+  constructor(
+    @Logger("auth", "logout") private logger: winston.Logger,
+    private authService: AuthService
+  ) {}
 
   @Authorized()
   @Mutation(() => Boolean)
@@ -23,41 +21,28 @@ class LogoutMutation {
     if (!ctx.user) throw new Error("Unauthenticated");
 
     const cookies = ctx.requestContext.cookies;
-    await LogoutMutation.invalidateToken(cookies, ctx.user.type);
+    await this.invalidateTokens(cookies, ctx.user.type);
     cookies.set("koa.sess", null);
     cookies.set("koa.sess.sig", null);
 
     return true;
   }
 
-  private static async invalidateToken(
-    cookies: Cookies,
-    provider: AuthProvider
-  ): Promise<void> {
-    const tokenCookieName = "access_token";
+  private async invalidateTokens(cookies: Cookies, provider: AuthProvider) {
+    const cookieNames = ["access_token", "refresh_token"];
 
-    const token = cookies.get(tokenCookieName);
-    if (!token) return;
+    const tokens = cookieNames
+      .map((n) => cookies.get(n))
+      .filter((t): t is string => !!t);
 
-    const clientId = process.env.DISCORD_CLIENT_ID;
-    const clientSecret = process.env.DISCORD_CLIENT_SECRET;
+    const invalidatePromises = tokens.map((t) =>
+      this.authService.invalidateToken(t, provider)
+    );
+    await Promise.all(invalidatePromises);
 
-    const revokeUrl = revokeUrls[provider];
-    const body = new URLSearchParams({
-      token,
-      client_id: clientId,
-      client_secret: clientSecret,
-    });
-
-    await fetch(revokeUrl, {
-      method: "POST",
-      body,
-      headers: {
-        "Content-Type": "application/www-form-urlencoded",
-      },
-    });
-
-    cookies.set(tokenCookieName, null);
-    cookies.set(`${tokenCookieName}.sig`, null);
+    for (const cookieName of cookieNames) {
+      cookies.set(cookieName, null);
+      cookies.set(`${cookieName}.sig`, null);
+    }
   }
 }

@@ -35,11 +35,13 @@ const Button = {
     md: {
       height: "unset",
       py: "4",
+      minW: "260px",
       minWidth: "260px",
     },
     sm: {
       height: "unset",
       py: "3",
+      minW: "200px",
       minWidth: "200px",
     },
   },
