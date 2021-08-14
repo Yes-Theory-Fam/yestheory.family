@@ -7,8 +7,8 @@ query State {
   }
 }
 
-mutation SignUp {
-  signUp {
+mutation SignUp($accessToken: String!) {
+  signUp(accessToken: $accessToken) {
     status
   }
 }

@@ -33,7 +33,7 @@
     "next-images": "^1.7.0",
     "next-plugin-preact": "^3.0.4",
     "next-transpile-modules": "^6.4.0",
-    "next-urql": "^3.0.1",
+    "next-urql": "^3.2.0",
     "preact": "10.5.12",
     "preact-render-to-string": "^5.1.19",
     "preact-ssr-prepass": "^1.1.3",

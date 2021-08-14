@@ -22,7 +22,8 @@ export const BuddyProjectButton: FunctionalComponent = () => {
         return;
       }
 
-      await signUpMutation();
+      const accessToken = localStorage.getItem("accessToken");
+      await signUpMutation({ accessToken });
     },
     [signUpMutation, onServerData, onOpen]
   );

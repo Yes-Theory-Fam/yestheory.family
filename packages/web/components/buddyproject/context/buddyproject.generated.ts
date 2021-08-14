@@ -17,7 +17,9 @@ export type StateQuery = {
 
 export type Buddy = { __typename?: "BuddyProjectEntry"; userId: string };
 
-export type SignUpMutationVariables = Types.Exact<{ [key: string]: never }>;
+export type SignUpMutationVariables = Types.Exact<{
+  accessToken: string;
+}>;
 
 export type SignUpMutation = {
   __typename?: "Mutation";
@@ -44,8 +46,8 @@ export function useStateQuery(
   return Urql.useQuery<StateQuery>({ query: StateDocument, ...options });
 }
 export const SignUpDocument = gql`
-  mutation SignUp {
-    signUp {
+  mutation SignUp($accessToken: String!) {
+    signUp(accessToken: $accessToken) {
       status
     }
   }

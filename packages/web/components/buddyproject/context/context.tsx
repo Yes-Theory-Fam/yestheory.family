@@ -24,8 +24,6 @@ export const BuddyProjectProvider: FunctionalComponent<BuddyProjectProviderProps
   const loggedIn = useLoggedIn();
   const [{ data, fetching, error }] = useStateQuery();
 
-  console.log(data, fetching, error);
-
   const value =
     !loggedIn || error || fetching
       ? { status: undefined, buddy: undefined }
