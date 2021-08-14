@@ -1,5 +1,4 @@
 import { Service } from "typedi";
-import { YtfApolloContext } from "../../types";
 import { AuthProvider } from "../user";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
@@ -15,13 +14,13 @@ const revokeUrls: Record<AuthProvider, string> = {
 
 @Service()
 export class AuthService {
-  public async refreshToken(ctx: YtfApolloContext): Promise<YtfApolloContext> {
+  public async refreshToken(
+    refreshToken: string,
+    authProvider: AuthProvider
+  ): Promise<{ refreshToken: string; accessToken: string; expiresIn: number }> {
     const logger = createServerLogger("authService", "refreshToken");
 
-    const { refreshToken, user } = ctx;
-
-    if (!user) throw new Error("User is not logged in.");
-    if (user.type !== AuthProvider.DISCORD) {
+    if (authProvider !== AuthProvider.DISCORD) {
       throw new Error("Refreshing tokens is only implemented for Discord");
     }
 
@@ -37,7 +36,7 @@ export class AuthService {
       refresh_token: refreshToken,
     });
 
-    const response = await fetch(refreshUrls[user.type], {
+    const response = await fetch(refreshUrls[authProvider], {
       method: "POST",
       body,
       headers: {
@@ -59,14 +58,9 @@ export class AuthService {
 
     const accessToken = tokenResponse.access_token;
     const newRefreshToken = tokenResponse.refresh_token;
+    const expiresIn = tokenResponse.expires_in;
 
-    const cookies = ctx.requestContext.cookies;
-    cookies.set("access_token", accessToken);
-    cookies.set("refresh_token", newRefreshToken);
-
-    ctx = { ...ctx, refreshToken: newRefreshToken, accessToken };
-
-    return ctx;
+    return { accessToken, refreshToken: newRefreshToken, expiresIn };
   }
 
   public async invalidateToken(

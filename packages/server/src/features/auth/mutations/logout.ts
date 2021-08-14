@@ -1,12 +1,12 @@
-import { Resolver } from "../../services/resolvers/resolver-directive";
-import { Logger } from "../../services/logging/logService";
+import { Resolver } from "../../../services/resolvers/resolver-directive";
+import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { Authorized, Ctx, Mutation } from "type-graphql";
-import { YtfApolloContext } from "../../types";
-import { AuthProvider } from "../user";
+import { YtfApolloContext } from "../../../types";
+import { AuthProvider } from "../../user";
 
 import Cookies from "cookies";
-import { AuthService } from "./auth-service";
+import { AuthService } from "../auth-service";
 
 @Resolver()
 class LogoutMutation {
@@ -38,11 +38,7 @@ class LogoutMutation {
     const invalidatePromises = tokens.map((t) =>
       this.authService.invalidateToken(t, provider)
     );
-    await Promise.all(invalidatePromises);
 
-    for (const cookieName of cookieNames) {
-      cookies.set(cookieName, null);
-      cookies.set(`${cookieName}.sig`, null);
-    }
+    await Promise.all(invalidatePromises);
   }
 }

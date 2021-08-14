@@ -54,15 +54,10 @@ const main = async () => {
       const maybeUser = ctx.session?.user;
       logger.debug("Creating context with user", maybeUser);
 
-      const accessToken = ctx.cookies.get("access_token");
-      const refreshToken = ctx.cookies.get("refresh_token");
-
       return {
         prisma,
         user: maybeUser,
         requestContext: ctx,
-        accessToken,
-        refreshToken,
       };
     },
     formatResponse: (response, reqContext) => {

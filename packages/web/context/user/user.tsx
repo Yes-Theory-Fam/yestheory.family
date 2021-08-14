@@ -13,7 +13,9 @@ const UserContext: Context<UserContextProps> = createContext<UserContextProps>({
     return false;
   },
   user: undefined,
-  clearUser: () => {},
+  clearUser: () => {
+    /* no-op */
+  },
 });
 
 interface UserProviderProps {

@@ -6,7 +6,6 @@ import {
   OverrideComponentType,
   theme,
 } from "@yestheory.family/ui";
-import { AppContext, AppProps, default as App } from "next/app";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +20,7 @@ import {
 } from "../context/user/user";
 import cookie from "cookie";
 import { useLogoutMutation } from "../components/auth/logout.generated";
+import App, { AppContext, AppProps } from "next/app";
 
 declare global {
   interface Window {
@@ -42,6 +42,8 @@ const componentOverrides: OverrideComponentType = {
     );
   },
 };
+
+const isServerSide = typeof window === "undefined";
 
 const YTFApp: FunctionalComponent<YTFAppProps> = ({
   Component,
@@ -75,7 +77,11 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
                   {
                     onClick: () =>
                       logout().then(({ data }) => {
-                        if (data?.logout) context.clearUser();
+                        if (!data?.logout) return;
+
+                        context.clearUser();
+                        localStorage.removeItem("accessToken");
+                        localStorage.removeItem("refreshToken");
                       }),
                     label: "Logout",
                   },
@@ -93,8 +99,6 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
     </ChakraProvider>
   );
 };
-
-const isServerSide = typeof window === "undefined";
 
 const ssr = ssrExchange({
   isClient: !isServerSide,
@@ -121,14 +125,16 @@ export default UrqlWrappedApp;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - next-urql doesn't have proper tying for getInitialProps on _app see https://github.com/FormidableLabs/urql/issues/1794
-UrqlWrappedApp.getInitialProps = async (
+UrqlWrappedApp.getInitialProps = (
   context: AppContext
 ): Promise<Partial<YTFAppProps>> => {
   const appProps = App.getInitialProps(context);
 
   const request = context.ctx.req;
-  const cookies = request ? cookie.parse(request.headers.cookie || "") : {};
+  const isServerSide = !!request;
 
-  const authenticated = !!cookies["koa.sess"];
+  const authenticated = isServerSide
+    ? !!cookie.parse(request.headers.cookie || "")["koa.sess"]
+    : !!localStorage.getItem("accessToken");
   return { ...appProps, authenticated };
 };

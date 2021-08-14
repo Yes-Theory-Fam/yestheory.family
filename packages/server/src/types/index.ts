@@ -6,6 +6,4 @@ export interface YtfApolloContext {
   prisma: PrismaClient;
   user: AuthenticatedUser | null;
   requestContext: koa.Context;
-  accessToken: string | undefined;
-  refreshToken: string | undefined;
 }

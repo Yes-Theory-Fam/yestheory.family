@@ -1,4 +1,4 @@
-import { Authorized, Ctx, Mutation } from "type-graphql";
+import { Arg, Authorized, Ctx, Mutation } from "type-graphql";
 import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { YtfApolloContext } from "../../../types";
@@ -8,22 +8,21 @@ import {
   BuddyProjectStatusPayload,
 } from "../buddy-project-status";
 import { Resolver } from "../../../services/resolvers/resolver-directive";
-import { Client, DiscordAPIError, Guild, GuildMember, Role } from "discord.js";
-import { AuthService } from "../../auth/auth-service";
+import { Client, Guild, GuildMember, Role, Snowflake } from "discord.js";
 
 @Resolver()
 class SignUpMutation {
   constructor(
     @Logger("buddy-project", "signup") private logger: winston.Logger,
     private discord: Client,
-    private guild: Guild,
-    private authService: AuthService
+    private guild: Guild
   ) {}
 
   @Authorized()
   @Mutation(() => BuddyProjectStatusPayload)
   public async signUp(
-    @Ctx() ctx: YtfApolloContext
+    @Ctx() ctx: YtfApolloContext,
+    @Arg("accessToken") accessToken: string
   ): Promise<BuddyProjectStatusPayload> {
     const { prisma, user } = ctx;
 
@@ -44,7 +43,7 @@ class SignUpMutation {
     }
 
     if (!member) {
-      await this.addMember(ctx);
+      await this.addMember(accessToken, user.id);
     } else {
       const bpRole = this.getBuddyProjectRole();
       await member.roles.add(bpRole);
@@ -78,23 +77,14 @@ class SignUpMutation {
     return bpRole;
   }
 
-  private async addMember(ctx: YtfApolloContext): Promise<void> {
-    const { accessToken, user } = ctx;
-    if (!user) throw new Error("No user");
-
+  private async addMember(
+    accessToken: string,
+    userId: Snowflake
+  ): Promise<void> {
     if (!accessToken) return;
     const bpRole = this.getBuddyProjectRole();
 
-    try {
-      await this.guild.members.add(user.id, { accessToken, roles: [bpRole] });
-    } catch (e) {
-      if (e instanceof DiscordAPIError && e.httpStatus === 403) {
-        const newContext = await this.authService.refreshToken(ctx);
-        await this.addMember(newContext);
-        return;
-      }
-
-      throw e;
-    }
+    // Let's just blindly pretend this is going to work first try for now
+    await this.guild.members.add(userId, { accessToken, roles: [bpRole] });
   }
 }

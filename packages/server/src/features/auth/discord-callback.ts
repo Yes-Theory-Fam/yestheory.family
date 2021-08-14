@@ -3,13 +3,10 @@ import { GrantResponse } from "grant";
 import { isDevelopment } from "../../config";
 import { AuthenticatedUser } from "../user";
 import { createServerLogger } from "../../services/logging/log";
-
-import Cookies from "cookies";
-import { AuthService } from "./auth-service";
+import { URL, URLSearchParams } from "url";
 
 const logger = createServerLogger("auth", "DiscordCallback");
 
-const domain = isDevelopment ? "localhost" : "yestheory.family";
 const fallbackRedirect = isDevelopment
   ? "http://localhost:3000"
   : "https://yestheory.family";
@@ -24,19 +21,8 @@ const discordCallback: KoaHandler = (ctx) => {
 
   const response = ctx.session?.grant.response as GrantResponse;
 
-  const cookieOptions: Cookies.SetOption = {
-    httpOnly: true,
-    secure: !isDevelopment,
-    sameSite: "strict",
-    path: "/",
-    domain,
-  };
-
-  ctx.cookies.set("access_token", response.access_token, cookieOptions);
-  ctx.cookies.set("refresh_token", response.refresh_token, cookieOptions);
-
   const lastLocationKey = "last_location";
-  const lastLocation = ctx.cookies.get(lastLocationKey);
+  const lastLocation = ctx.cookies.get(lastLocationKey) ?? fallbackRedirect;
 
   ctx.session.grant = null;
   ctx.session.user = AuthenticatedUser.fromDiscordProfile(response.profile);
@@ -44,8 +30,21 @@ const discordCallback: KoaHandler = (ctx) => {
 
   ctx.cookies.set(lastLocationKey, null);
 
-  logger.debug("Redirecting user to lastLocation:", { lastLocation });
-  ctx.redirect(lastLocation ?? fallbackRedirect); // TODO Dynamic host for development / production
+  const url = new URL(lastLocation);
+  const urlBase = `${url.protocol}//${url.host}/auth-redirect`;
+  const urlParams = new URLSearchParams({
+    next: lastLocation,
+    accessToken: response.access_token,
+    refreshToken: response.refresh_token,
+  });
+
+  const redirectUrl = `${urlBase}?${urlParams.toString()}`;
+
+  logger.debug("Redirecting user to lastLocation:", {
+    redirectUrl,
+  });
+
+  ctx.redirect(redirectUrl);
 };
 
 export default discordCallback;
