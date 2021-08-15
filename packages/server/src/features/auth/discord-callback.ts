@@ -32,10 +32,13 @@ const discordCallback: KoaHandler = (ctx) => {
 
   const url = new URL(lastLocation);
   const urlBase = `${url.protocol}//${url.host}/auth-redirect`;
+  const expiresAt = Date.now() + parseInt(response.raw.expires_in) * 1000;
+
   const urlParams = new URLSearchParams({
     next: lastLocation,
     accessToken: response.access_token,
     refreshToken: response.refresh_token,
+    expiresAt: expiresAt.toString(),
   });
 
   const redirectUrl = `${urlBase}?${urlParams.toString()}`;

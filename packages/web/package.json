@@ -26,6 +26,7 @@
     "@prefresh/next": "^1.4.6",
     "@types/cookie": "^0.4.0",
     "@urql/devtools": "^2.0.3",
+    "@urql/exchange-auth": "^0.1.6",
     "@yestheory.family/ui": "1.0.0",
     "cookie": "^0.4.1",
     "graphql": "^15.5.0",
@@ -40,7 +41,7 @@
     "react": "npm:@preact/compat@^0.0.4",
     "react-dom": "npm:@preact/compat@^0.0.4",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.1.2",
-    "urql": "^2.0.2"
+    "urql": "^2.0.4"
   },
   "license": "MIT"
 }

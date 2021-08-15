@@ -7363,15 +7363,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urql/core@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@urql/core@npm:2.0.0"
+"@urql/core@npm:>=2.2.0, @urql/core@npm:^2.1.4":
+  version: 2.2.0
+  resolution: "@urql/core@npm:2.2.0"
   dependencies:
     "@graphql-typed-document-node/core": ^3.1.0
     wonka: ^4.0.14
   peerDependencies:
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
-  checksum: 43890e0dc975591665a47195604337aaeadc06a2da65d0b7fd0553a71a11e848a0dd41eaf55f2e915ef3be0c514dd4069dd1dbc69222ea3d83e9cc4902f8c147
+  checksum: 733cd29b413a841c9e9c7c319200e56c6f2dccaabc4075db39c3c8986803295b4d41f8f28e811e4073959e282f28ac7450171cc94556ad7b272ae479707e3620
   languageName: node
   linkType: hard
 
@@ -7384,6 +7384,18 @@ __metadata:
     "@urql/core": ">= 1.14.0"
     graphql: ">= 0.11.0"
   checksum: f422d6350b3fa0e422e43b8042a2a2b58b1504c7a957279d7f138bb3396e9d4eb8b8b4ca8086cb3c8c6ceff4a53235959a9e3993a4d012ba2375d8fc12e7ca12
+  languageName: node
+  linkType: hard
+
+"@urql/exchange-auth@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@urql/exchange-auth@npm:0.1.6"
+  dependencies:
+    "@urql/core": ">=2.2.0"
+    wonka: ^4.0.14
+  peerDependencies:
+    graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: add243f610787983f33e8feed860efaf5e0b6acc13c46f86804483cb062202adb7dc5fb300e6592797c45422e8d6ac8900a13a3f014ca323305d2847091f34a4
   languageName: node
   linkType: hard
 
@@ -7801,6 +7813,7 @@ __metadata:
     "@prefresh/next": ^1.4.6
     "@types/cookie": ^0.4.0
     "@urql/devtools": ^2.0.3
+    "@urql/exchange-auth": ^0.1.6
     "@yestheory.family/eslint-config": ^1.0.0
     "@yestheory.family/ui": 1.0.0
     cookie: ^0.4.1
@@ -7819,7 +7832,7 @@ __metadata:
     react-dom: "npm:@preact/compat@^0.0.4"
     react-ssr-prepass: "npm:preact-ssr-prepass@^1.1.2"
     typescript: ^4.2.4
-    urql: ^2.0.2
+    urql: ^2.0.4
   languageName: unknown
   linkType: soft
 
@@ -27905,16 +27918,16 @@ typescript@^4.2.4:
   languageName: node
   linkType: hard
 
-"urql@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "urql@npm:2.0.2"
+"urql@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "urql@npm:2.0.4"
   dependencies:
-    "@urql/core": ^2.0.0
+    "@urql/core": ^2.1.4
     wonka: ^4.0.14
   peerDependencies:
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
     react: ">= 16.8.0"
-  checksum: 2299eb45af0e9d140f8e55d42940d0664ab221509300d9783601b2cef77348aa3171f506120a70ea14abde92bbb95c7b235dfd607f589daae872a0fee4ac7758
+  checksum: f21a05a5af553a9ddbaee23bae4a56c1646afc8fbde678ab4ee1797afddb463ccd99ca99c8bc341e98da26c265b4fea5fdf2caa10c8f6d27c5661093d3c0292b
   languageName: node
   linkType: hard
 

@@ -21,12 +21,12 @@ class RefreshTokenPayload {
   accessToken: string;
 
   @Field()
-  expiresIn: number;
+  expiresAt: number;
 
-  constructor(refreshToken: string, accessToken: string, expiresIn: number) {
+  constructor(refreshToken: string, accessToken: string, expiresAt: number) {
     this.refreshToken = refreshToken;
     this.accessToken = accessToken;
-    this.expiresIn = expiresIn;
+    this.expiresAt = expiresAt;
   }
 }
 
@@ -49,9 +49,9 @@ class RefreshTokenMutation {
     const {
       accessToken,
       refreshToken: newRefreshToken,
-      expiresIn,
+      expiresAt,
     } = await this.authService.refreshToken(refreshToken, user.type);
 
-    return new RefreshTokenPayload(accessToken, newRefreshToken, expiresIn);
+    return new RefreshTokenPayload(accessToken, newRefreshToken, expiresAt);
   }
 }

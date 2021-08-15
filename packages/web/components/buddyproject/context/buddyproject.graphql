@@ -7,8 +7,8 @@ query State {
   }
 }
 
-mutation SignUp($accessToken: String!) {
-  signUp(accessToken: $accessToken) {
+mutation SignUp @withDiscord {
+  signUp {
     status
   }
 }

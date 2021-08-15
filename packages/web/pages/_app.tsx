@@ -21,6 +21,7 @@ import {
 import cookie from "cookie";
 import { useLogoutMutation } from "../components/auth/logout.generated";
 import App, { AppContext, AppProps } from "next/app";
+import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
 
 declare global {
   interface Window {
@@ -110,6 +111,7 @@ const UrqlWrappedApp = withUrqlClient(() => ({
     devtoolsExchange,
     dedupExchange,
     cacheExchange,
+    configuredAuthExchange,
     ssr,
     fetchExchange,
   ],
@@ -125,10 +127,10 @@ export default UrqlWrappedApp;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - next-urql doesn't have proper tying for getInitialProps on _app see https://github.com/FormidableLabs/urql/issues/1794
-UrqlWrappedApp.getInitialProps = (
+UrqlWrappedApp.getInitialProps = async (
   context: AppContext
 ): Promise<Partial<YTFAppProps>> => {
-  const appProps = App.getInitialProps(context);
+  const appProps = await App.getInitialProps(context);
 
   const request = context.ctx.req;
   const isServerSide = !!request;

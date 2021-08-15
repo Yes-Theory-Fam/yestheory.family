@@ -1,4 +1,4 @@
-import { Arg, Authorized, Ctx, Mutation } from "type-graphql";
+import { Authorized, Ctx, Mutation } from "type-graphql";
 import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { YtfApolloContext } from "../../../types";
@@ -21,12 +21,11 @@ class SignUpMutation {
   @Authorized()
   @Mutation(() => BuddyProjectStatusPayload)
   public async signUp(
-    @Ctx() ctx: YtfApolloContext,
-    @Arg("accessToken") accessToken: string
+    @Ctx() ctx: YtfApolloContext
   ): Promise<BuddyProjectStatusPayload> {
-    const { prisma, user } = ctx;
+    const { prisma, user, accessToken } = ctx;
 
-    if (!user || user.type !== AuthProvider.DISCORD) {
+    if (!user || user.type !== AuthProvider.DISCORD || !accessToken) {
       throw new Error("Cannot sign up user who isn't logged in with Discord!");
     }
 

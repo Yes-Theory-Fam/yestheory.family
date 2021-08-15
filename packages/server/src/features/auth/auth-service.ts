@@ -17,7 +17,7 @@ export class AuthService {
   public async refreshToken(
     refreshToken: string,
     authProvider: AuthProvider
-  ): Promise<{ refreshToken: string; accessToken: string; expiresIn: number }> {
+  ): Promise<{ refreshToken: string; accessToken: string; expiresAt: number }> {
     const logger = createServerLogger("authService", "refreshToken");
 
     if (authProvider !== AuthProvider.DISCORD) {
@@ -60,7 +60,9 @@ export class AuthService {
     const newRefreshToken = tokenResponse.refresh_token;
     const expiresIn = tokenResponse.expires_in;
 
-    return { accessToken, refreshToken: newRefreshToken, expiresIn };
+    const expiresAt = Date.now() + parseInt(expiresIn) * 1000;
+
+    return { accessToken, refreshToken: newRefreshToken, expiresAt };
   }
 
   public async invalidateToken(

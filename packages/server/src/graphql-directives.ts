@@ -9,3 +9,8 @@ export const ExportDirective = new GraphQLDirective({
   },
   locations: [DirectiveLocation.FIELD],
 });
+
+export const WithDiscordDirective = new GraphQLDirective({
+  name: "withDiscord",
+  locations: [DirectiveLocation.QUERY, DirectiveLocation.MUTATION],
+});

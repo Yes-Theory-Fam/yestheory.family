@@ -16,7 +16,7 @@ import { authenticationRouter, Discord } from "./features";
 import { YtfApolloContext } from "./types";
 import { Container } from "typedi";
 import { authChecker } from "./features/auth/graphql-auth-checker";
-import { ExportDirective } from "./ExportDirective";
+import { ExportDirective } from "./graphql-directives";
 
 import { getResolvers } from "./services/resolvers/resolver-directive";
 import { Client, Guild } from "discord.js";
@@ -54,10 +54,21 @@ const main = async () => {
       const maybeUser = ctx.session?.user;
       logger.debug("Creating context with user", maybeUser);
 
+      const authHeaderPrefix = "Bearer ";
+      const authHeader = ctx.headers.authorization;
+      if (authHeader && !authHeader.startsWith(authHeaderPrefix)) {
+        throw new Error(
+          "Bad Request! Auth header present but not a Bearer token"
+        );
+      }
+
+      const accessToken = authHeader?.substr(authHeaderPrefix.length);
+
       return {
         prisma,
         user: maybeUser,
         requestContext: ctx,
+        accessToken,
       };
     },
     formatResponse: (response, reqContext) => {

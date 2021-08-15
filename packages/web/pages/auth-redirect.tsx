@@ -8,11 +8,13 @@ const stringifyUrlParam = (x: string | string[]): string =>
 const AuthRedirect: FunctionalComponent = () => {
   const router = useRouter();
 
-  const { next, accessToken, refreshToken } = router.query;
+  const { next, accessToken, refreshToken, expiresAt } = router.query;
 
   useEffect(() => {
     localStorage.setItem("accessToken", stringifyUrlParam(accessToken));
     localStorage.setItem("refreshToken", stringifyUrlParam(refreshToken));
+    localStorage.setItem("expiresAt", stringifyUrlParam(expiresAt));
+
     const nextUrl = new URL(stringifyUrlParam(next));
 
     router

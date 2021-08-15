@@ -75,10 +75,11 @@ export const MobileNavigation: FunctionalComponent<NavigationProps> = (
 ) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // TODO fix drawer only half open on S21
   return (
     <>
       <NavBar onMenuOpenClick={onOpen} />
-      <Drawer isOpen={isOpen} onClose={onClose} size={"full"} w={"full"}>
+      <Drawer isOpen={isOpen} onClose={onClose} size={"full"}>
         <DrawerContent>
           <NavigationStack {...props} onCloseClick={onClose} />
         </DrawerContent>
