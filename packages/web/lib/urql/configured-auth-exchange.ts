@@ -6,6 +6,7 @@ import {
 } from "./refresh-token.generated";
 import { navigateToLogin } from "../../context/user/user";
 import { Operation } from "urql";
+import { OperationDefinitionNode } from "graphql";
 
 interface AuthState {
   accessToken: string;
@@ -17,10 +18,11 @@ const isOperationWithDiscordAuth = (
   operation: Operation<unknown, unknown>
 ): boolean => {
   const indicatorDirective = "withDiscord";
-  return operation.query.definitions.some(
-    (def) =>
-      def.kind === "DirectiveDefinition" &&
-      def.name.value === indicatorDirective
+  const operationNode = operation.query
+    .definitions[0] as OperationDefinitionNode;
+
+  return operationNode.directives.some(
+    (d) => d.name.value === indicatorDirective
   );
 };
 
@@ -35,6 +37,8 @@ const addAuthToOperation: AuthConfig<AuthState>["addAuthToOperation"] = ({
   ) {
     return operation;
   }
+
+  console.log("Adding auth to operation");
 
   // fetchOptions can be a function (See Client API) but you can simplify this based on usage
   const fetchOptions =
@@ -81,6 +85,9 @@ const getAuth: AuthConfig<AuthState>["getAuth"] = async ({
   authState,
   mutate,
 }) => {
+  const isServerSide = typeof window === "undefined";
+  if (isServerSide) return null;
+
   // If no authState is present in the exchange, try to recover it from localStorage
   // If we cannot recover the expiry date, we don't have auth information :c
   if (!authState) {

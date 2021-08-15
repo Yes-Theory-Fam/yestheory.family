@@ -25,7 +25,7 @@ const config: GrantConfig = {
     client_id: DISCORD_CLIENT_ID,
     client_secret: DISCORD_CLIENT_SECRET,
     scope: DISCORD_SCOPES?.split(/\s*,\s*/g),
-    response: ["tokens", "profile"],
+    response: ["tokens", "profile", "raw"],
   },
 };
 

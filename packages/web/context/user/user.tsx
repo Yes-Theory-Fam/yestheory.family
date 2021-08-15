@@ -39,7 +39,7 @@ export const UserProvider: FunctionalComponent<UserProviderProps> = ({
   );
 
   const loggedIn = !!user;
-  const [{ data }] = useCurrentUserQuery();
+  const [{ data }] = useCurrentUserQuery({ pause: !loggedIn });
 
   useEffect(() => {
     if (data?.me) {

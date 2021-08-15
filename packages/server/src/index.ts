@@ -16,7 +16,7 @@ import { authenticationRouter, Discord } from "./features";
 import { YtfApolloContext } from "./types";
 import { Container } from "typedi";
 import { authChecker } from "./features/auth/graphql-auth-checker";
-import { ExportDirective } from "./graphql-directives";
+import { ExportDirective, WithDiscordDirective } from "./graphql-directives";
 
 import { getResolvers } from "./services/resolvers/resolver-directive";
 import { Client, Guild } from "discord.js";
@@ -33,7 +33,7 @@ const main = async () => {
   const resolvers = await getResolvers();
 
   const schema = buildSchemaSync({
-    directives: [ExportDirective],
+    directives: [ExportDirective, WithDiscordDirective],
     resolvers,
     container: Container,
     authChecker: authChecker(guild),
