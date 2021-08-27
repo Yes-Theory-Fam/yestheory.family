@@ -2,13 +2,14 @@ import { config } from "dotenv";
 config();
 import { initialize } from "../../../discord";
 import { PrismaClient, PrismaPromise } from "@yes-theory-fam/database/client";
-import { Guild } from "discord.js";
+import { Guild, Message, TextChannel } from "discord.js";
 import { createServerLogger } from "../../../../services/logging/log";
 import { evenQuestions, intro, oddQuestions } from "./texts";
 import path from "path";
 
 // TODO; also figure out sensible interval for the amount chosen.
 const matchAmount = 100;
+const disabledDmsChannelName = "buddy-project-dms-disabled";
 
 const prisma = new PrismaClient();
 const logger = createServerLogger("buddyproject", "matching");
@@ -50,20 +51,44 @@ const trySendQuestions = async (
   userId: string,
   questions: string,
   guild: Guild
-): Promise<boolean> => {
+): Promise<Message | undefined> => {
   logger.debug(`Sending questions to ${userId}`);
   const member = await guild.members.fetch(userId);
   const dm = await member.createDM();
   try {
-    await dm.send(questions);
+    return await dm.send(questions);
   } catch (e) {
-    logger.error("Could not send DMs", e);
     // Assume that they have DMs disabled.
-    // TODO handle; drag user in channel, ping, instructions for how to let poor YesBot contact them :c
-    return false;
-  }
 
-  return true;
+    logger.error("Could not send DMs", e);
+    const disabledDmsChannel = guild.channels.cache.find(
+      (c): c is TextChannel => c.name === disabledDmsChannelName
+    );
+    if (!disabledDmsChannel) {
+      const message = "Could not find disabled DMs channel";
+      logger.error(message);
+      throw new Error(message);
+    }
+
+    await disabledDmsChannel.permissionOverwrites.edit(userId, {
+      VIEW_CHANNEL: true,
+      SEND_MESSAGES: false,
+    });
+
+    const ping = await disabledDmsChannel.send({
+      content: `<@${userId}>`,
+      allowedMentions: { users: [userId] },
+    });
+
+    await ping.delete();
+  }
+};
+
+const rollbackMatch = async (ids: [string, string]): Promise<void> => {
+  await prisma.buddyProjectEntry.updateMany({
+    data: { buddyId: null },
+    where: { userId: { in: ids } },
+  });
 };
 
 const match = async ([a, b]: [string, string], guild: Guild): Promise<void> => {
@@ -72,23 +97,35 @@ const match = async ([a, b]: [string, string], guild: Guild): Promise<void> => {
   const matchB = matchWith(b, a);
   try {
     logger.debug("Updating database");
-    // TODO roll back if messages could not be sent!
     await prisma.$transaction([matchA, matchB]);
 
-    let sendResult = await trySendQuestions(
+    const firstSentMessage = await trySendQuestions(
       a,
       `${intro}\n${oddQuestions}`,
       guild
     );
-    if (!sendResult) return;
 
-    sendResult &&= await trySendQuestions(
+    if (!firstSentMessage) {
+      await rollbackMatch([a, b]);
+      return;
+    }
+
+    const secondSentMessage = await trySendQuestions(
       b,
       `${intro}\n${evenQuestions}`,
       guild
     );
-    // TODO also let the first person know that the DMs are disabled so they are not matched, also delete questions again
-    if (!sendResult) return;
+
+    if (secondSentMessage) return; // all is well, both parties received their questions
+
+    await rollbackMatch([a, b]);
+    await firstSentMessage.delete();
+    await firstSentMessage.channel.send(
+      "Right, this one is going to be disappointing... I had already matched you " +
+        "but your match had their DMs disabled, so I had to rollback everything.\n\n" +
+        "This message was sent to make sure you are not left wondering why I sent you a message that suddenly vanished. " +
+        "Don't worry, you are still signed up and will be matched soon (that time with better luck though)!"
+    );
   } catch (e) {
     logger.error("Error while matching: ", e);
   }
