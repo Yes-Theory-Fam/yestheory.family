@@ -21,8 +21,11 @@ type ResolverParameters =
   | [ClassTypeResolver, AbstractClassOptions?]
   | [ClassType, AbstractClassOptions?];
 
+const logger = createServerLogger("services", "resolver");
+
 export const Resolver = (...args: ResolverParameters) => {
   return <U extends Class>(target: U): U => {
+    logger.debug(`Adding resolver '${target.name}'`);
     resolvers.push(target);
     Service()(target);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -32,8 +35,6 @@ export const Resolver = (...args: ResolverParameters) => {
     return target;
   };
 };
-
-const logger = createServerLogger("services", "resolver");
 
 const collectResolvers = (): Promise<void> =>
   new Promise((res, rej) => {

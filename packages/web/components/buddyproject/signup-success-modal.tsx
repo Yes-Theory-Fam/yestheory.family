@@ -20,7 +20,6 @@ export const SignupSuccessModal: FunctionalComponent<SignupSuccessModalProps> = 
   isOpen,
   onClose,
 }) => {
-  // TODO Styling, bunch of it!
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />

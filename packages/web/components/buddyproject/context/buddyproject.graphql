@@ -2,6 +2,7 @@ query State {
   getBuddyProjectStatus {
     buddy @export(exportName: "Buddy") {
       userId
+      username
     }
     status
   }

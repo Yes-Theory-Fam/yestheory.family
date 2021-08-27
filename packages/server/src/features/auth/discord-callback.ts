@@ -43,9 +43,7 @@ const discordCallback: KoaHandler = (ctx) => {
 
   const redirectUrl = `${urlBase}?${urlParams.toString()}`;
 
-  logger.debug("Redirecting user to lastLocation:", {
-    redirectUrl,
-  });
+  logger.debug("Redirecting user to lastLocation:", { urlBase });
 
   ctx.redirect(redirectUrl);
 };

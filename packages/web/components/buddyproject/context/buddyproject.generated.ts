@@ -15,7 +15,11 @@ export type StateQuery = {
   };
 };
 
-export type Buddy = { __typename?: "BuddyProjectEntry"; userId: string };
+export type Buddy = {
+  __typename?: "BuddyProjectEntry";
+  userId: string;
+  username?: string | null;
+};
 
 export type SignUpMutationVariables = Types.Exact<{ [key: string]: never }>;
 
@@ -32,6 +36,7 @@ export const StateDocument = gql`
     getBuddyProjectStatus {
       buddy @export(exportName: "Buddy") {
         userId
+        username
       }
       status
     }
