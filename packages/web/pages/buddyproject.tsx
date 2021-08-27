@@ -6,7 +6,6 @@ import Image from "next/image";
 import { buddyProjectSvg, yesbotBuddyProjectWebp } from "../assets";
 import {
   Box,
-  Button,
   Center,
   Container,
   Flex,

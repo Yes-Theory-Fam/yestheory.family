@@ -52,7 +52,6 @@ const main = async () => {
     context: (req): YtfApolloContext => {
       const ctx: Context = req.ctx;
       const maybeUser = ctx.session?.user;
-      logger.debug("Creating context with user", maybeUser);
 
       const authHeaderPrefix = "Bearer ";
       const authHeader = ctx.headers.authorization;

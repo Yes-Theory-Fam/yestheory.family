@@ -7,25 +7,42 @@ import { navigateToLogin } from "../../context/user/user";
 import { useServerStateQuery } from "./server-state-query.generated";
 import { useCallback } from "preact/compat";
 import { ServerJoinConfirmation } from "./server-join-confirmation";
+import { SignupSuccessModal } from "./signup-success-modal";
+import { useEffect } from "preact/hooks";
 
 export const BuddyProjectButton: FunctionalComponent = () => {
   const state = useBuddyProjectState();
-  const [{ fetching }, signUpMutation] = useSignUpMutation();
+  const [{ fetching, data: signUpData }, signUpMutation] = useSignUpMutation();
 
   const [{ data: onServerData }] = useServerStateQuery();
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const {
+    isOpen: joinIsOpen,
+    onClose: joinOnClose,
+    onOpen: joinOnOpen,
+  } = useDisclosure();
+  const {
+    isOpen: successIsOpen,
+    onClose: successOnClose,
+    onOpen: successOnOpen,
+  } = useDisclosure();
 
   const signUp = useCallback(
     async (confirmed = false) => {
       if (!onServerData.me.isOnServer && !confirmed) {
-        onOpen();
+        joinOnOpen();
         return;
       }
 
       await signUpMutation();
     },
-    [signUpMutation, onServerData, onOpen]
+    [signUpMutation, onServerData, joinOnOpen]
   );
+
+  useEffect(() => {
+    if (signUpData?.signUp.status === BuddyProjectStatus.SignedUp) {
+      successOnOpen();
+    }
+  }, [successOnOpen, signUpData]);
 
   if (!state.status) {
     return <Button onClick={navigateToLogin}>Log In With Discord</Button>;
@@ -35,7 +52,12 @@ export const BuddyProjectButton: FunctionalComponent = () => {
     state.status === BuddyProjectStatus.Matched ||
     state.status === BuddyProjectStatus.SignedUp
   ) {
-    return <Button disabled>You signed up!</Button>;
+    return (
+      <>
+        <SignupSuccessModal isOpen={successIsOpen} onClose={successOnClose} />
+        <Button disabled>You signed up!</Button>
+      </>
+    );
   }
 
   return (
@@ -44,8 +66,8 @@ export const BuddyProjectButton: FunctionalComponent = () => {
         Join the Buddy Project!
       </Button>
       <ServerJoinConfirmation
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={joinIsOpen}
+        onClose={joinOnClose}
         onConfirm={() => signUp(true)}
       />
     </>

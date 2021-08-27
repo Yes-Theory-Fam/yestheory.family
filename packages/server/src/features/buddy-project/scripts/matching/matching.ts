@@ -5,6 +5,7 @@ import { PrismaClient, PrismaPromise } from "@yes-theory-fam/database/client";
 import { Guild } from "discord.js";
 import { createServerLogger } from "../../../../services/logging/log";
 import { evenQuestions, intro, oddQuestions } from "./texts";
+import path from "path";
 
 // TODO; also figure out sensible interval for the amount chosen.
 const matchAmount = 100;
@@ -121,4 +122,9 @@ const main = async () => {
   prisma.$disconnect();
 };
 
-main().catch((e) => logger.error("Something exploded :c ", e));
+// Makeshift if __name__ == "__main__":
+const absoluteScriptPath = path.resolve(process.cwd(), process.argv[1]);
+const thisPath = path.normalize(__filename);
+if (absoluteScriptPath === thisPath) {
+  main().catch((e) => logger.error("Something exploded :c ", e));
+}
