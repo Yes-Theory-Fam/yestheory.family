@@ -19,9 +19,9 @@ export const ChattingWithYourBuddyStep: FunctionalComponent = () => {
         cleared.
       </Text>
       <Text>
-        You are of course free how to ask each other the questions but
-        experience tells that voice or even video calls feel more rewarding than
-        "just" chatting!
+        You are of course free to communicate and go through the questions by
+        texting, but experience has shown us that voice or video calls feel much
+        more rewarding than that!
       </Text>
     </Step>
   );

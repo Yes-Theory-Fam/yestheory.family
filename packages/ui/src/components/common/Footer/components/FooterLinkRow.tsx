@@ -1,5 +1,6 @@
 import { h, FunctionalComponent } from "preact";
 import { Link, LinkProps, Stack } from "@chakra-ui/react";
+import { WrappedLink } from "../../../util";
 
 export interface FooterLinkDefinition extends LinkProps {
   text: string;
@@ -12,9 +13,9 @@ interface LinkRowProps {
 const definitionToLink = (definition: FooterLinkDefinition) => {
   const { text, ...args } = definition;
   return (
-    <Link {...args} color={"gray.600"}>
+    <WrappedLink {...args} color={"gray.600"}>
       {text}
-    </Link>
+    </WrappedLink>
   );
 };
 

@@ -93,7 +93,12 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
           </UserConsumer>
           <Component {...pageProps} />
           <Box pt={6} bg={"white"}>
-            <Footer links={[]} />
+            <Footer
+              links={[
+                { text: "Imprint", href: "/imprint" },
+                { text: "Privacy", href: "/privacy" },
+              ]}
+            />
           </Box>
         </OverrideComponentContext.Provider>
       </UserProvider>

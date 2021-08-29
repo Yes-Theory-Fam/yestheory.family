@@ -14,8 +14,8 @@ export const WaitForMatchStep: FunctionalComponent = () => (
         YesBot
       </Text>
       , our very own bot, will message you on discord with the name of your
-      partner, a set of questions and further instructions. One of you will
-      start messaging the other.
+      partner, a set of questions and further instructions. You will then have
+      to message your buddy.
     </Text>
   </Step>
 );

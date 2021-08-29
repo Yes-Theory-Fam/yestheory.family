@@ -22,5 +22,7 @@ export const Step: FunctionalComponent<{ heading: string }> = ({
 );
 
 export const DiscordLink: FunctionalComponent = () => (
-  <Link href={"https://discord.gg/yestheory"}>Yes Theory Fam Discord</Link>
+  <Link href={"https://discord.gg/yestheory"}>
+    Yes Theory Fam Discord server
+  </Link>
 );
