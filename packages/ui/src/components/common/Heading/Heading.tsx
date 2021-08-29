@@ -48,7 +48,7 @@ export const Heading: FunctionalComponent<HeadingProps> = ({
     patchedProps.fontSize = `min(${maxFontSize}px, ${calculatedFontSize})`;
   }
 
-  if (center) {
+  if (center && !args.textAlign) {
     patchedProps.textAlign = "center";
   }
 

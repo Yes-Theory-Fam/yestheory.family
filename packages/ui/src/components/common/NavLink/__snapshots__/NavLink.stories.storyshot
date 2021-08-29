@@ -2,29 +2,81 @@
 
 exports[`Storyshots Common/NavLink Active Inverted Nav Link 1`] = `
   <div class="css-1agdl1f">
-    <a class="chakra-link css-1v136sv">Example link</a>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      class="chakra-link css-1v136sv"
+    >
+      Example link
+    </a>
   </div>
 `;
 
-exports[`Storyshots Common/NavLink Active Nav Link 1`] = `  <a class="chakra-link css-1q4kjoy">Example link</a>`;
+exports[`Storyshots Common/NavLink Active Nav Link 1`] = `
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    class="chakra-link css-1q4kjoy"
+  >
+    Example link
+  </a>
+`;
 
 exports[`Storyshots Common/NavLink Inactive Inverted Nav Link 1`] = `
   <div class="css-1agdl1f">
-    <a class="chakra-link css-1e3hkmh">Example link</a>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      class="chakra-link css-1e3hkmh"
+    >
+      Example link
+    </a>
   </div>
 `;
 
-exports[`Storyshots Common/NavLink Inactive Nav Link 1`] = `  <a class="chakra-link css-f6i9u1">Example link</a>`;
+exports[`Storyshots Common/NavLink Inactive Nav Link 1`] = `
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    class="chakra-link css-f6i9u1"
+  >
+    Example link
+  </a>
+`;
 
 exports[`Storyshots Common/NavLink NavLink 1`] = `
   <div class="chakra-stack css-owjkmg">
     <div class="chakra-stack css-15sc1x5">
-      <a class="chakra-link css-f6i9u1">Not active</a>
-      <a class="chakra-link css-1q4kjoy">Very active</a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        class="chakra-link css-f6i9u1"
+      >
+        Not active
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        class="chakra-link css-1q4kjoy"
+      >
+        Very active
+      </a>
     </div>
     <div class="chakra-stack css-1d41i6c">
-      <a class="chakra-link css-1e3hkmh">Not active</a>
-      <a class="chakra-link css-1v136sv">Very active</a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        class="chakra-link css-1e3hkmh"
+      >
+        Not active
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        class="chakra-link css-1v136sv"
+      >
+        Very active
+      </a>
     </div>
   </div>
 `;

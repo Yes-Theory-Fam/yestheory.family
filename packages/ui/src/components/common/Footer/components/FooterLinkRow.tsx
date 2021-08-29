@@ -1,5 +1,5 @@
 import { h, FunctionalComponent } from "preact";
-import { Link, LinkProps, Stack } from "@chakra-ui/react";
+import { LinkProps, Stack } from "@chakra-ui/react";
 import { WrappedLink } from "../../../util";
 
 export interface FooterLinkDefinition extends LinkProps {

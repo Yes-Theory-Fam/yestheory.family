@@ -4,7 +4,6 @@ import { LoginButton, Logo, NavLink } from "../..";
 import {
   Flex,
   useDisclosure,
-  Slide,
   VStack,
   DrawerContent,
   Drawer,
