@@ -18,8 +18,5 @@
   ],
   "devDependencies": {
     "prettier": "^2.2.1"
-  },
-  "resolutions": {
-    "@yes-theory-fam/database": "portal:/D:/Projects/JavaScript/database"
   }
 }
