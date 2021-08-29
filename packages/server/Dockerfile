@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.2
 
 # Install dependencies only when needed
-FROM node:14-alpine AS deps
+FROM node:16.6-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -20,12 +20,11 @@ ARG YTF_NPM_AUTH_TOKEN
 COPY yarn-with-secrets ./
 
 # Install dependencies for the workspace
-RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets plugin import workspace-tools
 WORKDIR /app/packages/server
 RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN /app/yarn-with-secrets workspaces focus
 
 # Rebuild the source code only when needed
-FROM node:14-alpine AS builder
+FROM node:16.6-alpine AS builder
 WORKDIR /app
 
 # Copy node_modules and other side products from deps
@@ -45,7 +44,7 @@ RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets prisma generat
 RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets build
 
 # Build the actual running server
-FROM node:14-alpine
+FROM node:16.6-alpine
 WORKDIR /app
 
 # Copy relevant data from builder

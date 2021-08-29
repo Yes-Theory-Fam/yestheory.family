@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.2
 
 # Install dependencies only when needed
-FROM node:14-alpine AS deps
+FROM node:16.6-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -26,7 +26,7 @@ WORKDIR /app/packages/web
 RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN /app/yarn-with-secrets workspaces focus
 
 # Rebuild the source code only when needed
-FROM node:14-alpine AS builder
+FROM node:16.6-alpine AS builder
 WORKDIR /app
 
 # Copy node_modules and other side products from deps
@@ -47,7 +47,7 @@ ARG YTF_NPM_AUTH_TOKEN
 RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets build
 
 # Production image, copy all the files and run next
-FROM node:14-alpine AS runner
+FROM node:16.6-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
