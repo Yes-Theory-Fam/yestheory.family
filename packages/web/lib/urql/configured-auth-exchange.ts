@@ -97,7 +97,6 @@ const getAuth: AuthConfig<AuthState>["getAuth"] = async ({
     const expiresAt = Number(expiresAtString);
 
     if (!expiresAtString) {
-      navigateToLogin();
       return null;
     }
 

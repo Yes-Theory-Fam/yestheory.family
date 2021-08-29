@@ -85,6 +85,7 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
                         context.clearUser();
                         localStorage.removeItem("accessToken");
                         localStorage.removeItem("refreshToken");
+                        localStorage.removeItem("expiresAt");
                       }),
                     label: "Logout",
                   },

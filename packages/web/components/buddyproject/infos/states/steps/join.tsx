@@ -9,7 +9,7 @@ export const JoinStep: FunctionalComponent = () => (
     </Text>
     <Text>
       Once you do that, you will be asked to join the{" "}
-      <Link href={"https://discord.gg/yestheory"}>Yes Theory Fam server</Link>
+      <Link href={"https://discord.gg/yestheory"}>Yes Theory Fam server</Link>{" "}
       on <Link href={"https://discord.com"}>Discord</Link> (if you're not
       already in it). From then on, everything will be happening on the{" "}
       previously mentioned server.
