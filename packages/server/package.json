@@ -34,7 +34,7 @@
     "@koa/cors": "^3.1.0",
     "@koa/router": "^10.0.0",
     "@types/node-fetch": "^2.5.12",
-    "@yes-theory-fam/database": "^0.13.0",
+    "@yes-theory-fam/database": "^0.17.0-bp-preview",
     "apollo-server-koa": "^2.23.0",
     "apollo-server-plugin-base": "^0.13.0",
     "discord.js": "^13.0.0",

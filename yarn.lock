@@ -4476,17 +4476,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:~2.29.0":
-  version: 2.29.1
-  resolution: "@prisma/client@npm:2.29.1"
+"@prisma/client@npm:2.30.0":
+  version: 2.30.0
+  resolution: "@prisma/client@npm:2.30.0"
   dependencies:
-    "@prisma/engines-version": 2.29.0-34.1be4cd60b89afa04b192acb1ef47758a39810f3a
+    "@prisma/engines-version": 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: 805874c44300747c35a01f270154e3be431067bcf6734f852ec039d6335c6cdfee446e938b87a03fe9b025fcf64fa5c0e4a41978dd8383d9ba2ea8a590a87f4a
+  checksum: c3f61aa8e7ba40cd51958617247d120482c8e70a21710a6fda04dd9e41e446bed057cc1e6dffc5ab01648ba52ac86e5349e3302f1254509b38415e9d1f8eef00
   languageName: node
   linkType: hard
 
@@ -4532,10 +4532,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/engines-version@npm:2.29.0-34.1be4cd60b89afa04b192acb1ef47758a39810f3a":
-  version: 2.29.0-34.1be4cd60b89afa04b192acb1ef47758a39810f3a
-  resolution: "@prisma/engines-version@npm:2.29.0-34.1be4cd60b89afa04b192acb1ef47758a39810f3a"
-  checksum: cf1b962ee576d5454513cbadf6b8b9da00806ecd5e162bccf26583cc33532855142baf423a7e23fdb6f1ca000c1a5f1153e762c63d8d707a2179613885a1bec4
+"@prisma/engines-version@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb":
+  version: 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
+  resolution: "@prisma/engines-version@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb"
+  checksum: 347b620d6e41bdabfcec0c8b0114f152594a73afbf29cda078b14b38689a920061741b7957dd3524dcb9928401caebe87264b569a1d0f467cd73d3b25ccc3bc1
   languageName: node
   linkType: hard
 
@@ -7450,17 +7450,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yes-theory-fam/database@npm:^0.13.0":
-  version: 0.13.0
-  resolution: "@yes-theory-fam/database@npm:0.13.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40yes-theory-fam%2Fdatabase%2F0.13.0%2F49216a93314ad39a0f70020f12353c5aebda9bd20d939fcb27c7e7aef41d7d97"
+"@yes-theory-fam/database@npm:^0.17.0-bp-preview":
+  version: 0.17.0-bp-preview
+  resolution: "@yes-theory-fam/database@npm:0.17.0-bp-preview::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40yes-theory-fam%2Fdatabase%2F0.17.0-bp-preview%2F821e0c34afe92c9b204a880cffa87b0b00777dc1d3931a482aa6480c96bafdb4"
   dependencies:
-    "@prisma/client": ~2.29.0
+    "@prisma/client": 2.30.0
   peerDependencies:
     graphql: 15.5.1
     graphql-fields: 2.0.3
-    prisma: ~2.29.0
-    typegraphql-prisma: ^0.14.6
-  checksum: 73c7577e437e06c2d18b0b368ae806e8834e2a29324199b55a2e449509956d28d552afe1c7eddad6a2952bf38e6b6eff9da489a604efba8050c587c71d56caf3
+    prisma: 2.30.0
+    typegraphql-prisma: 0.15.0
+  checksum: 7699034122e820829d16909f736183e850cd97af65c604c31afc0b3b239c35b4cfe3b266a13ee65c502b87567e3be1704580e76c793d8405ca9967b31fc406e4
   languageName: node
   linkType: hard
 
@@ -7500,7 +7500,7 @@ __metadata:
     "@types/koa__router": ^8.0.4
     "@types/node": ^14.14.41
     "@types/node-fetch": ^2.5.12
-    "@yes-theory-fam/database": ^0.13.0
+    "@yes-theory-fam/database": ^0.17.0-bp-preview
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: ^2.23.0
     apollo-server-plugin-base: ^0.13.0
