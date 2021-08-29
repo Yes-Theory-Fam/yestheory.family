@@ -20,6 +20,7 @@ import { ExportDirective, WithDiscordDirective } from "./graphql-directives";
 
 import { getResolvers } from "./services/resolvers/resolver-directive";
 import { Client, Guild } from "discord.js";
+import { requireCookieConsent } from "./features/auth/require-cookie-consent";
 
 const logger = createServerLogger("src", "index");
 
@@ -43,6 +44,7 @@ const main = async () => {
   const koaGrant = grant.koa();
   const app = new Koa();
   app.keys = ["grant"];
+  app.use(requireCookieConsent);
   app.use(koaSession(sessionConfig, app));
   app.use(mount("/oauth", koaGrant(grantConfig)));
   app.use(authenticationRouter.routes());

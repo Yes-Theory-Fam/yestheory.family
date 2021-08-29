@@ -22,6 +22,7 @@ import cookie from "cookie";
 import { useLogoutMutation } from "../components/auth/logout.generated";
 import App, { AppContext, AppProps } from "next/app";
 import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
+import { CookieConsent } from "../components/other/cookie-consent/cookie-consent";
 
 declare global {
   interface Window {
@@ -69,6 +70,7 @@ const YTFApp: FunctionalComponent<YTFAppProps> = ({
               content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
             />
           </Head>
+          <CookieConsent />
           <UserConsumer>
             {(context) => (
               <Navigation
