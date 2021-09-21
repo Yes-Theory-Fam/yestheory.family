@@ -20,22 +20,15 @@ const UserContext: Context<UserContextProps> = createContext<UserContextProps>({
 
 interface UserProviderProps {
   children: VNode;
-  serverAuthenticated: boolean;
+  serverUser: User;
 }
 
-const emptyUser: User = {
-  username: "",
-  id: "",
-  __typename: "AuthenticatedUser",
-  avatarUrl: "",
-};
-
 export const UserProvider: FunctionalComponent<UserProviderProps> = ({
-  serverAuthenticated,
+  serverUser,
   children,
 }) => {
   const [user, setUser] = useState<User | undefined>(
-    serverAuthenticated ? emptyUser : undefined
+    serverUser ?? undefined
   );
 
   const loggedIn = !!user;
@@ -48,11 +41,11 @@ export const UserProvider: FunctionalComponent<UserProviderProps> = ({
   }, [data]);
 
   useEffect(() => {
-    if (!serverAuthenticated) {
+    if (!serverUser) {
       setUser(undefined);
       return;
     }
-  }, [serverAuthenticated]);
+  }, [serverUser]);
 
   return (
     <UserContext.Provider

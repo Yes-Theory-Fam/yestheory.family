@@ -1,5 +1,8 @@
 overwrite: true
-schema: http://localhost:5000/graphql
+schema:
+  - http://localhost:5000/graphql:
+      headers:
+        Cookie: ytf-cookie-consent=0;
 documents: ./**/*.graphql
 hooks:
   afterAllFileWrite:

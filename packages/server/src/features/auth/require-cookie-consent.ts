@@ -4,6 +4,10 @@ import { constants } from "http2";
 const cookieConsentName = "ytf-cookie-consent";
 
 export const requireCookieConsent: KoaHandler = async (ctx, next) => {
+  if (ctx.req.method === "OPTIONS") {
+    return await next();
+  }
+
   const consent = ctx.cookies.get(cookieConsentName);
   if (consent && Number(consent) < Date.now()) {
     return await next();

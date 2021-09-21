@@ -10,7 +10,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { FunctionalComponent } from "preact";
-import { withUrqlClient } from "next-urql";
+import { withUrqlClient, initUrqlClient } from "next-urql";
 import { dedupExchange, cacheExchange, ssrExchange, fetchExchange } from "urql";
 import { devtoolsExchange } from "@urql/devtools";
 import {
@@ -18,11 +18,11 @@ import {
   UserConsumer,
   UserProvider,
 } from "../context/user/user";
-import cookie from "cookie";
 import { useLogoutMutation } from "../components/auth/logout.generated";
 import App, { AppContext, AppProps } from "next/app";
 import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
 import { CookieConsent } from "../components/other/cookie-consent/cookie-consent";
+import {User, CurrentUserDocument} from '../context/user/user.generated';
 
 declare global {
   interface Window {
@@ -31,7 +31,7 @@ declare global {
 }
 
 interface YTFAppProps extends AppProps {
-  authenticated: boolean;
+  user: User;
 }
 
 const componentOverrides: OverrideComponentType = {
@@ -50,13 +50,13 @@ const isServerSide = typeof window === "undefined";
 const YTFApp: FunctionalComponent<YTFAppProps> = ({
   Component,
   pageProps,
-  authenticated,
+  user,
 }) => {
   const [, logout] = useLogoutMutation();
 
   return (
     <ChakraProvider theme={theme}>
-      <UserProvider serverAuthenticated={authenticated}>
+      <UserProvider serverUser={user}>
         <OverrideComponentContext.Provider value={componentOverrides}>
           <Head>
             <title>YesTheory Family</title>
@@ -142,9 +142,20 @@ UrqlWrappedApp.getInitialProps = async (
 
   const request = context.ctx.req;
   const isServerSide = !!request;
+  const cookie = isServerSide ? request.headers.cookie : document.cookie;
 
-  const authenticated = isServerSide
-    ? !!cookie.parse(request.headers.cookie || "")["koa.sess"]
-    : !!localStorage.getItem("accessToken");
-  return { ...appProps, authenticated };
+  const client = initUrqlClient({
+    url: isServerSide
+        ? process.env.SERVER_BACKEND_URL
+        : process.env.NEXT_PUBLIC_BACKEND_URL,
+    fetchOptions: {
+      credentials: "include",
+      headers: {
+        Cookie: cookie,
+      }
+    },
+  }, false);
+
+  const userQuery = await client.query(CurrentUserDocument).toPromise();
+  return { ...appProps, user: userQuery?.data?.me ?? undefined };
 };
