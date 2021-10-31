@@ -22,7 +22,7 @@ import { useLogoutMutation } from "../components/auth/logout.generated";
 import App, { AppContext, AppProps } from "next/app";
 import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
 import { CookieConsent } from "../components/other/cookie-consent/cookie-consent";
-import {User, CurrentUserDocument} from '../context/user/user.generated';
+import { User, CurrentUserDocument } from "../context/user/user.generated";
 
 declare global {
   interface Window {
@@ -144,17 +144,20 @@ UrqlWrappedApp.getInitialProps = async (
   const isServerSide = !!request;
   const cookie = isServerSide ? request.headers.cookie : document.cookie;
 
-  const client = initUrqlClient({
-    url: isServerSide
+  const client = initUrqlClient(
+    {
+      url: isServerSide
         ? process.env.SERVER_BACKEND_URL
         : process.env.NEXT_PUBLIC_BACKEND_URL,
-    fetchOptions: {
-      credentials: "include",
-      headers: {
-        Cookie: cookie,
-      }
+      fetchOptions: {
+        credentials: "include",
+        headers: {
+          Cookie: cookie,
+        },
+      },
     },
-  }, false);
+    false
+  );
 
   const userQuery = await client.query(CurrentUserDocument).toPromise();
   return { ...appProps, user: userQuery?.data?.me ?? undefined };

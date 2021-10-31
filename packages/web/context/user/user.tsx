@@ -27,9 +27,7 @@ export const UserProvider: FunctionalComponent<UserProviderProps> = ({
   serverUser,
   children,
 }) => {
-  const [user, setUser] = useState<User | undefined>(
-    serverUser ?? undefined
-  );
+  const [user, setUser] = useState<User | undefined>(serverUser ?? undefined);
 
   const loggedIn = !!user;
   const [{ data }] = useCurrentUserQuery({ pause: !loggedIn });

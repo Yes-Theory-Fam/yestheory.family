@@ -1,2 +1,3 @@
 packages/server/src/__generated__
 packages/web/.next
+packages/ui/storybook-static
