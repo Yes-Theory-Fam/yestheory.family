@@ -59,6 +59,7 @@ COPY --from=builder /app/packages/ui/ ./packages/ui
 COPY --from=builder /app/packages/web/next.config.js ./packages/web/
 COPY --from=builder /app/packages/web/.next/ ./packages/web/.next/
 COPY --from=builder /app/packages/web/package.json ./packages/web/
+COPY --from=builder /app/packages/web/.env.local ./packages/web/.env.local
 
 COPY yarn.lock package.json ./
 

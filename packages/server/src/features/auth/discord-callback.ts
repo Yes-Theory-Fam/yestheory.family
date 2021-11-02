@@ -1,15 +1,12 @@
 import { KoaHandler } from "apollo-server-koa/dist/koaApollo";
 import { GrantResponse } from "grant";
-import { isDevelopment } from "../../config";
 import { AuthenticatedUser } from "../user";
 import { createServerLogger } from "../../services/logging/log";
 import { URL, URLSearchParams } from "url";
 
 const logger = createServerLogger("auth", "DiscordCallback");
 
-const fallbackRedirect = isDevelopment
-  ? "http://localhost:3000"
-  : "https://yestheory.family";
+const fallbackRedirect = process.env.FRONTEND_HOST ?? "https://example.com";
 
 const discordCallback: KoaHandler = (ctx) => {
   logger.debug("Received oAuth callback for Discord");

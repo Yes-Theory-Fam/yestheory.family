@@ -42,7 +42,7 @@ const collectResolvers = (): Promise<void> =>
 
     const extension = process.env.NODE_ENV === "production" ? ".js" : ".ts";
     const baseDirectory =
-      process.env.NODE_ENV === "production" ? "build" : "src";
+      process.env.NODE_ENV === "production" ? "dist" : "src";
 
     glob(`${baseDirectory}/features/**/*${extension}`, async (e, matches) => {
       if (e) {

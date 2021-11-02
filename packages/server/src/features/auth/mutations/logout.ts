@@ -7,6 +7,7 @@ import { AuthProvider } from "../../user";
 
 import Cookies from "cookies";
 import { AuthService } from "../auth-service";
+import { domain } from "../../../config/session";
 
 @Resolver()
 class LogoutMutation {
@@ -22,8 +23,8 @@ class LogoutMutation {
 
     const cookies = ctx.requestContext.cookies;
     await this.invalidateTokens(cookies, ctx.user.type);
-    cookies.set("koa.sess", null);
-    cookies.set("koa.sess.sig", null);
+    cookies.set("koa.sess", null, { domain });
+    cookies.set("koa.sess.sig", null, { domain });
 
     return true;
   }

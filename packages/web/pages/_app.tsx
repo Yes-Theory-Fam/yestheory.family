@@ -125,7 +125,7 @@ const UrqlWrappedApp = withUrqlClient(() => ({
   ],
   url: isServerSide
     ? process.env.SERVER_BACKEND_URL
-    : process.env.NEXT_PUBLIC_BACKEND_URL,
+    : `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
   fetchOptions: {
     credentials: "include",
   },

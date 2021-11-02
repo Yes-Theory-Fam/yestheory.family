@@ -21,6 +21,7 @@ import { ExportDirective, WithDiscordDirective } from "./graphql-directives";
 import { getResolvers } from "./services/resolvers/resolver-directive";
 import { Client, Guild } from "discord.js";
 import { requireCookieConsent } from "./features/auth/require-cookie-consent";
+import { isDevelopment } from "./config";
 
 const logger = createServerLogger("src", "index");
 
@@ -44,6 +45,7 @@ const main = async () => {
   const koaGrant = grant.koa();
   const app = new Koa();
   app.keys = ["grant"];
+  app.proxy = !isDevelopment;
   app.use(requireCookieConsent);
   app.use(koaSession(sessionConfig, app));
   app.use(mount("/oauth", koaGrant(grantConfig)));
@@ -87,7 +89,7 @@ const main = async () => {
   });
   server.applyMiddleware({
     app,
-    cors: { origin: "http://localhost:3000", credentials: true },
+    cors: { origin: process.env.FRONTEND_HOST, credentials: true },
   });
 
   app.listen({ port }, () => logger.info(`Backend listening on port ${port}`));
