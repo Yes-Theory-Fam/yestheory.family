@@ -1,14 +1,15 @@
-import { KoaHandler } from "apollo-server-koa/dist/koaApollo";
 import { GrantResponse } from "grant";
 import { AuthenticatedUser } from "../user";
 import { createServerLogger } from "../../services/logging/log";
 import { URL, URLSearchParams } from "url";
+import { Middleware } from "@koa/router";
+import { YtfApolloContext } from "../../types";
 
 const logger = createServerLogger("auth", "DiscordCallback");
 
 const fallbackRedirect = process.env.FRONTEND_HOST ?? "https://example.com";
 
-const discordCallback: KoaHandler = (ctx) => {
+const discordCallback: Middleware<unknown, YtfApolloContext> = (ctx) => {
   logger.debug("Received oAuth callback for Discord");
 
   if (!ctx.session) {
@@ -33,8 +34,8 @@ const discordCallback: KoaHandler = (ctx) => {
 
   const urlParams = new URLSearchParams({
     next: lastLocation,
-    accessToken: response.access_token,
-    refreshToken: response.refresh_token,
+    accessToken: response.access_token ?? "",
+    refreshToken: response.refresh_token ?? "",
     expiresAt: expiresAt.toString(),
   });
 

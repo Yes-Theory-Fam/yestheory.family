@@ -124,7 +124,7 @@ const UrqlWrappedApp = withUrqlClient(() => ({
     fetchExchange,
   ],
   url: isServerSide
-    ? process.env.SERVER_BACKEND_URL
+    ? process.env.SERVER_BACKEND_GRAPHQL_URL
     : `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
   fetchOptions: {
     credentials: "include",
@@ -147,7 +147,7 @@ UrqlWrappedApp.getInitialProps = async (
   const client = initUrqlClient(
     {
       url: isServerSide
-        ? process.env.SERVER_BACKEND_URL
+        ? process.env.SERVER_BACKEND_GRAPHQL_URL
         : process.env.NEXT_PUBLIC_BACKEND_URL,
       fetchOptions: {
         credentials: "include",
@@ -160,5 +160,9 @@ UrqlWrappedApp.getInitialProps = async (
   );
 
   const userQuery = await client.query(CurrentUserDocument).toPromise();
+  if (userQuery?.error) {
+    throw userQuery.error;
+  }
+
   return { ...appProps, user: userQuery?.data?.me ?? undefined };
 };

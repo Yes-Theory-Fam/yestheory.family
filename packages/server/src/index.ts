@@ -87,6 +87,7 @@ const main = async () => {
       return response;
     },
   });
+  await server.start();
   server.applyMiddleware({
     app,
     cors: { origin: process.env.FRONTEND_HOST, credentials: true },

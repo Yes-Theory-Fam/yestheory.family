@@ -39,7 +39,7 @@ const NavigationStack: FunctionalComponent<NavigationStackProps> = ({
   const linkElements = links.map((l) => {
     const { text, ...rest } = l;
     return (
-      <NavLink {...rest} inverted>
+      <NavLink {...rest} key={l.key} inverted>
         {text}
       </NavLink>
     );

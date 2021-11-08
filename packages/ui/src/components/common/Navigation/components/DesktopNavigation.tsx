@@ -10,7 +10,11 @@ export const DesktopNavigation: FunctionalComponent<NavigationProps> = (
 ) => {
   const links = props.links.map((l) => {
     const { text, ...rest } = l;
-    return <NavLink {...rest}>{text}</NavLink>;
+    return (
+      <NavLink {...rest} key={l.key}>
+        {text}
+      </NavLink>
+    );
   });
 
   return (

@@ -12,6 +12,14 @@ const revokeUrls: Record<AuthProvider, string> = {
   [AuthProvider.DISCORD]: "https://discord.com/api/oauth2/token/revoke",
 };
 
+type RefreshTokenResponse = {
+  access_token: string;
+  expires_in: number;
+  refresh_token: string;
+  scope: string;
+  token_type: string;
+};
+
 @Service()
 export class AuthService {
   public async refreshToken(
@@ -44,7 +52,7 @@ export class AuthService {
       },
     });
 
-    const tokenResponse = await response.json();
+    const tokenResponse = (await response.json()) as RefreshTokenResponse;
 
     if (response.status !== 200) {
       logger.error("Refresh response was not positive; response is: ", {
@@ -60,7 +68,7 @@ export class AuthService {
     const newRefreshToken = tokenResponse.refresh_token;
     const expiresIn = tokenResponse.expires_in;
 
-    const expiresAt = Date.now() + parseInt(expiresIn) * 1000;
+    const expiresAt = Date.now() + expiresIn * 1000;
 
     return { accessToken, refreshToken: newRefreshToken, expiresAt };
   }

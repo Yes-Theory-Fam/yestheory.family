@@ -9,6 +9,7 @@ import {
 } from "../buddy-project-status";
 import { Resolver } from "../../../services/resolvers/resolver-directive";
 import { Client, Guild, GuildMember, Role, Snowflake } from "discord.js";
+import { Prisma } from "@yes-theory-fam/database/client";
 
 @Resolver()
 class SignUpMutation {
@@ -51,7 +52,10 @@ class SignUpMutation {
     try {
       await prisma.buddyProjectEntry.create({ data: { userId: user.id } });
     } catch (e) {
-      if (e.code === uniqueConstraintFailedCode) {
+      if (
+        e instanceof Prisma.PrismaClientKnownRequestError &&
+        e.code === uniqueConstraintFailedCode
+      ) {
         throw new Error("User already signed up!");
       }
 

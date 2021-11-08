@@ -83,5 +83,5 @@ export const getResolvers = async (): Promise<NonEmptyArray<Function>> => {
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  return (resolvers as unknown) as NonEmptyArray<Function>;
+  return resolvers as unknown as NonEmptyArray<Function>;
 };

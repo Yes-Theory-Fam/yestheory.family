@@ -2,10 +2,10 @@ import { AuthChecker, ResolverData } from "type-graphql";
 import { YtfApolloContext } from "../../types";
 import { Guild } from "discord.js";
 
-export const authChecker = (guild: Guild): AuthChecker<YtfApolloContext> => (
-  context,
-  roles
-) => checkRolePermissions(context, roles, guild);
+export const authChecker =
+  (guild: Guild): AuthChecker<YtfApolloContext> =>
+  (context, roles) =>
+    checkRolePermissions(context, roles, guild);
 
 const checkRolePermissions = (
   { context }: ResolverData<YtfApolloContext>,

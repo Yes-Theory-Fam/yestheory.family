@@ -18,23 +18,22 @@ interface BuddyProjectProviderProps {
   children: VNode;
 }
 
-export const BuddyProjectProvider: FunctionalComponent<BuddyProjectProviderProps> = ({
-  children,
-}) => {
-  const loggedIn = useLoggedIn();
-  const [{ data, fetching, error }] = useStateQuery();
+export const BuddyProjectProvider: FunctionalComponent<BuddyProjectProviderProps> =
+  ({ children }) => {
+    const loggedIn = useLoggedIn();
+    const [{ data, fetching, error }] = useStateQuery();
 
-  const value =
-    !loggedIn || error || fetching
-      ? { status: undefined, buddy: undefined }
-      : data.getBuddyProjectStatus;
+    const value =
+      !loggedIn || error || fetching
+        ? { status: undefined, buddy: undefined }
+        : data.getBuddyProjectStatus;
 
-  return (
-    <BuddyProjectContext.Provider value={value}>
-      {children}
-    </BuddyProjectContext.Provider>
-  );
-};
+    return (
+      <BuddyProjectContext.Provider value={value}>
+        {children}
+      </BuddyProjectContext.Provider>
+    );
+  };
 
 export const useBuddyProjectState = (): BuddyProjectProps => {
   return useContext(BuddyProjectContext);

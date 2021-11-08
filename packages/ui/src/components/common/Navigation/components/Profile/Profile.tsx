@@ -14,6 +14,7 @@ import {
 import { User } from "../../../../../types";
 
 export interface MenuItemDefinition {
+  key?: string;
   label: string;
   onClick?: () => void;
 }
@@ -63,7 +64,9 @@ export const Profile: FunctionalComponent<ProfileProps> = (props) => {
       <Portal>
         <MenuList zIndex={"popover"}>
           {props.menuItems.map((i) => (
-            <MenuItem onClick={i.onClick}>{i.label}</MenuItem>
+            <MenuItem onClick={i.onClick} key={i.key}>
+              {i.label}
+            </MenuItem>
           ))}
         </MenuList>
       </Portal>
