@@ -43,7 +43,7 @@ export const Profile: FunctionalComponent<ProfileProps> = (props) => {
   const { username, avatarUrl } = props.user;
 
   return (
-    <Menu autoSelect={false}>
+    <Menu autoSelect={false} id={"profile-menu"}>
       <MenuButton>
         <VStack align={"flex-start"} spacing={1}>
           {getText(true)}

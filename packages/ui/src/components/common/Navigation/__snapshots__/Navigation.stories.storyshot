@@ -252,10 +252,10 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
           Photowall
         </a>
         <button
-          id=\\"menu-button-363094856-8\\"
+          id=\\"menu-button-profile-menu\\"
           aria-expanded=\\"false\\"
           aria-haspopup=\\"menu\\"
-          aria-controls=\\"menu-list-363094856-8\\"
+          aria-controls=\\"menu-list-profile-menu\\"
           onClick={[Function func]}
           onKeyDown={[Function func]}
           class=\\"chakra-menu__menu-button css-1eqi7qs\\"

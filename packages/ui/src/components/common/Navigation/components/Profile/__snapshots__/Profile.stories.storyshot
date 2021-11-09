@@ -3,10 +3,10 @@
 exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
 "<div class=\\"css-2rlxtj\\">
   <button
-    id=\\"menu-button-363094856-2\\"
+    id=\\"menu-button-profile-menu\\"
     aria-expanded=\\"false\\"
     aria-haspopup=\\"menu\\"
-    aria-controls=\\"menu-list-363094856-2\\"
+    aria-controls=\\"menu-list-profile-menu\\"
     onClick={[Function func]}
     onKeyDown={[Function func]}
     class=\\"chakra-menu__menu-button css-1eqi7qs\\"
@@ -38,10 +38,10 @@ exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
 exports[`Storyshots Common/Navigation/Profile Mobile Profile 1`] = `
 "<div class=\\"css-1agdl1f\\">
   <button
-    id=\\"menu-button-363094856-4\\"
+    id=\\"menu-button-profile-menu\\"
     aria-expanded=\\"false\\"
     aria-haspopup=\\"menu\\"
-    aria-controls=\\"menu-list-363094856-4\\"
+    aria-controls=\\"menu-list-profile-menu\\"
     onClick={[Function func]}
     onKeyDown={[Function func]}
     class=\\"chakra-menu__menu-button css-1eqi7qs\\"
