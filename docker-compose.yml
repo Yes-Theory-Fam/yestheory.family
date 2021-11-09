@@ -28,7 +28,8 @@ services:
     image: yestheory-family-web:latest
     build:
       args:
-        YTF_NPM_AUTH_TOKEN: ${YTF_NPM_AUTH_TOKEN}
+        - "YTF_NPM_AUTH_TOKEN=${YTF_NPM_AUTH_TOKEN}"
+        - NEXT_PUBLIC_BACKEND_URL
       context: .
       dockerfile: packages/web/Dockerfile
     ports:

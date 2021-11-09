@@ -43,6 +43,9 @@ WORKDIR /app/packages/web
 
 COPY yarn-with-secrets ./
 
+ARG NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
+
+# ARG is used in the local build, the secret in the GitHub Action
 ARG YTF_NPM_AUTH_TOKEN
 RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets build
 
@@ -59,7 +62,6 @@ COPY --from=builder /app/packages/ui/ ./packages/ui
 COPY --from=builder /app/packages/web/next.config.js ./packages/web/
 COPY --from=builder /app/packages/web/.next/ ./packages/web/.next/
 COPY --from=builder /app/packages/web/package.json ./packages/web/
-COPY --from=builder /app/packages/web/.env.local ./packages/web/.env.local
 
 COPY yarn.lock package.json ./
 
@@ -68,3 +70,9 @@ EXPOSE 3000
 RUN npx next telemetry disable
 WORKDIR /app/packages/web
 CMD ["yarn", "start"]
+
+# The builder requires access to all NEXT_PUBLIC_ prefixed environment variables
+# to be able to build the source code.
+# Meaning we have to provide
+
+

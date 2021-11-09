@@ -5,6 +5,7 @@ on:
     branches: [master]
 env:
   OWNER: yes-theory-fam
+  NEXT_PUBLIC_BACKEND_URL: https://api.yestheory.family
 
 jobs:
   docker-build-server:
