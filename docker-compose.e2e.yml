@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ytfe2e
+      POSTGRES_PASSWORD: ytfe2e
+      POSTGRES_DB: ytfe2e
+
+  server:
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
+    hostname: server
+    ports:
+      - "5000:5000"
+    environment:
+      PRISMA_DATABASE_URL: "postgresql://ytfe2e:ytfe2e@postgres:5432/ytfe2e?schema=public"
+      FRONTEND_HOST: "http://web:3000"
+
+      IS_E2E: "true"
+
+      DISCORD_BOT_TOKEN: skipped
+      DISCORD_TARGET_GUILD: skipped
+
+      DISCORD_CLIENT_ID: skipped
+      DISCORD_CLIENT_SECRET: skipped
+      DISCORD_SCOPES: skipped
+    depends_on:
+      - postgres
+
+  web:
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
+    environment:
+      SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+
+  cypress:
+    image: cypress/included:8.7.0
+    entrypoint: "/bin/bash"
+    command: "/wait-for-it.sh -t 30 --strict server:5000 -- ./cypress/install-and-run.sh"
+    working_dir: /e2e
+    volumes:
+      - ./packages/web/cypress:/e2e/cypress
+      - ./packages/web/cypress.json:/e2e/cypress.json
+      - ./packages/web/cypress/wait-for-it.sh:/wait-for-it.sh
+    depends_on:
+      - web

@@ -50,6 +50,9 @@ WORKDIR /app
 # Copy relevant data from builder
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/packages/server/dist ./dist
+COPY --from=builder /app/packages/server/package.json ./package.json
+
+COPY ./packages/server/docker-entrypoint.sh /app/docker-entrypoint.sh
 
 # Set environment data, export and launch
 ARG BACKEND_PORT=5000
@@ -58,4 +61,4 @@ ENV NODE_ENV="production"
 
 EXPOSE $BACKEND_PORT
 
-CMD ["node", "dist"]
+ENTRYPOINT ["./docker-entrypoint.sh"]

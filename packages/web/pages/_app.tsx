@@ -160,9 +160,6 @@ UrqlWrappedApp.getInitialProps = async (
   );
 
   const userQuery = await client.query(CurrentUserDocument).toPromise();
-  if (userQuery?.error) {
-    throw userQuery.error;
-  }
 
   return { ...appProps, user: userQuery?.data?.me ?? undefined };
 };

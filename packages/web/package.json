@@ -6,6 +6,8 @@
     "build": "next build",
     "codegen": "graphql-codegen --config codegen.yml",
     "dev": "next",
+    "e2e:open": "cypress open --config baseUrl=http://localhost:3000",
+    "e2e:run": "cypress run --config baseUrl=http://localhost:3000",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\" --max-warnings=0",
     "start": "next start",
     "test": "echo web: ok"
@@ -17,6 +19,7 @@
     "@graphql-codegen/near-operation-file-preset": "^2.2.1",
     "@graphql-codegen/typescript-urql": "^3.4.0",
     "@yestheory.family/eslint-config": "^1.0.0",
+    "cypress": "^8.7.0",
     "eslint": "^7.32.0",
     "eslint-config-preact": "1.1.4",
     "typescript": "^4.4.4"

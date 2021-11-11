@@ -3,7 +3,7 @@ import { config } from "dotenv";
 config();
 
 import { PrismaClient } from "@yes-theory-fam/database/client";
-import { buildSchemaSync } from "type-graphql";
+import { BuildSchemaOptions, buildSchemaSync } from "type-graphql";
 import Koa, { Context } from "koa";
 import koaSession from "koa-session";
 import { ApolloServer } from "apollo-server-koa";
@@ -28,9 +28,17 @@ const logger = createServerLogger("src", "index");
 const prisma = new PrismaClient();
 
 const main = async () => {
-  const { client, guild } = await Discord.initialize();
-  Container.set(Client, client);
-  Container.set(Guild, guild);
+  const additionalOptions: Partial<BuildSchemaOptions> = {};
+
+  // TODO find a reasonably neat way of providing the required secrets to the CI for e2e tests
+  if (process.env.IS_E2E) {
+    additionalOptions.authChecker = () => false;
+  } else {
+    const { client, guild } = await Discord.initialize();
+    Container.set(Client, client);
+    Container.set(Guild, guild);
+    additionalOptions.authChecker = authChecker(guild);
+  }
 
   const resolvers = await getResolvers();
 
@@ -38,7 +46,7 @@ const main = async () => {
     directives: [ExportDirective, WithDiscordDirective],
     resolvers,
     container: Container,
-    authChecker: authChecker(guild),
+    ...additionalOptions,
   });
 
   const port = process.env["BACKEND_PORT"] ?? 5000;

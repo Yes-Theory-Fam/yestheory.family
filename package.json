@@ -2,6 +2,8 @@
   "name": "yestheory.family",
   "private": true,
   "scripts": {
+    "e2e:open": "yarn workspace @yestheory.family/web e2e:open",
+    "e2e:run": "yarn workspace @yestheory.family/web e2e:run",
     "eslint:check": "yarn workspaces foreach run lint",
     "eslint:write": "yarn workspaces foreach run lint --fix",
     "format:check": "prettier --check packages",

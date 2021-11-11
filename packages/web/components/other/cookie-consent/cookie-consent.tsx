@@ -31,7 +31,9 @@ export const CookieConsent: FunctionalComponent = () => {
     const host = location.hostname;
     const expiryDate = new Date();
     expiryDate.setUTCFullYear(expiryDate.getUTCFullYear() + 1);
-    document.cookie = `${cookieAcceptName}=${Date.now()};domain=${host};secure;expires=${expiryDate.toUTCString()}`;
+
+    const isSecure = window.location.protocol === "https:";
+    document.cookie = `${cookieAcceptName}=${Date.now()};expires=${expiryDate.toUTCString()};domain=${host}${isSecure ? ";secure" : ""}`;
 
     onClose();
   }, [onClose]);
