@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@chakra-ui/react";
 
-export type HeadingSize = "h1" | "h2";
+export type HeadingSize = "h1" | "h2" | "h3" | "h4" | "h5";
 
 export interface HeadingProps extends ChakraHeadingProps {
   frontText: string;
@@ -21,6 +21,9 @@ export interface HeadingProps extends ChakraHeadingProps {
 const headingSizeToFontSize: Record<HeadingSize, string[]> = {
   h1: ["4xl", "5xl", "8vw", "6vw"],
   h2: ["3xl", "4xl", "6xl"],
+  h3: ["xl", "2xl", "3xl"],
+  h4: ["lg", "xl", "2xl"],
+  h5: ["md", "lg", "xl"],
 };
 
 export const Heading: FunctionalComponent<HeadingProps> = ({
