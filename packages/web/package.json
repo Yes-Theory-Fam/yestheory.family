@@ -9,7 +9,7 @@
     "e2e:open": "cypress open --config baseUrl=http://localhost:3000",
     "e2e:run": "cypress run --config baseUrl=http://localhost:3000",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\" --max-warnings=0",
-    "start": "next start",
+    "start": "yarn codegen && next start",
     "test": "echo web: ok"
   },
   "devDependencies": {

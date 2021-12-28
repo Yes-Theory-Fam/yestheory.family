@@ -7353,7 +7353,7 @@ __metadata:
     "@yestheory.family/eslint-config": ^1.0.0
     "@yestheory.family/ui": 1.0.0
     cookie: ^0.4.1
-    cypress: ^8.3.0
+    cypress: ^8.7.0
     eslint: ^7.32.0
     eslint-config-preact: 1.1.4
     graphql: ^15.7.2
@@ -11301,7 +11301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^8.3.0":
+"cypress@npm:^8.7.0":
   version: 8.7.0
   resolution: "cypress@npm:8.7.0"
   dependencies:

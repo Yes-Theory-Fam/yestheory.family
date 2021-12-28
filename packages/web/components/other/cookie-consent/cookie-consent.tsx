@@ -33,7 +33,9 @@ export const CookieConsent: FunctionalComponent = () => {
     expiryDate.setUTCFullYear(expiryDate.getUTCFullYear() + 1);
 
     const isSecure = window.location.protocol === "https:";
-    document.cookie = `${cookieAcceptName}=${Date.now()};expires=${expiryDate.toUTCString()};domain=${host}${isSecure ? ";secure" : ""}`;
+    document.cookie = `${cookieAcceptName}=${Date.now()};expires=${expiryDate.toUTCString()};domain=${host}${
+      isSecure ? ";secure" : ""
+    }`;
 
     onClose();
   }, [onClose]);
@@ -73,7 +75,6 @@ export const CookieConsent: FunctionalComponent = () => {
           </VStack>
         </AlertDialogBody>
         <AlertDialogFooter>
-          {/* TODO change link? */}
           <Button
             minWidth={24}
             variant={"outlined"}
@@ -83,7 +84,12 @@ export const CookieConsent: FunctionalComponent = () => {
           >
             Decline
           </Button>
-          <Button ml={3} minWidth={24} onClick={acceptCookies}>
+          <Button
+            ml={3}
+            minWidth={24}
+            onClick={acceptCookies}
+            variant={"outlined"}
+          >
             Accept
           </Button>
         </AlertDialogFooter>
