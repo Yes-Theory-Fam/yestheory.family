@@ -5,6 +5,7 @@ import { MobileNavigation } from "./components/MobileNavigation";
 import { Box } from "@chakra-ui/react";
 import { User } from "../../../types";
 import { NavigationBreakpoints } from "./NavigationBreakpoints";
+import { MenuItemDefinition } from "./components/Profile/Profile";
 
 export { Profile } from "./components/Profile/Profile";
 export type { ProfileProps } from "./components/Profile/Profile";
@@ -15,7 +16,9 @@ export interface NavigationLinkProps extends NavLinkProps {
 
 export interface NavigationProps {
   links: NavigationLinkProps[];
+  onLoginButtonClick: () => void;
   user?: User | undefined;
+  menuItems: MenuItemDefinition[];
 }
 
 export const Navigation: FunctionalComponent<NavigationProps> = (props) => {

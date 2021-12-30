@@ -24,8 +24,7 @@ export const HomeRowStory: Story<Args> = (args) => {
   return (
     <HomeRow
       image={{
-        src:
-          "https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg",
+        src: "https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg",
         alt: "Image of a cute kitten :)",
       }}
       paragraph={{ heading, paragraphs, buttonHref: "#" }}

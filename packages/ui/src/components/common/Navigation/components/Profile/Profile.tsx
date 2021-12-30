@@ -1,10 +1,28 @@
 import { FunctionalComponent, h } from "preact";
-import { Avatar, AvatarBadge, HStack, Text, VStack } from "@chakra-ui/react";
+import {
+  Avatar,
+  AvatarBadge,
+  HStack,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Portal,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { User } from "../../../../../types";
+
+export interface MenuItemDefinition {
+  key?: string;
+  label: string;
+  onClick?: () => void;
+}
 
 export interface ProfileProps {
   user: User;
   variant: "desktop" | "mobile";
+  menuItems: MenuItemDefinition[];
 }
 
 export const Profile: FunctionalComponent<ProfileProps> = (props) => {
@@ -22,23 +40,36 @@ export const Profile: FunctionalComponent<ProfileProps> = (props) => {
     </Text>
   );
 
-  const { discordTag, avatarUrl } = props.user;
+  const { username, avatarUrl } = props.user;
 
   return (
-    <VStack align={"flex-start"} spacing={1}>
-      {getText(true)}
-      <HStack spacing={2}>
-        <Avatar
-          name={discordTag}
-          src={avatarUrl}
-          color={textColor}
-          bg={"transparent"}
-        >
-          <AvatarBadge boxSize={4} background={"green"} />
-        </Avatar>
-        <Text color={tagColor}>{discordTag}</Text>
-      </HStack>
-      {getText(false)}
-    </VStack>
+    <Menu autoSelect={false} id={"profile-menu"}>
+      <MenuButton>
+        <VStack align={"flex-start"} spacing={1}>
+          {getText(true)}
+          <HStack spacing={2}>
+            <Avatar
+              name={username}
+              src={avatarUrl}
+              color={textColor}
+              bg={"transparent"}
+            >
+              <AvatarBadge boxSize={4} background={"green"} />
+            </Avatar>
+            <Text color={tagColor}>{username}</Text>
+          </HStack>
+          {getText(false)}
+        </VStack>
+      </MenuButton>
+      <Portal>
+        <MenuList zIndex={"popover"}>
+          {props.menuItems.map((i) => (
+            <MenuItem onClick={i.onClick} key={i.key}>
+              {i.label}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Portal>
+    </Menu>
   );
 };

@@ -9,7 +9,7 @@ export const heading: HeadingProps = {
 };
 
 export const paragraphs = [
-  <Text>
+  <Text key={"paragraph-1"}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Mattis rhoncus urna
     neque viverra justo nec ultrices. Egestas sed tempus urna et pharetra
@@ -17,7 +17,7 @@ export const paragraphs = [
     Morbi blandit cursus risus at. Tempus egestas sed sed risus pretium quam
     vulputate. Sed faucibus turpis in eu.
   </Text>,
-  <Text>
+  <Text key={"paragraph-2"}>
     Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Est placerat
     in egestas erat imperdiet sed. Egestas fringilla phasellus faucibus
     scelerisque eleifend. Turpis egestas maecenas pharetra convallis posuere

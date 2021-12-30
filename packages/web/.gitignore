@@ -35,3 +35,6 @@ yarn-error.log*
 
 # Generated graphql files
 schema.graphql
+
+cypress/screenshots
+cypress/videos

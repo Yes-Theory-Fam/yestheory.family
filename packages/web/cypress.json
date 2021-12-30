@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://web:3000",
+  "chromeWebSecurity": false,
+  "pluginsFile": false,
+  "experimentalStudio": true
+}

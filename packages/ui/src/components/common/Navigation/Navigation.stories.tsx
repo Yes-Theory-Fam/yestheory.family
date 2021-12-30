@@ -8,6 +8,8 @@ export default {
 } as Meta;
 
 const props: NavigationProps = {
+  onLoginButtonClick: () => undefined,
+  menuItems: [],
   links: [
     {
       text: "Blog",
@@ -29,7 +31,7 @@ export const NavigationAuthenticatedStory: Story = () => (
   <Navigation
     {...props}
     user={{
-      discordTag: "geisterfurz007#5952",
+      username: "geisterfurz007#5952",
       avatarUrl:
         "https://cdn.discordapp.com/avatars/290193372407136256/833dd63e1e26f29473ca038b50c993e0.png?size=256",
     }}

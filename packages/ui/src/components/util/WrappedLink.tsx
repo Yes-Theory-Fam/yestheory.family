@@ -13,6 +13,8 @@ export const WrappedLink: FunctionalComponent<WrappedLinkProps> = ({
   ...rest
 }) => {
   const { wrapLink } = useContext(OverrideComponentContext);
-  if (!isExternal) return <Link href={href} {...rest} />;
+  rest = { target: "_blank", rel: "noopener noreferrer", ...rest };
+
+  if (isExternal) return <Link href={href} {...rest} />;
   return wrapLink(<Link {...rest} />, href);
 };

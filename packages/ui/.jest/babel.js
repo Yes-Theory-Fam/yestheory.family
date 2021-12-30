@@ -1,7 +1,7 @@
 // This file is a slightly modified copy from jest-preset-preact/babel.js to add a config to @babel/preset-env
-const babelJest = require("babel-jest");
+const { createTransformer } = require("babel-jest").default;
 
-module.exports = babelJest.createTransformer({
+module.exports = createTransformer({
   presets: [
     [
       "@babel/preset-typescript",

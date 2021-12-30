@@ -1,7 +1,13 @@
 import { h, FunctionalComponent, Fragment } from "preact";
 import { NavigationProps } from "../Navigation";
 import { LoginButton, Logo, NavLink } from "../..";
-import { Flex, useDisclosure, Slide, VStack } from "@chakra-ui/react";
+import {
+  Flex,
+  useDisclosure,
+  VStack,
+  DrawerContent,
+  Drawer,
+} from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Profile } from "./Profile/Profile";
 import { WrappedLink } from "../../../util";
@@ -26,12 +32,14 @@ interface NavigationStackProps extends NavigationProps {
 const NavigationStack: FunctionalComponent<NavigationStackProps> = ({
   links,
   user,
+  menuItems,
+  onLoginButtonClick,
   onCloseClick,
 }) => {
   const linkElements = links.map((l) => {
     const { text, ...rest } = l;
     return (
-      <NavLink {...rest} inverted>
+      <NavLink {...rest} key={l.key} inverted>
         {text}
       </NavLink>
     );
@@ -53,9 +61,9 @@ const NavigationStack: FunctionalComponent<NavigationStackProps> = ({
       </Flex>
       <VStack spacing={4}>{linkElements}</VStack>
       {user ? (
-        <Profile user={user} variant={"mobile"} />
+        <Profile user={user} variant={"mobile"} menuItems={menuItems} />
       ) : (
-        <LoginButton variant={"outlined"} />
+        <LoginButton variant={"outlined"} onClick={onLoginButtonClick} />
       )}
     </VStack>
   );
@@ -66,12 +74,15 @@ export const MobileNavigation: FunctionalComponent<NavigationProps> = (
 ) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // TODO fix drawer only half open on S21
   return (
     <>
       <NavBar onMenuOpenClick={onOpen} />
-      <Slide direction={"right"} in={isOpen}>
-        <NavigationStack {...props} onCloseClick={onClose} />
-      </Slide>
+      <Drawer isOpen={isOpen} onClose={onClose} size={"full"}>
+        <DrawerContent>
+          <NavigationStack {...props} onCloseClick={onClose} />
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };

@@ -1,5 +1,8 @@
 name: 'Chromatic'
 
+env:
+  YTF_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 on:
   pull_request: null
   push:

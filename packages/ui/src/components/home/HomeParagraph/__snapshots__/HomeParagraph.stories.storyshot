@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Home/Paragraph Paragraph 1`] = `
-  <div class="chakra-stack css-1hpgelm">
-    <div class="css-gmuwbf">
-      <h2 class="chakra-heading css-6siuyb">
-        Discover 
-        <h2 class="chakra-heading css-3qbdq">empowering stories</h2>
-      </h2>
-    </div>
-    <div class="chakra-stack css-zmux7u">
-      <p class="chakra-text css-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis rhoncus urna neque viverra justo nec ultrices. Egestas sed tempus urna et pharetra pharetra massa massa. Diam sollicitudin tempor id eu nisl nunc mi ipsum. Morbi blandit cursus risus at. Tempus egestas sed sed risus pretium quam vulputate. Sed faucibus turpis in eu.
-      </p>
-      <p class="chakra-text css-0">
-        Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Est placerat in egestas erat imperdiet sed. Egestas fringilla phasellus faucibus scelerisque eleifend. Turpis egestas maecenas pharetra convallis posuere morbi leo urna.
-      </p>
-    </div>
-    <a
-      href="#"
-      class="chakra-link chakra-button css-nkow18"
-    >
-      Read more
-    </a>
+"<div class=\\"chakra-stack css-1hpgelm\\">
+  <div class=\\"css-gmuwbf\\">
+    <h2 class=\\"chakra-heading css-5s6hfy\\">
+      Discover 
+      <h2 class=\\"chakra-heading css-3stmem\\">empowering stories</h2>
+    </h2>
   </div>
+  <div class=\\"chakra-stack css-zmux7u\\">
+    <p class=\\"chakra-text css-0\\">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis rhoncus urna neque viverra justo nec ultrices. Egestas sed tempus urna et pharetra pharetra massa massa. Diam sollicitudin tempor id eu nisl nunc mi ipsum. Morbi blandit cursus risus at. Tempus egestas sed sed risus pretium quam vulputate. Sed faucibus turpis in eu.
+    </p>
+    <p class=\\"chakra-text css-0\\">
+      Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Est placerat in egestas erat imperdiet sed. Egestas fringilla phasellus faucibus scelerisque eleifend. Turpis egestas maecenas pharetra convallis posuere morbi leo urna.
+    </p>
+  </div>
+  <a
+    href=\\"#\\"
+    class=\\"chakra-link chakra-button css-ogxy0s\\"
+  >
+    Read more
+  </a>
+</div>"
 `;

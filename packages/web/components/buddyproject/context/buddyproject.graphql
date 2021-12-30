@@ -1,0 +1,15 @@
+query State {
+  getBuddyProjectStatus {
+    buddy @export(exportName: "Buddy") {
+      userId
+      username
+    }
+    status
+  }
+}
+
+mutation SignUp @withDiscord {
+  signUp {
+    status
+  }
+}

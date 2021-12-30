@@ -1,0 +1,7 @@
+query CurrentUser {
+  me @export(exportName: "User") {
+    id
+    username
+    avatarUrl
+  }
+}

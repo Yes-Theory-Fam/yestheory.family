@@ -43,7 +43,7 @@ export const HeadingsStory: Story<HeadingProps> = (args) => {
   return (
     <VStack spacing={4}>
       {sizes.map((size) => (
-        <Heading {...args} size={size} />
+        <Heading {...args} size={size} key={size} />
       ))}
     </VStack>
   );

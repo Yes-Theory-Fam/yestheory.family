@@ -10,7 +10,11 @@ export const DesktopNavigation: FunctionalComponent<NavigationProps> = (
 ) => {
   const links = props.links.map((l) => {
     const { text, ...rest } = l;
-    return <NavLink {...rest}>{text}</NavLink>;
+    return (
+      <NavLink {...rest} key={l.key}>
+        {text}
+      </NavLink>
+    );
   });
 
   return (
@@ -21,9 +25,13 @@ export const DesktopNavigation: FunctionalComponent<NavigationProps> = (
         </WrappedLink>
         {links}
         {props.user ? (
-          <Profile user={props.user} variant={"desktop"} />
+          <Profile
+            user={props.user}
+            variant={"desktop"}
+            menuItems={props.menuItems}
+          />
         ) : (
-          <LoginButton />
+          <LoginButton onClick={props.onLoginButtonClick} />
         )}
       </HStack>
     </Box>

@@ -60,8 +60,7 @@ export const ImageStory = Template.bind({});
 ImageStory.args = {
   height: 200,
   width: 200,
-  src:
-    "https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg",
+  src: "https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg",
   shadow: "none",
 };
 ImageStory.storyName = "Image";
