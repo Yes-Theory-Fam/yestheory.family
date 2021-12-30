@@ -5,11 +5,11 @@
   "scripts": {
     "build": "next build",
     "codegen": "graphql-codegen --config codegen.yml",
-    "dev": "next",
+    "dev": "yarn codegen && next",
     "e2e:open": "cypress open --config baseUrl=http://localhost:3000",
     "e2e:run": "cypress run --config baseUrl=http://localhost:3000",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\" --max-warnings=0",
-    "start": "yarn codegen && next start",
+    "start": "next start",
     "test": "echo web: ok"
   },
   "devDependencies": {
