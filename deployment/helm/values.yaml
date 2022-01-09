@@ -49,7 +49,8 @@ web:
       name: next
       containerPort: 3000
     containerEnv:
-      SERVER_BACKEND_GRAPHQL_URL: http://ytf-backend-service/graphql
+      - name: SERVER_BACKEND_GRAPHQL_URL
+        value: http://ytf-backend-service/graphql
 
 backend:
   ingress:
@@ -67,16 +68,24 @@ backend:
       name: node
       containerPort: 5000
     containerEnv:
-      PRISMA_DATABASE_URL: "postgresql://yesbot:yesbot@ytf-database-service:5432/yesbot?schema=public"
-      NODE_ENV: production
-      FRONTEND_HOST: https://yestheory.family
+      - name: PRISMA_DATABASE_URL
+        value: "postgresql://yesbot:yesbot@ytf-database-service:5432/yesbot?schema=public"
+      - name: NODE_ENV
+        value: production
+      - name: FRONTEND_HOST
+        value: https://yestheory.family
 
-      DISCORD_BOT_TOKEN:
-      DISCORD_TARGET_GUILD:
+      - name: DISCORD_BOT_TOKEN
+        value:
+      - name: DISCORD_TARGET_GUILD
+        value:
 
-      DISCORD_CLIENT_ID:
-      DISCORD_CLIENT_SECRET:
-      DISCORD_SCOPES: "identify,guilds.join"
+      - name: DISCORD_CLIENT_ID
+        value:
+      - name: DISCORD_CLIENT_SECRET
+        value:
+      - name: DISCORD_SCOPES
+        value: "identify,guilds.join"
 
 database:
   service:
