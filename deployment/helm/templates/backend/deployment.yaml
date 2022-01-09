@@ -13,6 +13,10 @@ spec:
     spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets.github }}
+      initContainers:
+        - name: check-db-ready
+          image: postgres:13-alpine
+          command: ['sh', '-c', 'until pg_isready -h {{ .Values.database.service.name}} -p {{ .Values.database.service.port }} -U yesbot; do echo waiting for database; sleep 2; done;']
       containers:
         - name: {{ .Values.backend.deployment.name }}
           image: {{ .Values.backend.deployment.image }}
