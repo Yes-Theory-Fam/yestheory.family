@@ -27,7 +27,7 @@ securityContext: {}
   # runAsUser: 1000
 
 imagePullSecrets:
-  github: github-pull-secret
+  github: github
 
 dateformat: "2015-01-02-15-04-05"
 

@@ -18,3 +18,4 @@ spec:
           image: {{ .Values.web.deployment.image }}
           ports:
             - {{ .Values.web.deployment.port | toYaml | nindent 14}}
+          env: {{ .Values.web.deployment.containerEnv | toYaml | nindent 12 }}

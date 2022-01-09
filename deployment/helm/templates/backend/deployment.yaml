@@ -18,6 +18,4 @@ spec:
           image: {{ .Values.backend.deployment.image }}
           ports:
             - {{ .Values.backend.deployment.port | toYaml | nindent 14}}
-          env:
-            - name: DATABASE_URL
-              value: "postgresql://yesbot:yesbot@{{ .Values.database.service.name }}:{{ .Values.database.service.port }}"
+          env: {{ .Values.backend.deployment.containerEnv | toYaml | nindent 12 }}
