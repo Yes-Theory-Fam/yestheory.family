@@ -31,6 +31,8 @@ imagePullSecrets:
 
 dateformat: "2015-01-02-15-04-05"
 
+# TODO Extract DB user/pwd/name to variables and reuse them
+
 web:
   ingress:
     name: ytf-web-ingress
@@ -42,10 +44,12 @@ web:
       app: ytf-web
   deployment:
     name: ytf-web-deployment
-    image: geisterfurz007/fullstack-typescript-boilerplate-example-web
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:latest
     port:
       name: next
       containerPort: 3000
+    containerEnv:
+      SERVER_BACKEND_GRAPHQL_URL: http://ytf-backend-service/graphql
 
 backend:
   ingress:
@@ -58,10 +62,21 @@ backend:
       app: ytf-backend
   deployment:
     name: ytf-backend-deployment
-    image: geisterfurz007/fullstack-typescript-boilerplate-example-server
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:latest
     port:
       name: node
       containerPort: 5000
+    containerEnv:
+      PRISMA_DATABASE_URL: "postgresql://yesbot:yesbot@ytf-database-service:5432/yesbot?schema=public"
+      NODE_ENV: production
+      FRONTEND_HOST: https://yestheory.family
+
+      DISCORD_BOT_TOKEN:
+      DISCORD_TARGET_GUILD:
+
+      DISCORD_CLIENT_ID:
+      DISCORD_CLIENT_SECRET:
+      DISCORD_SCOPES: "identify,guilds.join"
 
 database:
   service:
@@ -75,7 +90,6 @@ database:
     port:
       name: postgres
       containerPort: 5432
-    user:
 
 migration:
   job:
