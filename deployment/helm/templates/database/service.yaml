@@ -9,4 +9,3 @@ spec:
     - port: {{ .Values.database.service.port}}
       targetPort: {{ .Values.database.deployment.port.name }}
   selector: {{ .Values.database.service.labels | toYaml | nindent 4 }}
-  type: NodePort

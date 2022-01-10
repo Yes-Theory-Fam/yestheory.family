@@ -9,4 +9,3 @@ spec:
     - port: 80
       targetPort: {{ .Values.backend.deployment.port.name }}
   selector: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
-  type: NodePort
