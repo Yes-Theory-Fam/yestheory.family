@@ -23,3 +23,10 @@ spec:
           ports:
             - {{ .Values.backend.deployment.port | toYaml | nindent 14}}
           env: {{ .Values.backend.deployment.containerEnv | toYaml | nindent 12 }}
+            {{- range .Values.backend.deployment.secret.secrets }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.backend.deployment.secret.name }}
+                  key: {{ .name }}
+            {{- end }}

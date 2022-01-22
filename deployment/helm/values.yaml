@@ -31,7 +31,7 @@ imagePullSecrets:
 
 dateformat: "2015-01-02-15-04-05"
 
-# TODO Extract DB user/pwd/name to variables and reuse them
+# TODO Extract DB user/pwd/name to variables and reuse them if possible
 
 Ingress:
   class: public
@@ -74,24 +74,26 @@ backend:
       name: node
       containerPort: 5000
     containerEnv:
-      - name: PRISMA_DATABASE_URL
-        value: "postgresql://yesbot:yesbot@ytf-database-service:5432/yesbot?schema=public"
       - name: NODE_ENV
         value: production
       - name: FRONTEND_HOST
         value: https://yestheory.family
-
-      - name: DISCORD_BOT_TOKEN
-        value:
-      - name: DISCORD_TARGET_GUILD
-        value:
-
-      - name: DISCORD_CLIENT_ID
-        value:
-      - name: DISCORD_CLIENT_SECRET
-        value:
       - name: DISCORD_SCOPES
         value: "identify,guilds.join"
+
+    secret:
+      name: backend-secret-env
+      secrets:
+        - name: PRISMA_DATABASE_URL
+          value:
+        - name: DISCORD_BOT_TOKEN
+          value:
+        - name: DISCORD_TARGET_GUILD
+          value:
+        - name: DISCORD_CLIENT_ID
+          value:
+        - name: DISCORD_CLIENT_SECRET
+          value:
 
 database:
   service:
@@ -105,10 +107,18 @@ database:
     port:
       name: postgres
       containerPort: 5432
+    containerEnv:
 
-migration:
-  job:
-    name: ytf-migration-job
+    secret:
+      name: database-secret-env
+      secrets:
+        - name: POSTGRES_PASSWORD
+          value: yesbot
+        - name: POSTGRES_USER
+          value: yesbot
+        - name: POSTGRES_DB
+          value: yesbot
+
 
 autoscaling:
   enabled: false

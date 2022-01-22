@@ -17,9 +17,10 @@ spec:
           ports:
             - {{ .Values.database.deployment.port | toYaml | nindent 14 }}
           env:
-            - name: POSTGRES_USER
-              value: yesbot
-            - name: POSTGRES_PASSWORD
-              value: yesbot
-            - name: POSTGRES_DB
-              value: yesbot
+            {{- range .Values.database.deployment.secret.secrets }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.database.deployment.secret.name }}
+                  key: {{ .name }}
+            {{- end }}
