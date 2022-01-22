@@ -4,14 +4,16 @@ metadata:
   name: {{ .Values.web.ingress.name }}
   namespace: {{ .Release.Namespace }}
   annotations:
+    kubernetes.io/ingress.class: {{ .Values.Ingress.class }}
     kubernetes.io/tls-acme: 'true'
+    cert-manager.io/cluster-issuer: {{ .Values.Ingress.issuer }}
   labels:
     app: web-ingress
 spec:
   tls:
     - hosts:
         - {{ .Values.web.ingress.host }}
-      secretName: cert
+      secretName: {{ .Values.web.ingress.certName }}
   rules:
     - host: {{ .Values.web.ingress.host }}
       http:

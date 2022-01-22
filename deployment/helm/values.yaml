@@ -33,10 +33,15 @@ dateformat: "2015-01-02-15-04-05"
 
 # TODO Extract DB user/pwd/name to variables and reuse them
 
+Ingress:
+  class: public
+  issuer: letsencrypt-prod
+
 web:
   ingress:
     name: ytf-web-ingress
     host: yestheory.family
+    certName: cert-web
   service:
     name: ytf-web-service
     port: 80
@@ -56,6 +61,7 @@ backend:
   ingress:
     name: ytf-backend-ingress
     host: api.yestheory.family
+    certName: cert-backend
   service:
     name: ytf-backend-service
     port: 80
