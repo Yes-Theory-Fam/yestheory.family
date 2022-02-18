@@ -6290,7 +6290,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa-bodyparser@npm:4.3.4, @types/koa-bodyparser@npm:^4.3.0":
+"@types/koa-bodyparser@npm:4.3.5":
+  version: 4.3.5
+  resolution: "@types/koa-bodyparser@npm:4.3.5"
+  dependencies:
+    "@types/koa": "*"
+  checksum: 996d492a6e0ba29697c6d7825c8bd8d99bc663b9eaa4e8524029d39a26ba260c1beecf3012b8d8db41f79e4f672d92b8a2b8734b18716782ac41058e5a61f84a
+  languageName: node
+  linkType: hard
+
+"@types/koa-bodyparser@npm:^4.3.0":
   version: 4.3.4
   resolution: "@types/koa-bodyparser@npm:4.3.4"
   dependencies:
@@ -7243,7 +7252,7 @@ __metadata:
     "@koa/router": 10.1.1
     "@types/graphql-fields": 1.3.4
     "@types/koa": 2.13.4
-    "@types/koa-bodyparser": 4.3.4
+    "@types/koa-bodyparser": 4.3.5
     "@types/koa-mount": 4.0.1
     "@types/koa-session": 5.10.4
     "@types/koa__cors": 3.0.3
