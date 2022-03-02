@@ -52,7 +52,7 @@
     "enzyme-adapter-preact-pure": "3.2.0",
     "eslint": "7.32.0",
     "eslint-config-preact": "1.1.4",
-    "jest": "^27.3.1",
+    "jest": "27.3.1",
     "jest-preset-preact": "4.0.5",
     "preact-cli": "3.3.1",
     "preact-render-to-json": "3.6.6",

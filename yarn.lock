@@ -7624,7 +7624,7 @@ __metadata:
     eslint: 7.32.0
     eslint-config-preact: 1.1.4
     framer-motion: 4.1.17
-    jest: ^27.3.1
+    jest: 27.3.1
     jest-preset-preact: 4.0.5
     preact: 10.5.12
     preact-cli: 3.3.1
@@ -17694,7 +17694,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"jest@npm:^27.3.1":
+"jest@npm:27.3.1":
   version: 27.3.1
   resolution: "jest@npm:27.3.1"
   dependencies:
