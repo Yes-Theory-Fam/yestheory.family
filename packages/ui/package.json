@@ -39,7 +39,7 @@
     "@storybook/client-api": "6.3.12",
     "@storybook/preact": "6.3.12",
     "@storybook/preset-scss": "1.0.3",
-    "@types/enzyme": "3.10.10",
+    "@types/enzyme": "3.10.11",
     "@types/jest": "27.0.2",
     "@yestheory.family/eslint-config": "^1.0.0",
     "babel-jest": "27.5.1",
