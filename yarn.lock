@@ -6650,12 +6650,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa__router@npm:8.0.9":
-  version: 8.0.9
-  resolution: "@types/koa__router@npm:8.0.9"
+"@types/koa__router@npm:8.0.11":
+  version: 8.0.11
+  resolution: "@types/koa__router@npm:8.0.11"
   dependencies:
     "@types/koa": "*"
-  checksum: dddecbc01b2d41d929d09e7f4c00b59a229071dc4a3eb2375f815478c65fbc3b1b2a93f2a88e23439245e60dcbd310aca0d339a0fa992b8cb6e36200b932ad1d
+  checksum: 81f55ed77273871728c81a20fa546ee906bebfe72fd72e3723d983a19504eb7d9578908a0fb8ef230764c5495031412df4245eee93479161bd7bd5135ca1ea04
   languageName: node
   linkType: hard
 
@@ -7545,7 +7545,7 @@ __metadata:
     "@types/koa-mount": 4.0.1
     "@types/koa-session": 5.10.4
     "@types/koa__cors": 3.0.3
-    "@types/koa__router": 8.0.9
+    "@types/koa__router": 8.0.11
     "@types/node": ^16.11.6
     "@types/node-fetch": 2.5.12
     "@yes-theory-fam/database": ^0.20.0-bp-preview.2
