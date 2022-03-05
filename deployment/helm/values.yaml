@@ -1,0 +1,128 @@
+# Default values for helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+imagePullSecrets:
+  github: github
+
+dateformat: "2015-01-02-15-04-05"
+
+# TODO Extract DB user/pwd/name to variables and reuse them if possible
+
+Ingress:
+  class: public
+  issuer: letsencrypt-prod
+
+web:
+  ingress:
+    name: ytf-web-ingress
+    host: yestheory.family
+    certName: cert-web
+  service:
+    name: ytf-web-service
+    port: 80
+    labels:
+      app: ytf-web
+  deployment:
+    name: ytf-web-deployment
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:latest
+    port:
+      name: next
+      containerPort: 3000
+    containerEnv:
+      - name: SERVER_BACKEND_GRAPHQL_URL
+        value: http://ytf-backend-service/graphql
+
+backend:
+  ingress:
+    name: ytf-backend-ingress
+    host: api.yestheory.family
+    certName: cert-backend
+  service:
+    name: ytf-backend-service
+    port: 80
+    labels:
+      app: ytf-backend
+  deployment:
+    name: ytf-backend-deployment
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:latest
+    port:
+      name: node
+      containerPort: 5000
+    containerEnv:
+      - name: NODE_ENV
+        value: production
+      - name: FRONTEND_HOST
+        value: https://yestheory.family
+      - name: DISCORD_SCOPES
+        value: "identify,guilds.join"
+
+    secret:
+      name: backend-secret-env
+      secrets:
+        - name: PRISMA_DATABASE_URL
+          value:
+        - name: DISCORD_BOT_TOKEN
+          value:
+        - name: DISCORD_TARGET_GUILD
+          value:
+        - name: DISCORD_CLIENT_ID
+          value:
+        - name: DISCORD_CLIENT_SECRET
+          value:
+
+database:
+  service:
+    port: 5432
+    name: ytf-database-service
+    labels:
+      app: ytf-database
+  deployment:
+    name: ytf-database-deployment
+    image: postgres:13
+    port:
+      name: postgres
+      containerPort: 5432
+    containerEnv:
+
+    secret:
+      name: database-secret-env
+      secrets:
+        - name: POSTGRES_PASSWORD
+          value: yesbot
+        - name: POSTGRES_USER
+          value: yesbot
+        - name: POSTGRES_DB
+          value: yesbot
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80

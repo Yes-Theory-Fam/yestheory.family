@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.database.service.name }}
+  labels: {{ .Values.database.service.labels | toYaml | nindent 4 }}
+spec:
+  ports:
+    - port: {{ .Values.database.service.port}}
+      targetPort: {{ .Values.database.deployment.port.name }}
+  selector: {{ .Values.database.service.labels | toYaml | nindent 4 }}

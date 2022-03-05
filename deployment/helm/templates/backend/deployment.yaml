@@ -1,0 +1,32 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.backend.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels: {{ .Values.backend.service.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.backend.service.labels | toYaml | nindent 8 }}
+        deployedOn: {{ now | date .Values.dateformat }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.github }}
+      initContainers:
+        - name: check-db-ready
+          image: postgres:13-alpine
+          command: ['sh', '-c', 'until pg_isready -h {{ .Values.database.service.name}} -p {{ .Values.database.service.port }} -U yesbot; do echo waiting for database; sleep 2; done;']
+      containers:
+        - name: {{ .Values.backend.deployment.name }}
+          image: {{ .Values.backend.deployment.image }}
+          ports:
+            - {{ .Values.backend.deployment.port | toYaml | nindent 14}}
+          env: {{ .Values.backend.deployment.containerEnv | toYaml | nindent 12 }}
+            {{- range .Values.backend.deployment.secret.secrets }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.backend.deployment.secret.name }}
+                  key: {{ .name }}
+            {{- end }}

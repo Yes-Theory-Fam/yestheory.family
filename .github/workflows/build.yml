@@ -72,6 +72,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          build-args: |
+            "NEXT_PUBLIC_BACKEND_URL=https://api.yestheory.family"
           tags: ghcr.io/${{ env.OWNER }}/yestheory-family-web:${{ github.ref == 'refs/heads/master' && 'latest' || format('pr-{0}', github.event.pull_request.number) }}
           context: ./
           file: ./packages/web/Dockerfile

@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.database.deployment.name }}
+spec:
+  selector:
+    matchLabels: {{ .Values.database.service.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.database.service.labels | toYaml | nindent 8 }}
+        deployedOn: {{ now | date .Values.dateformat }}
+    spec:
+      containers:
+        - name: {{ .Values.database.deployment.name }}
+          image: postgres:13
+          ports:
+            - {{ .Values.database.deployment.port | toYaml | nindent 14 }}
+          env:
+            {{- range .Values.database.deployment.secret.secrets }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.database.deployment.secret.name }}
+                  key: {{ .name }}
+            {{- end }}

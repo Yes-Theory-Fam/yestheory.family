@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.web.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels: {{ .Values.web.service.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.web.service.labels | toYaml | nindent 8 }}
+        deployedOn: {{ now | date .Values.dateformat }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.github }}
+      containers:
+        - name: {{ .Values.web.deployment.name }}
+          image: {{ .Values.web.deployment.image }}
+          ports:
+            - {{ .Values.web.deployment.port | toYaml | nindent 14}}
+          env: {{ .Values.web.deployment.containerEnv | toYaml | nindent 12 }}
