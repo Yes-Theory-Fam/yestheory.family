@@ -58,10 +58,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
     
   </div>
   <div class=\\"css-1kuyx4r\\">
-    <div
-      align=\\"center\\"
-      class=\\"css-9rklur\\"
-    >
+    <div class=\\"css-7q6kbi\\">
       <div class=\\"chakra-stack css-z6x5mt\\">
         <a
           target=\\"_blank\\"
@@ -194,10 +191,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
     
   </div>
   <div class=\\"css-1kuyx4r\\">
-    <div
-      align=\\"center\\"
-      class=\\"css-9rklur\\"
-    >
+    <div class=\\"css-7q6kbi\\">
       <div class=\\"chakra-stack css-z6x5mt\\">
         <a
           target=\\"_blank\\"
