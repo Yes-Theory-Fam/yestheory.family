@@ -6,7 +6,7 @@ import { useContext } from "preact/hooks";
 
 interface BuddyProjectProps {
   status: BuddyProjectStatus | undefined;
-  buddy: Buddy | undefined;
+  buddy: Buddy | null | undefined;
 }
 
 const BuddyProjectContext = createContext<BuddyProjectProps>({
@@ -23,10 +23,12 @@ export const BuddyProjectProvider: FunctionalComponent<BuddyProjectProviderProps
     const loggedIn = useLoggedIn();
     const [{ data, fetching, error }] = useStateQuery();
 
+    const emptyStatus = { status: undefined, buddy: undefined };
+
     const value =
       !loggedIn || error || fetching
-        ? { status: undefined, buddy: undefined }
-        : data.getBuddyProjectStatus;
+        ? emptyStatus
+        : data?.getBuddyProjectStatus ?? emptyStatus;
 
     return (
       <BuddyProjectContext.Provider value={value}>

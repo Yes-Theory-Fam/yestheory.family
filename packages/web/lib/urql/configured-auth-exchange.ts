@@ -21,8 +21,10 @@ const isOperationWithDiscordAuth = (
   const operationNode = operation.query
     .definitions[0] as OperationDefinitionNode;
 
-  return operationNode.directives.some(
-    (d) => d.name.value === indicatorDirective
+  return (
+    operationNode.directives?.some(
+      (d) => d.name.value === indicatorDirective
+    ) ?? false
   );
 };
 
@@ -97,6 +99,10 @@ const getAuth: AuthConfig<AuthState>["getAuth"] = async ({
     const expiresAt = Number(expiresAtString);
 
     if (!expiresAtString) {
+      return null;
+    }
+
+    if (accessToken === null || refreshToken === null) {
       return null;
     }
 

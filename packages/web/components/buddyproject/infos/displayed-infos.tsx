@@ -54,7 +54,7 @@ export const DisplayedInfos: FunctionalComponent = () => {
             maxW={700}
             h={"full"}
             w={"full"}
-            minH={[400, null, null, null, undefined]}
+            minH={[400, null, null, null, "unset"]}
           >
             <Image
               src={yesbotBuddyProjectWebp}

@@ -28,7 +28,7 @@ export const BuddyProjectButton: FunctionalComponent = () => {
 
   const signUp = useCallback(
     async (confirmed = false) => {
-      if (!onServerData.me.isOnServer && !confirmed) {
+      if (!onServerData?.me?.isOnServer && !confirmed) {
         joinOnOpen();
         return;
       }

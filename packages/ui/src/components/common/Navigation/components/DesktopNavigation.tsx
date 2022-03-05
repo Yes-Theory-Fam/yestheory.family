@@ -18,7 +18,7 @@ export const DesktopNavigation: FunctionalComponent<NavigationProps> = (
   });
 
   return (
-    <Box align={"center"} m={6}>
+    <Box alignItems={"center"} m={6}>
       <HStack spacing={12} maxW={"8xl"}>
         <WrappedLink mr={"auto"} href={"/"} _hover={{}}>
           <Logo />
