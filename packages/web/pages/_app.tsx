@@ -38,7 +38,7 @@ const componentOverrides: OverrideComponentType = {
   Image,
   wrapLink: function LinkWrap(child, href) {
     return (
-      <Link href={href} passHref>
+      <Link href={new URL(href ?? "#")} passHref>
         {child}
       </Link>
     );
@@ -142,7 +142,7 @@ UrqlWrappedApp.getInitialProps = async (
 
   const request = context.ctx.req;
   const isServerSide = !!request;
-  const cookie = isServerSide ? request.headers.cookie : document.cookie;
+  const cookie = isServerSide ? request.headers.cookie ?? "" : document.cookie;
 
   const client = initUrqlClient(
     {
@@ -159,7 +159,7 @@ UrqlWrappedApp.getInitialProps = async (
     false
   );
 
-  const userQuery = await client.query(CurrentUserDocument).toPromise();
+  const userQuery = await client?.query(CurrentUserDocument).toPromise();
 
   return { ...appProps, user: userQuery?.data?.me ?? undefined };
 };

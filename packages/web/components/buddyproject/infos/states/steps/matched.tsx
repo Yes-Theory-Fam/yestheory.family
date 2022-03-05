@@ -5,7 +5,7 @@ import { useBuddyProjectState } from "../../../context/context";
 
 export const MatchedStep: FunctionalComponent = () => {
   const state = useBuddyProjectState();
-  const buddyName = state.buddy.username;
+  const buddyName = state.buddy?.username ?? "";
 
   return (
     <Step heading={"You were matched!"}>

@@ -2,8 +2,8 @@ import { FunctionalComponent } from "preact";
 import { useRouter } from "next/router";
 import { useEffect } from "preact/hooks";
 
-const stringifyUrlParam = (x: string | string[]): string =>
-  Array.isArray(x) ? x.join("") : x;
+const stringifyUrlParam = (x: string | string[] | undefined): string =>
+  !x ? "" : Array.isArray(x) ? x.join("") : x;
 
 const AuthRedirect: FunctionalComponent = () => {
   const router = useRouter();
