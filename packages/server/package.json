@@ -17,7 +17,7 @@
     "@types/koa": "2.13.4",
     "@types/koa-bodyparser": "4.3.5",
     "@types/koa-mount": "4.0.1",
-    "@types/koa-session": "5.10.4",
+    "@types/koa-session": "5.10.6",
     "@types/koa__cors": "3.0.3",
     "@types/koa__router": "8.0.11",
     "@types/node": "^16.11.6",
