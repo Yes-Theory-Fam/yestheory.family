@@ -1,6 +1,6 @@
 import { h, FunctionalComponent } from "preact";
 import { Link, LinkProps } from "@chakra-ui/react";
-import { useContext } from "preact/hooks";
+import { useContext } from "react";
 import { OverrideComponentContext } from "./OverrideComponentContext";
 
 export interface WrappedLinkProps extends LinkProps {

@@ -2,7 +2,7 @@ import { FunctionalComponent, h } from "preact";
 import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
 import { Box, Image } from "@chakra-ui/react";
 import * as Images from "../assets";
-import { useRef, useState } from "preact/hooks";
+import { useRef, useState } from "react";
 import { fullWidth, Positioned } from "./common";
 import { useNavbarHeight } from "../../..";
 

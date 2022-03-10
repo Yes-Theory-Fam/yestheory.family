@@ -1,7 +1,7 @@
 import { h, FunctionalComponent, JSX } from "preact";
 import { Button, VStack, useBreakpointValue, Link } from "@chakra-ui/react";
 import { Heading, HeadingProps, OverrideComponentContext } from "../../";
-import { useContext } from "preact/hooks";
+import { useContext } from "react";
 
 export interface HomeParagraphProps {
   heading: HeadingProps;

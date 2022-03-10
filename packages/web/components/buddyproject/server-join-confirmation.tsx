@@ -20,7 +20,7 @@ interface ServerJoinConfirmationProps {
 
 export const ServerJoinConfirmation: FunctionalComponent<ServerJoinConfirmationProps> =
   ({ isOpen, onClose, onConfirm }) => {
-    const cancelRef = useRef<HTMLButtonElement>();
+    const cancelRef = useRef<HTMLButtonElement>(null);
 
     return (
       <AlertDialog

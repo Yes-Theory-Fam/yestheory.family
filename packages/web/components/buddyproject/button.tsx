@@ -8,7 +8,7 @@ import { useServerStateQuery } from "./server-state-query.generated";
 import { useCallback } from "preact/compat";
 import { ServerJoinConfirmation } from "./server-join-confirmation";
 import { SignupSuccessModal } from "./signup-success-modal";
-import { useEffect } from "preact/hooks";
+import { useEffect } from "react";
 
 export const BuddyProjectButton: FunctionalComponent = () => {
   const state = useBuddyProjectState();

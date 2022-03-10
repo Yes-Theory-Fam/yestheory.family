@@ -13,7 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Cookie from "cookie";
-import { useCallback, useEffect, useRef } from "preact/hooks";
+import { useCallback, useEffect, useRef } from "react";
 
 const cookieAcceptName = "ytf-cookie-consent";
 
@@ -40,7 +40,7 @@ export const CookieConsent: FunctionalComponent = () => {
     onClose();
   }, [onClose]);
 
-  const declineRef = useRef<HTMLButtonElement>();
+  const declineRef = useRef<HTMLButtonElement>(null);
 
   return (
     <AlertDialog

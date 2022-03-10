@@ -1,5 +1,5 @@
-import { createContext, FunctionalComponent, Context, VNode } from "preact";
-import { useState, useEffect, useContext } from "preact/hooks";
+import { FunctionalComponent, VNode } from "preact";
+import { Context, createContext, useState, useEffect, useContext } from "react";
 import { useCurrentUserQuery, User } from "./user.generated";
 
 interface UserContextProps {
