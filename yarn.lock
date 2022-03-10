@@ -6971,13 +6971,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa-session@npm:5.10.4":
-  version: 5.10.4
-  resolution: "@types/koa-session@npm:5.10.4"
+"@types/koa-session@npm:5.10.6":
+  version: 5.10.6
+  resolution: "@types/koa-session@npm:5.10.6"
   dependencies:
     "@types/cookies": "*"
     "@types/koa": "*"
-  checksum: 4ae3e2ed80477da553217e8a5a2ae0b400abeb344fbf8f9383d0cb78e3b31e9e5b87b953c480eb9b724966b32d987476763809ebec724e9cdb26f4890ccfc3fa
+  checksum: 61e3b74d51ad15466528ba03ce8464397a4683e97bd6434e4bb28e9fd51c7a49ebe4384516a58ea567406d9ad872914e1c73dd37e97d65e58be81e6b8619b9c6
   languageName: node
   linkType: hard
 
@@ -7892,7 +7892,7 @@ __metadata:
     "@types/koa": 2.13.4
     "@types/koa-bodyparser": 4.3.5
     "@types/koa-mount": 4.0.1
-    "@types/koa-session": 5.10.4
+    "@types/koa-session": 5.10.6
     "@types/koa__cors": 3.0.3
     "@types/koa__router": 8.0.11
     "@types/node": ^16.11.6
