@@ -38,7 +38,7 @@ const componentOverrides: OverrideComponentType = {
   Image,
   wrapLink: function LinkWrap(child, href) {
     return (
-      <Link href={new URL(href ?? "#")} passHref>
+      <Link href={href ?? "#"} passHref>
         {child}
       </Link>
     );
