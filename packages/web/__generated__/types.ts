@@ -10,7 +10,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 };
 
 export enum BuddyProjectStatus {
+  Matched = "MATCHED",
   NotSignedUp = "NOT_SIGNED_UP",
   SignedUp = "SIGNED_UP",
-  Matched = "MATCHED",
 }
