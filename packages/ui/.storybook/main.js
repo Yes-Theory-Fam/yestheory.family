@@ -1,3 +1,5 @@
+const WebpackModules = require("webpack-modules");
+
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -37,6 +39,8 @@ module.exports = {
     },
   },
   webpackFinal: async (config) => {
+    config.plugins.push(new WebpackModules());
+
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       loader: require.resolve("babel-loader"),

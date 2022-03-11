@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { useRef, useState } from "preact/hooks";
+import { useRef, useState } from "react";
 import { Box, Image, useBreakpointValue } from "@chakra-ui/react";
 import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
 import { getImageDimensions } from "./common";

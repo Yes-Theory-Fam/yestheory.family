@@ -1,6 +1,6 @@
 import { FunctionalComponent } from "preact";
 import { useRouter } from "next/router";
-import { useEffect } from "preact/hooks";
+import { useEffect } from "react";
 
 const stringifyUrlParam = (x: string | string[] | undefined): string =>
   !x ? "" : Array.isArray(x) ? x.join("") : x;

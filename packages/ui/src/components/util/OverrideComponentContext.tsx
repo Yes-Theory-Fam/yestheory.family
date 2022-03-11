@@ -1,5 +1,6 @@
 import { Img } from "@chakra-ui/react";
-import { createContext, Component, FunctionalComponent } from "preact";
+import { Component, FunctionalComponent } from "preact";
+import { createContext } from "react";
 
 interface ImageRequiredProps {
   src: string;

@@ -1,8 +1,8 @@
-import { createContext, FunctionalComponent, VNode } from "preact";
+import { FunctionalComponent, VNode } from "preact";
 import { BuddyProjectStatus } from "../../../__generated__/types";
 import { Buddy, useStateQuery } from "./buddyproject.generated";
 import { useLoggedIn } from "../../../context/user/user";
-import { useContext } from "preact/hooks";
+import { createContext, useContext } from "react";
 
 interface BuddyProjectProps {
   status: BuddyProjectStatus | undefined;
