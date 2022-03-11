@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Storyshots Common/Image Image 1`] = `
-"<img
-  alt=\\"Example image\\"
-  src=\\"https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg\\"
-  class=\\"chakra-image css-1nkcj0w\\"
- />"
-`;
