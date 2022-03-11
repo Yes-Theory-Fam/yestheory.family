@@ -12,7 +12,7 @@
     "chromatic": "env-cmd chromatic"
   },
   "dependencies": {
-    "@babel/preset-env": "7.13.15",
+    "@babel/preset-env": "7.16.11",
     "@chakra-ui/icons": "1.1.7",
     "@chakra-ui/react": "1.8.6",
     "@emotion/react": "11.5.0",
@@ -26,8 +26,8 @@
     "regenerator-runtime": "0.13.9"
   },
   "devDependencies": {
-    "@babel/core": "7.16.0",
-    "@babel/plugin-transform-react-jsx": "7.16.0",
+    "@babel/core": "7.17.5",
+    "@babel/plugin-transform-react-jsx": "7.17.3",
     "@babel/preset-typescript": "^7.16.7",
     "@storybook/addon-a11y": "6.4.19",
     "@storybook/addon-actions": "6.4.19",
