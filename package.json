@@ -23,7 +23,7 @@
   },
   "resolutions": {
     "@chakra-ui/color-mode": "1.1.13",
-    "@babel/plugin-syntax-jsx": "7.12.13"
+    "@babel/plugin-syntax-jsx": "7.16.7"
   },
   "packageManager": "yarn@3.2.0"
 }
