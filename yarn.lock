@@ -6338,13 +6338,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:*, @types/jest@npm:27.0.2":
+"@types/jest@npm:*":
   version: 27.0.2
   resolution: "@types/jest@npm:27.0.2"
   dependencies:
     jest-diff: ^27.0.0
     pretty-format: ^27.0.0
   checksum: 814ad5f5d2f277849f47e52906da4b745758e555630fc8cb46a071bde648eefeffb1b35710c530a8cea7fc4ea7c1d813812c120484bf7902ab6c5e473cdd49c9
+  languageName: node
+  linkType: hard
+
+"@types/jest@npm:27.4.1":
+  version: 27.4.1
+  resolution: "@types/jest@npm:27.4.1"
+  dependencies:
+    jest-matcher-utils: ^27.0.0
+    pretty-format: ^27.0.0
+  checksum: 5184f3eef4832d01ee8f59bed15eec45ccc8e29c724a5e6ce37bf74396b37bdf04f557000f45ba4fc38ae6075cf9cfcce3d7a75abc981023c61ceb27230a93e4
   languageName: node
   linkType: hard
 
@@ -7403,7 +7413,7 @@ __metadata:
     "@storybook/preact": 6.4.19
     "@storybook/preset-scss": 1.0.3
     "@types/enzyme": 3.10.11
-    "@types/jest": 27.0.2
+    "@types/jest": 27.4.1
     "@yestheory.family/eslint-config": ^1.0.0
     babel-jest: 27.5.1
     babel-loader: 8.2.3
@@ -16525,7 +16535,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"jest-matcher-utils@npm:^27.5.1":
+"jest-matcher-utils@npm:^27.0.0, jest-matcher-utils@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-matcher-utils@npm:27.5.1"
   dependencies:
