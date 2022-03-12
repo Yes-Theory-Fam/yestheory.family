@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/core": "7.17.5",
     "@babel/plugin-transform-react-jsx": "7.17.3",
-    "@babel/preset-typescript": "^7.16.7",
+    "@babel/preset-typescript": "7.16.7",
     "@storybook/addon-a11y": "6.4.19",
     "@storybook/addon-actions": "6.4.19",
     "@storybook/addon-console": "1.2.3",
