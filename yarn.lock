@@ -4876,7 +4876,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prefresh/core@npm:^1.3.1, @prefresh/core@npm:^1.3.3":
+"@prefresh/core@npm:^1.3.3":
   version: 1.3.4
   resolution: "@prefresh/core@npm:1.3.4"
   peerDependencies:
@@ -4901,28 +4901,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prefresh/utils@npm:^1.1.0, @prefresh/utils@npm:^1.1.2":
+"@prefresh/utils@npm:^1.1.2":
   version: 1.1.3
   resolution: "@prefresh/utils@npm:1.1.3"
   checksum: a95b816d08a68f499489f1e0098effcda99ccba06c80986cb0dfbcda4fc9c8f8e3238603ead4ee35bb9fb7985de66b1a785d12c64fbc61600e0a8bd388fc2de0
   languageName: node
   linkType: hard
 
-"@prefresh/webpack@npm:3.3.2":
-  version: 3.3.2
-  resolution: "@prefresh/webpack@npm:3.3.2"
-  dependencies:
-    "@prefresh/core": ^1.3.1
-    "@prefresh/utils": ^1.1.0
-  peerDependencies:
-    "@prefresh/babel-plugin": ^0.4.0
-    preact: ^10.4.0
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 775432b0064ac762e509872400a9d9300b56dd41f3148c2e5ed2d79d07f58cf5c1e881ff97db3c03ec7853aff69f87e7ef040a6974ca5eae9318b4885ddb153e
-  languageName: node
-  linkType: hard
-
-"@prefresh/webpack@npm:^3.2.2, @prefresh/webpack@npm:^3.3.0, @prefresh/webpack@npm:^3.3.3":
+"@prefresh/webpack@npm:3.3.3, @prefresh/webpack@npm:^3.2.2, @prefresh/webpack@npm:^3.3.0, @prefresh/webpack@npm:^3.3.3":
   version: 3.3.3
   resolution: "@prefresh/webpack@npm:3.3.3"
   dependencies:
@@ -8126,7 +8112,7 @@ __metadata:
     "@graphql-codegen/near-operation-file-preset": 2.2.1
     "@graphql-codegen/typescript-urql": 3.4.0
     "@prefresh/next": 1.5.2
-    "@prefresh/webpack": 3.3.2
+    "@prefresh/webpack": 3.3.3
     "@types/cookie": 0.4.1
     "@urql/devtools": 2.0.3
     "@urql/exchange-auth": 0.1.6
