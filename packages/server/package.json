@@ -22,7 +22,7 @@
     "@types/koa__cors": "3.0.3",
     "@types/koa__router": "8.0.11",
     "@types/node": "^16.11.6",
-    "@types/node-fetch": "2.5.12",
+    "@types/node-fetch": "2.6.1",
     "@yestheory.family/eslint-config": "^1.0.0",
     "eslint": "7.32.0",
     "prisma": "3.4.1",
