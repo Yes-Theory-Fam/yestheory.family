@@ -8092,7 +8092,7 @@ __metadata:
     react-use: 17.3.1
     regenerator-runtime: 0.13.9
     sass: 1.43.4
-    sass-loader: 10.2.0
+    sass-loader: 10.2.1
     sirv-cli: 1.0.14
     storybook-addon-performance: 0.16.1
     style-loader: 2.0.0
@@ -23620,9 +23620,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:10.2.0":
-  version: 10.2.0
-  resolution: "sass-loader@npm:10.2.0"
+"sass-loader@npm:10.2.1":
+  version: 10.2.1
+  resolution: "sass-loader@npm:10.2.1"
   dependencies:
     klona: ^2.0.4
     loader-utils: ^2.0.0
@@ -23641,7 +23641,7 @@ resolve@^2.0.0-next.3:
       optional: true
     sass:
       optional: true
-  checksum: d53212e5d199cdd221a67046ab4276c352d56b50ca64347115b36e8ebbb2c68ec396a14d6cf5a08853c830a6b0ec1fd2b016cdc53cbe90a0332a908f50ec2043
+  checksum: e5bc4a230bfb9103dbd05f72e936e9e31cb35d09922fe90541ad71d0a64abce238b54069cfe51e67c045870093a8e9a218aff63d66468e36dc1cc3d5db4ee83b
   languageName: node
   linkType: hard
 
