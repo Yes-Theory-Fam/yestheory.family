@@ -2336,7 +2336,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.12.7, @babel/preset-typescript@npm:^7.13.0, @babel/preset-typescript@npm:^7.15.0, @babel/preset-typescript@npm:^7.16.7":
+"@babel/preset-typescript@npm:7.16.7, @babel/preset-typescript@npm:^7.12.7, @babel/preset-typescript@npm:^7.13.0, @babel/preset-typescript@npm:^7.15.0":
   version: 7.16.7
   resolution: "@babel/preset-typescript@npm:7.16.7"
   dependencies:
@@ -8051,7 +8051,7 @@ __metadata:
     "@babel/core": 7.17.5
     "@babel/plugin-transform-react-jsx": 7.17.3
     "@babel/preset-env": 7.16.11
-    "@babel/preset-typescript": ^7.16.7
+    "@babel/preset-typescript": 7.16.7
     "@chakra-ui/icons": 1.1.7
     "@chakra-ui/react": 1.8.6
     "@emotion/react": 11.5.0
