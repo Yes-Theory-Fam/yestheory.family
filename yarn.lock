@@ -4724,6 +4724,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/class-validator@npm:0.13.4":
+  version: 0.13.4
+  resolution: "@nestjs/class-validator@npm:0.13.4"
+  dependencies:
+    libphonenumber-js: ^1.9.43
+    validator: ^13.7.0
+  checksum: 375f3a699ff4d4c801613df3968e13aad29bbca40955f085327f332a055777a3b048fa048c4b9813ced21fc8b501faa62e9a5cfaecc1bf2fb7d6aba2e0b821cc
+  languageName: node
+  linkType: hard
+
 "@next/env@npm:12.1.0":
   version: 12.1.0
   resolution: "@next/env@npm:12.1.0"
@@ -7486,13 +7496,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/validator@npm:^13.1.3":
-  version: 13.1.3
-  resolution: "@types/validator@npm:13.1.3"
-  checksum: 3ffecee869a8bfef7e9cda47bc37e7e074c2b1e1ab90dfabf345ee7e15818bd3272b575afe490b096b597d22c3a7a4ce0d3708d59cadd368f63f443cdb13c66d
-  languageName: node
-  linkType: hard
-
 "@types/warning@npm:^3.0.0":
   version: 3.0.0
   resolution: "@types/warning@npm:3.0.0"
@@ -8026,6 +8029,7 @@ __metadata:
   dependencies:
     "@koa/cors": 3.1.0
     "@koa/router": 10.1.1
+    "@nestjs/class-validator": 0.13.4
     "@types/graphql-fields": 1.3.4
     "@types/koa": 2.13.4
     "@types/koa-bodyparser": 4.3.6
@@ -8038,7 +8042,6 @@ __metadata:
     "@yes-theory-fam/database": ^0.20.0-bp-preview.2
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: 3.6.4
-    class-validator: 0.13.1
     discord.js: 13.3.1
     dotenv: 10.0.0
     eslint: 7.32.0
@@ -10504,17 +10507,6 @@ __metadata:
     isobject: ^3.0.0
     static-extend: ^0.1.1
   checksum: be108900801e639e50f96a7e4bfa8867c753a7750a7603879f3981f8b0a89cba657497a2d5f40cd4ea557ff15d535a100818bb486baf6e26fe5d7872e75f1078
-  languageName: node
-  linkType: hard
-
-"class-validator@npm:0.13.1":
-  version: 0.13.1
-  resolution: "class-validator@npm:0.13.1"
-  dependencies:
-    "@types/validator": ^13.1.3
-    libphonenumber-js: ^1.9.7
-    validator: ^13.5.2
-  checksum: 1d77f869792e83baef67d18220baf1e1a413a43efbd454ed359e0da691462e6d7d869e73de3ce5bb4a67206084338e5e4323e9e54dd8bc967c6fadb4e9ac44c2
   languageName: node
   linkType: hard
 
@@ -18298,10 +18290,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"libphonenumber-js@npm:^1.9.7":
-  version: 1.9.16
-  resolution: "libphonenumber-js@npm:1.9.16"
-  checksum: 7f0d41804cbe258115527b15f7c6af6565254df379034d4bd08532765fd7395872716841daa1fe2be918b04367876e07eb593f30b131e6d2415a611db23864fd
+"libphonenumber-js@npm:^1.9.43":
+  version: 1.9.49
+  resolution: "libphonenumber-js@npm:1.9.49"
+  checksum: 5c9ba82e69a985716dea722a28509eef77b4b0f96159ccd50089fa2d0cde8b778c77526d26104ca25ec40b148b7a0a588a998e1014ebedc353ff214b7f7e918f
   languageName: node
   linkType: hard
 
@@ -26829,10 +26821,10 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"validator@npm:^13.5.2":
-  version: 13.5.2
-  resolution: "validator@npm:13.5.2"
-  checksum: 28655521e2d80bd41af856f8691d199e4081396d87adab34f9b66926873e4654e6a2acbd5a22d7dc96835d8caa6ba3d829da12e86d668dc709d9ab97e16183bd
+"validator@npm:^13.7.0":
+  version: 13.7.0
+  resolution: "validator@npm:13.7.0"
+  checksum: 2b83283de1222ca549a7ef57f46e8d49c6669213348db78b7045bce36a3b5843ff1e9f709ebf74574e06223461ee1f264f8cc9a26a0060a79a27de079d8286ef
   languageName: node
   linkType: hard
 

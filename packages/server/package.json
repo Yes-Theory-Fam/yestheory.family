@@ -13,6 +13,7 @@
     "schema": "../../node_modules/@yes-theory-fam/database/prisma/schema.prisma"
   },
   "devDependencies": {
+    "@nestjs/class-validator": "0.13.4",
     "@types/graphql-fields": "1.3.4",
     "@types/koa": "2.13.4",
     "@types/koa-bodyparser": "4.3.6",
@@ -23,7 +24,6 @@
     "@types/node": "^16.11.6",
     "@types/node-fetch": "2.5.12",
     "@yestheory.family/eslint-config": "^1.0.0",
-    "class-validator": "0.13.1",
     "eslint": "7.32.0",
     "prisma": "3.4.1",
     "ts-node": "10.4.0",
