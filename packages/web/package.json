@@ -30,7 +30,7 @@
     "@prefresh/webpack": "3.3.2",
     "@types/cookie": "0.4.1",
     "@urql/devtools": "2.0.3",
-    "@urql/exchange-auth": "0.1.6",
+    "@urql/exchange-auth": "0.1.7",
     "@yestheory.family/ui": "1.0.0",
     "cookie": "0.4.1",
     "graphql": "15.7.2",

@@ -4300,6 +4300,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-typed-document-node/core@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@graphql-typed-document-node/core@npm:3.1.1"
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 87ff4cee308f1075f4472b80f9f9409667979940f8f701e87f0aa35ce5cf104d94b41258ea8192d05a0893475cd0f086a3929a07663b4fe8d0e805a277f07ed5
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.5.0":
   version: 0.5.0
   resolution: "@humanwhocodes/config-array@npm:0.5.0"
@@ -7721,7 +7730,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urql/core@npm:>=2.2.0, @urql/core@npm:^2.3.2":
+"@urql/core@npm:>=2.3.6":
+  version: 2.4.3
+  resolution: "@urql/core@npm:2.4.3"
+  dependencies:
+    "@graphql-typed-document-node/core": ^3.1.1
+    wonka: ^4.0.14
+  peerDependencies:
+    graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 368324171c33a3e9ede22896ac5ba93a34a8aaa22cc3765b23401a94da2c4501c47b334192220ddc3f5f7c139f17a40c1265a3c2efedf40533eaf7a85a8e76e5
+  languageName: node
+  linkType: hard
+
+"@urql/core@npm:^2.3.2":
   version: 2.3.4
   resolution: "@urql/core@npm:2.3.4"
   dependencies:
@@ -7745,15 +7766,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urql/exchange-auth@npm:0.1.6":
-  version: 0.1.6
-  resolution: "@urql/exchange-auth@npm:0.1.6"
+"@urql/exchange-auth@npm:0.1.7":
+  version: 0.1.7
+  resolution: "@urql/exchange-auth@npm:0.1.7"
   dependencies:
-    "@urql/core": ">=2.2.0"
+    "@urql/core": ">=2.3.6"
     wonka: ^4.0.14
   peerDependencies:
-    graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
-  checksum: 4ff40f9c89f1116f691c7a15da0b59528fdfb4bfa6c02a31bcf79de28b5ba8295c088c674a1100b2dcddfa37e4b7305b45e87f40b6dec59500bcec53399da098
+    graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 36036f02d7873f9fd9385b16f1980a85918307cf23ffad83152bd67aa93b16a405c44f2e5c2b378fdef1837c33dfcc9b0db22143127a43a63da2c3c378c0600e
   languageName: node
   linkType: hard
 
@@ -8129,7 +8150,7 @@ __metadata:
     "@prefresh/webpack": 3.3.2
     "@types/cookie": 0.4.1
     "@urql/devtools": 2.0.3
-    "@urql/exchange-auth": 0.1.6
+    "@urql/exchange-auth": 0.1.7
     "@yestheory.family/eslint-config": ^1.0.0
     "@yestheory.family/ui": 1.0.0
     cookie: 0.4.1
