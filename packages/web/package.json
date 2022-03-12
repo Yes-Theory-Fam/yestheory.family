@@ -32,7 +32,7 @@
     "@urql/devtools": "2.0.3",
     "@urql/exchange-auth": "0.1.6",
     "@yestheory.family/ui": "1.0.0",
-    "cookie": "0.4.1",
+    "cookie": "0.4.2",
     "graphql": "15.7.2",
     "next": "12.1.0",
     "next-images": "1.8.4",
