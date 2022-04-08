@@ -45,7 +45,7 @@
     "@yestheory.family/eslint-config": "^1.0.0",
     "babel-jest": "27.5.1",
     "babel-loader": "8.2.3",
-    "chromatic": "6.0.5",
+    "chromatic": "6.5.4",
     "core-js": "3.19.1",
     "css-loader": "5.2.7",
     "env-cmd": "10.1.0",
