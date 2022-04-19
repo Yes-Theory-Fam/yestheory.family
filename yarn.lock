@@ -7149,7 +7149,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa__cors@npm:3.0.3, @types/koa__cors@npm:^3.0.1":
+"@types/koa__cors@npm:3.3.0":
+  version: 3.3.0
+  resolution: "@types/koa__cors@npm:3.3.0"
+  dependencies:
+    "@types/koa": "*"
+  checksum: c1aeb10b070e72b6c01a2f6abb4b0a936017794ef4eab3469697a4e24ef2054bc371519afa90c8e6c5ea9dbeda58395a64400bd499c3fda207cb593b751b44ca
+  languageName: node
+  linkType: hard
+
+"@types/koa__cors@npm:^3.0.1":
   version: 3.0.3
   resolution: "@types/koa__cors@npm:3.0.3"
   dependencies:
@@ -8035,7 +8044,7 @@ __metadata:
     "@types/koa-bodyparser": 4.3.6
     "@types/koa-mount": 4.0.1
     "@types/koa-session": 5.10.6
-    "@types/koa__cors": 3.0.3
+    "@types/koa__cors": 3.3.0
     "@types/koa__router": 8.0.11
     "@types/node": ^16.11.6
     "@types/node-fetch": 2.5.12
