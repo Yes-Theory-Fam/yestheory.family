@@ -8098,7 +8098,7 @@ __metadata:
     babel-jest: 27.5.1
     babel-loader: 8.2.3
     chromatic: 6.0.5
-    core-js: 3.19.1
+    core-js: 3.22.5
     css-loader: 5.2.7
     env-cmd: 10.1.0
     enzyme: 3.11.0
@@ -11234,10 +11234,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.19.1":
-  version: 3.19.1
-  resolution: "core-js@npm:3.19.1"
-  checksum: 2f669061788dc6fea823f0433d871deeaaaacc7d68ef2748859509522a34df5c83e648c3c6a1993fed0ab188081b3cf32b957b2a1f46156a2b20bd775961ade4
+"core-js@npm:3.22.5":
+  version: 3.22.5
+  resolution: "core-js@npm:3.22.5"
+  checksum: d3d7495d7cdde01cf9ac3debc5087afc3c8dd56baa4953d9ccbb46b1a80872c79d14c1e6343c664c9c0fade288ab44c70b54dd34f879a71e6eff6fffeab84e00
   languageName: node
   linkType: hard
 
