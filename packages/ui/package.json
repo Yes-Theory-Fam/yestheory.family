@@ -43,7 +43,7 @@
     "@types/enzyme": "3.10.12",
     "@types/jest": "27.5.1",
     "@yestheory.family/eslint-config": "^1.0.0",
-    "babel-jest": "27.5.1",
+    "babel-jest": "28.1.0",
     "babel-loader": "8.2.5",
     "chromatic": "6.5.4",
     "core-js": "3.22.5",
