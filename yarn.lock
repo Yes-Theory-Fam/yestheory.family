@@ -2742,15 +2742,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/color-mode@npm:1.1.13":
-  version: 1.1.13
-  resolution: "@chakra-ui/color-mode@npm:1.1.13"
+"@chakra-ui/color-mode@npm:1.4.8":
+  version: 1.4.8
+  resolution: "@chakra-ui/color-mode@npm:1.4.8"
   dependencies:
-    "@chakra-ui/hooks": 1.6.1
-    "@chakra-ui/utils": 1.8.3
+    "@chakra-ui/hooks": 1.9.1
+    "@chakra-ui/react-env": 1.1.6
+    "@chakra-ui/utils": 1.10.4
   peerDependencies:
     react: ">=16.8.6"
-  checksum: be03ca030a824c0e13c327266928c7748973fbc3264d3e1064c5ede3b7d9380e51bf2075e392ddfe189a190b4357f52238a0c17e44369592e0805b2a7e80b187
+  checksum: a0f64fd02812b106c5fe04860ccaf59bb9b7555c5cab02522f9caeb8811eeebef9da687c394dfd22f55a933eabbed6d799abbc6fb654baaa02e8da94f88c3cb7
   languageName: node
   linkType: hard
 
@@ -2837,20 +2838,6 @@ __metadata:
     "@chakra-ui/system": ">=1.0.0"
     react: ">=16.8.6"
   checksum: b353f0ae2145d2c6512c01bbdbc6a492ca376179958cb824058c9c7e0bd094511aef15b5b3cf934f170fdf36cb2bb414f3af40d481dc3c38c8df73287d113b49
-  languageName: node
-  linkType: hard
-
-"@chakra-ui/hooks@npm:1.6.1":
-  version: 1.6.1
-  resolution: "@chakra-ui/hooks@npm:1.6.1"
-  dependencies:
-    "@chakra-ui/react-utils": 1.1.2
-    "@chakra-ui/utils": 1.8.3
-    compute-scroll-into-view: 1.0.14
-    copy-to-clipboard: 3.3.1
-  peerDependencies:
-    react: ">=16.8.6"
-  checksum: c18c2e708fcad2a3f2ecb55e30793e59ddba9a883990a9b490c6955e2e2975630c6edea1e8d65ae23ce86688b0c04527962c19fb7043a6618c16ff73bce94a3e
   languageName: node
   linkType: hard
 
@@ -3131,17 +3118,6 @@ __metadata:
   peerDependencies:
     react: ">=16.8.6"
   checksum: 89f674c673771e22330d6500057a6fadd3530fca1b994993806e503afe4d53cba23825dcea27125da749c05afb581af06a4eb8a15e434413f193f6158fe84921
-  languageName: node
-  linkType: hard
-
-"@chakra-ui/react-utils@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@chakra-ui/react-utils@npm:1.1.2"
-  dependencies:
-    "@chakra-ui/utils": ^1.7.0
-  peerDependencies:
-    react: ">=16.8.6"
-  checksum: ae77f194e9d4c575b1193bb056fec22d43a9da11804deb67cdc8783ddbbf09b805ffc97456ebd6ebda5b61f33e190b404860dd0361856dae1ddfd78e647cc003
   languageName: node
   linkType: hard
 
@@ -3459,7 +3435,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/utils@npm:1.10.4, @chakra-ui/utils@npm:^1.10.4, @chakra-ui/utils@npm:^1.7.0":
+"@chakra-ui/utils@npm:1.10.4, @chakra-ui/utils@npm:^1.10.4":
   version: 1.10.4
   resolution: "@chakra-ui/utils@npm:1.10.4"
   dependencies:
@@ -3468,18 +3444,6 @@ __metadata:
     framesync: 5.3.0
     lodash.mergewith: 4.6.2
   checksum: a97bf839b6569c1b420825fcab4a0b9d599d0c3752839cd01d72f4b8c2191e32da72a10727a84f5b13784ee1985083412c98855c25a42427dfb28290f37e8214
-  languageName: node
-  linkType: hard
-
-"@chakra-ui/utils@npm:1.8.3":
-  version: 1.8.3
-  resolution: "@chakra-ui/utils@npm:1.8.3"
-  dependencies:
-    "@types/lodash.mergewith": 4.6.6
-    css-box-model: 1.2.1
-    framesync: 5.3.0
-    lodash.mergewith: 4.6.2
-  checksum: 33f9474df1953b96611dd79c17df6a6c0cc482691a923fe04f1ef6c4874fa8aa525d288776826d12baab632643bed578f85b5f3c92315c24c18f3077f1815684
   languageName: node
   linkType: hard
 
@@ -13885,9 +13849,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-preact@npm:1.3.0":
+"eslint-config-preact@geisterfurz007/eslint-config-preact#13c576f8a106baaed308b1a0c9aab3099cdf5850":
   version: 1.3.0
-  resolution: "eslint-config-preact@npm:1.3.0"
+  resolution: "eslint-config-preact@https://github.com/geisterfurz007/eslint-config-preact.git#commit=13c576f8a106baaed308b1a0c9aab3099cdf5850"
   dependencies:
     "@babel/core": ^7.13.16
     "@babel/eslint-parser": ^7.13.14
@@ -13900,7 +13864,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.3.0
   peerDependencies:
     eslint: 6.x || 7.x || 8.x
-  checksum: 182aec08f563dd2d2a644eda7282dbeaf912adb2d0d32a6e30b4379c789094cdd4f2c753b9a4565f1358d3b689be1fe835a2486aca8184eedfb9a6f389f8322e
+  checksum: 51b555b7295fd10dca3fa1f374071487664b779eebe3620390a90bf027f09966caae1eb2da798ce300d59dcdf0bbdf4221d62271ec1366af7c387ab94c3fbaf4
   languageName: node
   linkType: hard
 
