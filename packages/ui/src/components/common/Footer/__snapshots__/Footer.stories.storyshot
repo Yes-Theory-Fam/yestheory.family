@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Footer Footer 1`] = `
-"<div class=\\"chakra-stack css-1gfxfsf\\">
+"
+<div class=\\"chakra-stack css-1gfxfsf\\">
+  
   <div class=\\"css-xn5uus\\">
+    
     <svg
       viewBox=\\"0 0 33.787568 17.315006\\"
       class=\\"chakra-icon css-1nsz2z9\\"
@@ -32,6 +35,7 @@ exports[`Storyshots Common/Footer Footer 1`] = `
     </svg>
   </div>
   <div class=\\"chakra-stack css-bk39nn\\">
+    
     <a
       target=\\"_blank\\"
       rel=\\"noopener noreferrer\\"

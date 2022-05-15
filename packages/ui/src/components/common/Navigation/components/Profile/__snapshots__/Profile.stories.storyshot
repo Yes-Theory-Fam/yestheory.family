@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
-"<div class=\\"css-2rlxtj\\">
+"
+<div class=\\"css-2rlxtj\\">
+  
   <button
     id=\\"menu-button-profile-menu\\"
     aria-expanded=\\"false\\"
@@ -11,11 +13,16 @@ exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
     onKeyDown={[Function func]}
     class=\\"chakra-menu__menu-button css-1eqi7qs\\"
   >
+    
     <span class=\\"css-xl71ch\\">
+      
       <div class=\\"chakra-stack css-192p3t8\\">
+        
         <p class=\\"chakra-text css-x13lj8\\">Logged in as:</p>
         <div class=\\"chakra-stack css-15lgeks\\">
+          
           <span class=\\"chakra-avatar css-vkvvxo\\">
+            
             <div
               role=\\"img\\"
               aria-label=\\"geisterfurz007#5952\\"
@@ -23,6 +30,7 @@ exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
             >
               g
             </div>
+
             <div class=\\"chakra-avatar__badge css-1plriyt\\"></div>
           </span>
           <p class=\\"chakra-text css-8wu8jt\\">geisterfurz007#5952</p>
@@ -36,7 +44,9 @@ exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
 `;
 
 exports[`Storyshots Common/Navigation/Profile Mobile Profile 1`] = `
-"<div class=\\"css-1agdl1f\\">
+"
+<div class=\\"css-1agdl1f\\">
+  
   <button
     id=\\"menu-button-profile-menu\\"
     aria-expanded=\\"false\\"
@@ -46,11 +56,16 @@ exports[`Storyshots Common/Navigation/Profile Mobile Profile 1`] = `
     onKeyDown={[Function func]}
     class=\\"chakra-menu__menu-button css-1eqi7qs\\"
   >
+    
     <span class=\\"css-xl71ch\\">
+      
       <div class=\\"chakra-stack css-192p3t8\\">
+        
         <p class=\\"chakra-text css-amg4kb\\">Logged in as:</p>
         <div class=\\"chakra-stack css-15lgeks\\">
+          
           <span class=\\"chakra-avatar css-18zvmmx\\">
+            
             <div
               role=\\"img\\"
               aria-label=\\"geisterfurz007#5952\\"
@@ -58,6 +73,7 @@ exports[`Storyshots Common/Navigation/Profile Mobile Profile 1`] = `
             >
               g
             </div>
+
             <div class=\\"chakra-avatar__badge css-1plriyt\\"></div>
           </span>
           <p class=\\"chakra-text css-kbn7if\\">geisterfurz007#5952</p>
