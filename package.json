@@ -19,7 +19,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "prettier": "2.4.1"
+    "prettier": "2.6.2"
   },
   "resolutions": {
     "@chakra-ui/color-mode": "1.1.13"
