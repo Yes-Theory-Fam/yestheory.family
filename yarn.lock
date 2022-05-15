@@ -8497,7 +8497,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yes-theory-fam/database@npm:^0.20.0-bp-preview.5":
+"@yes-theory-fam/database@npm:0.20.0-bp-preview.5":
   version: 0.20.0-bp-preview.5
   resolution: "@yes-theory-fam/database@npm:0.20.0-bp-preview.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40yes-theory-fam%2Fdatabase%2F0.20.0-bp-preview.5%2Fa9e79622e02c1baee138b85b9835d05661e2ddb8a47f339ab1bb641dba52b455"
   dependencies:
@@ -8548,7 +8548,7 @@ __metadata:
     "@types/koa__router": 8.0.11
     "@types/node": ^16.11.35
     "@types/node-fetch": 2.6.1
-    "@yes-theory-fam/database": ^0.20.0-bp-preview.5
+    "@yes-theory-fam/database": 0.20.0-bp-preview.5
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: 3.7.0
     discord.js: 13.7.0
