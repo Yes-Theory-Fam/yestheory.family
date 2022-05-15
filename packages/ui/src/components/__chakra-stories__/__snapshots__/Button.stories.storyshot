@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Button Login Button 1`] = `
-"<button
+"
+<button
   type=\\"button\\"
   role=\\"group\\"
   class=\\"chakra-button css-5c2176\\"
 >
+  
   <svg
     viewBox=\\"0 0 245 240\\"
     class=\\"chakra-icon css-1sxb4fp\\"
@@ -18,7 +20,8 @@ exports[`Storyshots Common/Button Login Button 1`] = `
 `;
 
 exports[`Storyshots Common/Button Outlined Button 1`] = `
-"<button
+"
+<button
   type=\\"button\\"
   label=\\"Button\\"
   class=\\"chakra-button css-5c2176\\"
@@ -28,7 +31,8 @@ exports[`Storyshots Common/Button Outlined Button 1`] = `
 `;
 
 exports[`Storyshots Common/Button Solid Button 1`] = `
-"<button
+"
+<button
   type=\\"button\\"
   label=\\"Button\\"
   class=\\"chakra-button css-5c2176\\"

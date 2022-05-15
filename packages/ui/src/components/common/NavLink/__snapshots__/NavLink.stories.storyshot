@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/NavLink Active Inverted Nav Link 1`] = `
-"<div class=\\"css-1agdl1f\\">
+"
+<div class=\\"css-1agdl1f\\">
+  
   <a
     target=\\"_blank\\"
     rel=\\"noopener noreferrer\\"
@@ -13,7 +15,8 @@ exports[`Storyshots Common/NavLink Active Inverted Nav Link 1`] = `
 `;
 
 exports[`Storyshots Common/NavLink Active Nav Link 1`] = `
-"<a
+"
+<a
   target=\\"_blank\\"
   rel=\\"noopener noreferrer\\"
   class=\\"chakra-link css-1q4kjoy\\"
@@ -23,7 +26,9 @@ exports[`Storyshots Common/NavLink Active Nav Link 1`] = `
 `;
 
 exports[`Storyshots Common/NavLink Inactive Inverted Nav Link 1`] = `
-"<div class=\\"css-1agdl1f\\">
+"
+<div class=\\"css-1agdl1f\\">
+  
   <a
     target=\\"_blank\\"
     rel=\\"noopener noreferrer\\"
@@ -35,7 +40,8 @@ exports[`Storyshots Common/NavLink Inactive Inverted Nav Link 1`] = `
 `;
 
 exports[`Storyshots Common/NavLink Inactive Nav Link 1`] = `
-"<a
+"
+<a
   target=\\"_blank\\"
   rel=\\"noopener noreferrer\\"
   class=\\"chakra-link css-f6i9u1\\"
@@ -45,8 +51,11 @@ exports[`Storyshots Common/NavLink Inactive Nav Link 1`] = `
 `;
 
 exports[`Storyshots Common/NavLink NavLink 1`] = `
-"<div class=\\"chakra-stack css-owjkmg\\">
+"
+<div class=\\"chakra-stack css-owjkmg\\">
+  
   <div class=\\"chakra-stack css-15sc1x5\\">
+    
     <a
       target=\\"_blank\\"
       rel=\\"noopener noreferrer\\"
@@ -63,6 +72,7 @@ exports[`Storyshots Common/NavLink NavLink 1`] = `
     </a>
   </div>
   <div class=\\"chakra-stack css-1d41i6c\\">
+    
     <a
       target=\\"_blank\\"
       rel=\\"noopener noreferrer\\"

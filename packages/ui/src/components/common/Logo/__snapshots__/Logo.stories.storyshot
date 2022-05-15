@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Logo Logo 1`] = `
-"<div class=\\"css-znsoff\\">
+"
+<div class=\\"css-znsoff\\">
+  
   <svg
     viewBox=\\"0 0 33.787568 17.315006\\"
     class=\\"chakra-icon css-1nsz2z9\\"
@@ -33,7 +35,9 @@ exports[`Storyshots Common/Logo Logo 1`] = `
 `;
 
 exports[`Storyshots Common/Logo Logo White 1`] = `
-"<div class=\\"css-1ya4nun\\">
+"
+<div class=\\"css-1ya4nun\\">
+  
   <svg
     viewBox=\\"0 0 33.787568 17.315006\\"
     class=\\"chakra-icon css-1nsz2z9\\"
@@ -65,9 +69,13 @@ exports[`Storyshots Common/Logo Logo White 1`] = `
 `;
 
 exports[`Storyshots Common/Logo Logos 1`] = `
-"<div class=\\"chakra-stack css-owjkmg\\">
+"
+<div class=\\"chakra-stack css-owjkmg\\">
+  
   <div class=\\"chakra-stack css-1ofz3wq\\">
+    
     <div class=\\"css-znsoff\\">
+      
       <svg
         viewBox=\\"0 0 33.787568 17.315006\\"
         class=\\"chakra-icon css-1nsz2z9\\"
@@ -97,6 +105,7 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div class=\\"css-1btwv0h\\">
+      
       <svg
         viewBox=\\"0 0 33.787568 17.315006\\"
         class=\\"chakra-icon css-1nsz2z9\\"
@@ -126,6 +135,7 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div class=\\"css-1bvkrzq\\">
+      
       <svg
         viewBox=\\"0 0 33.787568 17.315006\\"
         class=\\"chakra-icon css-1nsz2z9\\"
@@ -156,7 +166,9 @@ exports[`Storyshots Common/Logo Logos 1`] = `
     </div>
   </div>
   <div class=\\"chakra-stack css-16qyr4m\\">
+    
     <div class=\\"css-1ya4nun\\">
+      
       <svg
         viewBox=\\"0 0 33.787568 17.315006\\"
         class=\\"chakra-icon css-1nsz2z9\\"
@@ -186,6 +198,7 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div class=\\"css-1qs4zf\\">
+      
       <svg
         viewBox=\\"0 0 33.787568 17.315006\\"
         class=\\"chakra-icon css-1nsz2z9\\"
@@ -215,6 +228,7 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div class=\\"css-7rn6ev\\">
+      
       <svg
         viewBox=\\"0 0 33.787568 17.315006\\"
         class=\\"chakra-icon css-1nsz2z9\\"
