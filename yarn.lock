@@ -13849,9 +13849,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-preact@geisterfurz007/eslint-config-preact#13c576f8a106baaed308b1a0c9aab3099cdf5850":
+"eslint-config-preact@geisterfurz007/eslint-config-preact#87beae0266741b20c1b96b9658fdfad0652a5c7f":
   version: 1.3.0
-  resolution: "eslint-config-preact@https://github.com/geisterfurz007/eslint-config-preact.git#commit=13c576f8a106baaed308b1a0c9aab3099cdf5850"
+  resolution: "eslint-config-preact@https://github.com/geisterfurz007/eslint-config-preact.git#commit=87beae0266741b20c1b96b9658fdfad0652a5c7f"
   dependencies:
     "@babel/core": ^7.13.16
     "@babel/eslint-parser": ^7.13.14

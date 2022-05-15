@@ -22,7 +22,7 @@
     "prettier": "2.6.2"
   },
   "resolutions": {
-    "eslint-config-preact": "geisterfurz007/eslint-config-preact#13c576f8a106baaed308b1a0c9aab3099cdf5850"
+    "eslint-config-preact": "geisterfurz007/eslint-config-preact#87beae0266741b20c1b96b9658fdfad0652a5c7f"
   },
   "packageManager": "yarn@3.2.1"
 }
