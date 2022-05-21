@@ -13,7 +13,7 @@ interface LinkRowProps {
 const definitionToLink = (definition: FooterLinkDefinition) => {
   const { text, ...args } = definition;
   return (
-    <WrappedLink {...args} color={"gray.600"} key={args.key}>
+    <WrappedLink {...args} color={"gray.600"} key={args.key ?? args.href}>
       {text}
     </WrappedLink>
   );

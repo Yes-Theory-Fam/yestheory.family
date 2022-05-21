@@ -11,11 +11,11 @@ exports[`Storyshots Home/Paragraph Paragraph 1`] = `
       className="chakra-heading css-5s6hfy"
     >
       Discover 
-      <h2
-        className="chakra-heading css-3stmem"
+      <span
+        className="chakra-heading css-1fkrzy1"
       >
         empowering stories
-      </h2>
+      </span>
       
     </h2>
   </div>

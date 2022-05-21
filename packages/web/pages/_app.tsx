@@ -77,8 +77,8 @@ const YTFApp: FC<YTFAppProps> = ({ Component, pageProps, user }) => {
           <Box pt={6} bg={"white"}>
             <Footer
               links={[
-                { text: "Imprint", href: "/imprint", key: "imprint" },
-                { text: "Privacy", href: "/privacy", key: "privacy" },
+                { text: "Imprint", href: "/imprint" },
+                { text: "Privacy", href: "/privacy" },
               ]}
             />
           </Box>

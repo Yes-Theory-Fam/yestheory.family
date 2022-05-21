@@ -9,7 +9,7 @@ export const DesktopNavigation: FC<NavigationProps> = (props) => {
   const links = props.links.map((l) => {
     const { text, ...rest } = l;
     return (
-      <NavLink {...rest} key={l.key}>
+      <NavLink {...rest} key={l.key ?? l.href}>
         {text}
       </NavLink>
     );
