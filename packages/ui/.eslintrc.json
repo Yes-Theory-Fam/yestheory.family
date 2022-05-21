@@ -1,5 +1,10 @@
 {
-  "extends": ["@yestheory.family/eslint-config", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:storybook/recommended"],
+  "extends": [
+    "@yestheory.family/eslint-config",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:storybook/recommended"
+  ],
   "settings": {
     "react": {
       "version": "detect"
