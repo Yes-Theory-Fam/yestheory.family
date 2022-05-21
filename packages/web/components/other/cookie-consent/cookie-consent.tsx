@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import {
   AlertDialog,
   AlertDialogBody,
@@ -17,7 +17,7 @@ import { useCallback, useEffect, useRef } from "react";
 
 const cookieAcceptName = "ytf-cookie-consent";
 
-export const CookieConsent: FunctionalComponent = () => {
+export const CookieConsent: FC = () => {
   const { onOpen, isOpen, onClose } = useDisclosure();
 
   useEffect(() => {

@@ -1,256 +1,172 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Logo Logo 1`] = `
-"
-<div class=\\"css-znsoff\\">
-  
+<div
+  className="css-znsoff"
+>
   <svg
-    viewBox=\\"0 0 33.787568 17.315006\\"
-    class=\\"chakra-icon css-1nsz2z9\\"
+    className="chakra-icon css-1nsz2z9"
+    focusable={false}
+    viewBox="0 0 33.787568 17.315006"
   >
     <g>
       <text
-        x=\\".021\\"
-        y=\\"10.118\\"
+        x=".021"
+        y="10.118"
       >
         YES
       </text>
       <text
-        x=\\".042\\"
-        y=\\"17.251\\"
+        x=".042"
+        y="17.251"
       >
         THEORY
       </text>
       <text
-        x=\\"-.489\\"
-        y=\\"-27.315\\"
-        transform=\\"rotate(90)\\"
-        fill=\\"#0167ff\\"
+        fill="#0167ff"
+        transform="rotate(90)"
+        x="-.489"
+        y="-27.315"
       >
         FAM
       </text>
     </g>
   </svg>
-</div>"
+</div>
 `;
 
 exports[`Storyshots Common/Logo Logo White 1`] = `
-"
-<div class=\\"css-1ya4nun\\">
-  
+<div
+  className="css-1ya4nun"
+>
   <svg
-    viewBox=\\"0 0 33.787568 17.315006\\"
-    class=\\"chakra-icon css-1nsz2z9\\"
+    className="chakra-icon css-1nsz2z9"
+    focusable={false}
+    viewBox="0 0 33.787568 17.315006"
   >
     <g>
       <text
-        x=\\".021\\"
-        y=\\"10.118\\"
+        x=".021"
+        y="10.118"
       >
         YES
       </text>
       <text
-        x=\\".042\\"
-        y=\\"17.251\\"
+        x=".042"
+        y="17.251"
       >
         THEORY
       </text>
       <text
-        x=\\"-.489\\"
-        y=\\"-27.315\\"
-        transform=\\"rotate(90)\\"
-        fill=\\"white\\"
+        fill="white"
+        transform="rotate(90)"
+        x="-.489"
+        y="-27.315"
       >
         FAM
       </text>
     </g>
   </svg>
-</div>"
+</div>
 `;
 
 exports[`Storyshots Common/Logo Logos 1`] = `
-"
-<div class=\\"chakra-stack css-owjkmg\\">
-  
-  <div class=\\"chakra-stack css-1ofz3wq\\">
-    
-    <div class=\\"css-znsoff\\">
-      
+<div
+  className="chakra-stack css-owjkmg"
+>
+  <div
+    className="chakra-stack css-1ofz3wq"
+  >
+    <div
+      className="css-znsoff"
+    >
       <svg
-        viewBox=\\"0 0 33.787568 17.315006\\"
-        class=\\"chakra-icon css-1nsz2z9\\"
+        className="chakra-icon css-1nsz2z9"
+        focusable={false}
+        viewBox="0 0 33.787568 17.315006"
       >
         <g>
           <text
-            x=\\".021\\"
-            y=\\"10.118\\"
+            x=".021"
+            y="10.118"
           >
             YES
           </text>
           <text
-            x=\\".042\\"
-            y=\\"17.251\\"
+            x=".042"
+            y="17.251"
           >
             THEORY
           </text>
           <text
-            x=\\"-.489\\"
-            y=\\"-27.315\\"
-            transform=\\"rotate(90)\\"
-            fill=\\"#0167ff\\"
+            fill="#0167ff"
+            transform="rotate(90)"
+            x="-.489"
+            y="-27.315"
           >
             FAM
           </text>
         </g>
       </svg>
     </div>
-    <div class=\\"css-1btwv0h\\">
-      
+    <div
+      className="css-1btwv0h"
+    >
       <svg
-        viewBox=\\"0 0 33.787568 17.315006\\"
-        class=\\"chakra-icon css-1nsz2z9\\"
+        className="chakra-icon css-1nsz2z9"
+        focusable={false}
+        viewBox="0 0 33.787568 17.315006"
       >
         <g>
           <text
-            x=\\".021\\"
-            y=\\"10.118\\"
+            x=".021"
+            y="10.118"
           >
             YES
           </text>
           <text
-            x=\\".042\\"
-            y=\\"17.251\\"
+            x=".042"
+            y="17.251"
           >
             THEORY
           </text>
           <text
-            x=\\"-.489\\"
-            y=\\"-27.315\\"
-            transform=\\"rotate(90)\\"
-            fill=\\"#0167ff\\"
+            fill="#0167ff"
+            transform="rotate(90)"
+            x="-.489"
+            y="-27.315"
           >
             FAM
           </text>
         </g>
       </svg>
     </div>
-    <div class=\\"css-1bvkrzq\\">
-      
+    <div
+      className="css-1bvkrzq"
+    >
       <svg
-        viewBox=\\"0 0 33.787568 17.315006\\"
-        class=\\"chakra-icon css-1nsz2z9\\"
+        className="chakra-icon css-1nsz2z9"
+        focusable={false}
+        viewBox="0 0 33.787568 17.315006"
       >
         <g>
           <text
-            x=\\".021\\"
-            y=\\"10.118\\"
+            x=".021"
+            y="10.118"
           >
             YES
           </text>
           <text
-            x=\\".042\\"
-            y=\\"17.251\\"
+            x=".042"
+            y="17.251"
           >
             THEORY
           </text>
           <text
-            x=\\"-.489\\"
-            y=\\"-27.315\\"
-            transform=\\"rotate(90)\\"
-            fill=\\"#0167ff\\"
-          >
-            FAM
-          </text>
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class=\\"chakra-stack css-16qyr4m\\">
-    
-    <div class=\\"css-1ya4nun\\">
-      
-      <svg
-        viewBox=\\"0 0 33.787568 17.315006\\"
-        class=\\"chakra-icon css-1nsz2z9\\"
-      >
-        <g>
-          <text
-            x=\\".021\\"
-            y=\\"10.118\\"
-          >
-            YES
-          </text>
-          <text
-            x=\\".042\\"
-            y=\\"17.251\\"
-          >
-            THEORY
-          </text>
-          <text
-            x=\\"-.489\\"
-            y=\\"-27.315\\"
-            transform=\\"rotate(90)\\"
-            fill=\\"white\\"
-          >
-            FAM
-          </text>
-        </g>
-      </svg>
-    </div>
-    <div class=\\"css-1qs4zf\\">
-      
-      <svg
-        viewBox=\\"0 0 33.787568 17.315006\\"
-        class=\\"chakra-icon css-1nsz2z9\\"
-      >
-        <g>
-          <text
-            x=\\".021\\"
-            y=\\"10.118\\"
-          >
-            YES
-          </text>
-          <text
-            x=\\".042\\"
-            y=\\"17.251\\"
-          >
-            THEORY
-          </text>
-          <text
-            x=\\"-.489\\"
-            y=\\"-27.315\\"
-            transform=\\"rotate(90)\\"
-            fill=\\"white\\"
-          >
-            FAM
-          </text>
-        </g>
-      </svg>
-    </div>
-    <div class=\\"css-7rn6ev\\">
-      
-      <svg
-        viewBox=\\"0 0 33.787568 17.315006\\"
-        class=\\"chakra-icon css-1nsz2z9\\"
-      >
-        <g>
-          <text
-            x=\\".021\\"
-            y=\\"10.118\\"
-          >
-            YES
-          </text>
-          <text
-            x=\\".042\\"
-            y=\\"17.251\\"
-          >
-            THEORY
-          </text>
-          <text
-            x=\\"-.489\\"
-            y=\\"-27.315\\"
-            transform=\\"rotate(90)\\"
-            fill=\\"white\\"
+            fill="#0167ff"
+            transform="rotate(90)"
+            x="-.489"
+            y="-27.315"
           >
             FAM
           </text>
@@ -258,5 +174,105 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
   </div>
-</div>"
+  <div
+    className="chakra-stack css-16qyr4m"
+  >
+    <div
+      className="css-1ya4nun"
+    >
+      <svg
+        className="chakra-icon css-1nsz2z9"
+        focusable={false}
+        viewBox="0 0 33.787568 17.315006"
+      >
+        <g>
+          <text
+            x=".021"
+            y="10.118"
+          >
+            YES
+          </text>
+          <text
+            x=".042"
+            y="17.251"
+          >
+            THEORY
+          </text>
+          <text
+            fill="white"
+            transform="rotate(90)"
+            x="-.489"
+            y="-27.315"
+          >
+            FAM
+          </text>
+        </g>
+      </svg>
+    </div>
+    <div
+      className="css-1qs4zf"
+    >
+      <svg
+        className="chakra-icon css-1nsz2z9"
+        focusable={false}
+        viewBox="0 0 33.787568 17.315006"
+      >
+        <g>
+          <text
+            x=".021"
+            y="10.118"
+          >
+            YES
+          </text>
+          <text
+            x=".042"
+            y="17.251"
+          >
+            THEORY
+          </text>
+          <text
+            fill="white"
+            transform="rotate(90)"
+            x="-.489"
+            y="-27.315"
+          >
+            FAM
+          </text>
+        </g>
+      </svg>
+    </div>
+    <div
+      className="css-7rn6ev"
+    >
+      <svg
+        className="chakra-icon css-1nsz2z9"
+        focusable={false}
+        viewBox="0 0 33.787568 17.315006"
+      >
+        <g>
+          <text
+            x=".021"
+            y="10.118"
+          >
+            YES
+          </text>
+          <text
+            x=".042"
+            y="17.251"
+          >
+            THEORY
+          </text>
+          <text
+            fill="white"
+            transform="rotate(90)"
+            x="-.489"
+            y="-27.315"
+          >
+            FAM
+          </text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
 `;

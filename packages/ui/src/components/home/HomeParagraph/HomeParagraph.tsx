@@ -1,17 +1,15 @@
-import { h, FunctionalComponent, JSX } from "preact";
+import { FC, ReactNode } from "react";
 import { Button, VStack, useBreakpointValue, Link } from "@chakra-ui/react";
 import { Heading, HeadingProps, OverrideComponentContext } from "../../";
 import { useContext } from "react";
 
 export interface HomeParagraphProps {
   heading: HeadingProps;
-  paragraphs: JSX.Element[];
+  paragraphs: ReactNode;
   buttonHref: string;
 }
 
-export const HomeParagraph: FunctionalComponent<HomeParagraphProps> = (
-  props
-) => {
+export const HomeParagraph: FC<HomeParagraphProps> = (props) => {
   const buttonSize: undefined | "sm" | "md" =
     useBreakpointValue(["sm", null, "md"]) ?? undefined;
   const { wrapLink } = useContext(OverrideComponentContext);

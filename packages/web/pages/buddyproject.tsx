@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { ScrollToActionContainer } from "@yestheory.family/ui";
 import Head from "next/head";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { BuddyProjectProvider } from "../components/buddyproject/context/context
 import { BuddyProjectButton } from "../components/buddyproject/button";
 import { DisplayedInfos } from "../components/buddyproject/infos/displayed-infos";
 
-const CTA: FunctionalComponent = () => {
+const CTA: FC = () => {
   return (
     <ScrollToActionContainer text={"Get involved"}>
       <VStack w={["full", null, null, null, "50%"]} spacing={10} px={6}>
@@ -31,7 +31,7 @@ const CTA: FunctionalComponent = () => {
   );
 };
 
-const BuddyProject: FunctionalComponent = () => {
+const BuddyProject: FC = () => {
   return (
     <>
       <Head>

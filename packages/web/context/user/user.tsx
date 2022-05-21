@@ -1,5 +1,12 @@
-import { FunctionalComponent, VNode } from "preact";
-import { Context, createContext, useState, useEffect, useContext } from "react";
+import {
+  FC,
+  ReactNode,
+  Context,
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+} from "react";
 import { useCurrentUserQuery, User } from "./user.generated";
 
 interface UserContextProps {
@@ -19,11 +26,11 @@ const UserContext: Context<UserContextProps> = createContext<UserContextProps>({
 });
 
 interface UserProviderProps {
-  children: VNode;
+  children: ReactNode;
   serverUser: User;
 }
 
-export const UserProvider: FunctionalComponent<UserProviderProps> = ({
+export const UserProvider: FC<UserProviderProps> = ({
   serverUser,
   children,
 }) => {
@@ -55,12 +62,12 @@ export const UserProvider: FunctionalComponent<UserProviderProps> = ({
 };
 
 interface UserConsumerProps {
-  children: (context: UserContextProps) => VNode;
+  children: (context: UserContextProps) => ReactNode;
 }
 
-export const UserConsumer: FunctionalComponent<UserConsumerProps> = ({
-  children,
-}) => <UserContext.Consumer>{children}</UserContext.Consumer>;
+export const UserConsumer: FC<UserConsumerProps> = ({ children }) => (
+  <UserContext.Consumer>{children}</UserContext.Consumer>
+);
 
 export const useUser = (): User | undefined => {
   const context = useContext(UserContext);

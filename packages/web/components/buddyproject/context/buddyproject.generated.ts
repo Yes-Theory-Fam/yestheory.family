@@ -44,7 +44,7 @@ export const StateDocument = gql`
 `;
 
 export function useStateQuery(
-  options: Omit<Urql.UseQueryArgs<StateQueryVariables>, "query"> = {}
+  options?: Omit<Urql.UseQueryArgs<StateQueryVariables>, "query">
 ) {
   return Urql.useQuery<StateQuery>({ query: StateDocument, ...options });
 }

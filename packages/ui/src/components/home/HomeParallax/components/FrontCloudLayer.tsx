@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
 import { Box, Image } from "@chakra-ui/react";
 import * as Images from "../assets";
@@ -12,10 +12,7 @@ interface FrontCloudProps {
   positioned?: Positioned;
 }
 
-const SmallFrontCloud: FunctionalComponent<FrontCloudProps> = ({
-  positioned,
-  ...props
-}) => {
+const SmallFrontCloud: FC<FrontCloudProps> = ({ positioned, ...props }) => {
   return (
     <Box position={"absolute"} overflow={"hidden"} {...positioned}>
       <Image borderRadius={0} width={"full"} position={"relative"} {...props} />
@@ -23,10 +20,7 @@ const SmallFrontCloud: FunctionalComponent<FrontCloudProps> = ({
   );
 };
 
-const BigFrontCloud: FunctionalComponent<FrontCloudProps> = ({
-  positioned,
-  ...props
-}) => {
+const BigFrontCloud: FC<FrontCloudProps> = ({ positioned, ...props }) => {
   const bigCloudRef = useRef<HTMLImageElement>(null);
   const size = useWindowSize();
   const [state, setState] = useState({ bottom: 0, left: 0 });
@@ -51,7 +45,7 @@ const BigFrontCloud: FunctionalComponent<FrontCloudProps> = ({
   );
 };
 
-export const FrontCloudLayer: FunctionalComponent = () => {
+export const FrontCloudLayer: FC = () => {
   const bottom = { ...fullWidth, bottom: 0 };
   const navbarHeight = useNavbarHeight();
   const fullWithoutNavbar = `calc(100vh - ${navbarHeight}px)`;

@@ -48,16 +48,12 @@ module.exports = {
         plugins: [
           [
             "@babel/plugin-transform-react-jsx",
-            { importSource: "preact", runtime: "automatic" },
+            { importSource: "react", runtime: "automatic" },
           ],
         ],
       },
     });
     config.resolve.extensions.push(".ts", ".tsx");
-    config.resolve.alias = {
-      react: "preact/compat",
-      "react-dom": "preact/compat",
-    };
 
     return config;
   },

@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { VStack } from "@chakra-ui/react";
 import { Copyright } from "./components/Copyright";
 import {
@@ -13,7 +13,7 @@ export interface FooterProps {
   links: FooterLinkDefinition[];
 }
 
-export const Footer: FunctionalComponent<FooterProps> = ({ links }) => (
+export const Footer: FC<FooterProps> = ({ links }) => (
   <VStack bg={"white"} py={4}>
     <Logo size={["sm", null, "md"]} />
     <FooterLinkRow links={links} />

@@ -1,4 +1,4 @@
-import { h, FunctionalComponent, Fragment } from "preact";
+import { FC } from "react";
 import { NavigationProps } from "../Navigation";
 import { LoginButton, Logo, NavLink } from "../..";
 import {
@@ -16,7 +16,7 @@ interface NavBarProps {
   onMenuOpenClick: () => void;
 }
 
-const NavBar: FunctionalComponent<NavBarProps> = ({ onMenuOpenClick }) => (
+const NavBar: FC<NavBarProps> = ({ onMenuOpenClick }) => (
   <Flex direction={"row"} justify={"space-between"} p={4} align={"center"}>
     <WrappedLink href={"/"} _hover={{}}>
       <Logo size={"sm"} />
@@ -29,7 +29,7 @@ interface NavigationStackProps extends NavigationProps {
   onCloseClick: () => void;
 }
 
-const NavigationStack: FunctionalComponent<NavigationStackProps> = ({
+const NavigationStack: FC<NavigationStackProps> = ({
   links,
   user,
   menuItems,
@@ -69,9 +69,7 @@ const NavigationStack: FunctionalComponent<NavigationStackProps> = ({
   );
 };
 
-export const MobileNavigation: FunctionalComponent<NavigationProps> = (
-  props
-) => {
+export const MobileNavigation: FC<NavigationProps> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // TODO fix drawer only half open on S21

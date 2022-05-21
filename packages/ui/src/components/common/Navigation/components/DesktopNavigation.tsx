@@ -1,13 +1,11 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { LoginButton, Logo, NavLink } from "../..";
 import { NavigationProps } from "../Navigation";
 import { HStack, Box } from "@chakra-ui/react";
 import { Profile } from "./Profile/Profile";
 import { WrappedLink } from "../../..";
 
-export const DesktopNavigation: FunctionalComponent<NavigationProps> = (
-  props
-) => {
+export const DesktopNavigation: FC<NavigationProps> = (props) => {
   const links = props.links.map((l) => {
     const { text, ...rest } = l;
     return (

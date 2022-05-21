@@ -3,7 +3,11 @@
     "es6": true,
     "node": true
   },
+  "plugins": ["prettier"],
   "extends": ["eslint:recommended"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
@@ -15,7 +19,8 @@
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
       ],
       "globals": {
         "Atomics": "readonly",
@@ -26,7 +31,7 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
       },
-      "plugins": ["@typescript-eslint"],
+      "plugins": ["@typescript-eslint", "prettier"],
       "rules": {
         "no-await-in-loop": "error",
         "curly": ["error", "multi-line", "consistent"],

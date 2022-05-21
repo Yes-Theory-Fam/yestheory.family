@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { useAuthPocQuery } from "../../components/auth/authPoc.generated";
 import { Box } from "@chakra-ui/react";
 
@@ -9,7 +9,7 @@ const E = () => {
   return <p>{JSON.stringify(data)}</p>;
 };
 
-const AuthPoc: FunctionalComponent = () => {
+const AuthPoc: FC = () => {
   return (
     <Box my={56}>
       <E />

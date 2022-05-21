@@ -1,66 +1,74 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Footer Footer 1`] = `
-"
-<div class=\\"chakra-stack css-1gfxfsf\\">
-  
-  <div class=\\"css-xn5uus\\">
-    
+<div
+  className="chakra-stack css-1gfxfsf"
+>
+  <div
+    className="css-xn5uus"
+  >
     <svg
-      viewBox=\\"0 0 33.787568 17.315006\\"
-      class=\\"chakra-icon css-1nsz2z9\\"
+      className="chakra-icon css-1nsz2z9"
+      focusable={false}
+      viewBox="0 0 33.787568 17.315006"
     >
       <g>
         <text
-          x=\\".021\\"
-          y=\\"10.118\\"
+          x=".021"
+          y="10.118"
         >
           YES
         </text>
         <text
-          x=\\".042\\"
-          y=\\"17.251\\"
+          x=".042"
+          y="17.251"
         >
           THEORY
         </text>
         <text
-          x=\\"-.489\\"
-          y=\\"-27.315\\"
-          transform=\\"rotate(90)\\"
-          fill=\\"#0167ff\\"
+          fill="#0167ff"
+          transform="rotate(90)"
+          x="-.489"
+          y="-27.315"
         >
           FAM
         </text>
       </g>
     </svg>
   </div>
-  <div class=\\"chakra-stack css-bk39nn\\">
-    
+  <div
+    className="chakra-stack css-bk39nn"
+  >
     <a
-      target=\\"_blank\\"
-      rel=\\"noopener noreferrer\\"
-      href=\\"https://yestheory.com\\"
-      class=\\"chakra-link css-djevj3\\"
+      className="chakra-link css-djevj3"
+      href="https://yestheory.com"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       Yes Theory
     </a>
     <a
-      target=\\"_blank\\"
-      rel=\\"noopener noreferrer\\"
-      href=\\"https://seekdiscomfort.com\\"
-      class=\\"chakra-link css-djevj3\\"
+      className="chakra-link css-djevj3"
+      href="https://seekdiscomfort.com"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       Seek Discomfort
     </a>
     <a
-      target=\\"_blank\\"
-      rel=\\"noopener noreferrer\\"
-      href=\\"https://example.com\\"
-      class=\\"chakra-link css-djevj3\\"
+      className="chakra-link css-djevj3"
+      href="https://example.com"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       Example
     </a>
   </div>
-  <p class=\\"chakra-text css-1ah33bq\\">© YesTheoryFam 2022</p>
-</div>"
+  <p
+    className="chakra-text css-1ah33bq"
+  >
+    © YesTheoryFam 
+    2022
+  </p>
+</div>
 `;

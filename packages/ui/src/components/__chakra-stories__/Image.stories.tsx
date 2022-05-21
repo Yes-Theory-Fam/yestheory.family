@@ -1,6 +1,5 @@
-import { h } from "preact";
 import { Image, ImageProps } from "@chakra-ui/react";
-import { Meta, Story } from "@storybook/preact/types-6-0";
+import { Meta, Story } from "@storybook/react/types-6-0";
 
 interface ArgProps {
   height: number;

@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { Box, Center, Image, ImageProps, Stack } from "@chakra-ui/react";
 import { HomeParagraph, HomeParagraphProps } from "..";
 
@@ -8,7 +8,7 @@ export interface HomeRowProps {
   direction: "ltr" | "rtl";
 }
 
-export const HomeRow: FunctionalComponent<HomeRowProps> = (props) => {
+export const HomeRow: FC<HomeRowProps> = (props) => {
   const rowDirection = props.direction === "ltr" ? "row" : "row-reverse";
   const shadow = props.direction === "ltr" ? "imageRight" : "imageLeft";
 

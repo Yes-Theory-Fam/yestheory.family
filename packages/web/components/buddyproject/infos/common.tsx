@@ -1,18 +1,13 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { GridItem, Link, Text, VStack } from "@chakra-ui/react";
 
-export const SectionHeading: FunctionalComponent<{ text: string }> = ({
-  text,
-}) => (
+export const SectionHeading: FC<{ text: string }> = ({ text }) => (
   <Text color={"gray.800"} fontSize={"2xl"} fontWeight={"bold"}>
     {text}
   </Text>
 );
 
-export const Step: FunctionalComponent<{ heading: string }> = ({
-  heading,
-  children,
-}) => (
+export const Step: FC<{ heading: string }> = ({ heading, children }) => (
   <GridItem>
     <VStack align={"flex-start"}>
       <SectionHeading text={heading} />
@@ -21,7 +16,7 @@ export const Step: FunctionalComponent<{ heading: string }> = ({
   </GridItem>
 );
 
-export const DiscordLink: FunctionalComponent = () => (
+export const DiscordLink: FC = () => (
   <Link href={"https://discord.gg/yestheory"}>
     Yes Theory Fam Discord server
   </Link>

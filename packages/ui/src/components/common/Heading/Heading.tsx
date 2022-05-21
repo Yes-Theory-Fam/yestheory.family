@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import {
   Heading as ChakraHeading,
   HeadingProps as ChakraHeadingProps,
@@ -26,7 +26,7 @@ const headingSizeToFontSize: Record<HeadingSize, string[]> = {
   h5: ["md", "lg", "xl"],
 };
 
-export const Heading: FunctionalComponent<HeadingProps> = ({
+export const Heading: FC<HeadingProps> = ({
   frontText,
   blueText,
   backText,
@@ -59,7 +59,7 @@ export const Heading: FunctionalComponent<HeadingProps> = ({
     <ChakraHeading {...patchedProps}>
       {frontText}
       {frontText.endsWith("\n") && <br />}
-      <ChakraHeading {...patchedProps} display={"inline"} color={"brand.800"}>
+      <ChakraHeading {...patchedProps} as={"span"} color={"brand.800"}>
         {blueText ?? ""}
       </ChakraHeading>
       {backText ?? ""}

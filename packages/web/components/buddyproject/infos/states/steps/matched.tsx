@@ -1,9 +1,9 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { DiscordLink, Step } from "../../common";
 import { Text, Link } from "@chakra-ui/react";
 import { useBuddyProjectState } from "../../../context/context";
 
-export const MatchedStep: FunctionalComponent = () => {
+export const MatchedStep: FC = () => {
   const state = useBuddyProjectState();
   const buddyName = state.buddy?.username ?? "";
 

@@ -11,14 +11,14 @@ This project provides a monorepo setup for a Fullstack TypeScript project and co
 
 ## UI Builder (subpackage to build/theme your UI in)
 
-- [Preact](https://github.com/preactjs/preact/)
+- [React](https://github.com/facebook/react/)
 - [Chakra-UI](https://github.com/chakra-ui/chakra-ui/)
 - [Storybook](https://github.com/storybookjs/storybook/)
 - [Chromatic](https://github.com/chromaui/chromatic-cli)
 
 ## Frontend
 
-- [Preact](https://github.com/preactjs/preact/)
+- [React](https://github.com/facebook/react/)
 - [Chakra-UI](https://github.com/chakra-ui/chakra-ui/)
 - [Next.js](https://github.com/vercel/next.js/)
 - [urql](https://github.com/FormidableLabs/urql/)

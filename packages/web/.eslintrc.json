@@ -1,5 +1,10 @@
 {
-  "extends": ["preact", "@yestheory.family/eslint-config"],
+  "extends": ["@yestheory.family/eslint-config", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],

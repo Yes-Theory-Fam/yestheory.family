@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -16,9 +16,10 @@ interface SignupSuccessModalProps {
   onClose: () => void;
 }
 
-export const SignupSuccessModal: FunctionalComponent<
-  SignupSuccessModalProps
-> = ({ isOpen, onClose }) => {
+export const SignupSuccessModal: FC<SignupSuccessModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />

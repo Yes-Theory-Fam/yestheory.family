@@ -1,45 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Home/Row Row 1`] = `
-"
-<div class=\\"chakra-stack css-10irvsc\\">
-  
-  <div class=\\"css-1sat0pe\\">
-    
+<div
+  className="chakra-stack css-10irvsc"
+>
+  <div
+    className="css-1sat0pe"
+  >
     <img
-      alt=\\"Image of a cute kitten :)\\"
-      src=\\"https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg\\"
-      class=\\"chakra-image css-i9texl\\"
-     />
+      alt="Image of a cute kitten :)"
+      className="chakra-image css-i9texl"
+      src="https://static.boredpanda.com/blog/wp-content/uploads/2016/08/cute-kittens-30-57b30ad41bc90__605.jpg"
+    />
   </div>
-  <div class=\\"css-1en42kf\\">
-    
-    <div class=\\"chakra-stack css-1hpgelm\\">
-      
-      <div class=\\"css-gmuwbf\\">
-        
-        <h2 class=\\"chakra-heading css-5s6hfy\\">
+  <div
+    className="css-1en42kf"
+  >
+    <div
+      className="chakra-stack css-1hpgelm"
+    >
+      <div
+        className="css-gmuwbf"
+      >
+        <h2
+          className="chakra-heading css-5s6hfy"
+        >
           Discover 
-          <h2 class=\\"chakra-heading css-3stmem\\">empowering stories</h2>
+          <h2
+            className="chakra-heading css-3stmem"
+          >
+            empowering stories
+          </h2>
+          
         </h2>
       </div>
-      <div class=\\"chakra-stack css-zmux7u\\">
-        
-        <p class=\\"chakra-text css-0\\">
+      <div
+        className="chakra-stack css-zmux7u"
+      >
+        <p
+          className="chakra-text css-0"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis rhoncus urna neque viverra justo nec ultrices. Egestas sed tempus urna et pharetra pharetra massa massa. Diam sollicitudin tempor id eu nisl nunc mi ipsum. Morbi blandit cursus risus at. Tempus egestas sed sed risus pretium quam vulputate. Sed faucibus turpis in eu.
         </p>
-        <p class=\\"chakra-text css-0\\">
+        <p
+          className="chakra-text css-0"
+        >
           Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Est placerat in egestas erat imperdiet sed. Egestas fringilla phasellus faucibus scelerisque eleifend. Turpis egestas maecenas pharetra convallis posuere morbi leo urna.
         </p>
       </div>
-
       <a
-        href=\\"#\\"
-        class=\\"chakra-link chakra-button css-ogxy0s\\"
+        className="chakra-link chakra-button css-ogxy0s"
+        href="#"
       >
         Read more
       </a>
     </div>
   </div>
-</div>"
+</div>
 `;

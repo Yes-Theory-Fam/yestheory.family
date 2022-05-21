@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { Link, LinkProps } from "@chakra-ui/react";
 import { useContext } from "react";
 import { OverrideComponentContext } from "./OverrideComponentContext";
@@ -7,7 +7,7 @@ export interface WrappedLinkProps extends LinkProps {
   isExternal?: boolean;
 }
 
-export const WrappedLink: FunctionalComponent<WrappedLinkProps> = ({
+export const WrappedLink: FC<WrappedLinkProps> = ({
   href,
   isExternal = false,
   ...rest

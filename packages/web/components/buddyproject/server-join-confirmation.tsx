@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC, useRef } from "react";
 import {
   AlertDialog,
   AlertDialogOverlay,
@@ -10,7 +10,6 @@ import {
   Button,
   Text,
 } from "@chakra-ui/react";
-import { useRef } from "preact/compat";
 
 interface ServerJoinConfirmationProps {
   isOpen: boolean;
@@ -18,9 +17,11 @@ interface ServerJoinConfirmationProps {
   onConfirm: () => void;
 }
 
-export const ServerJoinConfirmation: FunctionalComponent<
-  ServerJoinConfirmationProps
-> = ({ isOpen, onClose, onConfirm }) => {
+export const ServerJoinConfirmation: FC<ServerJoinConfirmationProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+}) => {
   const cancelRef = useRef<HTMLButtonElement>(null);
 
   return (
@@ -34,7 +35,7 @@ export const ServerJoinConfirmation: FunctionalComponent<
       <AlertDialogOverlay />
 
       <AlertDialogContent>
-        <AlertDialogHeader>Auf geht's, ab geht's!</AlertDialogHeader>
+        <AlertDialogHeader>Auf geht&apos;s, ab geht&apos;s!</AlertDialogHeader>
         <AlertDialogCloseButton />
 
         <AlertDialogBody>

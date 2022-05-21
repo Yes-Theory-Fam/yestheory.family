@@ -1,8 +1,8 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import { Box, Image } from "@chakra-ui/react";
 import * as Images from "../assets";
 
-export const BackCloudLayer: FunctionalComponent = () => {
+export const BackCloudLayer: FC = () => {
   return (
     <Box position={"absolute"} zIndex={-300} left={"-35vw"} overflow={"hidden"}>
       <Image

@@ -1,5 +1,4 @@
-import { h } from "preact";
-import { Meta, Story } from "@storybook/preact/types-6-0";
+import { Meta, Story } from "@storybook/react/types-6-0";
 import { Box } from "@chakra-ui/react";
 
 import { Profile } from "../../../..";

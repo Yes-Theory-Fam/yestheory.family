@@ -1,8 +1,8 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import { Center, Text } from "@chakra-ui/react";
 import { fullWidth } from "./common";
 
-export const TextLayer: FunctionalComponent = () => (
+export const TextLayer: FC = () => (
   <Center
     position={"fixed"}
     height={"100vh"}

@@ -1,4 +1,4 @@
-import { FunctionalComponent, VNode } from "preact";
+import { FC, ReactNode } from "react";
 import { BuddyProjectStatus } from "../../../__generated__/types";
 import { Buddy, useStateQuery } from "./buddyproject.generated";
 import { useLoggedIn } from "../../../context/user/user";
@@ -15,12 +15,12 @@ const BuddyProjectContext = createContext<BuddyProjectProps>({
 });
 
 interface BuddyProjectProviderProps {
-  children: VNode;
+  children: ReactNode;
 }
 
-export const BuddyProjectProvider: FunctionalComponent<
-  BuddyProjectProviderProps
-> = ({ children }) => {
+export const BuddyProjectProvider: FC<BuddyProjectProviderProps> = ({
+  children,
+}) => {
   const loggedIn = useLoggedIn();
   const [{ data, fetching, error }] = useStateQuery();
 
