@@ -1,8 +1,8 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { DiscordLink, Step } from "../../common";
 import { Text } from "@chakra-ui/react";
 
-export const SignedUpConfirmationStep: FunctionalComponent = () => (
+export const SignedUpConfirmationStep: FC = () => (
   <Step heading={"You have signed up!"}>
     <Text>You are signed up for the Buddy Project.</Text>
     <Text>

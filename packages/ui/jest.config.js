@@ -1,6 +1,3 @@
-const preactPreset = require("jest-preset-preact");
-const path = require("path");
-
 const transformIgnorePatterns = [
   "<rootDir>/node_modules/(?!storybook-addon-performance)/",
   "node_modules/(?!storybook-addon-performance/)",
@@ -8,14 +5,14 @@ const transformIgnorePatterns = [
 ];
 
 module.exports = {
-  ...preactPreset,
+  setupFilesAfterEnv: ["<rootDir>/.jest/setup.ts"],
   transform: {
-    "^.+\\.(mjs|js|jsx|ts|tsx)$": path.join(__dirname, ".jest", "babel"),
+    "^.+\\.(t|j)sx?$": "babel-jest",
     "^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx",
   },
   transformIgnorePatterns,
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|scss|svg|webp)$": "<rootDir>/.jest/fileMock.js",
   },
-  setupFiles: ["<rootDir>/.jest/setup.js"],
+  testEnvironment: "jest-environment-jsdom",
 };

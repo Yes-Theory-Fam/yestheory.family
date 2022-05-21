@@ -1,8 +1,8 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { Step } from "../../common";
 import { Text } from "@chakra-ui/react";
 
-export const WaitForMatchStep: FunctionalComponent = () => (
+export const WaitForMatchStep: FC = () => (
   <Step heading={"What happens next?"}>
     <Text>
       As soon as the sign-up deadline is reached, everyone will be matched with

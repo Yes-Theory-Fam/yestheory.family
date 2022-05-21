@@ -1,10 +1,10 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { Step } from "../../common";
 import { Text } from "@chakra-ui/react";
 import { useBuddyProjectState } from "../../../context/context";
 import { BuddyProjectStatus } from "../../../../../__generated__/types";
 
-export const ChattingWithYourBuddyStep: FunctionalComponent = () => {
+export const ChattingWithYourBuddyStep: FC = () => {
   const state = useBuddyProjectState();
 
   const heading = `How ${

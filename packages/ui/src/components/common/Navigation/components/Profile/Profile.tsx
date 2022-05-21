@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import {
   Avatar,
   AvatarBadge,
@@ -25,7 +25,7 @@ export interface ProfileProps {
   menuItems: MenuItemDefinition[];
 }
 
-export const Profile: FunctionalComponent<ProfileProps> = (props) => {
+export const Profile: FC<ProfileProps> = (props) => {
   const { variant } = props;
   const textColor = variant === "desktop" ? "brand.800" : "white";
   const tagColor = variant === "desktop" ? "gray.800" : "white";

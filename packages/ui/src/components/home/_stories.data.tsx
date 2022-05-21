@@ -1,6 +1,5 @@
 import { HeadingProps } from "..";
 import { Text } from "@chakra-ui/react";
-import { h } from "preact";
 
 export const heading: HeadingProps = {
   frontText: "Discover ",

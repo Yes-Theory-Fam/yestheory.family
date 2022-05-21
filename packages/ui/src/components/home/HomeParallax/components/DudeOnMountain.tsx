@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import { useRef, useState } from "react";
 import { Box, Image, useBreakpointValue } from "@chakra-ui/react";
 import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
@@ -6,7 +6,7 @@ import { getImageDimensions } from "./common";
 
 import * as Images from "../assets";
 
-export const DudeOnMountainLayer: FunctionalComponent = () => {
+export const DudeOnMountainLayer: FC = () => {
   const imageTopOffset = 45; //vh
   const imageLeftOffset = 8; //% of the screen additional pull to the left
 

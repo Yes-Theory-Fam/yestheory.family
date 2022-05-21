@@ -1,7 +1,7 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { ChattingWithYourBuddyStep, JoinStep, WaitForMatchStep } from "./steps";
 
-export const NotSignedUpInfos: FunctionalComponent = () => {
+export const NotSignedUpInfos: FC = () => {
   return (
     <>
       <JoinStep />

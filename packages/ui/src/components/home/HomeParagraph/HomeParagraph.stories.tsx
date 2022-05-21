@@ -1,5 +1,4 @@
-import { h } from "preact";
-import { Story, Meta } from "@storybook/preact/types-6-0";
+import { Story, Meta } from "@storybook/react/types-6-0";
 import { HomeParagraph } from "../..";
 import { heading, paragraphs } from "../_stories.data";
 

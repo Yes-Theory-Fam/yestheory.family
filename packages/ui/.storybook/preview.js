@@ -1,10 +1,8 @@
-/** @jsx h */
 import { ChakraProvider } from "@chakra-ui/react";
-import { h } from "preact";
 import { withPerformance } from "storybook-addon-performance";
 import { theme } from "../src/theme";
 import "@storybook/addon-console";
-import { Fonts } from "../src/components/common";
+import { Fonts } from "../src";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 /**

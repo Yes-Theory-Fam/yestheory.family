@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { NavLinkProps } from "..";
 import { DesktopNavigation } from "./components/DesktopNavigation";
 import { MobileNavigation } from "./components/MobileNavigation";
@@ -21,7 +21,7 @@ export interface NavigationProps {
   menuItems: MenuItemDefinition[];
 }
 
-export const Navigation: FunctionalComponent<NavigationProps> = (props) => {
+export const Navigation: FC<NavigationProps> = (props) => {
   const DesktopNavigationBreakpoints = [...NavigationBreakpoints].reverse();
 
   return (

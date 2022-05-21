@@ -1,4 +1,4 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { WrappedLink, WrappedLinkProps } from "../..";
 
 export interface NavLinkProps extends WrappedLinkProps {
@@ -6,7 +6,7 @@ export interface NavLinkProps extends WrappedLinkProps {
   inverted?: boolean;
 }
 
-export const NavLink: FunctionalComponent<NavLinkProps> = (args) => {
+export const NavLink: FC<NavLinkProps> = (args) => {
   const { active, inverted, href, ...rest } = args;
 
   const borderBaseColor = inverted ? "white" : "brand.800";

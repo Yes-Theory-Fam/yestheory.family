@@ -1,22 +1,16 @@
 import { Img } from "@chakra-ui/react";
-import { Component, FunctionalComponent } from "preact";
-import { createContext } from "react";
+import { createContext, Component, FC, cloneElement } from "react";
 
 interface ImageRequiredProps {
   src: string;
 }
 
 export interface OverrideComponentType {
-  Image:
-    | Component<ImageRequiredProps>
-    | FunctionalComponent<ImageRequiredProps>;
+  Image: Component<ImageRequiredProps> | FC<ImageRequiredProps>;
   wrapLink: (child: JSX.Element, href: string | undefined) => JSX.Element;
 }
 
 export const OverrideComponentContext = createContext<OverrideComponentType>({
   Image: Img,
-  wrapLink: (child, href) => {
-    child.props.href = href;
-    return child;
-  },
+  wrapLink: (child, href) => cloneElement(child, { href }),
 });

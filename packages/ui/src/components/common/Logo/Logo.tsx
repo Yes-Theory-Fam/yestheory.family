@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import { Box, Icon, useTheme } from "@chakra-ui/react";
 
 import styles from "./Logo.module.scss";
@@ -11,10 +11,7 @@ export interface LogoProps {
   variant?: LogoVariant;
 }
 
-export const Logo: FunctionalComponent<LogoProps> = ({
-  size = "md",
-  variant = "color",
-}) => {
+export const Logo: FC<LogoProps> = ({ size = "md", variant = "color" }) => {
   const sizeMap: Record<LogoSize, number> = {
     sm: 50,
     md: 100,

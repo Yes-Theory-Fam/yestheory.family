@@ -1,5 +1,7 @@
 # Preact example
 
+<!-- TODO Clean this from Preact mentions -->
+
 This example uses [Preact](https://github.com/preactjs/preact) instead of React. It's a React like UI framework which is fast and small.
 
 ## How to use

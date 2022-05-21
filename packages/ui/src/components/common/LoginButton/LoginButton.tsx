@@ -1,8 +1,8 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { DiscordLogo } from "../icons";
 import { Button, ButtonProps } from "@chakra-ui/react";
 
-export const LoginButton: FunctionalComponent<ButtonProps> = (args) => {
+export const LoginButton: FC<ButtonProps> = (args) => {
   const logoFillProps = {
     transition: "all 300ms",
     fill: args.variant === "outlined" ? "brand.800" : "white",

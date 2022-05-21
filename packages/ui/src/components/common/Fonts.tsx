@@ -1,7 +1,7 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import { Global } from "@emotion/react";
 
-export const Fonts: FunctionalComponent = () => (
+export const Fonts: FC = () => (
   <Global
     styles={`
     /* Copied from https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap */

@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { useBuddyProjectState } from "../context/context";
 import { Heading } from "@yestheory.family/ui";
 import { Box, Center, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
@@ -8,13 +8,13 @@ import { yesbotBuddyProjectWebp } from "../../../assets";
 import { MatchedInfos, NotSignedUpInfos, SignedUpInfos } from "./states";
 import { BuddyProjectStatus } from "../../../__generated__/types";
 
-const stateToInfo: Record<BuddyProjectStatus, FunctionalComponent> = {
+const stateToInfo: Record<BuddyProjectStatus, FC> = {
   [BuddyProjectStatus.Matched]: MatchedInfos,
   [BuddyProjectStatus.NotSignedUp]: NotSignedUpInfos,
   [BuddyProjectStatus.SignedUp]: SignedUpInfos,
 };
 
-const Header: FunctionalComponent = () => {
+const Header: FC = () => {
   return (
     <Flex direction={"column"}>
       <Heading
@@ -34,7 +34,7 @@ const Header: FunctionalComponent = () => {
   );
 };
 
-export const DisplayedInfos: FunctionalComponent = () => {
+export const DisplayedInfos: FC = () => {
   const state = useBuddyProjectState();
 
   const Infos = stateToInfo[state.status ?? BuddyProjectStatus.NotSignedUp];

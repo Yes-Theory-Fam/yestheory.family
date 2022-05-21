@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import {
   HeadingProps,
   HomeParallax,
@@ -49,7 +49,7 @@ const exampleData: HomeRowProps[] = [
   },
 ];
 
-const Index: FunctionalComponent = () => {
+const Index: FC = () => {
   return (
     <>
       <ScrollToActionContainer text={"Scroll for more"} overlapContent>

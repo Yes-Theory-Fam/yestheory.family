@@ -1,8 +1,8 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { Heading } from "@yestheory.family/ui";
 import { VStack } from "@chakra-ui/react";
 
-const Imprint: FunctionalComponent = () => {
+const Imprint: FC = () => {
   return (
     <VStack align="flex-start" mt={24} mx={[8, null, null, 20]}>
       <Heading frontText={"Site Notice"} size={"h2"} textAlign={"start"} />

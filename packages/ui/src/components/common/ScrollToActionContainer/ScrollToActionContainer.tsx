@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from "preact";
+import { FC } from "react";
 import { Box, BoxProps, Flex, Text, VStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useRef } from "react";
@@ -9,9 +9,9 @@ export interface ScrollToActionContainerProps extends BoxProps {
   overlapContent?: boolean;
 }
 
-export const ScrollToActionContainer: FunctionalComponent<
-  ScrollToActionContainerProps
-> = (props) => {
+export const ScrollToActionContainer: FC<ScrollToActionContainerProps> = (
+  props
+) => {
   const { text, children, overlapContent = false, ...rest } = props;
 
   const selfRef = useRef<HTMLDivElement>(null);

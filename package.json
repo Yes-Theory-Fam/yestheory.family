@@ -22,7 +22,8 @@
     "prettier": "2.6.2"
   },
   "resolutions": {
-    "eslint-config-preact": "geisterfurz007/eslint-config-preact#13c576f8a106baaed308b1a0c9aab3099cdf5850"
+    "@graphql-codegen/typescript": "2.4.10",
+    "@graphql-codegen/typescript-operations": "2.3.7"
   },
   "packageManager": "yarn@3.2.1"
 }

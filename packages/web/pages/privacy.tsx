@@ -1,8 +1,8 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { Heading } from "@yestheory.family/ui";
 import { VStack } from "@chakra-ui/react";
 
-const Privacy: FunctionalComponent = () => {
+const Privacy: FC = () => {
   return (
     <VStack mt={24} mx={[8, null, null, 20]} align={"flex-start"}>
       <Heading textAlign={"left"} frontText={"Privacy Policy"} size={"h2"} />

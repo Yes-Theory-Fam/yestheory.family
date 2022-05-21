@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import NextLink from "next/link";
@@ -7,7 +7,7 @@ import { Heading } from "@yestheory.family/ui";
 import { underConstructionWebp } from "../assets";
 import { useRouter } from "next/router";
 
-const Paragraphs: FunctionalComponent = () => {
+const Paragraphs: FC = () => {
   const router = useRouter();
   const navigateBack = () => {
     router.back();
@@ -30,10 +30,10 @@ const Paragraphs: FunctionalComponent = () => {
         and groupchats launch.
       </Text>
       <Text>
-        That being said: We couldn't find the page you were looking for. This
-        might be because you mistyped a link, something is broken or because the
-        page isn't completed yet. While you are waiting, check out our Discord
-        server below or go{" "}
+        That being said: We couldn&apos;t find the page you were looking for.
+        This might be because you mistyped a link, something is broken or
+        because the page isn&apos;t completed yet. While you are waiting, check
+        out our Discord server below or go{" "}
         <Link href={"#"} onClick={navigateBack} color={"brand.800"}>
           back
         </Link>
@@ -43,7 +43,7 @@ const Paragraphs: FunctionalComponent = () => {
   );
 };
 
-const Wip: FunctionalComponent = () => {
+const Wip: FC = () => {
   const imageSize = 400;
 
   return (
