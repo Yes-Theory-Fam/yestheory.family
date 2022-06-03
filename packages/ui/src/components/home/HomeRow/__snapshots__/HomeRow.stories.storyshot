@@ -31,7 +31,6 @@ exports[`Storyshots Home/Row Row 1`] = `
           >
             empowering stories
           </span>
-          
         </h2>
       </div>
       <div
@@ -49,7 +48,7 @@ exports[`Storyshots Home/Row Row 1`] = `
         </p>
       </div>
       <a
-        className="chakra-link chakra-button css-ogxy0s"
+        className="chakra-link chakra-button css-1ncwzw6"
         href="#"
       >
         Read more

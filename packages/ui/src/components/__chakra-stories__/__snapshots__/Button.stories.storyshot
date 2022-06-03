@@ -2,7 +2,7 @@
 
 exports[`Storyshots Common/Button Login Button 1`] = `
 <button
-  className="chakra-button css-5c2176"
+  className="chakra-button css-4xx2wk"
   role="group"
   type="button"
 >
@@ -24,7 +24,7 @@ exports[`Storyshots Common/Button Login Button 1`] = `
 
 exports[`Storyshots Common/Button Outlined Button 1`] = `
 <button
-  className="chakra-button css-5c2176"
+  className="chakra-button css-4xx2wk"
   label="Button"
   type="button"
 >
@@ -34,7 +34,7 @@ exports[`Storyshots Common/Button Outlined Button 1`] = `
 
 exports[`Storyshots Common/Button Solid Button 1`] = `
 <button
-  className="chakra-button css-5c2176"
+  className="chakra-button css-4xx2wk"
   label="Button"
   type="button"
 >

@@ -12,7 +12,7 @@ import {
   ClassTypeResolver,
 } from "type-graphql/dist/decorators/types";
 
-type Class = { new (...args: unknown[]): unknown };
+type Class = { new (...args: never[]): unknown };
 const resolvers: Class[] = [];
 
 type ResolverParameters =
