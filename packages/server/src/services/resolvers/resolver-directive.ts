@@ -28,9 +28,8 @@ export const Resolver = (...args: ResolverParameters) => {
     logger.debug(`Adding resolver '${target.name}'`);
     resolvers.push(target);
     Service()(target);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore - For some reason the union type isn't an array of length 0-2 but 0+ which isn't correct so we have to
-    //   ignore this.
+    // @ts-expect-error - For some reason the union type isn't an array of length 0-2 but 0+ which isn't correct, so we
+    //   have to ignore this.
     OriginalResolver(...args)(target);
     return target;
   };
@@ -46,7 +45,7 @@ const collectResolvers = (): Promise<void> =>
 
     glob(`${baseDirectory}/features/**/*${extension}`, async (e, matches) => {
       if (e) {
-        logger.error("Error loading commands: ", e);
+        logger.error("Error loading resolvers: ", e);
         rej(e);
         return;
       }
@@ -71,9 +70,7 @@ const collectResolvers = (): Promise<void> =>
     });
   });
 
-// type-graphql explicitly asks for Function as type
-//   eslint-disable-next-line @typescript-eslint/ban-types
-export const getResolvers = async (): Promise<NonEmptyArray<Function>> => {
+export const getResolvers = async (): Promise<NonEmptyArray<Class>> => {
   await collectResolvers();
 
   if (resolvers.length === 0) {
@@ -82,6 +79,5 @@ export const getResolvers = async (): Promise<NonEmptyArray<Function>> => {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  return resolvers as unknown as NonEmptyArray<Function>;
+  return resolvers as NonEmptyArray<Class>;
 };

@@ -128,7 +128,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
           Photowall
         </a>
         <button
-          className="chakra-button css-5c2176"
+          className="chakra-button css-4xx2wk"
           onClick={[Function]}
           role="group"
           type="button"

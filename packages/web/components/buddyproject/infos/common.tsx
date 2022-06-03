@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { GridItem, Link, Text, VStack } from "@chakra-ui/react";
 
 export const SectionHeading: FC<{ text: string }> = ({ text }) => (
@@ -7,7 +7,10 @@ export const SectionHeading: FC<{ text: string }> = ({ text }) => (
   </Text>
 );
 
-export const Step: FC<{ heading: string }> = ({ heading, children }) => (
+export const Step: FC<{ heading: string; children: ReactNode }> = ({
+  heading,
+  children,
+}) => (
   <GridItem>
     <VStack align={"flex-start"}>
       <SectionHeading text={heading} />

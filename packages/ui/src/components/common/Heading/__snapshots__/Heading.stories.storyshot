@@ -16,7 +16,6 @@ exports[`Storyshots Common/Heading Heading 1`] = `
       >
         wall
       </span>
-      
     </h1>
   </div>
   <div
@@ -31,7 +30,6 @@ exports[`Storyshots Common/Heading Heading 1`] = `
       >
         wall
       </span>
-      
     </h2>
   </div>
 </div>
@@ -50,7 +48,6 @@ exports[`Storyshots Common/Heading Interactive Heading 1`] = `
     >
       wall
     </span>
-    
   </h1>
 </div>
 `;

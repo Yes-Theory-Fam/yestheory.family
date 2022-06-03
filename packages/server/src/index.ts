@@ -73,7 +73,7 @@ const main = async () => {
         );
       }
 
-      const accessToken = authHeader?.substr(authHeaderPrefix.length);
+      const accessToken = authHeader?.substring(authHeaderPrefix.length);
 
       return {
         prisma,

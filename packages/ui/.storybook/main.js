@@ -3,6 +3,7 @@ const WebpackModules = require("webpack-modules");
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
+    "@chakra-ui/storybook-addon",
     "@storybook/addon-links",
     {
       name: "@storybook/addon-docs",
@@ -37,6 +38,9 @@ module.exports = {
       propFilter: (prop) =>
         prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
+  },
+  features: {
+    emotionAlias: false,
   },
   webpackFinal: async (config) => {
     config.plugins.push(new WebpackModules());
