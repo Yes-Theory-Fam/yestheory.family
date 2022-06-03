@@ -4,10 +4,15 @@ import initStoryshots, {
 } from "@storybook/addon-storyshots";
 import { theme as mockTheme } from "./src";
 
-jest.mock("@chakra-ui/react", () => ({
-  ...jest.requireActual("@chakra-ui/react"),
-  useTheme: () => mockTheme,
-}));
+// const mockBreakpointPatchedTheme = {
+//   ...mockTheme,
+//   __breakpoints: mockTheme.breakpoints,
+// };
+//
+// jest.mock("@chakra-ui/system", () => ({
+//   ...jest.requireActual("@chakra-ui/system"),
+//   useTheme: () => mockBreakpointPatchedTheme,
+// }));
 
 initStoryshots({
   framework: "react",
