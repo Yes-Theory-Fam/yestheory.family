@@ -4,9 +4,11 @@ import { Heading } from "@yestheory.family/ui";
 import { Box, Center, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import { SectionHeading } from "./common";
 import Image from "next/image";
-import { yesbotBuddyProjectWebp } from "../../../assets";
-import { MatchedInfos, NotSignedUpInfos, SignedUpInfos } from "./states";
-import { BuddyProjectStatus } from "../../../__generated__/types";
+import { yesbotBuddyProjectWebp } from "../../../../../assets";
+import { MatchedInfos } from "./states/matched";
+import { NotSignedUpInfos } from "./states/not-signed-up";
+import { SignedUpInfos } from "./states/signed-up";
+import { BuddyProjectStatus } from "../../../../__generated__/types";
 
 const stateToInfo: Record<BuddyProjectStatus, FC> = {
   [BuddyProjectStatus.Matched]: MatchedInfos,

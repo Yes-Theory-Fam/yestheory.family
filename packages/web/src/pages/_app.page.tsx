@@ -21,7 +21,7 @@ import {
 import { useLogoutMutation } from "../components/auth/logout.generated";
 import App, { AppProps } from "next/app";
 import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
-import { CookieConsent } from "../components/other/cookie-consent/cookie-consent";
+import { CookieConsent } from "../components/cookie-consent/cookie-consent";
 import { User, CurrentUserDocument } from "../context/user/user.generated";
 
 interface YTFAppProps extends AppProps {

@@ -58,11 +58,7 @@ const Imprint: FC = () => {
       <p>
         The European Commission provides a platform for online dispute
         resolution (ODR):{" "}
-        <a
-          href="https://ec.europa.eu/consumers/odr/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="src/pages/imprint" target="_blank" rel="noopener noreferrer">
           https://ec.europa.eu/consumers/odr/
         </a>
         .<br /> Our e-mail address can be found above in the site notice.

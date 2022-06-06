@@ -8,7 +8,7 @@ hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
-  __generated__/types.ts:
+  src/__generated__/types.ts:
     plugins:
       - "@atmina/only-enum-types"
     config:
@@ -17,7 +17,7 @@ generates:
   ./:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: ./__generated__/types.ts
+      baseTypesPath: ./src/__generated__/types.ts
     plugins:
       - "@atmina/local-typescript-operations"
       - typescript-urql
