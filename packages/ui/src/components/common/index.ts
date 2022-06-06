@@ -1,4 +1,3 @@
-export * from "./Fonts";
 export * from "./Footer/Footer";
 export * from "./Heading/Heading";
 export * from "./hooks";

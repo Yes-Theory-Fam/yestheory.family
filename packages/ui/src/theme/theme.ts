@@ -1,3 +1,6 @@
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/900.css";
+
 import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react";
 
 import {
