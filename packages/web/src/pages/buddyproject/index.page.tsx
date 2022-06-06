@@ -2,11 +2,11 @@ import { FC } from "react";
 import { ScrollToActionContainer } from "@yestheory.family/ui";
 import Head from "next/head";
 import Image from "next/image";
-import { buddyProjectSvg } from "../assets";
+import { buddyProjectSvg } from "../../../assets";
 import { Box, Container, Flex, Text, VStack } from "@chakra-ui/react";
-import { BuddyProjectProvider } from "../components/buddyproject/context/context";
-import { BuddyProjectButton } from "../components/buddyproject/button";
-import { DisplayedInfos } from "../components/buddyproject/infos/displayed-infos";
+import { BuddyProjectProvider } from "./components/context/context";
+import { BuddyProjectButton } from "./components/button";
+import { DisplayedInfos } from "./components/infos/displayed-infos";
 
 const CTA: FC = () => {
   return (

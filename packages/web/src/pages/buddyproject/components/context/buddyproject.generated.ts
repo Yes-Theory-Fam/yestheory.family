@@ -1,4 +1,4 @@
-import * as Types from "../../../__generated__/types";
+import * as Types from "../../../../__generated__/types";
 
 import { gql } from "urql";
 import * as Urql from "urql";

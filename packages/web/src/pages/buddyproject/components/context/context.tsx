@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
-import { BuddyProjectStatus } from "../../../__generated__/types";
+import { BuddyProjectStatus } from "../../../../__generated__/types";
 import { Buddy, useStateQuery } from "./buddyproject.generated";
-import { useLoggedIn } from "../../../context/user/user";
+import { useLoggedIn } from "../../../../context/user/user";
 import { createContext, useContext } from "react";
 
 interface BuddyProjectProps {

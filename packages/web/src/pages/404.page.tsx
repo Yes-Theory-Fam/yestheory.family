@@ -4,7 +4,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { Box, Button, Center, Link, Text, VStack } from "@chakra-ui/react";
 import { Heading } from "@yestheory.family/ui";
-import { underConstructionWebp } from "../assets";
+import { underConstructionWebp } from "../../assets";
 import { useRouter } from "next/router";
 
 const Paragraphs: FC = () => {

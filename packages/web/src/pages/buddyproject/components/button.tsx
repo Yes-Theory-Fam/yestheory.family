@@ -1,9 +1,9 @@
 import { FC, useCallback } from "react";
 import { useBuddyProjectState } from "./context/context";
 import { Button, useDisclosure } from "@chakra-ui/react";
-import { BuddyProjectStatus } from "../../__generated__/types";
+import { BuddyProjectStatus } from "../../../__generated__/types";
 import { useSignUpMutation } from "./context/buddyproject.generated";
-import { navigateToLogin } from "../../context/user/user";
+import { navigateToLogin } from "../../../context/user/user";
 import { useServerStateQuery } from "./server-state-query.generated";
 import { ServerJoinConfirmation } from "./server-join-confirmation";
 import { SignupSuccessModal } from "./signup-success-modal";
