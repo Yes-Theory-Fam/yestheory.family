@@ -6,6 +6,10 @@ inputs:
     description: "The sub-project for which the docker image shall be deleted. Used to determine the name of the image"
     required: true
 
+  token:
+    description: "GitHub token used to access the container registry"
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -15,5 +19,5 @@ runs:
       with:
         owner: yes-theory-fam
         name: yestheory-family-${{ inputs.sub-project }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ inputs.token }}
         tag: ${{ format('pr-{0}', github.event.pull_request.number) }}

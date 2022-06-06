@@ -90,9 +90,10 @@ jobs:
         uses: ./.github/actions/delete-image
         with:
           sub-project: server
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Delete web image
         uses: ./.github/actions/delete-image
         with:
           sub-project: web
-
+          token: ${{ secrets.GITHUB_TOKEN }}
