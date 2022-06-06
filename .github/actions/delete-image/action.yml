@@ -1,0 +1,23 @@
+name: Delete image
+description: Deletes an image from the docker registry for pull requests
+
+inputs:
+  sub-project:
+    description: "The sub-project for which the docker image shall be deleted. Used to determine the name of the image"
+    required: true
+
+  token:
+    description: "GitHub token used to access the container registry"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: bots-house/ghcr-delete-image-action@v1.0.0
+      continue-on-error: true
+      if: ${{ github.event_name == 'pull_request' }}
+      with:
+        owner: yes-theory-fam
+        name: yestheory-family-${{ inputs.sub-project }}
+        token: ${{ inputs.token }}
+        tag: ${{ format('pr-{0}', github.event.pull_request.number) }}

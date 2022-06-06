@@ -1,0 +1,54 @@
+name: Reusable Build
+description: Action to build a TS project to a runnable Docker image
+
+inputs:
+  sub-project:
+    description: 'The sub-project this build is running for. Used for tagging the image and resolve the Dockerfile'
+    required: true
+
+  token:
+    description: 'GitHub Token to authenticate against the Package and Container registry'
+    required: true
+
+  build-args:
+    description: 'Optional build args to be passed to the build'
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-server-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-server-
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ inputs.token }}
+
+    - name: Build container
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        build-args: ${{ inputs.build-args }}
+        tags: ghcr.io/${{ env.OWNER }}/yestheory-family-${{ inputs.sub-project }}:${{ github.ref == 'refs/heads/master' && 'latest' || format('pr-{0}', github.event.pull_request.number) }}
+        context: ./
+        file: ./packages/${{ inputs.sub-project }}/Dockerfile
+        builder: ${{ steps.buildx.output.name }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache
+        secrets: |
+          "YTF_NPM_AUTH_TOKEN=${{ inputs.token }}"
+

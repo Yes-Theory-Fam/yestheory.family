@@ -38,7 +38,7 @@ services:
       - server
 
   cypress:
-    image: cypress/included:8.7.0
+    image: cypress/included:9.6.1
     entrypoint: "/bin/bash"
     command: "/wait-for-it.sh -t 30 --strict server:5000 -- ./cypress/install-and-run.sh"
     working_dir: /e2e
