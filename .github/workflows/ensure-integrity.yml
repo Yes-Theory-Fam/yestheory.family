@@ -1,0 +1,98 @@
+name: 'Ensure Integrity'
+on:
+  pull_request: null
+  push:
+    branches: [master]
+env:
+  OWNER: yes-theory-fam
+  NEXT_PUBLIC_BACKEND_URL: https://api.yestheory.family
+
+jobs:
+  docker-build-server:
+    name: "Docker Build Server"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/docker-build
+        name: "Build Container"
+        with:
+          sub-project: server
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  docker-build-web:
+    name: "Docker Build Web"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/docker-build
+        name: "Build Container"
+        with:
+          sub-project: web
+          token: ${{ secrets.GITHUB_TOKEN }}
+          build-args: |
+            "NEXT_PUBLIC_BACKEND_URL=https://api.yestheory.family"
+
+  chromatic-deployment:
+    name: "Chromatic Deployment"
+    runs-on: ubuntu-latest
+    env:
+      YTF_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/install-yarn
+        name: "Install dependencies"
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          exitZeroOnChanges: true
+          workingDir: packages/ui
+          buildScriptName: storybook:build
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+  e2e-test:
+    name: "Cypress E2E-Test"
+    needs: [ docker-build-server, docker-build-web ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Uses fake ternary operator to use latest for master and pr-# for PRs https://github.community/t/do-expressions-support-ternary-operators-to-change-their-returned-value/18114/3
+      - name: Bake e2e test YAML
+        run: sed -i 's/COMMIT_HASH/${{ github.ref == 'refs/heads/master' && 'latest' || format('pr-{0}', github.event.pull_request.number) }}/g' docker-compose.e2e.yml
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run e2e tests
+        run: |
+          docker-compose -f docker-compose.e2e.yml up --no-build -d server
+          docker-compose -f docker-compose.e2e.yml up --no-build -d web
+          docker-compose -f docker-compose.e2e.yml run cypress
+          docker-compose -f docker-compose.e2e.yml down
+
+  remove-test-containers:
+    name: "Clean"
+    # Run even if e2e-test failed
+    if: ${{ always() }}
+    needs: e2e-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete server image
+        uses: ./.github/actions/delete-image
+        with:
+          sub-project: server
+
+      - name: Delete web image
+        uses: ./.github/actions/delete-image
+        with:
+          sub-project: web
+
