@@ -13,6 +13,7 @@ module.exports = {
   transformIgnorePatterns,
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|scss|svg|webp)$": "<rootDir>/.jest/fileMock.js",
+    "\\.(css|less)$": "<rootDir>/.jest/fileMock.js",
   },
   testEnvironment: "jest-environment-jsdom",
 };

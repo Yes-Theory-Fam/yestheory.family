@@ -1,7 +1,6 @@
 import { withPerformance } from "storybook-addon-performance";
 import { theme } from "../src/theme";
 import "@storybook/addon-console";
-import { Fonts } from "../src";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 /**
@@ -34,7 +33,6 @@ const withChakra = (StoryFn, context) => {
 
   return (
     <>
-      <Fonts />
       <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
         <StoryFn />
       </div>
