@@ -60,7 +60,7 @@
     "jest": "28.1.0",
     "jest-environment-jsdom": "28.1.0",
     "react-test-renderer": "18.1.0",
-    "sass": "1.51.0",
+    "sass": "1.53.0",
     "sass-loader": "10.2.1",
     "sirv-cli": "1.0.14",
     "storybook-addon-performance": "0.16.1",
