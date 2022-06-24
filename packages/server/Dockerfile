@@ -16,12 +16,9 @@ COPY packages/common/package.json ./packages/common/
 COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/server/package.json ./packages/server/
 
-ARG YTF_NPM_AUTH_TOKEN
-COPY yarn-with-secrets ./
-
 # Install dependencies for the workspace
 WORKDIR /app/packages/server
-RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN /app/yarn-with-secrets workspaces focus
+RUN yarn workspaces focus
 
 # Rebuild the source code only when needed
 FROM node:16.6-alpine AS builder
@@ -37,11 +34,7 @@ COPY package.json .
 COPY packages/server /app/packages/server
 WORKDIR /app/packages/server
 
-COPY yarn-with-secrets ./
-
-ARG YTF_NPM_AUTH_TOKEN
-RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets prisma generate
-RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets build
+RUN yarn prisma generate && yarn build
 
 # Build the actual running server
 FROM node:16.6-alpine

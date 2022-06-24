@@ -7354,20 +7354,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yes-theory-fam/database@npm:0.20.0-bp-preview.5":
-  version: 0.20.0-bp-preview.5
-  resolution: "@yes-theory-fam/database@npm:0.20.0-bp-preview.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40yes-theory-fam%2Fdatabase%2F0.20.0-bp-preview.5%2Fa9e79622e02c1baee138b85b9835d05661e2ddb8a47f339ab1bb641dba52b455"
-  dependencies:
-    "@prisma/client": 3.14.0
-  peerDependencies:
-    graphql: 15.8.0
-    graphql-fields: 2.0.3
-    prisma: 3.14.0
-    typegraphql-prisma: 0.20.3
-  checksum: 7d0c3b265ba8b8a3fc24d637b46cf8d62fb4234b355dbc8e2140891a1ee23c1813eb83da76ab4e31e800e4b267f0f56f072de020e31b1e8231bd864dd6f47448
-  languageName: node
-  linkType: hard
-
 "@yestheory.family/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@yestheory.family/common@workspace:packages/common"
@@ -7397,6 +7383,7 @@ __metadata:
     "@koa/cors": 3.3.0
     "@koa/router": 10.1.1
     "@nestjs/class-validator": 0.13.4
+    "@prisma/client": 3.14.0
     "@types/graphql-fields": 1.3.4
     "@types/koa": 2.13.4
     "@types/koa-bodyparser": 4.3.7
@@ -7406,7 +7393,6 @@ __metadata:
     "@types/koa__router": 8.0.11
     "@types/node": ^17.0.33
     "@types/node-fetch": 2.6.1
-    "@yes-theory-fam/database": 0.20.0-bp-preview.5
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: 3.7.0
     discord.js: 13.7.0

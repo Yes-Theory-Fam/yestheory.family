@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { config } from "dotenv";
 config();
 
-import { PrismaClient } from "@yes-theory-fam/database/client";
+import { PrismaClient } from "@prisma/client";
 import { BuildSchemaOptions, buildSchemaSync } from "type-graphql";
 import Koa, { Context } from "koa";
 import koaSession from "koa-session";

@@ -1,0 +1,32 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl", "darwin", "windows", "debian-openssl-1.1.x", "debian-openssl-1.1.x"]
+}
+
+generator typegraphql {
+  provider           = "typegraphql-prisma"
+  output             = "../src/__generated__/type-graphql"
+  emitTranspiledCode = true
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PRISMA_DATABASE_URL")
+}
+
+model BuddyProjectEntry {
+  userId  String  @id @map("user_id")
+  buddyId String? @unique @map("buddy_id")
+
+  matchedDate       DateTime? @map("matched_date") @db.Timestamptz(3)
+  reportedGhostDate DateTime? @map("reported_ghost_date") @db.Timestamptz(3)
+
+  blocked Boolean @db.Boolean @default(false)
+
+  // Prisma requires both directions; buddy is the buddy of this, while inverseBuddy is the entry this is the buddy of
+  // They should end up being the same entry but are required regardless.
+  buddy        BuddyProjectEntry? @relation("BuddyProjectEntryToBuddyProjectEntry", fields: [buddyId], references: [userId])
+  inverseBuddy BuddyProjectEntry? @relation("BuddyProjectEntryToBuddyProjectEntry")
+
+  @@map(name: "buddy_project_entry")
+}
