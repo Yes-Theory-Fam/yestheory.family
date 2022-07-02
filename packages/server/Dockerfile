@@ -43,6 +43,7 @@ WORKDIR /app
 # Copy relevant data from builder
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/packages/server/dist ./dist
+COPY --from=builder /app/packages/server/prisma ./prisma
 COPY --from=builder /app/packages/server/package.json ./package.json
 
 COPY ./packages/server/docker-entrypoint.sh /app/docker-entrypoint.sh
