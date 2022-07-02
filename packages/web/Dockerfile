@@ -17,13 +17,12 @@ COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/ui/package.json ./packages/ui/
 COPY packages/web/package.json ./packages/web/
 
-ARG YTF_NPM_AUTH_TOKEN
-COPY yarn-with-secrets ./
-
 # Install dependencies for the workspace
-RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets plugin import workspace-tools
+# TODO check if this is actually needed, I don't think it is
+RUN yarn plugin import workspace-tools
+
 WORKDIR /app/packages/web
-RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN /app/yarn-with-secrets workspaces focus
+RUN yarn workspaces focus
 
 # Rebuild the source code only when needed
 FROM node:16.6-alpine AS builder
@@ -41,13 +40,9 @@ COPY packages/web/ ./packages/web
 COPY packages/ui/ ./packages/ui
 WORKDIR /app/packages/web
 
-COPY yarn-with-secrets ./
-
 ARG NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
 
-# ARG is used in the local build, the secret in the GitHub Action
-ARG YTF_NPM_AUTH_TOKEN
-RUN --mount=type=secret,id=YTF_NPM_AUTH_TOKEN ./yarn-with-secrets build
+RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:16.6-alpine AS runner
@@ -70,9 +65,3 @@ EXPOSE 3000
 RUN npx next telemetry disable
 WORKDIR /app/packages/web
 CMD ["yarn", "start"]
-
-# The builder requires access to all NEXT_PUBLIC_ prefixed environment variables
-# to be able to build the source code.
-# Meaning we have to provide
-
-

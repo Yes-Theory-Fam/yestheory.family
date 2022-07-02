@@ -9,7 +9,7 @@ import {
 } from "../buddy-project-status";
 import { Resolver } from "../../../services/resolvers/resolver-directive";
 import { Client, Guild, GuildMember, Role, Snowflake } from "discord.js";
-import { Prisma } from "@yes-theory-fam/database/client";
+import { Prisma } from "@prisma/client";
 
 @Resolver()
 class SignUpMutation {

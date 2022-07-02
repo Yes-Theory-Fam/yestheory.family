@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: ytfe2e
 
   server:
-    image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:pr-99
     hostname: server
     ports:
       - "5000:5000"
@@ -29,7 +29,7 @@ services:
       - postgres
 
   web:
-    image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:pr-99
     environment:
       SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
     ports:

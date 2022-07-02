@@ -1,5 +1,5 @@
 import { Resolver } from "../../../services/resolvers/resolver-directive";
-import { BuddyProjectEntry } from "@yes-theory-fam/database/type-graphql";
+import { BuddyProjectEntry } from "../../../__generated__/type-graphql";
 import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
 import { Guild } from "discord.js";

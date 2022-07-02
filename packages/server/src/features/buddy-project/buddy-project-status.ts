@@ -1,5 +1,5 @@
 import { Field, ObjectType, registerEnumType } from "type-graphql";
-import { BuddyProjectEntry } from "@yes-theory-fam/database/type-graphql";
+import { BuddyProjectEntry } from "../../__generated__/type-graphql";
 
 export enum BuddyProjectStatus {
   NOT_SIGNED_UP = "NOT_SIGNED_UP",
