@@ -7686,7 +7686,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-fetch@npm:2.6.1, @types/node-fetch@npm:^2.5.7, @types/node-fetch@npm:^2.6.1":
+"@types/node-fetch@npm:2.6.2":
+  version: 2.6.2
+  resolution: "@types/node-fetch@npm:2.6.2"
+  dependencies:
+    "@types/node": "*"
+    form-data: ^3.0.0
+  checksum: 6f73b1470000d303d25a6fb92875ea837a216656cb7474f66cdd67bb014aa81a5a11e7ac9c21fe19bee9ecb2ef87c1962bceeaec31386119d1ac86e4c30ad7a6
+  languageName: node
+  linkType: hard
+
+"@types/node-fetch@npm:^2.5.7, @types/node-fetch@npm:^2.6.1":
   version: 2.6.1
   resolution: "@types/node-fetch@npm:2.6.1"
   dependencies:
@@ -8645,7 +8655,7 @@ __metadata:
     "@types/koa__cors": 3.3.0
     "@types/koa__router": 8.0.11
     "@types/node": ^17.0.33
-    "@types/node-fetch": 2.6.1
+    "@types/node-fetch": 2.6.2
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: 3.7.0
     discord.js: 13.7.0
