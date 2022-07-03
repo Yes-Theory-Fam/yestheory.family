@@ -8757,7 +8757,7 @@ __metadata:
     next: 12.1.6
     next-images: 1.8.4
     next-transpile-modules: 9.0.0
-    next-urql: 3.3.2
+    next-urql: 3.3.3
     react: 18.1.0
     react-dom: 18.1.0
     react-ssr-prepass: 1.5.0
@@ -18918,15 +18918,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-urql@npm:3.3.2":
-  version: 3.3.2
-  resolution: "next-urql@npm:3.3.2"
+"next-urql@npm:3.3.3":
+  version: 3.3.3
+  resolution: "next-urql@npm:3.3.3"
   dependencies:
     react-ssr-prepass: ^1.4.0
   peerDependencies:
     react: ">=16.8.0"
     urql: ^2.0.0
-  checksum: b5e89bf5a4c717f5178475d06fbb20e683d3b89ee4e6632a009216565018bd4645e982a2e90bab45c5f5ffea8618f0604bca11f19e494fe86fa3e19c2167ca29
+  checksum: fc6e164152a013ece6fb036e9a52b318c830fa32fb2e18e5eeb7d355cd2f23f70a3846f98f87862dd96d586accf74d6e7de8fce7e18b004f6bef3a1a9d11b901
   languageName: node
   linkType: hard
 
