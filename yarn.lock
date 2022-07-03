@@ -156,18 +156,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@atmina/local-typescript-operations@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@atmina/local-typescript-operations@npm:0.5.0"
+"@atmina/local-typescript-operations@npm:0.6.0":
+  version: 0.6.0
+  resolution: "@atmina/local-typescript-operations@npm:0.6.0"
   dependencies:
     "@graphql-codegen/plugin-helpers": ^2.0.0
-    "@graphql-codegen/typescript": ^2.0.0
-    "@graphql-codegen/typescript-operations": ^2.0.0
+    "@graphql-codegen/typescript": ^2.4.11
+    "@graphql-codegen/typescript-operations": ^2.4.0
     auto-bind: ^4.0.0
   peerDependencies:
-    "@graphql-codegen/near-operation-file-preset": ^2.2.6
+    "@graphql-codegen/near-operation-file-preset": ^2.2.12
     graphql: ^15.8.0
-  checksum: aeb4ff1b9efecd95fae72490412ba358f1b1654fc5ebc5e7bf50a9f211ccd21ebfce035a2bde00bf4f6fc1846d5c7dcf2b4540bd018d13221ff055ef5f8a017e
+  checksum: 4c0f2d72b0bb40897e7a7cfc15a3e3edf3787a15e0dd9aeec3f4d2bc57e11d7c5c0b514b177b0e5dda0d69b6003ac029f8e2c4cc434eee1b9edf37720af2232a
   languageName: node
   linkType: hard
 
@@ -8897,7 +8897,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@yestheory.family/web@workspace:packages/web"
   dependencies:
-    "@atmina/local-typescript-operations": 0.5.0
+    "@atmina/local-typescript-operations": 0.6.0
     "@atmina/only-enum-types": 0.4.0
     "@chakra-ui/react": 2.2.1
     "@graphql-codegen/cli": 2.8.1
