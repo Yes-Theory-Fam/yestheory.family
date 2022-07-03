@@ -171,9 +171,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@atmina/only-enum-types@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@atmina/only-enum-types@npm:0.4.0"
+"@atmina/only-enum-types@npm:0.5.0":
+  version: 0.5.0
+  resolution: "@atmina/only-enum-types@npm:0.5.0"
   dependencies:
     "@graphql-codegen/plugin-helpers": ^2.0.0
     "@graphql-codegen/typescript": ^2.0.0
@@ -181,7 +181,7 @@ __metadata:
     auto-bind: ^4.0.0
   peerDependencies:
     graphql: ^15.8.0
-  checksum: 85887ef1c2e73e139eb1a6b6b5e5151c62406c68ba1d3ad17d4012754c32c8494a3eebb93a8618ff9170a1836ec8657c95db2dde925d9290453d86e18213da95
+  checksum: c746c2b6f4f5d0ec56ad94159d173f6eb2e518ed9b09a62d7b05f868ad8bab58e8b2db3fa5fe399227fc5020c9fa6a43bd61fd22a7dfe4c9d3fc65f7c3156ea9
   languageName: node
   linkType: hard
 
@@ -8749,7 +8749,7 @@ __metadata:
   resolution: "@yestheory.family/web@workspace:packages/web"
   dependencies:
     "@atmina/local-typescript-operations": 0.5.0
-    "@atmina/only-enum-types": 0.4.0
+    "@atmina/only-enum-types": 0.5.0
     "@chakra-ui/react": 2.2.1
     "@graphql-codegen/cli": 2.6.4
     "@graphql-codegen/near-operation-file-preset": 2.2.14
