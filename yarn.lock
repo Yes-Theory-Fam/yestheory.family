@@ -8716,7 +8716,7 @@ __metadata:
     eslint: 7.32.0
     eslint-plugin-react: ^7.30.0
     eslint-plugin-storybook: ^0.5.12
-    framer-motion: 6.3.3
+    framer-motion: 6.3.16
     jest: 28.1.2
     jest-environment-jsdom: 28.1.2
     react: 18.1.0
@@ -14136,9 +14136,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:6.3.3":
-  version: 6.3.3
-  resolution: "framer-motion@npm:6.3.3"
+"framer-motion@npm:6.3.16":
+  version: 6.3.16
+  resolution: "framer-motion@npm:6.3.16"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     framesync: 6.0.1
@@ -14152,7 +14152,7 @@ __metadata:
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: 905ccf2679a45b00f6fd3fa6220f73f176e0c14b43d65ceb5feb93e23b12098def275930b98926c9bd4320f0436564745ebcfd488d7a477646a7a4600362fdbf
+  checksum: f60df0181f4b646700b709c551f505b985399e41cc60ea511ad0d0fe05399ceb36478da360d38481757dd5ef15964f10b6ffbea15cbd58d9698da02c962076f1
   languageName: node
   linkType: hard
 
