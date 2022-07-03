@@ -18,7 +18,7 @@
     "@emotion/sheet": "1.1.0",
     "@emotion/styled": "11.8.1",
     "@fontsource/roboto": "^4.5.7",
-    "framer-motion": "6.3.3",
+    "framer-motion": "6.3.16",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-use": "17.4.0",
