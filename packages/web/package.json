@@ -39,7 +39,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-ssr-prepass": "1.5.0",
-    "urql": "2.2.0"
+    "urql": "2.2.2"
   },
   "license": "MIT"
 }
