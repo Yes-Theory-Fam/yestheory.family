@@ -6,11 +6,14 @@ import {
   Mutation,
   ObjectType,
 } from "type-graphql";
-import { Resolver } from "../../../services/resolvers/resolver-directive";
-import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
-import { AuthService } from "../auth-service";
+import { Logger } from "../../../services/logging/log-service";
+import {
+  Resolver,
+  ResolverTarget,
+} from "../../../services/resolvers/resolver-directive";
 import { YtfApolloContext } from "../../../types";
+import { AuthService } from "../auth-service";
 
 @ObjectType()
 class RefreshTokenPayload {
@@ -30,7 +33,7 @@ class RefreshTokenPayload {
   }
 }
 
-@Resolver()
+@Resolver(ResolverTarget.PUBLIC)
 class RefreshTokenMutation {
   constructor(
     @Logger("auth", "refreshToken") private logger: winston.Logger,

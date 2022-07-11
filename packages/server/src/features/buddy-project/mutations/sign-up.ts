@@ -1,22 +1,26 @@
+import { Prisma, PrismaClient } from "@prisma/client";
+import { Client, Guild, GuildMember, Role, Snowflake } from "discord.js";
 import { Authorized, Ctx, Mutation } from "type-graphql";
-import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
+import { Logger } from "../../../services/logging/log-service";
+import {
+  Resolver,
+  ResolverTarget,
+} from "../../../services/resolvers/resolver-directive";
 import { YtfApolloContext } from "../../../types";
 import { AuthProvider } from "../../user";
 import {
   BuddyProjectStatus,
   BuddyProjectStatusPayload,
 } from "../buddy-project-status";
-import { Resolver } from "../../../services/resolvers/resolver-directive";
-import { Client, Guild, GuildMember, Role, Snowflake } from "discord.js";
-import { Prisma } from "@prisma/client";
 
-@Resolver()
+@Resolver(ResolverTarget.PUBLIC)
 class SignUpMutation {
   constructor(
     @Logger("buddy-project", "signup") private logger: winston.Logger,
     private discord: Client,
-    private guild: Guild
+    private guild: Guild,
+    private prisma: PrismaClient
   ) {}
 
   @Authorized()
@@ -24,7 +28,7 @@ class SignUpMutation {
   public async signUp(
     @Ctx() ctx: YtfApolloContext
   ): Promise<BuddyProjectStatusPayload> {
-    const { prisma, user, accessToken } = ctx;
+    const { user, accessToken } = ctx;
 
     if (!user || user.type !== AuthProvider.DISCORD || !accessToken) {
       throw new Error("Cannot sign up user who isn't logged in with Discord!");
@@ -50,7 +54,7 @@ class SignUpMutation {
     }
 
     try {
-      await prisma.buddyProjectEntry.create({ data: { userId: user.id } });
+      await this.prisma.buddyProjectEntry.create({ data: { userId: user.id } });
     } catch (e) {
       if (
         e instanceof Prisma.PrismaClientKnownRequestError &&

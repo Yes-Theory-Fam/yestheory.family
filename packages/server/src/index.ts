@@ -1,107 +1,30 @@
-import "reflect-metadata";
-import { config } from "dotenv";
-config();
-
 import { PrismaClient } from "@prisma/client";
-import { BuildSchemaOptions, buildSchemaSync } from "type-graphql";
-import Koa, { Context } from "koa";
-import koaSession from "koa-session";
-import { ApolloServer } from "apollo-server-koa";
-import grant from "grant";
-import grantConfig from "./config/grant";
-import sessionConfig from "./config/session";
-import { createServerLogger } from "./services/logging/log";
-import mount from "koa-mount";
-import { authenticationRouter, Discord } from "./features";
-import { YtfApolloContext } from "./types";
-import { Container } from "typedi";
-import { authChecker } from "./features/auth/graphql-auth-checker";
-import { ExportDirective, WithDiscordDirective } from "./graphql-directives";
-
-import { getResolvers } from "./services/resolvers/resolver-directive";
 import { Client, Guild } from "discord.js";
-import { requireCookieConsent } from "./features/auth/require-cookie-consent";
-import { isDevelopment } from "./config";
+import { config } from "dotenv";
+import "reflect-metadata";
+import { Container } from "typedi";
+import { Discord } from "./features";
+import { launchPublicServer } from "./servers";
+import { launchYesBotServer } from "./servers/yesbot";
+import { createServerLogger } from "./services/logging/log";
+
+config();
 
 const logger = createServerLogger("src", "index");
 
 const prisma = new PrismaClient();
 
 const main = async () => {
-  const additionalOptions: Partial<BuildSchemaOptions> = {};
+  Container.set(PrismaClient, prisma);
 
-  // TODO find a reasonably neat way of providing the required secrets to the CI for e2e tests
-  if (process.env.IS_E2E) {
-    additionalOptions.authChecker = () => false;
-  } else {
+  if (!process.env.IS_E2E) {
     const { client, guild } = await Discord.initialize();
     Container.set(Client, client);
     Container.set(Guild, guild);
-    additionalOptions.authChecker = authChecker(guild);
   }
 
-  const resolvers = await getResolvers();
-
-  const schema = buildSchemaSync({
-    directives: [ExportDirective, WithDiscordDirective],
-    resolvers,
-    container: Container,
-    ...additionalOptions,
-  });
-
-  const port = process.env["BACKEND_PORT"] ?? 5000;
-  const koaGrant = grant.koa();
-  const app = new Koa();
-  app.keys = ["grant"];
-  app.proxy = !isDevelopment;
-  app.use(requireCookieConsent);
-  app.use(koaSession(sessionConfig, app));
-  app.use(mount("/oauth", koaGrant(grantConfig)));
-  app.use(authenticationRouter.routes());
-
-  const server = new ApolloServer({
-    schema,
-    context: (req): YtfApolloContext => {
-      const ctx: Context = req.ctx;
-      const maybeUser = ctx.session?.user;
-
-      const authHeaderPrefix = "Bearer ";
-      const authHeader = ctx.headers.authorization;
-      if (authHeader && !authHeader.startsWith(authHeaderPrefix)) {
-        throw new Error(
-          "Bad Request! Auth header present but not a Bearer token"
-        );
-      }
-
-      const accessToken = authHeader?.substring(authHeaderPrefix.length);
-
-      return {
-        prisma,
-        user: maybeUser,
-        requestContext: ctx,
-        accessToken,
-      };
-    },
-    formatResponse: (response, reqContext) => {
-      const authErrors =
-        response.errors?.filter((e) =>
-          e.message.startsWith("Access denied!")
-        ) ?? [];
-      const user = (reqContext.context as YtfApolloContext).user;
-      for (const authError of authErrors) {
-        const code = user ? "UNAUTHORIZED" : "UNAUTHENTICATED";
-        if (authError.extensions) authError.extensions.code = code;
-      }
-      return response;
-    },
-  });
-  await server.start();
-  server.applyMiddleware({
-    app,
-    cors: { origin: process.env.FRONTEND_HOST, credentials: true },
-  });
-
-  app.listen({ port }, () => logger.info(`Backend listening on port ${port}`));
+  await launchPublicServer();
+  await launchYesBotServer();
 };
 
 main().then(() => logger.debug("Launched server"));
