@@ -7686,6 +7686,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node-cron@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@types/node-cron@npm:3.0.2"
+  checksum: 921b1276c793ab6ae095436b8cde8d4d3ab02d8749011bd5b2006a4d921e206ae06de66edd9bccff4b1c09726bad16d9274c1ad104ab2d4370ad910f71cb9db2
+  languageName: node
+  linkType: hard
+
 "@types/node-fetch@npm:2.6.2":
   version: 2.6.2
   resolution: "@types/node-fetch@npm:2.6.2"
@@ -8655,6 +8662,7 @@ __metadata:
     "@types/koa__cors": 3.3.0
     "@types/koa__router": 8.0.11
     "@types/node": ^17.0.33
+    "@types/node-cron": ^3.0.2
     "@types/node-fetch": 2.6.2
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: 3.7.0
@@ -8671,6 +8679,7 @@ __metadata:
     koa-bodyparser: 4.3.0
     koa-mount: 4.0.0
     koa-session: 6.2.0
+    node-cron: ^3.0.1
     node-fetch: 2.6.7
     prisma: 3.14.0
     reflect-metadata: 0.1.13
@@ -19018,6 +19027,13 @@ __metadata:
     lower-case: ^2.0.2
     tslib: ^2.0.3
   checksum: 0b2ebc113dfcf737d48dde49cfebf3ad2d82a8c3188e7100c6f375e30eafbef9e9124aadc3becef237b042fd5eb0aad2fd78669c20972d045bbe7fea8ba0be5c
+  languageName: node
+  linkType: hard
+
+"node-cron@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "node-cron@npm:3.0.1"
+  checksum: 98636a3d4373d48b5c7f5b922c93d22ca81a4bd38284f264812c7b88f06c995eb9ccde34ee2753cbec9bf5b77bd220c817c18ca82de504e3e324df9af6983b5d
   languageName: node
   linkType: hard
 

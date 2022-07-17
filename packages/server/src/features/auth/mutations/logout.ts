@@ -1,15 +1,17 @@
-import { Resolver } from "../../../services/resolvers/resolver-directive";
-import { Logger } from "../../../services/logging/logService";
-import winston from "winston";
+import Cookies from "cookies";
 import { Authorized, Ctx, Mutation } from "type-graphql";
+import winston from "winston";
+import { domain } from "../../../config/session";
+import { Logger } from "../../../services/logging/log-service";
+import {
+  Resolver,
+  ResolverTarget,
+} from "../../../services/resolvers/resolver-directive";
 import { YtfApolloContext } from "../../../types";
 import { AuthProvider } from "../../user";
-
-import Cookies from "cookies";
 import { AuthService } from "../auth-service";
-import { domain } from "../../../config/session";
 
-@Resolver()
+@Resolver(ResolverTarget.PUBLIC)
 class LogoutMutation {
   constructor(
     @Logger("auth", "logout") private logger: winston.Logger,

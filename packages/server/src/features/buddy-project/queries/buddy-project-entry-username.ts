@@ -1,11 +1,14 @@
-import { Resolver } from "../../../services/resolvers/resolver-directive";
-import { BuddyProjectEntry } from "../../../__generated__/type-graphql";
-import { Logger } from "../../../services/logging/logService";
-import winston from "winston";
 import { Guild } from "discord.js";
 import { FieldResolver, Root } from "type-graphql";
+import winston from "winston";
+import { BuddyProjectEntry } from "../../../__generated__/type-graphql";
+import { Logger } from "../../../services/logging/log-service";
+import {
+  Resolver,
+  ResolverTarget,
+} from "../../../services/resolvers/resolver-directive";
 
-@Resolver(BuddyProjectEntry)
+@Resolver(ResolverTarget.PUBLIC, BuddyProjectEntry)
 class BuddyProjectEntryUsernameResolver {
   constructor(
     @Logger("buddy-project", "buddy-project-entry-username")

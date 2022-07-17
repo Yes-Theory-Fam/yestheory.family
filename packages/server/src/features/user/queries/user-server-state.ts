@@ -1,11 +1,14 @@
-import { AuthenticatedUser, AuthProvider } from "../authenticated-user";
-import { Resolver } from "../../../services/resolvers/resolver-directive";
-import { Logger } from "../../../services/logging/logService";
-import winston from "winston";
-import { Authorized, FieldResolver, Root } from "type-graphql";
 import { Guild } from "discord.js";
+import { Authorized, FieldResolver, Root } from "type-graphql";
+import winston from "winston";
+import { Logger } from "../../../services/logging/log-service";
+import {
+  Resolver,
+  ResolverTarget,
+} from "../../../services/resolvers/resolver-directive";
+import { AuthenticatedUser, AuthProvider } from "../authenticated-user";
 
-@Resolver(AuthenticatedUser)
+@Resolver(ResolverTarget.PUBLIC, AuthenticatedUser)
 class UserServerStateResolver {
   constructor(
     @Logger("user", "server-state") private logger: winston.Logger,

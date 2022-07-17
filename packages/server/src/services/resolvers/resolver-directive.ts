@@ -13,7 +13,16 @@ import {
 } from "type-graphql/dist/decorators/types";
 
 type Class = { new (...args: never[]): unknown };
-const resolvers: Class[] = [];
+
+export const enum ResolverTarget {
+  YESBOT = "YESBOT",
+  PUBLIC = "PUBLIC",
+}
+
+const resolvers: Record<ResolverTarget, Class[]> = {
+  [ResolverTarget.YESBOT]: [],
+  [ResolverTarget.PUBLIC]: [],
+};
 
 type ResolverParameters =
   | []
@@ -23,10 +32,21 @@ type ResolverParameters =
 
 const logger = createServerLogger("services", "resolver");
 
-export const Resolver = (...args: ResolverParameters) => {
+export const Resolver = (
+  resolverTarget: ResolverTarget | ResolverTarget[],
+  ...args: ResolverParameters
+) => {
+  const resolverTargets = Array.isArray(resolverTarget)
+    ? resolverTarget
+    : [resolverTarget];
+
   return <U extends Class>(target: U): U => {
     logger.debug(`Adding resolver '${target.name}'`);
-    resolvers.push(target);
+
+    for (const singleResolverTarget of resolverTargets) {
+      resolvers[singleResolverTarget].push(target);
+    }
+
     Service()(target);
     // @ts-expect-error - For some reason the union type isn't an array of length 0-2 but 0+ which isn't correct, so we
     //   have to ignore this.
@@ -70,14 +90,20 @@ const collectResolvers = (): Promise<void> =>
     });
   });
 
-export const getResolvers = async (): Promise<NonEmptyArray<Class>> => {
-  await collectResolvers();
+export const getResolvers = async (
+  target: ResolverTarget
+): Promise<NonEmptyArray<Class>> => {
+  const resolversForTarget = resolvers[target];
 
-  if (resolvers.length === 0) {
+  if (resolversForTarget.length === 0) {
+    await collectResolvers();
+  }
+
+  if (resolversForTarget.length === 0) {
     throw new Error(
       "No resolver was loaded, make sure at least one resolver is tagged with the Resolver decorator from the service directory!"
     );
   }
 
-  return resolvers as NonEmptyArray<Class>;
+  return resolversForTarget as NonEmptyArray<Class>;
 };

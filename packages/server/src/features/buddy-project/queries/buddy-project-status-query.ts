@@ -1,40 +1,28 @@
 import { Authorized, Ctx, Query } from "type-graphql";
-import { Logger } from "../../../services/logging/logService";
 import winston from "winston";
-import { YtfApolloContext } from "../../../types";
+import { Logger } from "../../../services/logging/log-service";
 import {
-  BuddyProjectStatus,
-  BuddyProjectStatusPayload,
-} from "../buddy-project-status";
-import { Resolver } from "../../../services/resolvers/resolver-directive";
+  Resolver,
+  ResolverTarget,
+} from "../../../services/resolvers/resolver-directive";
+import { YtfApolloContext } from "../../../types";
+import { BuddyProjectStatusPayload } from "../buddy-project-status";
+import { BuddyProjectService } from "../services/buddy-project.service";
 
-@Resolver()
+@Resolver(ResolverTarget.PUBLIC)
 class BuddyProjectStatusQuery {
   constructor(
-    @Logger("buddy-project", "status") private logger: winston.Logger
+    @Logger("buddy-project", "status") private logger: winston.Logger,
+    private buddyProjectService: BuddyProjectService
   ) {}
 
   @Authorized()
   @Query(() => BuddyProjectStatusPayload)
   public async getBuddyProjectStatus(
-    @Ctx() { user, prisma }: YtfApolloContext
+    @Ctx() { user }: YtfApolloContext
   ): Promise<BuddyProjectStatusPayload> {
     if (!user) throw new Error();
 
-    const entry = await prisma.buddyProjectEntry.findUnique({
-      where: { userId: user.id },
-      include: { buddy: true },
-    });
-
-    if (!entry) {
-      return new BuddyProjectStatusPayload(BuddyProjectStatus.NOT_SIGNED_UP);
-    }
-
-    const buddy = entry.buddy;
-    const status = buddy
-      ? BuddyProjectStatus.MATCHED
-      : BuddyProjectStatus.SIGNED_UP;
-
-    return new BuddyProjectStatusPayload(status, buddy);
+    return await this.buddyProjectService.getBuddyProjectStatus(user.id);
   }
 }
