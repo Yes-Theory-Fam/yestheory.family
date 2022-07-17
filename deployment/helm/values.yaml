@@ -37,10 +37,12 @@ Ingress:
   class: public
   issuer: letsencrypt-prod
 
+common:
+  baseDomain: yestheory.family
+
 web:
   ingress:
     name: ytf-web-ingress
-    host: yestheory.family
     certName: cert-web
   service:
     name: ytf-web-service
@@ -60,7 +62,6 @@ web:
 backend:
   ingress:
     name: ytf-backend-ingress
-    host: api.yestheory.family
     certName: cert-backend
   service:
     name: ytf-backend-service
@@ -76,8 +77,6 @@ backend:
     containerEnv:
       - name: NODE_ENV
         value: production
-      - name: FRONTEND_HOST
-        value: https://yestheory.family
       - name: DISCORD_SCOPES
         value: "identify,guilds.join"
 

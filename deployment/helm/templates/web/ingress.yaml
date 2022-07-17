@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.web.ingress.host }}
+        - {{ .Values.common.baseDomain }}
       secretName: {{ .Values.web.ingress.certName }}
   rules:
-    - host: {{ .Values.web.ingress.host }}
+    - host: {{ .Values.common.baseDomain }}
       http:
         paths:
           - path: /

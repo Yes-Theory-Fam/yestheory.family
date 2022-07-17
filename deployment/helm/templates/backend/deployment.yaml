@@ -30,3 +30,5 @@ spec:
                   name: {{ $.Values.backend.deployment.secret.name }}
                   key: {{ .name }}
             {{- end }}
+            - name: FRONTEND_HOST
+              value: https://{{ .Values.common.baseDomain }}
