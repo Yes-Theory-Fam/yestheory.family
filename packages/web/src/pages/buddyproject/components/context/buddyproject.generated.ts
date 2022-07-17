@@ -11,7 +11,7 @@ export type StateQuery = {
   getBuddyProjectStatus: {
     __typename?: "BuddyProjectStatusPayload";
     status: Types.BuddyProjectStatus;
-    buddy: Buddy | null;
+    buddy?: BuddyProjectEntry | null;
   };
 };
 

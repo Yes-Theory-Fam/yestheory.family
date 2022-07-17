@@ -6,7 +6,10 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export type CurrentUserQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-export type CurrentUserQuery = { __typename?: "Query"; me: User | null };
+export type CurrentUserQuery = {
+  __typename?: "Query";
+  me?: AuthenticatedUser | null;
+};
 
 export type User = {
   __typename?: "AuthenticatedUser";
