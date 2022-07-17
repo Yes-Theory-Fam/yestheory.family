@@ -7748,7 +7748,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa@npm:*, @types/koa@npm:2.13.4, @types/koa@npm:^2.11.6":
+"@types/koa@npm:*, @types/koa@npm:^2.11.6":
   version: 2.13.4
   resolution: "@types/koa@npm:2.13.4"
   dependencies:
@@ -7761,6 +7761,22 @@ __metadata:
     "@types/koa-compose": "*"
     "@types/node": "*"
   checksum: 35a54e68944f74d6763537d55d01f8ed870d0ef816b5f27fce97a317b237540b7c249dc4a54abab44ad0afd0ce010b335122c9efb490b9589affe7929201d707
+  languageName: node
+  linkType: hard
+
+"@types/koa@npm:2.13.5":
+  version: 2.13.5
+  resolution: "@types/koa@npm:2.13.5"
+  dependencies:
+    "@types/accepts": "*"
+    "@types/content-disposition": "*"
+    "@types/cookies": "*"
+    "@types/http-assert": "*"
+    "@types/http-errors": "*"
+    "@types/keygrip": "*"
+    "@types/koa-compose": "*"
+    "@types/node": "*"
+  checksum: e3b634d934b79ce8f394bf4130511596081f9c073dbfb4309aa32e4c421c47049a002b65111f8d9687eabec55d5a27b1b9ae0699afa83894cb7032c3536bfa17
   languageName: node
   linkType: hard
 
@@ -8795,7 +8811,7 @@ __metadata:
     "@nestjs/class-validator": 0.13.4
     "@prisma/client": 3.14.0
     "@types/graphql-fields": 1.3.4
-    "@types/koa": 2.13.4
+    "@types/koa": 2.13.5
     "@types/koa-bodyparser": 4.3.7
     "@types/koa-mount": 4.0.1
     "@types/koa-session": 5.10.6
