@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.common.baseDomain }}
-      secretName: {{ .Values.web.ingress.certName }}
+      secretName: {{ .Values.common.certName }}
   rules:
     - host: {{ .Values.common.baseDomain }}
       http:

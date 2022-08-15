@@ -40,8 +40,6 @@ COPY packages/web/ ./packages/web
 COPY packages/ui/ ./packages/ui
 WORKDIR /app/packages/web
 
-ARG NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
-
 RUN yarn build
 
 # Production image, copy all the files and run next

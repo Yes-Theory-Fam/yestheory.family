@@ -101,9 +101,7 @@ const UrqlWrappedApp = withUrqlClient((ssrExchange, ctx) => ({
     ssrExchange,
     fetchExchange,
   ],
-  url: ctx
-    ? process.env.SERVER_BACKEND_GRAPHQL_URL
-    : `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
+  url: ctx ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
   fetchOptions: {
     credentials: "include",
   },
@@ -122,9 +120,7 @@ UrqlWrappedApp.getInitialProps = async (
 
   const client = initUrqlClient(
     {
-      url: isServerSide
-        ? process.env.SERVER_BACKEND_GRAPHQL_URL
-        : process.env.NEXT_PUBLIC_BACKEND_URL,
+      url: isServerSide ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
       fetchOptions: {
         credentials: "include",
         headers: {

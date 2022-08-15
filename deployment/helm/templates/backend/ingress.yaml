@@ -12,13 +12,21 @@ metadata:
 spec:
   tls:
     - hosts:
-        - api.{{ .Values.common.baseDomain }}
-      secretName: {{ .Values.backend.ingress.certName }}
+        - {{ .Values.common.baseDomain }}
+      secretName: {{ .Values.common.certName }}
   rules:
-    - host: api.{{ .Values.common.baseDomain }}
+    - host: {{ .Values.common.baseDomain }}
       http:
         paths:
-          - path: /
+          - path: /oauth/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.backend.service.name }}
+                port:
+                  number: {{ .Values.backend.service.port }}
+
+          - path: /graphql
             pathType: Prefix
             backend:
               service:

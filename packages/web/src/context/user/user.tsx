@@ -83,6 +83,5 @@ export const navigateToLogin = (): void => {
   const lastLocation = window.location.href;
   const domain = window.location.hostname;
   document.cookie = `last_location=${lastLocation};domain=${domain};path=/`;
-  const backend = process.env.NEXT_PUBLIC_BACKEND_URL;
-  window.location.href = `${backend}/oauth/discord`;
+  window.location.href = "/oauth/discord";
 };

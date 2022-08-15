@@ -19,7 +19,7 @@ spec:
           command: ['sh', '-c', 'until pg_isready -h {{ .Values.database.service.name}} -p {{ .Values.database.service.port }} -U yesbot; do echo waiting for database; sleep 2; done;']
       containers:
         - name: {{ .Values.backend.deployment.name }}
-          image: {{ .Values.backend.deployment.image }}
+          image: {{ .Values.backend.deployment.image.name }}:{{ .Values.backend.deployment.image.tag }}
           ports:
             - {{ .Values.backend.deployment.port | toYaml | nindent 14}}
           env: {{ .Values.backend.deployment.containerEnv | toYaml | nindent 12 }}

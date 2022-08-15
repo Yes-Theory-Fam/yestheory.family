@@ -1,15 +1,12 @@
 name: 'Lint and Test'
 on: push
 
-env:
-  YTF_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   eslint:
     name: "ESLint"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/yarn-action
         name: "Install and lint"
         with:
@@ -19,7 +16,7 @@ jobs:
     name: "Prettier"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/yarn-action
         name: "Install and check formatting"
         with:
@@ -29,7 +26,7 @@ jobs:
     name: "Test"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/yarn-action
         name: "Install and test"
         with:
