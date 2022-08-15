@@ -10,9 +10,8 @@ hooks:
 generates:
   src/__generated__/types.ts:
     plugins:
-      - "@graphql-codegen/typescript"
+      - "@atmina/only-enum-types"
     config:
-      onlyEnums: true
       scalars:
         DateTime: string
   ./:

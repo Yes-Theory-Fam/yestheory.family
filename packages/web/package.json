@@ -13,10 +13,10 @@
     "test": "echo web: ok"
   },
   "devDependencies": {
-    "@atmina/local-typescript-operations": "0.6.0",
+    "@atmina/local-typescript-operations": "0.6.1",
+    "@atmina/only-enum-types": "0.5.0",
     "@graphql-codegen/cli": "2.8.1",
     "@graphql-codegen/near-operation-file-preset": "2.3.1",
-    "@graphql-codegen/typescript": "2.7.1",
     "@graphql-codegen/typescript-urql": "3.6.1",
     "@yestheory.family/eslint-config": "^1.0.0",
     "cypress": "9.7.0",
