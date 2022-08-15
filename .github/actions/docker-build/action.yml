@@ -17,8 +17,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
-
     - name: Cache Docker layers
       uses: actions/cache@v2
       with:
@@ -38,17 +36,21 @@ runs:
         username: ${{ github.repository_owner }}
         password: ${{ inputs.token }}
 
-    - name: Build container
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v3
+      with:
+        images: ghcr.io/yes-theory-fam/yestheory-family-${{ inputs.sub-project }}
+
+    - name: Build and push image
       uses: docker/build-push-action@v2
       with:
         push: true
         build-args: ${{ inputs.build-args }}
-        tags: ghcr.io/${{ env.OWNER }}/yestheory-family-${{ inputs.sub-project }}:${{ github.ref == 'refs/heads/master' && 'latest' || format('pr-{0}', github.event.pull_request.number) }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
         context: ./
         file: ./packages/${{ inputs.sub-project }}/Dockerfile
         builder: ${{ steps.buildx.output.name }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
-        secrets: |
-          "YTF_NPM_AUTH_TOKEN=${{ inputs.token }}"
-
