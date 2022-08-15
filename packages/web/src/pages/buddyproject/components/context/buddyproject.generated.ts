@@ -10,8 +10,8 @@ export type StateQuery = {
   __typename?: "Query";
   getBuddyProjectStatus: {
     __typename?: "BuddyProjectStatusPayload";
-    status: Types.BuddyProjectStatus;
     buddy: Buddy | null;
+    status: Types.BuddyProjectStatus;
   };
 };
 

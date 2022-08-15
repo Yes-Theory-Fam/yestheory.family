@@ -22,8 +22,6 @@
     "prettier": "2.6.2"
   },
   "resolutions": {
-    "@graphql-codegen/typescript": "2.7.1",
-    "@graphql-codegen/typescript-operations": "2.5.1",
     "react-test-renderer": "18.1.0"
   },
   "packageManager": "yarn@3.2.1"
