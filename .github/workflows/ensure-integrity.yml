@@ -12,7 +12,7 @@ jobs:
     name: "Docker Build Server"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/docker-build
         name: "Build Container"
         with:
@@ -23,7 +23,7 @@ jobs:
     name: "Docker Build Web"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/docker-build
         name: "Build Container"
         with:
@@ -35,10 +35,8 @@ jobs:
   chromatic-deployment:
     name: "Chromatic Deployment"
     runs-on: ubuntu-latest
-    env:
-      YTF_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: ./.github/actions/install-yarn
@@ -58,7 +56,7 @@ jobs:
     needs: [ docker-build-server, docker-build-web ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # Uses fake ternary operator to use latest for master and pr-# for PRs https://github.community/t/do-expressions-support-ternary-operators-to-change-their-returned-value/18114/3
       - name: Bake e2e test YAML
@@ -85,7 +83,7 @@ jobs:
     needs: e2e-test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Delete server image
         uses: ./.github/actions/delete-image
         with:
