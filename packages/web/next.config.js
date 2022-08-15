@@ -7,12 +7,12 @@ const config = {
   pageExtensions: ["page.tsx"],
   rewrites: () => [
     {
-      source: "/oauth/*",
-      destination: "http://localhost:5000/oauth/",
-    },
-    {
       source: "/graphql",
       destination: "http://localhost:5000/graphql",
+    },
+    {
+      source: "/oauth/:slug",
+      destination: "http://localhost:5000/oauth/:slug",
     },
   ],
 };
