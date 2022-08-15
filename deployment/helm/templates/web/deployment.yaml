@@ -15,7 +15,7 @@ spec:
         - name: {{ .Values.imagePullSecrets.github }}
       containers:
         - name: {{ .Values.web.deployment.name }}
-          image: {{ .Values.web.deployment.image }}
+          image: {{ .Values.web.deployment.image.name }}:{{ .Values.web.deployment.image.tag }}
           ports:
             - {{ .Values.web.deployment.port | toYaml | nindent 14}}
           env: {{ .Values.web.deployment.containerEnv | toYaml | nindent 12 }}

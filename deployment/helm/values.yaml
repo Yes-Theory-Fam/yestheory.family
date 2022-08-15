@@ -51,7 +51,9 @@ web:
       app: ytf-web
   deployment:
     name: ytf-web-deployment
-    image: ghcr.io/yes-theory-fam/yestheory-family-web:latest
+    image:
+      name: ghcr.io/yes-theory-fam/yestheory-family-web
+      tag: latest
     port:
       name: next
       containerPort: 3000
@@ -70,7 +72,9 @@ backend:
       app: ytf-backend
   deployment:
     name: ytf-backend-deployment
-    image: ghcr.io/yes-theory-fam/yestheory-family-server:latest
+    image:
+      name: ghcr.io/yes-theory-fam/yestheory-family-server
+      tag: latest
     port:
       name: node
       containerPort: 5000
