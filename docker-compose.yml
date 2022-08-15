@@ -26,8 +26,6 @@ services:
   web:
     image: yestheory-family-web:latest
     build:
-      args:
-        - NEXT_PUBLIC_BACKEND_URL
       context: .
       dockerfile: packages/web/Dockerfile
     ports:

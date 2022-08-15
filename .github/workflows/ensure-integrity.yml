@@ -5,7 +5,6 @@ on:
     branches: [master]
 env:
   OWNER: yes-theory-fam
-  NEXT_PUBLIC_BACKEND_URL: https://api.yestheory.family
 
 jobs:
   docker-build-server:
@@ -29,8 +28,6 @@ jobs:
         with:
           sub-project: web
           token: ${{ secrets.GITHUB_TOKEN }}
-          build-args: |
-            "NEXT_PUBLIC_BACKEND_URL=https://api.yestheory.family"
 
   chromatic-deployment:
     name: "Chromatic Deployment"

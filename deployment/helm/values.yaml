@@ -39,11 +39,11 @@ Ingress:
 
 common:
   baseDomain: yestheory.family
+  certName: cert
 
 web:
   ingress:
     name: ytf-web-ingress
-    certName: cert-web
   service:
     name: ytf-web-service
     port: 80
@@ -64,7 +64,6 @@ web:
 backend:
   ingress:
     name: ytf-backend-ingress
-    certName: cert-backend
   service:
     name: ytf-backend-service
     port: 80
