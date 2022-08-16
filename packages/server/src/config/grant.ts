@@ -1,22 +1,17 @@
 import { GrantConfig } from "grant";
-import { isDevelopment } from ".";
 
 const {
-  BACKEND_PORT,
   DISCORD_CLIENT_ID,
   DISCORD_CLIENT_SECRET,
   DISCORD_SCOPES,
+  FRONTEND_HOST,
 } = process.env;
-
-const origin = isDevelopment
-  ? `http://localhost:${BACKEND_PORT ?? 5000}`
-  : "https://api.yestheory.family";
 
 const prefix = "/oauth";
 
 const config: GrantConfig = {
   defaults: {
-    origin,
+    origin: FRONTEND_HOST,
     transport: "session",
     prefix,
   },
