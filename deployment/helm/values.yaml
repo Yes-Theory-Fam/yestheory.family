@@ -98,6 +98,7 @@ backend:
           value:
 
 database:
+  create: false
   service:
     port: 5432
     name: ytf-database-service

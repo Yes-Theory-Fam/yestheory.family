@@ -1,3 +1,4 @@
+{{- if .Values.database.create -}}
 kind: Service
 apiVersion: v1
 metadata:
@@ -9,3 +10,4 @@ spec:
     - port: {{ .Values.database.service.port}}
       targetPort: {{ .Values.database.deployment.port.name }}
   selector: {{ .Values.database.service.labels | toYaml | nindent 4 }}
+{{- end -}}
