@@ -33,3 +33,11 @@ spec:
                 name: {{ .Values.backend.service.name }}
                 port:
                   number: {{ .Values.backend.service.port }}
+
+          - path: /yesbot
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.backend.yesbotService.name }}
+                port:
+                  number: {{ .Values.backend.yesbotService.port }}
