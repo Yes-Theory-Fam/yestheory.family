@@ -30,6 +30,8 @@ This project provides a monorepo setup for a Fullstack TypeScript project and co
 - [ESLint](https://github.com/eslint/eslint/)
 - [Docker](https://github.com/moby/moby)
 - [GitHub Action](https://github.com/features/actions)
+- [Helm](https://helm.sh)
+- [ArgoCD](https://argo-cd.readthedocs.io) (under the hood)
 
 ## How do I use this?
 

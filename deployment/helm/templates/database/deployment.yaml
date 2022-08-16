@@ -1,3 +1,4 @@
+{{- if .Values.database.create -}}
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -24,3 +25,4 @@ spec:
                   name: {{ $.Values.database.deployment.secret.name }}
                   key: {{ .name }}
             {{- end }}
+{{- end -}}
