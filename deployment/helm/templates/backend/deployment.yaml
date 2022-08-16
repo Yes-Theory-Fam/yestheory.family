@@ -16,12 +16,13 @@ spec:
       initContainers:
         - name: check-db-ready
           image: postgres:13-alpine
-          command: ['sh', '-c', 'until pg_isready -h {{ .Values.database.service.name}} -p {{ .Values.database.service.port }} -U yesbot; do echo waiting for database; sleep 2; done;']
+          command: ['sh', '-c', 'until pg_isready -h {{ .Values.database.service.name }} -p {{ .Values.database.service.port }} -U yesbot; do echo waiting for database; sleep 2; done;']
       containers:
         - name: {{ .Values.backend.deployment.name }}
           image: {{ .Values.backend.deployment.image.name }}:{{ .Values.backend.deployment.image.tag }}
           ports:
-            - {{ .Values.backend.deployment.port | toYaml | nindent 14}}
+            - {{ .Values.backend.deployment.ports.public | toYaml | nindent 14 }}
+            - {{ .Values.backend.deployment.ports.yesbot | toYaml | nindent 14 }}
           env: {{ .Values.backend.deployment.containerEnv | toYaml | nindent 12 }}
             {{- range .Values.backend.deployment.secret.secrets }}
             - name: {{ .name }}

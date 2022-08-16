@@ -69,14 +69,22 @@ backend:
     port: 80
     labels:
       app: ytf-backend
+  yesbotService:
+    name: ytf-backend-yesbot-service
+    port: 5001
+
   deployment:
     name: ytf-backend-deployment
     image:
       name: ghcr.io/yes-theory-fam/yestheory-family-server
       tag: latest
-    port:
-      name: node
-      containerPort: 5000
+    ports:
+      public:
+        name: public
+        containerPort: 5000
+      yesbot:
+        name: yesbot
+        containerPort: 5001
     containerEnv:
       - name: NODE_ENV
         value: production
@@ -95,6 +103,8 @@ backend:
         - name: DISCORD_CLIENT_ID
           value:
         - name: DISCORD_CLIENT_SECRET
+          value:
+        - name: YESBOT_API_TOKEN
           value:
 
 database:
