@@ -1,6 +1,5 @@
 import { ApolloServer } from "apollo-server-koa";
-import { getIntrospectionQuery } from "graphql";
-import Koa from "koa";
+import Koa, { Middleware } from "koa";
 import { buildSchemaSync } from "type-graphql";
 import { Container } from "typedi";
 import { isDevelopment } from "../config";
@@ -10,9 +9,20 @@ import {
   getResolvers,
   ResolverTarget,
 } from "../services/resolvers/resolver-directive";
-import { requireValidToken } from "./common/yesbot-require-valid-token";
 
 const logger = createServerLogger("server", "yesbot");
+
+const requireValidToken: Middleware = async ({ headers, res }, next) => {
+  const yesbotAuthHeader = headers["x-yesbot-authentication"] ?? "";
+  const requiredValue = process.env.YESBOT_API_TOKEN;
+
+  if (yesbotAuthHeader !== requiredValue) {
+    res.statusCode = 401;
+    return;
+  }
+
+  await next();
+};
 
 export const launchYesBotServer = async () => {
   const resolvers = await getResolvers(ResolverTarget.YESBOT);

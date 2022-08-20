@@ -3,7 +3,6 @@ import { getIntrospectionQuery } from "graphql";
 import fetch from "node-fetch";
 import { isDevelopment } from "../config";
 import { createServerLogger } from "../services/logging/log";
-import { requireValidToken } from "./common/yesbot-require-valid-token";
 import Router from "@koa/router";
 
 const logger = createServerLogger("server", "yesbot-schema");
@@ -16,7 +15,6 @@ export const launchYesBotSchemaServer = () => {
   const thisPort = basePort + 2;
 
   const app = new Koa();
-  app.use(requireValidToken);
   app.proxy = !isDevelopment;
 
   const router = new Router();
