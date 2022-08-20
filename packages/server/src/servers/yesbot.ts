@@ -42,8 +42,7 @@ export const launchYesBotServer = async () => {
 
   const server = new ApolloServer({
     schema,
-    // This is intentional to expose the schema to CI jobs generating the files from this.
-    // TODO expose dedicated REST endpoint that exposes the schema and nothing else to reduce the risk imposed by the token becoming public.
+    // This is intended to be able to expose the schema for code generation in the CI. The introspection is proxied through yesbot-schema.ts
     introspection: true,
     csrfPrevention: true,
   });

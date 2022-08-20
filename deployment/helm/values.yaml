@@ -72,6 +72,9 @@ backend:
   yesbotService:
     name: ytf-backend-yesbot-service
     port: 5001
+  yesbotSchemaService:
+    name: ytf-backend-yesbot-schema-service
+    port: 5002
 
   deployment:
     name: ytf-backend-deployment
@@ -85,6 +88,9 @@ backend:
       yesbot:
         name: yesbot
         containerPort: 5001
+      yesbotSchema:
+        name: yesbot-schema
+        containerPort: 5002
     containerEnv:
       - name: NODE_ENV
         value: production

@@ -23,6 +23,7 @@ spec:
           ports:
             - {{ .Values.backend.deployment.ports.public | toYaml | nindent 14 }}
             - {{ .Values.backend.deployment.ports.yesbot | toYaml | nindent 14 }}
+            - {{ .Values.backend.deployment.ports.yesbotSchema | toYaml | nindent 14 }}
           env: {{ .Values.backend.deployment.containerEnv | toYaml | nindent 12 }}
             {{- range .Values.backend.deployment.secret.secrets }}
             - name: {{ .name }}
