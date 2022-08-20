@@ -1,5 +1,6 @@
 import { ApolloServer } from "apollo-server-koa";
-import Koa, { Middleware } from "koa";
+import { getIntrospectionQuery } from "graphql";
+import Koa from "koa";
 import { buildSchemaSync } from "type-graphql";
 import { Container } from "typedi";
 import { isDevelopment } from "../config";
@@ -9,20 +10,9 @@ import {
   getResolvers,
   ResolverTarget,
 } from "../services/resolvers/resolver-directive";
+import { requireValidToken } from "./common/yesbot-require-valid-token";
 
 const logger = createServerLogger("server", "yesbot");
-
-const requireValidToken: Middleware = async ({ headers, res }, next) => {
-  const yesbotAuthHeader = headers["x-yesbot-authentication"] ?? "";
-  const requiredValue = process.env.YESBOT_API_TOKEN;
-
-  if (yesbotAuthHeader !== requiredValue) {
-    res.statusCode = 401;
-    return;
-  }
-
-  await next();
-};
 
 export const launchYesBotServer = async () => {
   const resolvers = await getResolvers(ResolverTarget.YESBOT);
@@ -42,9 +32,6 @@ export const launchYesBotServer = async () => {
 
   const server = new ApolloServer({
     schema,
-    // This is intentional to expose the schema to CI jobs generating the files from this.
-    // TODO expose dedicated REST endpoint that exposes the schema and nothing else to reduce the risk imposed by the token becoming public.
-    introspection: true,
     csrfPrevention: true,
   });
 

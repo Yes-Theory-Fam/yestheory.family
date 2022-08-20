@@ -9,3 +9,18 @@ spec:
     - port: {{ .Values.backend.yesbotService.port }}
       targetPort: {{ .Values.backend.deployment.ports.yesbot.name }}
   selector: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+
+---
+
+kind: Service
+apiVersion: v1
+
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.backend.yesbotSchemaService.name }}
+  labels: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+spec:
+  ports:
+    - port: {{ .Values.backend.yesbotSchemaService.port }}
+      targetPort: {{ .Values.backend.deployment.ports.yesbotSchema.name }}
+  selector: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
