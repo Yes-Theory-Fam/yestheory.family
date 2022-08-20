@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { LoginButton, Logo, NavLink } from "../..";
 import { NavigationProps } from "../Navigation";
-import { HStack, Box } from "@chakra-ui/react";
+import { HStack, Box, Flex } from "@chakra-ui/react";
 import { Profile } from "./Profile/Profile";
 import { WrappedLink } from "../../..";
 
@@ -16,8 +16,8 @@ export const DesktopNavigation: FC<NavigationProps> = (props) => {
   });
 
   return (
-    <Box alignItems={"center"} m={6}>
-      <HStack spacing={12} maxW={"8xl"}>
+    <Flex justifyContent={"center"} m={6}>
+      <HStack spacing={12} maxW={"8xl"} w={"full"}>
         <WrappedLink mr={"auto"} href={"/"} _hover={{}}>
           <Logo />
         </WrappedLink>
@@ -32,6 +32,6 @@ export const DesktopNavigation: FC<NavigationProps> = (props) => {
           <LoginButton onClick={props.onLoginButtonClick} />
         )}
       </HStack>
-    </Box>
+    </Flex>
   );
 };

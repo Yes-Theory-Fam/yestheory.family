@@ -76,6 +76,10 @@ export const launchPublicServer = async () => {
       };
     },
     formatResponse: (response, reqContext) => {
+      if (response.errors) {
+        logger.error("Error executing graphql resolver", response.errors);
+      }
+
       const authErrors =
         response.errors?.filter((e) =>
           e.message.startsWith("Access denied!")

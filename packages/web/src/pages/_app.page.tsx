@@ -1,4 +1,4 @@
-import { Box, ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
 import {
   Footer,
   Navigation,
@@ -50,42 +50,49 @@ const YTFApp: FC<YTFAppProps> = ({ Component, pageProps, user }) => {
             <title>YesTheory Family</title>
             <meta
               name="viewport"
-              content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+              content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
             />
           </Head>
           <CookieConsent />
-          <UserConsumer>
-            {(context) => (
-              <Navigation
-                links={[]}
-                onLoginButtonClick={navigateToLogin}
-                menuItems={[
-                  {
-                    onClick: () =>
-                      logout().then(({ data }) => {
-                        if (!data?.logout) return;
+          <Flex
+            minH={"100vh"}
+            direction={"column"}
+            justifyContent={"space-between"}
+          >
+            <UserConsumer>
+              {(context) => (
+                <Navigation
+                  links={[]}
+                  onLoginButtonClick={navigateToLogin}
+                  menuItems={[
+                    {
+                      key: "logout",
+                      onClick: () =>
+                        logout().then(({ data }) => {
+                          if (!data?.logout) return;
 
-                        context.clearUser();
-                        localStorage.removeItem("accessToken");
-                        localStorage.removeItem("refreshToken");
-                        localStorage.removeItem("expiresAt");
-                      }),
-                    label: "Logout",
-                  },
+                          context.clearUser();
+                          localStorage.removeItem("accessToken");
+                          localStorage.removeItem("refreshToken");
+                          localStorage.removeItem("expiresAt");
+                        }),
+                      label: "Logout",
+                    },
+                  ]}
+                  user={context.user}
+                />
+              )}
+            </UserConsumer>
+            <Component {...pageProps} />
+            <Box pt={6} bg={"white"}>
+              <Footer
+                links={[
+                  { text: "Imprint", href: "/imprint" },
+                  { text: "Privacy", href: "/privacy" },
                 ]}
-                user={context.user}
               />
-            )}
-          </UserConsumer>
-          <Component {...pageProps} />
-          <Box pt={6} bg={"white"}>
-            <Footer
-              links={[
-                { text: "Imprint", href: "/imprint" },
-                { text: "Privacy", href: "/privacy" },
-              ]}
-            />
-          </Box>
+            </Box>
+          </Flex>
         </OverrideComponentContext.Provider>
       </UserProvider>
     </ChakraProvider>

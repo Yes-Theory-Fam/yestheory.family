@@ -35,7 +35,7 @@ export const ServerJoinConfirmation: FC<ServerJoinConfirmationProps> = ({
       <AlertDialogOverlay />
 
       <AlertDialogContent>
-        <AlertDialogHeader>Auf geht&apos;s, ab geht&apos;s!</AlertDialogHeader>
+        <AlertDialogHeader>Just to be sure!</AlertDialogHeader>
         <AlertDialogCloseButton />
 
         <AlertDialogBody>

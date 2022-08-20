@@ -5,14 +5,15 @@ const withImages = require("next-images");
 const config = {
   images: { disableStaticImages: true },
   pageExtensions: ["page.tsx"],
+  productionBrowserSourceMaps: true,
   rewrites: () => [
     {
       source: "/graphql",
       destination: "http://localhost:5000/graphql",
     },
     {
-      source: "/oauth/:slug",
-      destination: "http://localhost:5000/oauth/:slug",
+      source: "/oauth/:slug*",
+      destination: "http://localhost:5000/oauth/:slug*",
     },
   ],
 };
