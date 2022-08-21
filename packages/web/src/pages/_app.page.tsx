@@ -13,9 +13,18 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { cacheExchange, dedupExchange, fetchExchange } from "urql";
+import {
+  cacheExchange,
+  dedupExchange,
+  errorExchange,
+  fetchExchange,
+} from "urql";
 import { useLogoutMutation } from "../components/auth/logout.generated";
 import { CookieConsent } from "../components/cookie-consent/cookie-consent";
+import {
+  GlobalGraphqlErrorDialog,
+  globalGraphqlErrorEventName,
+} from "../components/global-graphql-error-dialog";
 import {
   navigateToLogin,
   UserConsumer,
@@ -48,6 +57,7 @@ const YTFApp: FC<AppProps> = ({ Component, pageProps }) => {
               content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
             />
           </Head>
+          <GlobalGraphqlErrorDialog />
           <CookieConsent />
           <Flex
             minH={"100vh"}
@@ -100,6 +110,16 @@ const UrqlWrappedApp = withUrqlClient(
       devtoolsExchange,
       dedupExchange,
       cacheExchange,
+      // Look, there was no way around it; otherwise I'd have to wrap UrqlWrappedApp which means wrapping its getInitialProps which isn't a thing.
+      errorExchange({
+        onError: (error) => {
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(
+              new CustomEvent(globalGraphqlErrorEventName, { detail: error })
+            );
+          }
+        },
+      }),
       ssrExchange,
       configuredAuthExchange,
       fetchExchange,
