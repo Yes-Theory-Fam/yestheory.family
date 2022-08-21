@@ -1,19 +1,23 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { LoginButton, Logo, NavLink } from "../..";
 import { NavigationProps } from "../Navigation";
-import { HStack, Box, Flex } from "@chakra-ui/react";
+import { HStack, Flex } from "@chakra-ui/react";
 import { Profile } from "./Profile/Profile";
 import { WrappedLink } from "../../..";
 
 export const DesktopNavigation: FC<NavigationProps> = (props) => {
-  const links = props.links.map((l) => {
-    const { text, ...rest } = l;
-    return (
-      <NavLink {...rest} key={l.key ?? l.href}>
-        {text}
-      </NavLink>
-    );
-  });
+  const links = useMemo(
+    () =>
+      props.links.map((l) => {
+        const { text, ...rest } = l;
+        return (
+          <NavLink {...rest} key={l.key ?? l.href}>
+            {text}
+          </NavLink>
+        );
+      }),
+    [props.links]
+  );
 
   return (
     <Flex justifyContent={"center"} m={6}>

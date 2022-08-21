@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { WrappedLink, WrappedLinkProps } from "../..";
+import { FC, useContext } from "react";
+import { OverrideComponentContext, WrappedLink, WrappedLinkProps } from "../..";
 
 export interface NavLinkProps extends WrappedLinkProps {
   active?: boolean;
@@ -7,7 +7,11 @@ export interface NavLinkProps extends WrappedLinkProps {
 }
 
 export const NavLink: FC<NavLinkProps> = (args) => {
-  const { active, inverted, href, ...rest } = args;
+  const { active: argsActive, inverted, href, ...rest } = args;
+  const { useIsActiveLink } = useContext(OverrideComponentContext);
+
+  const isActiveLink = useIsActiveLink(href ?? "");
+  const active = argsActive || isActiveLink;
 
   const borderBaseColor = inverted ? "white" : "brand.800";
   const borderColor = active ? borderBaseColor : "transparent";

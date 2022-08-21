@@ -32,7 +32,7 @@ export const BuddyProjectButton: FC = () => {
         return;
       }
 
-      await signUpMutation();
+      await signUpMutation({});
     },
     [signUpMutation, onServerData, joinOnOpen]
   );

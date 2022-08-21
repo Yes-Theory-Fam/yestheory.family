@@ -12,6 +12,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC } from "react";
 import {
   cacheExchange,
@@ -41,6 +42,13 @@ const componentOverrides: OverrideComponentType = {
       </Link>
     );
   },
+  useIsActiveLink: (href: string) => {
+    if (href.startsWith("http")) return false;
+
+    const { asPath } = useRouter();
+
+    return asPath === href;
+  },
 };
 
 const YTFApp: FC<AppProps> = ({ Component, pageProps }) => {
@@ -67,7 +75,7 @@ const YTFApp: FC<AppProps> = ({ Component, pageProps }) => {
             <UserConsumer>
               {(context) => (
                 <Navigation
-                  links={[]}
+                  links={[{ text: "Buddy Project", href: "/buddyproject" }]}
                   onLoginButtonClick={navigateToLogin}
                   menuItems={[
                     {

@@ -8,9 +8,11 @@ interface ImageRequiredProps {
 export interface OverrideComponentType {
   Image: Component<ImageRequiredProps> | FC<ImageRequiredProps>;
   wrapLink: (child: JSX.Element, href: string | undefined) => JSX.Element;
+  useIsActiveLink: (href: string) => boolean;
 }
 
 export const OverrideComponentContext = createContext<OverrideComponentType>({
   Image: Img,
   wrapLink: (child, href) => cloneElement(child, { href }),
+  useIsActiveLink: () => false,
 });
