@@ -3929,7 +3929,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discoveryjs/json-ext@npm:^0.5.3":
+"@discoveryjs/json-ext@npm:^0.5.3, @discoveryjs/json-ext@npm:^0.5.7":
   version: 0.5.7
   resolution: "@discoveryjs/json-ext@npm:0.5.7"
   checksum: 2176d301cc258ea5c2324402997cf8134ebb212469c0d397591636cea8d3c02f2b3cf9fd58dcb748c7a0dade77ebdc1b10284fa63e608c033a1db52fddc69918
@@ -8158,6 +8158,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/webpack-env@npm:^1.17.0":
+  version: 1.18.0
+  resolution: "@types/webpack-env@npm:1.18.0"
+  checksum: ecf4daa31cb37d474ac0ce058d83a3cadeb9881ca8107ae93c2299eaa9954943aae09b43e143c62ccbe4288a14db00c918c9debd707afe17c3998f873eaabc59
+  languageName: node
+  linkType: hard
+
 "@types/webpack-sources@npm:*":
   version: 3.2.0
   resolution: "@types/webpack-sources@npm:3.2.0"
@@ -8943,7 +8950,7 @@ __metadata:
     "@yestheory.family/eslint-config": ^1.0.0
     babel-jest: 28.1.2
     babel-loader: 8.2.5
-    chromatic: 6.5.4
+    chromatic: 6.7.4
     core-js: 3.24.1
     css-loader: 5.2.7
     env-cmd: 10.1.0
@@ -11079,14 +11086,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:6.5.4":
-  version: 6.5.4
-  resolution: "chromatic@npm:6.5.4"
+"chromatic@npm:6.7.4":
+  version: 6.7.4
+  resolution: "chromatic@npm:6.7.4"
+  dependencies:
+    "@discoveryjs/json-ext": ^0.5.7
+    "@types/webpack-env": ^1.17.0
   bin:
     chroma: bin/main.cjs
     chromatic: bin/main.cjs
     chromatic-cli: bin/main.cjs
-  checksum: 79e036b305407115ca1bcd62f4b754f945dcf6c8392ba2369bb34998493dc0c32c1336663f9c46da742d8ee90720edd143d41df0a6ffd6563703a794c6817929
+  checksum: 87240eee64a8c38cbb517b6bdc05a9a1360413facecdb8da73b27a7151014192a86a8d8c2f1fbbd9340c5dac491fe23a7bbcde44172c3d65e9b6298265bf99f4
   languageName: node
   linkType: hard
 
