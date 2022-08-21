@@ -35,7 +35,7 @@ const Paragraphs: FC = () => {
         This might be because you mistyped a link, something is broken or
         because the page isn&apos;t completed yet. While you are waiting, check
         out our Discord server below or go{" "}
-        <Link href={"#"} onClick={navigateBack} color={"brand.800"}>
+        <Link href={"#"} onClick={navigateBack}>
           back
         </Link>
         !

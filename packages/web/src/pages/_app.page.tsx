@@ -1,4 +1,5 @@
 import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
+import { devtoolsExchange } from "@urql/devtools";
 import {
   Footer,
   Navigation,
@@ -6,27 +7,21 @@ import {
   OverrideComponentType,
   theme,
 } from "@yestheory.family/ui";
+import { withUrqlClient } from "next-urql";
+import { AppProps } from "next/app";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { withUrqlClient, initUrqlClient, NextUrqlAppContext } from "next-urql";
-import { dedupExchange, cacheExchange, fetchExchange } from "urql";
-import { devtoolsExchange } from "@urql/devtools";
+import { cacheExchange, dedupExchange, fetchExchange } from "urql";
+import { useLogoutMutation } from "../components/auth/logout.generated";
+import { CookieConsent } from "../components/cookie-consent/cookie-consent";
 import {
   navigateToLogin,
   UserConsumer,
   UserProvider,
 } from "../context/user/user";
-import { useLogoutMutation } from "../components/auth/logout.generated";
-import App, { AppProps } from "next/app";
 import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
-import { CookieConsent } from "../components/cookie-consent/cookie-consent";
-import { User, CurrentUserDocument } from "../context/user/user.generated";
-
-interface YTFAppProps extends AppProps {
-  user: User;
-}
 
 const componentOverrides: OverrideComponentType = {
   Image,
@@ -39,12 +34,12 @@ const componentOverrides: OverrideComponentType = {
   },
 };
 
-const YTFApp: FC<YTFAppProps> = ({ Component, pageProps, user }) => {
+const YTFApp: FC<AppProps> = ({ Component, pageProps }) => {
   const [, logout] = useLogoutMutation();
 
   return (
     <ChakraProvider theme={theme}>
-      <UserProvider serverUser={user}>
+      <UserProvider>
         <OverrideComponentContext.Provider value={componentOverrides}>
           <Head>
             <title>YesTheory Family</title>
@@ -68,10 +63,10 @@ const YTFApp: FC<YTFAppProps> = ({ Component, pageProps, user }) => {
                     {
                       key: "logout",
                       onClick: () =>
-                        logout().then(({ data }) => {
+                        logout({}).then(({ data }) => {
                           if (!data?.logout) return;
 
-                          context.clearUser();
+                          context.refetch();
                           localStorage.removeItem("accessToken");
                           localStorage.removeItem("refreshToken");
                           localStorage.removeItem("expiresAt");
@@ -99,46 +94,26 @@ const YTFApp: FC<YTFAppProps> = ({ Component, pageProps, user }) => {
   );
 };
 
-const UrqlWrappedApp = withUrqlClient((ssrExchange, ctx) => ({
-  exchanges: [
-    devtoolsExchange,
-    dedupExchange,
-    cacheExchange,
-    configuredAuthExchange,
-    ssrExchange,
-    fetchExchange,
-  ],
-  url: ctx ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
-  fetchOptions: {
-    credentials: "include",
-  },
-}))(YTFApp);
-
-export default UrqlWrappedApp;
-
-UrqlWrappedApp.getInitialProps = async (
-  context: NextUrqlAppContext
-): Promise<Partial<YTFAppProps>> => {
-  const appProps = await App.getInitialProps(context);
-
-  const request = context.ctx.req;
-  const isServerSide = !!request;
-  const cookie = isServerSide ? request.headers.cookie ?? "" : document.cookie;
-
-  const client = initUrqlClient(
-    {
-      url: isServerSide ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
-      fetchOptions: {
-        credentials: "include",
-        headers: {
-          Cookie: cookie,
-        },
+const UrqlWrappedApp = withUrqlClient(
+  (ssrExchange, ctx) => ({
+    exchanges: [
+      devtoolsExchange,
+      dedupExchange,
+      cacheExchange,
+      ssrExchange,
+      configuredAuthExchange,
+      fetchExchange,
+    ],
+    url: ctx ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
+    requestPolicy: "cache-first",
+    fetchOptions: {
+      credentials: "include",
+      headers: {
+        cookie: ctx?.req?.headers.cookie ?? document.cookie,
       },
     },
-    false
-  );
+  }),
+  { ssr: true }
+)(YTFApp);
 
-  const userQuery = await client?.query(CurrentUserDocument).toPromise();
-
-  return { ...appProps, user: userQuery?.data?.me ?? undefined };
-};
+export default UrqlWrappedApp;

@@ -4,7 +4,12 @@ import { VStack } from "@chakra-ui/react";
 
 const Imprint: FC = () => {
   return (
-    <VStack align="flex-start" mt={24} mx={[8, null, null, 20]}>
+    <VStack
+      align="flex-start"
+      mt={[24, null, 64]}
+      mx={[8, null, null, 20, null, "auto"]}
+      maxW={"8xl"}
+    >
       <Heading frontText={"Site Notice"} size={"h2"} textAlign={"start"} />
 
       <Heading
@@ -15,26 +20,20 @@ const Imprint: FC = () => {
       <p>
         Michel von Varendorff
         <br />
-        Straße, Nr.
+        Schönhauser Allee 163
         <br />
-        Postleitzahl Ort
+        10435 Berlin
       </p>
 
       <Heading frontText={"Contact"} size={"h3"} textAlign={"start"} />
-      <p>
-        Phone: Telefon
-        <br />
-        Telefax: Telefax
-        <br />
-        E-mail: E-Mail-Adresse
-      </p>
+      <p>E-mail: michelvonv@me.com</p>
 
       <Heading frontText={"VAT ID"} size={"h3"} textAlign={"start"} />
       <p>
         Sales tax identification number according to Sect. 27 a of the Sales Tax
         Law:
         <br />
-        Umsatzsteuer-ID
+        Pending
       </p>
 
       <Heading
@@ -45,9 +44,9 @@ const Imprint: FC = () => {
       <p>
         Michel von Varendorff
         <br />
-        Straße, Nr.
+        Schönhauser Allee 163
         <br />
-        Postleitzahl Ort
+        10435 Berlin
       </p>
 
       <Heading

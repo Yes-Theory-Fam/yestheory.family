@@ -14,9 +14,7 @@ interface AuthState {
   expiresAt: number;
 }
 
-const isOperationWithDiscordAuth = (
-  operation: Operation<unknown, unknown>
-): boolean => {
+const isOperationWithDiscordAuth = (operation: Operation<unknown>): boolean => {
   const indicatorDirective = "withDiscord";
   const operationNode = operation.query
     .definitions[0] as OperationDefinitionNode;
@@ -39,8 +37,6 @@ const addAuthToOperation: AuthConfig<AuthState>["addAuthToOperation"] = ({
   ) {
     return operation;
   }
-
-  console.log("Adding auth to operation");
 
   // fetchOptions can be a function (See Client API) but you can simplify this based on usage
   const fetchOptions =

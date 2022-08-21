@@ -3,16 +3,15 @@ import {
   ReactNode,
   Context,
   createContext,
-  useState,
-  useEffect,
   useContext,
+  useCallback,
 } from "react";
 import { useCurrentUserQuery, User } from "./user.generated";
 
 interface UserContextProps {
   readonly loggedIn: boolean;
   user: User | undefined;
-  clearUser: () => void;
+  refetch: () => void;
 }
 
 const UserContext: Context<UserContextProps> = createContext<UserContextProps>({
@@ -20,41 +19,31 @@ const UserContext: Context<UserContextProps> = createContext<UserContextProps>({
     return false;
   },
   user: undefined,
-  clearUser: () => {
+  refetch: () => {
     /* no-op */
   },
 });
 
 interface UserProviderProps {
   children: ReactNode;
-  serverUser: User;
 }
 
-export const UserProvider: FC<UserProviderProps> = ({
-  serverUser,
-  children,
-}) => {
-  const [user, setUser] = useState<User | undefined>(serverUser ?? undefined);
+export const UserProvider: FC<UserProviderProps> = ({ children }) => {
+  const [{ data }, refetch] = useCurrentUserQuery();
+  const loggedIn = !!data?.me;
 
-  const loggedIn = !!user;
-  const [{ data }] = useCurrentUserQuery({ pause: !loggedIn });
-
-  useEffect(() => {
-    if (data?.me) {
-      setUser(data.me);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (!serverUser) {
-      setUser(undefined);
-      return;
-    }
-  }, [serverUser]);
+  const cachelessRefetch = useCallback(
+    () => refetch({ requestPolicy: "network-only" }),
+    [refetch]
+  );
 
   return (
     <UserContext.Provider
-      value={{ loggedIn, user, clearUser: () => setUser(undefined) }}
+      value={{
+        loggedIn,
+        user: data?.me ?? undefined,
+        refetch: cachelessRefetch,
+      }}
     >
       {children}
     </UserContext.Provider>
@@ -68,11 +57,6 @@ interface UserConsumerProps {
 export const UserConsumer: FC<UserConsumerProps> = ({ children }) => (
   <UserContext.Consumer>{children}</UserContext.Consumer>
 );
-
-export const useUser = (): User | undefined => {
-  const context = useContext(UserContext);
-  return context.user;
-};
 
 export const useLoggedIn = (): boolean => {
   const context = useContext(UserContext);

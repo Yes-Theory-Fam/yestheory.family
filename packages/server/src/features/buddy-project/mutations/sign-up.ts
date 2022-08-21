@@ -84,13 +84,15 @@ class SignUpMutation {
   }
 
   private getBuddyProjectRole(): Role {
+    const roleName = `Buddy Project ${new Date().getFullYear()}`;
+
     const bpRole = this.guild.roles.cache.find(
-      (role) => role.name === "Buddy Project 2021"
+      (role) => role.name === roleName
     );
 
     if (!bpRole) {
       throw new Error(
-        "Could not find a role with the name 'Buddy Project 2021' in the specified guild!"
+        `Could not find a role with the name '${roleName}' in the specified guild!`
       );
     }
 
