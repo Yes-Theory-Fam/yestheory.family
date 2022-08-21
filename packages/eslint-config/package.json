@@ -12,6 +12,6 @@
     "@typescript-eslint/parser": "5.30.6",
     "eslint": "8.22.0",
     "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-prettier": "^4.0.0"
+    "eslint-plugin-prettier": "4.0.0"
   }
 }

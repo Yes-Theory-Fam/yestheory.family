@@ -3578,7 +3578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/storybook-addon@npm:^3.0.2":
+"@chakra-ui/storybook-addon@npm:3.0.2":
   version: 3.0.2
   resolution: "@chakra-ui/storybook-addon@npm:3.0.2"
   dependencies:
@@ -4156,7 +4156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/roboto@npm:^4.5.7":
+"@fontsource/roboto@npm:4.5.7":
   version: 4.5.7
   resolution: "@fontsource/roboto@npm:4.5.7"
   checksum: 3f9afc7f4c77e517e804e65823db5aea2513e8352fbc26cf7ea8b8b11e7dc6eff48d7a2855ed71e3a6b727446b2bf137629e2389fe3d676be45d95dd9992b558
@@ -5365,7 +5365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:^12.1.6":
+"@next/eslint-plugin-next@npm:12.1.6":
   version: 12.1.6
   resolution: "@next/eslint-plugin-next@npm:12.1.6"
   dependencies:
@@ -7312,7 +7312,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:^5.11.2, @testing-library/jest-dom@npm:^5.16.4":
+"@testing-library/jest-dom@npm:5.16.4, @testing-library/jest-dom@npm:^5.11.2":
   version: 5.16.4
   resolution: "@testing-library/jest-dom@npm:5.16.4"
   dependencies:
@@ -7894,7 +7894,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-cron@npm:^3.0.2":
+"@types/node-cron@npm:3.0.2":
   version: 3.0.2
   resolution: "@types/node-cron@npm:3.0.2"
   checksum: 921b1276c793ab6ae095436b8cde8d4d3ab02d8749011bd5b2006a4d921e206ae06de66edd9bccff4b1c09726bad16d9274c1ad104ab2d4370ad910f71cb9db2
@@ -8858,7 +8858,7 @@ __metadata:
     "@typescript-eslint/parser": 5.30.6
     eslint: 8.22.0
     eslint-config-prettier: 8.5.0
-    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-prettier: 4.0.0
   languageName: unknown
   linkType: soft
 
@@ -8878,7 +8878,7 @@ __metadata:
     "@types/koa__cors": 3.3.0
     "@types/koa__router": 8.0.11
     "@types/node": ^17.0.33
-    "@types/node-cron": ^3.0.2
+    "@types/node-cron": 3.0.2
     "@types/node-fetch": 2.6.2
     "@yestheory.family/eslint-config": ^1.0.0
     apollo-server-koa: 3.7.0
@@ -8895,7 +8895,7 @@ __metadata:
     koa-bodyparser: 4.3.0
     koa-mount: 4.0.0
     koa-session: 6.2.0
-    node-cron: ^3.0.1
+    node-cron: 3.0.1
     node-fetch: 2.6.7
     prisma: 3.14.0
     reflect-metadata: 0.1.13
@@ -8921,11 +8921,11 @@ __metadata:
     "@babel/preset-typescript": 7.18.6
     "@chakra-ui/icons": 2.0.2
     "@chakra-ui/react": 2.2.1
-    "@chakra-ui/storybook-addon": ^3.0.2
+    "@chakra-ui/storybook-addon": 3.0.2
     "@emotion/react": 11.9.3
     "@emotion/sheet": 1.1.1
     "@emotion/styled": 11.9.3
-    "@fontsource/roboto": ^4.5.7
+    "@fontsource/roboto": 4.5.7
     "@storybook/addon-a11y": 6.5.9
     "@storybook/addon-actions": 6.5.9
     "@storybook/addon-console": 1.2.3
@@ -8937,7 +8937,7 @@ __metadata:
     "@storybook/client-api": 6.5.9
     "@storybook/preset-scss": 1.0.3
     "@storybook/react": 6.5.9
-    "@testing-library/jest-dom": ^5.16.4
+    "@testing-library/jest-dom": 5.16.4
     "@types/enzyme": 3.10.12
     "@types/jest": 27.5.2
     "@yestheory.family/eslint-config": ^1.0.0
@@ -8979,7 +8979,7 @@ __metadata:
     "@graphql-codegen/cli": 2.11.6
     "@graphql-codegen/near-operation-file-preset": 2.4.1
     "@graphql-codegen/typescript-urql": 3.6.4
-    "@next/eslint-plugin-next": ^12.1.6
+    "@next/eslint-plugin-next": 12.1.6
     "@types/cookie": 0.5.1
     "@urql/devtools": 2.0.3
     "@urql/exchange-auth": 0.1.7
@@ -13202,7 +13202,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:^4.0.0":
+"eslint-plugin-prettier@npm:4.0.0":
   version: 4.0.0
   resolution: "eslint-plugin-prettier@npm:4.0.0"
   dependencies:
@@ -18931,7 +18931,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-cron@npm:^3.0.1":
+"node-cron@npm:3.0.1":
   version: 3.0.1
   resolution: "node-cron@npm:3.0.1"
   checksum: 98636a3d4373d48b5c7f5b922c93d22ca81a4bd38284f264812c7b88f06c995eb9ccde34ee2753cbec9bf5b77bd220c817c18ca82de504e3e324df9af6983b5d
