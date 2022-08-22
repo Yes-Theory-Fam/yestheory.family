@@ -137,7 +137,7 @@ const UrqlWrappedApp = withUrqlClient(
     fetchOptions: {
       credentials: "include",
       headers: {
-        cookie: ctx?.req?.headers.cookie ?? document.cookie,
+        cookie: ctx?.req ? ctx?.req?.headers.cookie ?? "" : document.cookie,
       },
     },
   }),
