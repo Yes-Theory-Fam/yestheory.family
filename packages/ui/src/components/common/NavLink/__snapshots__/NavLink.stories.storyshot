@@ -7,7 +7,6 @@ exports[`Storyshots Common/NavLink Active Inverted Nav Link 1`] = `
   <a
     className="chakra-link css-1v136sv"
     rel="noopener noreferrer"
-    target="_blank"
   >
     Example link
   </a>
@@ -18,7 +17,6 @@ exports[`Storyshots Common/NavLink Active Nav Link 1`] = `
 <a
   className="chakra-link css-1q4kjoy"
   rel="noopener noreferrer"
-  target="_blank"
 >
   Example link
 </a>
@@ -31,7 +29,6 @@ exports[`Storyshots Common/NavLink Inactive Inverted Nav Link 1`] = `
   <a
     className="chakra-link css-1e3hkmh"
     rel="noopener noreferrer"
-    target="_blank"
   >
     Example link
   </a>
@@ -42,7 +39,6 @@ exports[`Storyshots Common/NavLink Inactive Nav Link 1`] = `
 <a
   className="chakra-link css-f6i9u1"
   rel="noopener noreferrer"
-  target="_blank"
 >
   Example link
 </a>
@@ -58,14 +54,12 @@ exports[`Storyshots Common/NavLink NavLink 1`] = `
     <a
       className="chakra-link css-f6i9u1"
       rel="noopener noreferrer"
-      target="_blank"
     >
       Not active
     </a>
     <a
       className="chakra-link css-1q4kjoy"
       rel="noopener noreferrer"
-      target="_blank"
     >
       Very active
     </a>
@@ -76,14 +70,12 @@ exports[`Storyshots Common/NavLink NavLink 1`] = `
     <a
       className="chakra-link css-1e3hkmh"
       rel="noopener noreferrer"
-      target="_blank"
     >
       Not active
     </a>
     <a
       className="chakra-link css-1v136sv"
       rel="noopener noreferrer"
-      target="_blank"
     >
       Very active
     </a>
