@@ -13,8 +13,8 @@ export const WrappedLink: FC<WrappedLinkProps> = ({
   ...rest
 }) => {
   const { wrapLink } = useContext(OverrideComponentContext);
-  rest = { target: "_blank", rel: "noopener noreferrer", ...rest };
+  rest = { rel: "noopener noreferrer", ...rest };
 
-  if (isExternal) return <Link href={href} {...rest} />;
+  if (isExternal) return <Link href={href} target="_blank" {...rest} />;
   return wrapLink(<Link {...rest} />, href);
 };

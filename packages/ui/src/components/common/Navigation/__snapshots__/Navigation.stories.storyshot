@@ -15,7 +15,6 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
         className="chakra-link css-3le2fk"
         href="/"
         rel="noopener noreferrer"
-        target="_blank"
       >
         <div
           className="css-znsoff"
@@ -67,16 +66,15 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
     className="css-1kuyx4r"
   >
     <div
-      className="css-7q6kbi"
+      className="css-1vh6z56"
     >
       <div
-        className="chakra-stack css-z6x5mt"
+        className="chakra-stack css-1m56apc"
       >
         <a
           className="chakra-link css-1o9qqxh"
           href="/"
           rel="noopener noreferrer"
-          target="_blank"
         >
           <div
             className="css-1btwv0h"
@@ -115,7 +113,6 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
           className="chakra-link css-f6i9u1"
           href="/blog"
           rel="noopener noreferrer"
-          target="_blank"
         >
           Blog
         </a>
@@ -123,7 +120,6 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
           className="chakra-link css-1q4kjoy"
           href="/photowall"
           rel="noopener noreferrer"
-          target="_blank"
         >
           Photowall
         </a>
@@ -168,7 +164,6 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
         className="chakra-link css-3le2fk"
         href="/"
         rel="noopener noreferrer"
-        target="_blank"
       >
         <div
           className="css-znsoff"
@@ -220,16 +215,15 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
     className="css-1kuyx4r"
   >
     <div
-      className="css-7q6kbi"
+      className="css-1vh6z56"
     >
       <div
-        className="chakra-stack css-z6x5mt"
+        className="chakra-stack css-1m56apc"
       >
         <a
           className="chakra-link css-1o9qqxh"
           href="/"
           rel="noopener noreferrer"
-          target="_blank"
         >
           <div
             className="css-1btwv0h"
@@ -268,7 +262,6 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
           className="chakra-link css-f6i9u1"
           href="/blog"
           rel="noopener noreferrer"
-          target="_blank"
         >
           Blog
         </a>
@@ -276,7 +269,6 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
           className="chakra-link css-1q4kjoy"
           href="/photowall"
           rel="noopener noreferrer"
-          target="_blank"
         >
           Photowall
         </a>

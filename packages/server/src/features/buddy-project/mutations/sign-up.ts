@@ -48,6 +48,11 @@ class SignUpMutation {
 
     if (!member) {
       await this.addMember(accessToken, user.id);
+      member = await this.guild.members.fetch(user.id);
+
+      if (!member) {
+        throw new Error(`Couldn't add user ${user.id} to the server`);
+      }
     } else {
       const bpRole = this.getBuddyProjectRole();
       await member.roles.add(bpRole);
@@ -67,17 +72,27 @@ class SignUpMutation {
     }
 
     this.logger.debug(`Signed up ${user.id} to the buddy project.`);
+    const dmChannel = await member.createDM();
+    const smileEmote =
+      this.guild.emojis.cache.find((e) => e.name === "yesbot_smile") ?? "🦥";
+
+    await dmChannel.send(
+      `Hooray, you are signed up to the buddy project! As mentioned on the website, it might take some time until you are matched. Have patience, I will message you again soon ${smileEmote}`
+    );
+
     return new BuddyProjectStatusPayload(BuddyProjectStatus.SIGNED_UP, null);
   }
 
   private getBuddyProjectRole(): Role {
+    const roleName = `Buddy Project ${new Date().getFullYear()}`;
+
     const bpRole = this.guild.roles.cache.find(
-      (role) => role.name === "Buddy Project 2021"
+      (role) => role.name === roleName
     );
 
     if (!bpRole) {
       throw new Error(
-        "Could not find a role with the name 'Buddy Project 2021' in the specified guild!"
+        `Could not find a role with the name '${roleName}' in the specified guild!`
       );
     }
 

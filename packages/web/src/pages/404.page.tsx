@@ -16,6 +16,7 @@ const Paragraphs: FC = () => {
 
   return (
     <VStack
+      maxW={"6xl"}
       spacing={8}
       textAlign={["left", null, "center"]}
       align={["flex-start", null, "center"]}
@@ -34,7 +35,7 @@ const Paragraphs: FC = () => {
         This might be because you mistyped a link, something is broken or
         because the page isn&apos;t completed yet. While you are waiting, check
         out our Discord server below or go{" "}
-        <Link href={"#"} onClick={navigateBack} color={"brand.800"}>
+        <Link href={"#"} onClick={navigateBack}>
           back
         </Link>
         !
@@ -52,7 +53,7 @@ const Wip: FC = () => {
         <title>Work In Progress!</title>
       </Head>
       <Center mt={[16, null, 24]}>
-        <VStack spacing={8} w={"90%"}>
+        <VStack spacing={12} w={"90%"}>
           <Box>
             <Image
               src={underConstructionWebp}

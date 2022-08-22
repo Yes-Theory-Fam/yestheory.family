@@ -21,7 +21,7 @@ export const ChattingWithYourBuddyStep: FC = () => {
       <Text>
         You are of course free to communicate and go through the questions by
         texting, but experience has shown us that voice or video calls feel much
-        more rewarding than that!
+        more rewarding than chat!
       </Text>
     </Step>
   );

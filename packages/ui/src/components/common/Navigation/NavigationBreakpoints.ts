@@ -1,1 +1,1 @@
-export const NavigationBreakpoints = ["block", null, "none"];
+export const NavigationBreakpoints = ["block", null, null, "none"];

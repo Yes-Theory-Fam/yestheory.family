@@ -1,4 +1,5 @@
-import { Box, ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
+import { devtoolsExchange } from "@urql/devtools";
 import {
   Footer,
   Navigation,
@@ -6,27 +7,31 @@ import {
   OverrideComponentType,
   theme,
 } from "@yestheory.family/ui";
+import { withUrqlClient } from "next-urql";
+import { AppProps } from "next/app";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC } from "react";
-import { withUrqlClient, initUrqlClient, NextUrqlAppContext } from "next-urql";
-import { dedupExchange, cacheExchange, fetchExchange } from "urql";
-import { devtoolsExchange } from "@urql/devtools";
+import {
+  cacheExchange,
+  dedupExchange,
+  errorExchange,
+  fetchExchange,
+} from "urql";
+import { useLogoutMutation } from "../components/auth/logout.generated";
+import { CookieConsent } from "../components/cookie-consent/cookie-consent";
+import {
+  GlobalGraphqlErrorDialog,
+  globalGraphqlErrorEventName,
+} from "../components/global-graphql-error-dialog";
 import {
   navigateToLogin,
   UserConsumer,
   UserProvider,
 } from "../context/user/user";
-import { useLogoutMutation } from "../components/auth/logout.generated";
-import App, { AppProps } from "next/app";
 import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
-import { CookieConsent } from "../components/cookie-consent/cookie-consent";
-import { User, CurrentUserDocument } from "../context/user/user.generated";
-
-interface YTFAppProps extends AppProps {
-  user: User;
-}
 
 const componentOverrides: OverrideComponentType = {
   Image,
@@ -37,101 +42,106 @@ const componentOverrides: OverrideComponentType = {
       </Link>
     );
   },
+  useIsActiveLink: (href: string) => {
+    if (href.startsWith("http")) return false;
+
+    const { asPath } = useRouter();
+
+    return asPath === href;
+  },
 };
 
-const YTFApp: FC<YTFAppProps> = ({ Component, pageProps, user }) => {
+const YTFApp: FC<AppProps> = ({ Component, pageProps }) => {
   const [, logout] = useLogoutMutation();
 
   return (
     <ChakraProvider theme={theme}>
-      <UserProvider serverUser={user}>
+      <UserProvider>
         <OverrideComponentContext.Provider value={componentOverrides}>
           <Head>
             <title>YesTheory Family</title>
             <meta
               name="viewport"
-              content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+              content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
             />
           </Head>
+          <GlobalGraphqlErrorDialog />
           <CookieConsent />
-          <UserConsumer>
-            {(context) => (
-              <Navigation
-                links={[]}
-                onLoginButtonClick={navigateToLogin}
-                menuItems={[
-                  {
-                    onClick: () =>
-                      logout().then(({ data }) => {
-                        if (!data?.logout) return;
+          <Flex
+            minH={"100vh"}
+            direction={"column"}
+            justifyContent={"space-between"}
+          >
+            <UserConsumer>
+              {(context) => (
+                <Navigation
+                  links={[{ text: "Buddy Project", href: "/buddyproject" }]}
+                  onLoginButtonClick={navigateToLogin}
+                  menuItems={[
+                    {
+                      key: "logout",
+                      onClick: () =>
+                        logout({}).then(({ data }) => {
+                          if (!data?.logout) return;
 
-                        context.clearUser();
-                        localStorage.removeItem("accessToken");
-                        localStorage.removeItem("refreshToken");
-                        localStorage.removeItem("expiresAt");
-                      }),
-                    label: "Logout",
-                  },
+                          context.refetch();
+                          localStorage.removeItem("accessToken");
+                          localStorage.removeItem("refreshToken");
+                          localStorage.removeItem("expiresAt");
+                        }),
+                      label: "Logout",
+                    },
+                  ]}
+                  user={context.user}
+                />
+              )}
+            </UserConsumer>
+            <Component {...pageProps} />
+            <Box pt={6} bg={"white"}>
+              <Footer
+                links={[
+                  { text: "Imprint", href: "/imprint" },
+                  { text: "Privacy", href: "/privacy" },
                 ]}
-                user={context.user}
               />
-            )}
-          </UserConsumer>
-          <Component {...pageProps} />
-          <Box pt={6} bg={"white"}>
-            <Footer
-              links={[
-                { text: "Imprint", href: "/imprint" },
-                { text: "Privacy", href: "/privacy" },
-              ]}
-            />
-          </Box>
+            </Box>
+          </Flex>
         </OverrideComponentContext.Provider>
       </UserProvider>
     </ChakraProvider>
   );
 };
 
-const UrqlWrappedApp = withUrqlClient((ssrExchange, ctx) => ({
-  exchanges: [
-    devtoolsExchange,
-    dedupExchange,
-    cacheExchange,
-    configuredAuthExchange,
-    ssrExchange,
-    fetchExchange,
-  ],
-  url: ctx ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
-  fetchOptions: {
-    credentials: "include",
-  },
-}))(YTFApp);
-
-export default UrqlWrappedApp;
-
-UrqlWrappedApp.getInitialProps = async (
-  context: NextUrqlAppContext
-): Promise<Partial<YTFAppProps>> => {
-  const appProps = await App.getInitialProps(context);
-
-  const request = context.ctx.req;
-  const isServerSide = !!request;
-  const cookie = isServerSide ? request.headers.cookie ?? "" : document.cookie;
-
-  const client = initUrqlClient(
-    {
-      url: isServerSide ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
-      fetchOptions: {
-        credentials: "include",
-        headers: {
-          Cookie: cookie,
+const UrqlWrappedApp = withUrqlClient(
+  (ssrExchange, ctx) => ({
+    exchanges: [
+      devtoolsExchange,
+      dedupExchange,
+      cacheExchange,
+      // Look, there was no way around it; otherwise I'd have to wrap UrqlWrappedApp which means wrapping its getInitialProps which isn't a thing.
+      errorExchange({
+        onError: (error) => {
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(
+              new CustomEvent(globalGraphqlErrorEventName, { detail: error })
+            );
+          }
         },
+      }),
+      ssrExchange,
+      configuredAuthExchange,
+      fetchExchange,
+    ],
+    url: ctx ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",
+    requestPolicy: "cache-first",
+    fetchOptions: {
+      credentials: "include",
+      headers: {
+        cookie: ctx?.req ? ctx?.req?.headers.cookie ?? "" : document.cookie,
       },
     },
-    false
-  );
+  }),
+  { ssr: true }
+)(YTFApp);
 
-  const userQuery = await client?.query(CurrentUserDocument).toPromise();
-
-  return { ...appProps, user: userQuery?.data?.me ?? undefined };
-};
+export default UrqlWrappedApp;

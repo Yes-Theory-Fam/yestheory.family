@@ -45,6 +45,13 @@ export const launchYesBotServer = async () => {
     // This is intended to be able to expose the schema for code generation in the CI. The introspection is proxied through yesbot-schema.ts
     introspection: true,
     csrfPrevention: true,
+    formatResponse: (response) => {
+      if (response.errors) {
+        logger.error("Error executing graphql resolver", response.errors);
+      }
+
+      return response;
+    },
   });
 
   await server.start();
