@@ -60,6 +60,7 @@ const Wip: FC = () => {
               alt={"YesBot building a sandcastle :)"}
               width={imageSize}
               height={imageSize}
+              priority
             />
           </Box>
           <Heading frontText={"Under construction"} />
