@@ -46,7 +46,10 @@ export const StateDocument = gql`
 export function useStateQuery(
   options?: Omit<Urql.UseQueryArgs<StateQueryVariables>, "query">
 ) {
-  return Urql.useQuery<StateQuery>({ query: StateDocument, ...options });
+  return Urql.useQuery<StateQuery, StateQueryVariables>({
+    query: StateDocument,
+    ...options,
+  });
 }
 export const SignUpDocument = gql`
   mutation SignUp @withDiscord {

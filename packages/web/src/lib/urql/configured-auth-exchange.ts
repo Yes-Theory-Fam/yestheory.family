@@ -59,10 +59,10 @@ const addAuthToOperation: AuthConfig<AuthState>["addAuthToOperation"] = ({
   };
 };
 
-// We are not interested in authorization errors!
+// We are not interested in authorization errors, just authentication!
 const didAuthError: AuthConfig<AuthState>["didAuthError"] = ({ error }) => {
   return error.graphQLErrors.some(
-    (e) => e.extensions.code === "UNAUTHENTICATED"
+    (e) => e.extensions.code === "DISCORD_UNAUTHENTICATED"
   );
 };
 
@@ -120,6 +120,7 @@ const getAuth: AuthConfig<AuthState>["getAuth"] = async ({
 
     const authData = refreshResult.data?.refreshToken;
     if (!authData) {
+      console.log("Auth exchange kicks!");
       navigateToLogin();
       return null;
     }

@@ -85,8 +85,21 @@ export const launchPublicServer = async () => {
           e.message.startsWith("Access denied!")
         ) ?? [];
       const user = (reqContext.context as YtfApolloContext).user;
+
+      const requiresDiscord =
+        reqContext.operation?.directives?.some(
+          (d) => d.name.value === "withDiscord"
+        ) ?? false;
+
       for (const authError of authErrors) {
-        const code = user ? "UNAUTHORIZED" : "UNAUTHENTICATED";
+        // When the operation requires Discord authentication, we want to return a special code to indicate to the
+        // frontend that re-authentication is required.
+        const code = requiresDiscord
+          ? "DISCORD_UNAUTHENTICATED"
+          : user
+          ? "UNAUTHORIZED"
+          : "UNAUTHENTICATED";
+
         if (authError.extensions) authError.extensions.code = code;
       }
       return response;

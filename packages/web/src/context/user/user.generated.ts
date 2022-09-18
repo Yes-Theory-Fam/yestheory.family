@@ -28,7 +28,7 @@ export const CurrentUserDocument = gql`
 export function useCurrentUserQuery(
   options?: Omit<Urql.UseQueryArgs<CurrentUserQueryVariables>, "query">
 ) {
-  return Urql.useQuery<CurrentUserQuery>({
+  return Urql.useQuery<CurrentUserQuery, CurrentUserQueryVariables>({
     query: CurrentUserDocument,
     ...options,
   });

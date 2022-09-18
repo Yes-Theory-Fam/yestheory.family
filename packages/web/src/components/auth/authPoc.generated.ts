@@ -22,5 +22,8 @@ export const AuthPocDocument = gql`
 export function useAuthPocQuery(
   options?: Omit<Urql.UseQueryArgs<AuthPocQueryVariables>, "query">
 ) {
-  return Urql.useQuery<AuthPocQuery>({ query: AuthPocDocument, ...options });
+  return Urql.useQuery<AuthPocQuery, AuthPocQueryVariables>({
+    query: AuthPocDocument,
+    ...options,
+  });
 }

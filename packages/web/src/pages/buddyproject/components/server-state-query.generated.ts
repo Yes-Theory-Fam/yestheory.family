@@ -22,7 +22,7 @@ export const ServerStateDocument = gql`
 export function useServerStateQuery(
   options?: Omit<Urql.UseQueryArgs<ServerStateQueryVariables>, "query">
 ) {
-  return Urql.useQuery<ServerStateQuery>({
+  return Urql.useQuery<ServerStateQuery, ServerStateQueryVariables>({
     query: ServerStateDocument,
     ...options,
   });
