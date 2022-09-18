@@ -3,7 +3,7 @@ kind: Service
 apiVersion: v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: {{ .Values.database.service.name }}
+  name: {{ .Values.database.service.name }}-{{ .Release.Name }}
   labels: {{ .Values.database.service.labels | toYaml | nindent 4 }}
 spec:
   ports:
