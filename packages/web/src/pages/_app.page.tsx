@@ -121,7 +121,12 @@ const UrqlWrappedApp = withUrqlClient(
       // Look, there was no way around it; otherwise I'd have to wrap UrqlWrappedApp which means wrapping its getInitialProps which isn't a thing.
       errorExchange({
         onError: (error) => {
-          if (typeof window !== "undefined") {
+          if (
+            typeof window !== "undefined" &&
+            error.graphQLErrors.some(
+              (e) => e.extensions.code === "INTERNAL_SERVER_ERROR"
+            )
+          ) {
             window.dispatchEvent(
               new CustomEvent(globalGraphqlErrorEventName, { detail: error })
             );
