@@ -31,7 +31,6 @@ import {
   UserConsumer,
   UserProvider,
 } from "../context/user/user";
-import { configuredAuthExchange } from "../lib/urql/configured-auth-exchange";
 
 const componentOverrides: OverrideComponentType = {
   Image,
@@ -85,9 +84,6 @@ const YTFApp: FC<AppProps> = ({ Component, pageProps }) => {
                           if (!data?.logout) return;
 
                           context.refetch();
-                          localStorage.removeItem("accessToken");
-                          localStorage.removeItem("refreshToken");
-                          localStorage.removeItem("expiresAt");
                         }),
                       label: "Logout",
                     },
@@ -121,8 +117,17 @@ const UrqlWrappedApp = withUrqlClient(
       // Look, there was no way around it; otherwise I'd have to wrap UrqlWrappedApp which means wrapping its getInitialProps which isn't a thing.
       errorExchange({
         onError: (error) => {
+          if (typeof window === "undefined") return;
+
           if (
-            typeof window !== "undefined" &&
+            error.graphQLErrors.some(
+              (e) => e.extensions.code === "DISCORD_AUTH_ERROR"
+            )
+          ) {
+            navigateToLogin();
+          }
+
+          if (
             error.graphQLErrors.some(
               (e) => e.extensions.code === "INTERNAL_SERVER_ERROR"
             )
@@ -134,7 +139,6 @@ const UrqlWrappedApp = withUrqlClient(
         },
       }),
       ssrExchange,
-      configuredAuthExchange,
       fetchExchange,
     ],
     url: ctx ? process.env.SERVER_BACKEND_GRAPHQL_URL : "/graphql",

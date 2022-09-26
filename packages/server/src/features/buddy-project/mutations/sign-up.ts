@@ -8,6 +8,7 @@ import {
   ResolverTarget,
 } from "../../../services/resolvers/resolver-directive";
 import { YtfApolloContext } from "../../../types";
+import { AuthService } from "../../auth/auth-service";
 import { AuthProvider } from "../../user";
 import {
   BuddyProjectStatus,
@@ -20,7 +21,8 @@ class SignUpMutation {
     @Logger("buddy-project", "signup") private logger: winston.Logger,
     private discord: Client,
     private guild: Guild,
-    private prisma: PrismaClient
+    private prisma: PrismaClient,
+    private authService: AuthService
   ) {}
 
   @Authorized()
@@ -28,9 +30,11 @@ class SignUpMutation {
   public async signUp(
     @Ctx() ctx: YtfApolloContext
   ): Promise<BuddyProjectStatusPayload> {
-    const { user, accessToken } = ctx;
+    const { user } = ctx;
 
-    if (!user || user.type !== AuthProvider.DISCORD || !accessToken) {
+    const auth = await this.authService.ensureValidToken(ctx);
+
+    if (!user || user.type !== AuthProvider.DISCORD) {
       throw new Error("Cannot sign up user who isn't logged in with Discord!");
     }
 
@@ -47,7 +51,7 @@ class SignUpMutation {
     }
 
     if (!member) {
-      await this.addMember(accessToken, user.id);
+      await this.addMember(auth.accessToken, user.id);
       member = await this.guild.members.fetch(user.id);
 
       if (!member) {

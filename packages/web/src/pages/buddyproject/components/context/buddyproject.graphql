@@ -8,7 +8,7 @@ query State {
   }
 }
 
-mutation SignUp @withDiscord {
+mutation SignUp {
   signUp {
     status
   }

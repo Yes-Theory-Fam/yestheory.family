@@ -10,9 +10,10 @@ import { isDevelopment } from "../config";
 import grantConfig from "../config/grant";
 import sessionConfig from "../config/session";
 import { authenticationRouter } from "../features";
+import { discordAuthErrorCode } from "../features/auth/auth-service";
 import { authChecker } from "../features/auth/graphql-auth-checker";
 import { requireCookieConsent } from "../features/auth/require-cookie-consent";
-import { ExportDirective, WithDiscordDirective } from "../graphql-directives";
+import { ExportDirective } from "../graphql-directives";
 import { createServerLogger } from "../services/logging/log";
 import {
   getResolvers,
@@ -37,7 +38,7 @@ export const launchPublicServer = async () => {
   const resolvers = await getResolvers(ResolverTarget.PUBLIC);
 
   const schema = buildSchemaSync({
-    directives: [ExportDirective, WithDiscordDirective],
+    directives: [ExportDirective],
     resolvers,
     container: Container,
     ...additionalOptions,
@@ -58,26 +59,26 @@ export const launchPublicServer = async () => {
     context: (req): YtfApolloContext => {
       const ctx: Context = req.ctx;
       const maybeUser = ctx.session?.user;
-
-      const authHeaderPrefix = "Bearer ";
-      const authHeader = ctx.headers.authorization;
-      if (authHeader && !authHeader.startsWith(authHeaderPrefix)) {
-        throw new Error(
-          "Bad Request! Auth header present but not a Bearer token"
-        );
-      }
-
-      const accessToken = authHeader?.substring(authHeaderPrefix.length);
+      const maybeAuth = ctx.session?.auth;
 
       return {
         user: maybeUser,
+        auth: maybeAuth,
         requestContext: ctx,
-        accessToken,
       };
     },
     formatResponse: (response, reqContext) => {
       if (response.errors) {
         logger.error("Error executing graphql resolver", response.errors);
+      }
+
+      const discordAuthError =
+        response.errors?.filter((e) => e.message === discordAuthErrorCode) ??
+        [];
+      for (const authError of discordAuthError) {
+        if (authError.extensions) {
+          authError.extensions.code = discordAuthErrorCode;
+        }
       }
 
       const authErrors =
@@ -86,19 +87,10 @@ export const launchPublicServer = async () => {
         ) ?? [];
       const user = (reqContext.context as YtfApolloContext).user;
 
-      const requiresDiscord =
-        reqContext.operation?.directives?.some(
-          (d) => d.name.value === "withDiscord"
-        ) ?? false;
-
       for (const authError of authErrors) {
         // When the operation requires Discord authentication, we want to return a special code to indicate to the
         // frontend that re-authentication is required.
-        const code = requiresDiscord
-          ? "DISCORD_UNAUTHENTICATED"
-          : user
-          ? "UNAUTHORIZED"
-          : "UNAUTHENTICATED";
+        const code = user ? "UNAUTHORIZED" : "UNAUTHENTICATED";
 
         if (authError.extensions) authError.extensions.code = code;
       }

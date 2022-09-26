@@ -1,4 +1,3 @@
-import Cookies from "cookies";
 import { Authorized, Ctx, Mutation } from "type-graphql";
 import winston from "winston";
 import { domain } from "../../../config/session";
@@ -9,7 +8,7 @@ import {
 } from "../../../services/resolvers/resolver-directive";
 import { YtfApolloContext } from "../../../types";
 import { AuthProvider } from "../../user";
-import { AuthService } from "../auth-service";
+import { AuthService, YtfAuthContext } from "../auth-service";
 
 @Resolver(ResolverTarget.PUBLIC)
 class LogoutMutation {
@@ -24,18 +23,18 @@ class LogoutMutation {
     if (!ctx.user) throw new Error("Unauthenticated");
 
     const cookies = ctx.requestContext.cookies;
-    await this.invalidateTokens(cookies, ctx.user.type);
+    await this.invalidateTokens(ctx.auth, ctx.user.type);
     cookies.set("koa.sess", null, { domain });
     cookies.set("koa.sess.sig", null, { domain });
 
     return true;
   }
 
-  private async invalidateTokens(cookies: Cookies, provider: AuthProvider) {
-    const cookieNames = ["access_token", "refresh_token"];
+  private async invalidateTokens(auth: YtfAuthContext, provider: AuthProvider) {
+    const cookieNames = ["accessToken", "refreshToken"] as const;
 
     const tokens = cookieNames
-      .map((n) => cookies.get(n))
+      .map((n) => auth[n])
       .filter((t): t is string => !!t);
 
     const invalidatePromises = tokens.map((t) =>

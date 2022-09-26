@@ -52,7 +52,7 @@ export function useStateQuery(
   });
 }
 export const SignUpDocument = gql`
-  mutation SignUp @withDiscord {
+  mutation SignUp {
     signUp {
       status
     }

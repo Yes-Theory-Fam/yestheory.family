@@ -1,8 +1,11 @@
-import { Service } from "typedi";
-import { AuthProvider } from "../user";
+import { REST } from "@discordjs/rest";
+import { Routes } from "discord-api-types/v10";
 import fetch from "node-fetch";
+import { Service } from "typedi";
 import { URLSearchParams } from "url";
 import { createServerLogger } from "../../services/logging/log";
+import { YtfApolloContext } from "../../types";
+import { AuthProvider } from "../user";
 
 const refreshUrls: Record<AuthProvider, string> = {
   [AuthProvider.DISCORD]: "https://discord.com/api/oauth2/token",
@@ -20,12 +23,21 @@ type RefreshTokenResponse = {
   token_type: string;
 };
 
+export interface YtfAuthContext {
+  accessToken: string;
+  refreshToken: string;
+  expiresAt: number;
+}
+
+export const discordAuthErrorCode = "DISCORD_AUTH_ERROR";
+const discordAuthError = new Error(discordAuthErrorCode);
+
 @Service()
 export class AuthService {
   public async refreshToken(
     refreshToken: string,
     authProvider: AuthProvider
-  ): Promise<{ refreshToken: string; accessToken: string; expiresAt: number }> {
+  ): Promise<YtfAuthContext> {
     const logger = createServerLogger("authService", "refreshToken");
 
     if (authProvider !== AuthProvider.DISCORD) {
@@ -99,5 +111,44 @@ export class AuthService {
     const authHeader = Buffer.from(authHeaderBase).toString("base64");
 
     return `Basic ${authHeader}`;
+  }
+
+  public async ensureValidToken(
+    ctx: YtfApolloContext
+  ): Promise<YtfAuthContext> {
+    const { auth, user } = ctx;
+
+    if (!auth || !user) throw discordAuthError;
+
+    const nearOrPastExpiry = auth.expiresAt - Date.now() < 20 * 60 * 1000; // Consider token expired from 20 minutes before it actually expires
+
+    if (nearOrPastExpiry) {
+      try {
+        const newAuth = await this.refreshToken(auth.refreshToken, user.type);
+        if (ctx.requestContext.session) {
+          ctx.requestContext.session.auth = newAuth;
+          ctx.requestContext.session.save();
+        }
+
+        return newAuth;
+      } catch {
+        throw discordAuthError;
+      }
+    }
+
+    const existingTokenWorks = this.attemptTokenUsage(auth.accessToken);
+    if (!existingTokenWorks) throw discordAuthError;
+
+    return auth;
+  }
+
+  private async attemptTokenUsage(token: string): Promise<boolean> {
+    const rest = new REST({ version: "10" }).setToken(token);
+    try {
+      await rest.get(Routes.user());
+      return true;
+    } catch {
+      return false;
+    }
   }
 }

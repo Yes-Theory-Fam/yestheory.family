@@ -1,7 +1,6 @@
 import { GrantResponse } from "grant";
 import { AuthenticatedUser } from "../user";
 import { createServerLogger } from "../../services/logging/log";
-import { URL, URLSearchParams } from "url";
 import { Middleware } from "@koa/router";
 import { YtfApolloContext } from "../../types";
 
@@ -24,26 +23,19 @@ const discordCallback: Middleware<unknown, YtfApolloContext> = (ctx) => {
 
   ctx.session.grant = null;
   ctx.session.user = AuthenticatedUser.fromDiscordProfile(response.profile);
+
+  const expiresAt = Date.now() + parseInt(response.raw.expires_in) * 1000;
+  ctx.session.auth = {
+    accessToken: response.access_token ?? "",
+    refreshToken: response.refresh_token ?? "",
+    expiresAt: expiresAt.toString(),
+  };
+
   ctx.session.save();
 
   ctx.cookies.set(lastLocationKey, null);
 
-  const url = new URL(lastLocation);
-  const urlBase = `${url.protocol}//${url.host}/auth-redirect`;
-  const expiresAt = Date.now() + parseInt(response.raw.expires_in) * 1000;
-
-  const urlParams = new URLSearchParams({
-    next: lastLocation,
-    accessToken: response.access_token ?? "",
-    refreshToken: response.refresh_token ?? "",
-    expiresAt: expiresAt.toString(),
-  });
-
-  const redirectUrl = `${urlBase}?${urlParams.toString()}`;
-
-  logger.debug("Redirecting user to lastLocation:", { urlBase });
-
-  ctx.redirect(redirectUrl);
+  ctx.redirect(lastLocation);
 };
 
 export default discordCallback;
