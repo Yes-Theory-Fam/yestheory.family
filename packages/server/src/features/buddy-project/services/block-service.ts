@@ -51,8 +51,8 @@ export class BlockService {
     const disabledDmsChannel = this.getDmsInfoChannel();
 
     await disabledDmsChannel.permissionOverwrites.edit(userId, {
-      VIEW_CHANNEL: true,
-      SEND_MESSAGES: false,
+      ViewChannel: true,
+      SendMessages: false,
     });
 
     const ping = await disabledDmsChannel.send({

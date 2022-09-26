@@ -1,10 +1,10 @@
-import { Client, Guild, Intents } from "discord.js";
+import { Client, Guild, IntentsBitField } from "discord.js";
 import { createServerLogger } from "../../services/logging/log";
 
 const logger = createServerLogger("discord", "index");
 
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS],
+  intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers],
 });
 
 interface DiscordValues {
