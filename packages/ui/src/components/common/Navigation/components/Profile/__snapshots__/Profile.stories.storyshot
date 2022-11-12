@@ -38,7 +38,7 @@ exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
               g
             </div>
             <div
-              className="chakra-avatar__badge css-1plriyt"
+              className="chakra-avatar__badge css-1llap6j"
             />
           </span>
           <p
@@ -97,7 +97,7 @@ exports[`Storyshots Common/Navigation/Profile Mobile Profile 1`] = `
               g
             </div>
             <div
-              className="chakra-avatar__badge css-1plriyt"
+              className="chakra-avatar__badge css-1llap6j"
             />
           </span>
           <p
