@@ -31,7 +31,7 @@
     "@urql/exchange-auth": "1.0.0",
     "@yestheory.family/ui": "1.0.0",
     "cookie": "0.5.0",
-    "graphql": "15.8.0",
+    "graphql": "16.6.0",
     "next": "12.3.3",
     "next-images": "1.8.4",
     "next-transpile-modules": "9.1.0",
