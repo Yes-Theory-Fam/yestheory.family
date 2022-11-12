@@ -38,13 +38,13 @@ services:
       - server
 
   cypress:
-    image: cypress/included:9.6.1
+    image: cypress/included:11.0.1
     entrypoint: "/bin/bash"
     command: "/wait-for-it.sh -t 30 --strict server:5000 -- ./cypress/install-and-run.sh"
     working_dir: /e2e
     volumes:
       - ./packages/web/cypress:/e2e/cypress
-      - ./packages/web/cypress.json:/e2e/cypress.json
+      - ./packages/web/cypress.config.ts:/e2e/cypress.config.ts
       - ./packages/web/cypress/wait-for-it.sh:/wait-for-it.sh
     depends_on:
       - web
