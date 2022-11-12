@@ -1,6 +1,7 @@
 import { withPerformance } from "storybook-addon-performance";
 import { theme } from "../src/theme";
 import "@storybook/addon-console";
+import { ChakraProvider } from "@chakra-ui/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 /**
@@ -32,11 +33,11 @@ const withChakra = (StoryFn, context) => {
   const dir = direction.toLowerCase();
 
   return (
-    <>
+    <ChakraProvider theme={theme}>
       <div dir={dir} id="story-wrapper" style={{ minHeight: "100vh" }}>
         <StoryFn />
       </div>
-    </>
+    </ChakraProvider>
   );
 };
 

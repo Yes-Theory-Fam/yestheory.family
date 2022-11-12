@@ -4,9 +4,9 @@ schema:
       headers:
         Cookie: ytf-cookie-consent=0;
 documents: ./**/*.graphql
-hooks:
-  afterAllFileWrite:
-    - prettier --write
+#hooks:
+#  afterAllFileWrite:
+#    - prettier --write
 generates:
   src/__generated__/types.ts:
     plugins:
