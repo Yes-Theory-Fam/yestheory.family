@@ -34,7 +34,7 @@
     "graphql": "15.8.0",
     "next": "12.3.3",
     "next-images": "1.8.4",
-    "next-transpile-modules": "9.1.0",
+    "next-transpile-modules": "10.0.0",
     "next-urql": "4.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
