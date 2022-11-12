@@ -47,31 +47,29 @@ const Paragraphs: FC = () => {
 const Wip: FC = () => {
   const imageSize = 400;
 
-  return (
-    <>
-      <Head>
-        <title>Work In Progress!</title>
-      </Head>
-      <Center mt={[16, null, 24]}>
-        <VStack spacing={12} w={"90%"}>
-          <Box>
-            <Image
-              src={underConstructionWebp}
-              alt={"YesBot building a sandcastle :)"}
-              width={imageSize}
-              height={imageSize}
-              priority
-            />
-          </Box>
-          <Heading frontText={"Under construction"} />
-          <Paragraphs />
-          <NextLink href={"https://discord.gg/yestheory"}>
-            <Button variant={"solid"}>Join Now</Button>
-          </NextLink>
-        </VStack>
-      </Center>
-    </>
-  );
+  return <>
+    <Head>
+      <title>Work In Progress!</title>
+    </Head>
+    <Center mt={[16, null, 24]}>
+      <VStack spacing={12} w={"90%"}>
+        <Box>
+          <Image
+            src={underConstructionWebp}
+            alt={"YesBot building a sandcastle :)"}
+            width={imageSize}
+            height={imageSize}
+            priority
+          />
+        </Box>
+        <Heading frontText={"Under construction"} />
+        <Paragraphs />
+        <NextLink href={"https://discord.gg/yestheory"} legacyBehavior>
+          <Button variant={"solid"}>Join Now</Button>
+        </NextLink>
+      </VStack>
+    </Center>
+  </>;
 };
 
 export default Wip;
