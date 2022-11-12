@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.2
 
 # Install dependencies only when needed
-FROM node:16.15-alpine AS deps
+FROM node:19.0-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -21,7 +21,7 @@ WORKDIR /app/packages/server
 RUN yarn workspaces focus
 
 # Rebuild the source code only when needed
-FROM node:16.15-alpine AS builder
+FROM node:19.0-alpine AS builder
 WORKDIR /app
 
 # Copy node_modules and other side products from deps
@@ -37,7 +37,7 @@ WORKDIR /app/packages/server
 RUN yarn prisma generate && yarn build
 
 # Build the actual running server
-FROM node:16.15-alpine
+FROM node:19.0-alpine
 WORKDIR /app
 
 # Copy relevant data from builder
