@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import NextLink from "next/link";
 import { Box, Button, Center, Link, Text, VStack } from "@chakra-ui/react";
 import { Heading } from "@yestheory.family/ui";

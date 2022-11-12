@@ -1,7 +1,7 @@
 import { Box, Center, Flex, Text, VStack } from "@chakra-ui/react";
 import { ScrollToActionContainer } from "@yestheory.family/ui";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { FC } from "react";
 import { buddyProjectSvg } from "../../../assets";
 import { BuddyProjectButton } from "./components/button";
