@@ -10,7 +10,7 @@ import {
 import { withUrqlClient } from "next-urql";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
@@ -36,7 +36,7 @@ const componentOverrides: OverrideComponentType = {
   Image,
   wrapLink: function LinkWrap(child, href) {
     return (
-      <Link href={href ?? "#"} passHref>
+      <Link href={href ?? "#"} passHref legacyBehavior>
         {child}
       </Link>
     );

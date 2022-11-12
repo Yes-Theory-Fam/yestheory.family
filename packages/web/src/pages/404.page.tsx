@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import NextLink from "next/link";
 import { Box, Button, Center, Link, Text, VStack } from "@chakra-ui/react";
 import { Heading } from "@yestheory.family/ui";
@@ -65,7 +65,7 @@ const Wip: FC = () => {
           </Box>
           <Heading frontText={"Under construction"} />
           <Paragraphs />
-          <NextLink href={"https://discord.gg/yestheory"}>
+          <NextLink href={"https://discord.gg/yestheory"} legacyBehavior>
             <Button variant={"solid"}>Join Now</Button>
           </NextLink>
         </VStack>

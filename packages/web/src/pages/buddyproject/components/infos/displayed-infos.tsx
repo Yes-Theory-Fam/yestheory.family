@@ -3,7 +3,7 @@ import { useBuddyProjectState } from "../context/context";
 import { Heading } from "@yestheory.family/ui";
 import { Box, Center, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import { SectionHeading } from "./common";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { yesbotBuddyProjectWebp } from "../../../../../assets";
 import { MatchedInfos } from "./states/matched";
 import { NotSignedUpInfos } from "./states/not-signed-up";
