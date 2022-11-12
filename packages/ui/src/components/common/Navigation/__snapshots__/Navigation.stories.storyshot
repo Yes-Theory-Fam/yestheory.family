@@ -306,7 +306,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
                     g
                   </div>
                   <div
-                    className="chakra-avatar__badge css-1plriyt"
+                    className="chakra-avatar__badge css-1llap6j"
                   />
                 </span>
                 <p

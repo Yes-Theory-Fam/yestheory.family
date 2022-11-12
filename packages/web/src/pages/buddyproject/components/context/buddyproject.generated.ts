@@ -1,46 +1,66 @@
-import * as Types from '../../../../__generated__/types';
+import * as Types from "../../../../__generated__/types";
 
-import { gql } from 'urql';
-import * as Urql from 'urql';
+import { gql } from "urql";
+import * as Urql from "urql";
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-export type StateQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type StateQueryVariables = Types.Exact<{ [key: string]: never }>;
 
+export type StateQuery = {
+  __typename?: "Query";
+  getBuddyProjectStatus: {
+    __typename?: "BuddyProjectStatusPayload";
+    buddy: Buddy | null;
+    status: Types.BuddyProjectStatus;
+  };
+};
 
-export type StateQuery = { __typename?: 'Query', getBuddyProjectStatus: { __typename?: 'BuddyProjectStatusPayload', buddy: Buddy | null, status: Types.BuddyProjectStatus } };
+export type Buddy = {
+  __typename?: "BuddyProjectEntry";
+  userId: string;
+  username?: string | null;
+};
 
-export type Buddy = { __typename?: 'BuddyProjectEntry', userId: string, username?: string | null };
+export type SignUpMutationVariables = Types.Exact<{ [key: string]: never }>;
 
-export type SignUpMutationVariables = Types.Exact<{ [key: string]: never; }>;
-
-
-export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'BuddyProjectStatusPayload', status: Types.BuddyProjectStatus } };
-
-
+export type SignUpMutation = {
+  __typename?: "Mutation";
+  signUp: {
+    __typename?: "BuddyProjectStatusPayload";
+    status: Types.BuddyProjectStatus;
+  };
+};
 
 export const StateDocument = gql`
-    query State {
-  getBuddyProjectStatus {
-    buddy @export(exportName: "Buddy") {
-      userId
-      username
+  query State {
+    getBuddyProjectStatus {
+      buddy @export(exportName: "Buddy") {
+        userId
+        username
+      }
+      status
     }
-    status
   }
-}
-    `;
+`;
 
-export function useStateQuery(options?: Omit<Urql.UseQueryArgs<StateQueryVariables>, 'query'>) {
-  return Urql.useQuery<StateQuery, StateQueryVariables>({ query: StateDocument, ...options });
-};
-export const SignUpDocument = gql`
-    mutation SignUp {
-  signUp {
-    status
-  }
+export function useStateQuery(
+  options?: Omit<Urql.UseQueryArgs<StateQueryVariables>, "query">
+) {
+  return Urql.useQuery<StateQuery, StateQueryVariables>({
+    query: StateDocument,
+    ...options,
+  });
 }
-    `;
+export const SignUpDocument = gql`
+  mutation SignUp {
+    signUp {
+      status
+    }
+  }
+`;
 
 export function useSignUpMutation() {
-  return Urql.useMutation<SignUpMutation, SignUpMutationVariables>(SignUpDocument);
-};
+  return Urql.useMutation<SignUpMutation, SignUpMutationVariables>(
+    SignUpDocument
+  );
+}
