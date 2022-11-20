@@ -29,3 +29,10 @@ model BuddyProjectEntry {
 
   @@map(name: "buddy_project_entry")
 }
+
+model KeyValue {
+  key String @id
+  value String
+
+  @@map(name: "key_value")
+}

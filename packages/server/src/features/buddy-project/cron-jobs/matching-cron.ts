@@ -38,6 +38,10 @@ export class MatchingCron {
   }
 
   async runMatching() {
+    const enabled = await this.matchService.isEnabled();
+    this.logger.info(`Let's see if we should be matching ${enabled}`);
+    if (!enabled) return;
+
     const idsToMatch = await this.buddyProjectService.getUnmatchedBuddyIds(
       MatchingCron.matchAmount
     );
