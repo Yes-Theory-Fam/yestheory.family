@@ -26,6 +26,15 @@ module.exports = {
     },
     "storybook-addon-performance/register",
   ],
+  viteFinal: (config) => {
+    return {
+      ...config,
+      build: {
+        ...config.build,
+        sourcemap: false,
+      },
+    };
+  },
   features: {
     emotionAlias: false,
   },
