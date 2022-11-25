@@ -28,7 +28,9 @@ const BigFrontCloud: FC<FrontCloudProps> = ({ positioned, ...props }) => {
     const img = bigCloudRef.current;
     if (!img) return;
     setState({ bottom: img.height * -0.3, left: img.width * 0.1 });
-  }, [bigCloudRef, size]);
+    // For some reason on initial render, the image height is 0, so we add it to our dependencies to make sure the
+    // correct value is used for positioning.
+  }, [bigCloudRef, bigCloudRef.current?.height, size]);
 
   return (
     <Box position={"absolute"} overflow={"hidden"} {...positioned}>
