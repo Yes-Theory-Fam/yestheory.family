@@ -85,10 +85,10 @@ jobs:
         uses: ./.github/actions/delete-image
         with:
           sub-project: server
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
 
       - name: Delete web image
         uses: ./.github/actions/delete-image
         with:
           sub-project: web
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
