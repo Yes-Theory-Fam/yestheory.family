@@ -8156,7 +8156,7 @@ __metadata:
     ts-node-dev: 2.0.0
     type-graphql: 1.1.1
     typedi: 0.10.0
-    typegraphql-prisma: 0.22.2
+    typegraphql-prisma: 0.23.0
     typescript: 4.8.4
     winston: 3.8.2
   languageName: unknown
@@ -23414,9 +23414,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typegraphql-prisma@npm:0.22.2":
-  version: 0.22.2
-  resolution: "typegraphql-prisma@npm:0.22.2"
+"typegraphql-prisma@npm:0.23.0":
+  version: 0.23.0
+  resolution: "typegraphql-prisma@npm:0.23.0"
   dependencies:
     "@prisma/generator-helper": ~4.6.0
     "@prisma/internals": ~4.6.0
@@ -23435,7 +23435,7 @@ __metadata:
     type-graphql: ^1.1.1 || 2.0.0-beta.1
   bin:
     typegraphql-prisma: lib/generator.js
-  checksum: ffad95cee6b11e6f967e1fca29e130a173a3ce70bf7b4ab486bea03e00727394e90ff5ada61e87e4b04c72600f4169dfc98767be42089d26aab072d88c5a29cc
+  checksum: 1659d0b0017ded74dd5b7a808c4187dc6603eee1aed1bf8496047400a1e85014b12088014a3b27a28ec48b66c7e3644f313920a7760783cf6d805388f726ee52
   languageName: node
   linkType: hard
 
