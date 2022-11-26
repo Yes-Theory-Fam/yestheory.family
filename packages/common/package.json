@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@yestheory.family/eslint-config": "^1.0.0",
-    "eslint": "8.27.0",
+    "eslint": "8.28.0",
     "typescript": "4.8.4"
   }
 }
