@@ -19,7 +19,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "prettier": "2.7.1"
+    "prettier": "2.8.0"
   },
   "resolutions": {
     "react-test-renderer": "18.2.0"
