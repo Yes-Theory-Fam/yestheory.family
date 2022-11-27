@@ -65,6 +65,11 @@ exports[`Storyshots Common/Footer Footer 1`] = `
     </a>
   </div>
   <p
+    className="chakra-text css-0"
+  >
+    This website is in no way affiliated with or endorsed by Yes Theory.
+  </p>
+  <p
     className="chakra-text css-1ah33bq"
   >
     © YesTheoryFam 
