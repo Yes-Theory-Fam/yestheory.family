@@ -21,6 +21,11 @@ const discordCallback: Middleware<unknown, YtfApolloContext> = (ctx) => {
   const lastLocationKey = "last_location";
   const lastLocation = ctx.cookies.get(lastLocationKey) ?? fallbackRedirect;
 
+  if (!response.raw) {
+    ctx.redirect(lastLocation);
+    return;
+  }
+
   ctx.session.grant = null;
   ctx.session.user = AuthenticatedUser.fromDiscordProfile(response.profile);
 
