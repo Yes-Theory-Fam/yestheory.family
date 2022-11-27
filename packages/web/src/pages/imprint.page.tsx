@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Heading } from "@yestheory.family/ui";
-import { VStack } from "@chakra-ui/react";
+import { Link, VStack } from "@chakra-ui/react";
 
 const Imprint: FC = () => {
   return (
@@ -57,9 +57,13 @@ const Imprint: FC = () => {
       <p>
         The European Commission provides a platform for online dispute
         resolution (ODR):{" "}
-        <a href="src/pages/imprint" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="src/pages/imprint"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           https://ec.europa.eu/consumers/odr/
-        </a>
+        </Link>
         .<br /> Our e-mail address can be found above in the site notice.
       </p>
 
