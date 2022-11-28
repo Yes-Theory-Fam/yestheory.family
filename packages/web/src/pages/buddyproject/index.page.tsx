@@ -3,7 +3,7 @@ import { ScrollToActionContainer } from "@yestheory.family/ui";
 import Head from "next/head";
 import Image from "next/legacy/image";
 import { FC } from "react";
-import { buddyProjectSvg } from "../../../assets";
+import { buddyProjectSvg, yesbotBuddyProjectWebp } from "../../../assets";
 import { BuddyProjectButton } from "./components/button";
 import { BuddyProjectProvider } from "./components/context/context";
 import { DisplayedInfos } from "./components/infos/displayed-infos";
@@ -42,7 +42,12 @@ const BuddyProject: FC = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://staging.yestheory.family/_next/static/images/buddyproject_logo-4a69d59781c08948a4253931dffddf5d.svg"
+          content={
+            (typeof window === "undefined"
+              ? process.env.FRONTEND_URL
+              : `${location.protocol}//${location.host}`) +
+            yesbotBuddyProjectWebp
+          }
         />
         <meta
           property="og:url"

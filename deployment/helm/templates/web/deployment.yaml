@@ -19,3 +19,5 @@ spec:
           ports:
             - {{ .Values.web.deployment.port | toYaml | nindent 14}}
           env: {{ .Values.web.deployment.containerEnv | toYaml | nindent 12 }}
+            - name: FRONTEND_URL
+              value: https://{{ .Values.common.baseDomain }}

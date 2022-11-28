@@ -30,3 +30,6 @@ services:
       dockerfile: packages/web/Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
+      FRONTEND_URL: http://web:3000
