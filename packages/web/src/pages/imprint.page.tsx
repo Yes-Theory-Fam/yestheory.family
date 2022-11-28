@@ -33,7 +33,7 @@ const Imprint: FC = () => {
         Sales tax identification number according to Sect. 27 a of the Sales Tax
         Law:
         <br />
-        Pending
+        DE353294170
       </p>
 
       <Heading
