@@ -63,7 +63,7 @@ const Wip: FC = () => {
               priority
             />
           </Box>
-          <Heading frontText={"Under construction"} />
+          <Heading frontText={"Work in progress"} />
           <Paragraphs />
           <NextLink href={"https://discord.gg/yestheory"} legacyBehavior>
             <Button variant={"solid"}>Join Now</Button>
