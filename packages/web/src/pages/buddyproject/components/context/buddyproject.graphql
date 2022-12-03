@@ -9,7 +9,7 @@ query State {
 }
 
 mutation SignUp {
-  signUp {
+  buddyProjectSignUp {
     status
   }
 }
