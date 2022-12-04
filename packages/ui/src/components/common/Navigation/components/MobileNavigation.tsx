@@ -18,7 +18,7 @@ interface NavBarProps {
 
 const NavBar: FC<NavBarProps> = ({ onMenuOpenClick }) => (
   <Flex direction={"row"} justify={"space-between"} p={4} align={"center"}>
-    <WrappedLink href={"/"} _hover={{}}>
+    <WrappedLink aria-label="Home" href={"/"} _hover={{}}>
       <Logo size={"sm"} />
     </WrappedLink>
     <HamburgerIcon onClick={onMenuOpenClick} boxSize={6} />

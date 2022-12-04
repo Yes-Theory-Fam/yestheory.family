@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
 import { Box, Image } from "@chakra-ui/react";
+import { imageSrc } from "../../../../utils";
 import * as Images from "../assets";
 import { useRef, useState } from "react";
 import { fullWidth, Positioned } from "./common";
@@ -63,22 +64,22 @@ export const FrontCloudLayer: FC = () => {
     >
       <BigFrontCloud
         positioned={bottom}
-        src={Images.cloudBigWebp}
-        fallbackSrc={Images.cloudBigPng}
+        src={imageSrc(Images.cloudBigWebp)}
+        fallbackSrc={imageSrc(Images.cloudBigPng)}
       />
       <BigFrontCloud
         positioned={bottom}
-        src={Images.cloudBigWebp}
-        fallbackSrc={Images.cloudBigPng}
+        src={imageSrc(Images.cloudBigWebp)}
+        fallbackSrc={imageSrc(Images.cloudBigPng)}
       />
       <SmallFrontCloud
-        src={Images.cloudBotWebp}
-        fallbackSrc={Images.cloudBotPng}
+        src={imageSrc(Images.cloudBotWebp)}
+        fallbackSrc={imageSrc(Images.cloudBotPng)}
         positioned={bottom}
       />
       <SmallFrontCloud
-        src={Images.cloudBotWebp}
-        fallbackSrc={Images.cloudBotPng}
+        src={imageSrc(Images.cloudBotWebp)}
+        fallbackSrc={imageSrc(Images.cloudBotPng)}
         positioned={bottom}
       />
     </Box>

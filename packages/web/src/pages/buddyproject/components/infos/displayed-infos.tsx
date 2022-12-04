@@ -59,6 +59,9 @@ export const DisplayedInfos: FC = () => {
             minH={[400, null, null, null, "unset"]}
           >
             <Image
+              alt={
+                "Illustration of YesBot delivering a letter with a heart on it to a postbox with the Discord logo on it"
+              }
               src={yesbotBuddyProjectWebp}
               layout={"fill"}
               objectFit={"contain"}
