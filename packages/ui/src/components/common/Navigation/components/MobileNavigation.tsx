@@ -39,7 +39,7 @@ const NavigationStack: FC<NavigationStackProps> = ({
   const linkElements = links.map((l) => {
     const { text, ...rest } = l;
     return (
-      <NavLink {...rest} key={l.key ?? l.href} inverted>
+      <NavLink onClick={onCloseClick} {...rest} key={l.key ?? l.href} inverted>
         {text}
       </NavLink>
     );
@@ -54,7 +54,7 @@ const NavigationStack: FC<NavigationStackProps> = ({
         w={"full"}
         align={"center"}
       >
-        <WrappedLink href={"/"} _hover={{}}>
+        <WrappedLink onClick={onCloseClick} href={"/"} _hover={{}}>
           <Logo size={"sm"} variant={"white"} />
         </WrappedLink>
         <CloseIcon onClick={onCloseClick} color={"white"} />
@@ -72,7 +72,6 @@ const NavigationStack: FC<NavigationStackProps> = ({
 export const MobileNavigation: FC<NavigationProps> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // TODO fix drawer only half open on S21
   return (
     <>
       <NavBar onMenuOpenClick={onOpen} />
