@@ -12,8 +12,8 @@
     "chromatic": "env-cmd chromatic"
   },
   "dependencies": {
-    "@chakra-ui/icons": "2.0.12",
-    "@chakra-ui/react": "2.4.1",
+    "@chakra-ui/icons": "2.0.13",
+    "@chakra-ui/react": "2.4.2",
     "@emotion/react": "11.10.5",
     "@emotion/sheet": "1.2.1",
     "@emotion/styled": "11.10.5",
