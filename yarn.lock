@@ -8138,7 +8138,7 @@ __metadata:
     eslint: 8.28.0
     eslint-plugin-react: 7.31.11
     eslint-plugin-storybook: 0.6.7
-    framer-motion: 7.6.12
+    framer-motion: 7.6.18
     jest: 29.3.1
     jest-environment-jsdom: 29.3.1
     react: 18.2.0
@@ -13759,15 +13759,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:7.6.12":
-  version: 7.6.12
-  resolution: "framer-motion@npm:7.6.12"
+"framer-motion@npm:7.6.18":
+  version: 7.6.18
+  resolution: "framer-motion@npm:7.6.18"
   dependencies:
     "@emotion/is-prop-valid": ^0.8.2
     "@motionone/dom": 10.13.1
     framesync: 6.1.2
     hey-listen: ^1.0.8
-    popmotion: 11.0.5
     style-value-types: 5.1.2
     tslib: 2.4.0
   peerDependencies:
@@ -13776,7 +13775,7 @@ __metadata:
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: 928980cff35360bc962c74d7d2cf7e88ec5e4dd3303352f3f8b60097445c28c770dcf262a73ccf942ce5e409b534cb8874c03e284b770977eb88bd937c5b6831
+  checksum: b09b1d6edfa687fa5ac0c41cd45aab7a9ea83f1b6c4c910faa9b9aa74867da3bab86d09d6aea48fb445562abfda361a98924be2bd39a4b9075a102e8179578cc
   languageName: node
   linkType: hard
 
@@ -19614,18 +19613,6 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.8
   checksum: 97fb927dc55cd34aeb11b31ae2a3332463f114351c86e8aa6580d7755864a0120164fdc3770e6160c8b1775052f0eda14db9a6e34402cd4b08ab2d658a593725
-  languageName: node
-  linkType: hard
-
-"popmotion@npm:11.0.5":
-  version: 11.0.5
-  resolution: "popmotion@npm:11.0.5"
-  dependencies:
-    framesync: 6.1.2
-    hey-listen: ^1.0.8
-    style-value-types: 5.1.2
-    tslib: 2.4.0
-  checksum: f6990d7a59eff402356efd3c9874c3b32bdfd0890ef1da97c71b20ea5ca8f85c17e2daaf11d1328d2756999b0f8222b3b4ec73b4558246843f100053b5a389d7
   languageName: node
   linkType: hard
 
