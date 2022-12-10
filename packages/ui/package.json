@@ -60,7 +60,7 @@
     "react-test-renderer": "18.2.0",
     "sass": "1.56.1",
     "storybook-addon-performance": "0.16.1",
-    "typescript": "4.9.3",
+    "typescript": "4.9.4",
     "vite": "3.2.4",
     "webpack-modules": "1.0.0"
   }

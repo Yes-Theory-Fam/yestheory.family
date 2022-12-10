@@ -8424,7 +8424,7 @@ __metadata:
   dependencies:
     "@yestheory.family/eslint-config": ^1.0.0
     eslint: 8.29.0
-    typescript: 4.9.3
+    typescript: 4.9.4
   languageName: unknown
   linkType: soft
 
@@ -8483,7 +8483,7 @@ __metadata:
     type-graphql: 1.1.1
     typedi: 0.10.0
     typegraphql-prisma: 0.23.1
-    typescript: 4.9.3
+    typescript: 4.9.4
     winston: 3.8.2
   languageName: unknown
   linkType: soft
@@ -8538,7 +8538,7 @@ __metadata:
     regenerator-runtime: 0.13.11
     sass: 1.56.1
     storybook-addon-performance: 0.16.1
-    typescript: 4.9.3
+    typescript: 4.9.4
     vite: 3.2.4
     webpack-modules: 1.0.0
   languageName: unknown
@@ -8572,7 +8572,7 @@ __metadata:
     react-dom: 18.2.0
     react-ssr-prepass: 1.5.0
     sharp: 0.31.2
-    typescript: 4.9.3
+    typescript: 4.9.4
     urql: 3.0.3
   languageName: unknown
   linkType: soft
@@ -23751,23 +23751,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.3":
-  version: 4.9.3
-  resolution: "typescript@npm:4.9.3"
+"typescript@npm:4.9.4":
+  version: 4.9.4
+  resolution: "typescript@npm:4.9.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 17b8f816050b412403e38d48eef0e893deb6be522d6dc7caf105e54a72e34daf6835c447735fd2b28b66784e72bfbf87f627abb4818a8e43d1fa8106396128dc
+  checksum: e782fb9e0031cb258a80000f6c13530288c6d63f1177ed43f770533fdc15740d271554cdae86701c1dd2c83b082cea808b07e97fd68b38a172a83dbf9e0d0ef9
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.9.3#~builtin<compat/typescript>":
-  version: 4.9.3
-  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"
+"typescript@patch:typescript@4.9.4#~builtin<compat/typescript>":
+  version: 4.9.4
+  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=d73830"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 67ca21a387c0572f1c04936e638dde7782c5aa520c3754aadc7cc9b7c915da9ebc3e27c601bfff4ccb7d7264e82dce6d277ada82ec09dc75024349e0ef64926d
+  checksum: 37f6e2c3c5e2aa5934b85b0fddbf32eeac8b1bacf3a5b51d01946936d03f5377fe86255d4e5a4ae628fd0cd553386355ad362c57f13b4635064400f3e8e05b9d
   languageName: node
   linkType: hard
 
