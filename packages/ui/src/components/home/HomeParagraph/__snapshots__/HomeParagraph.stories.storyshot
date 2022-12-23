@@ -1,39 +1,144 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Home/Paragraph Paragraph 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0>*:not(style)~*:not(style) {
+  margin-top: 6px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-2 {
+  font-size: 3xl;
+  font-size: 4xl;
+  font-size: 6xl;
+  color: gray.800;
+  text-align: left;
+}
+
+.emotion-3 {
+  font-size: 3xl;
+  font-size: 4xl;
+  font-size: 6xl;
+  color: brand.800;
+  text-align: left;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-4>*:not(style)~*:not(style) {
+  margin-top: 4px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+}
+
+.emotion-7 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 <div
-  className="chakra-stack css-1hpgelm"
+  className="chakra-stack emotion-0"
 >
   <div
-    className="css-gmuwbf"
+    className="emotion-1"
   >
     <h2
-      className="chakra-heading css-5s6hfy"
+      className="chakra-heading emotion-2"
     >
       Discover 
       <span
-        className="chakra-heading css-1fkrzy1"
+        className="chakra-heading emotion-3"
       >
         empowering stories
       </span>
     </h2>
   </div>
   <div
-    className="chakra-stack css-zmux7u"
+    className="chakra-stack emotion-4"
   >
     <p
-      className="chakra-text css-0"
+      className="chakra-text emotion-5"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis rhoncus urna neque viverra justo nec ultrices. Egestas sed tempus urna et pharetra pharetra massa massa. Diam sollicitudin tempor id eu nisl nunc mi ipsum. Morbi blandit cursus risus at. Tempus egestas sed sed risus pretium quam vulputate. Sed faucibus turpis in eu.
     </p>
     <p
-      className="chakra-text css-0"
+      className="chakra-text emotion-5"
     >
       Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Est placerat in egestas erat imperdiet sed. Egestas fringilla phasellus faucibus scelerisque eleifend. Turpis egestas maecenas pharetra convallis posuere morbi leo urna.
     </p>
   </div>
   <a
-    className="chakra-link chakra-button css-1ncwzw6"
+    className="chakra-link chakra-button emotion-7"
     href="#"
   >
     Read more

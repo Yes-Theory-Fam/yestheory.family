@@ -1,11 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Logo Logo 1`] = `
+.emotion-0 {
+  width: 50px;
+  fill: gray.800;
+}
+
+.emotion-1 {
+  width: unset;
+  height: unset;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+}
+
 <div
-  className="css-znsoff"
+  className="emotion-0"
 >
   <svg
-    className="chakra-icon css-1nsz2z9"
+    className="chakra-icon emotion-1"
     focusable={false}
     viewBox="0 0 33.787568 17.315006"
   >
@@ -36,11 +53,28 @@ exports[`Storyshots Common/Logo Logo 1`] = `
 `;
 
 exports[`Storyshots Common/Logo Logo White 1`] = `
+.emotion-0 {
+  width: 50px;
+  fill: white;
+}
+
+.emotion-1 {
+  width: unset;
+  height: unset;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+}
+
 <div
-  className="css-1ya4nun"
+  className="emotion-0"
 >
   <svg
-    className="chakra-icon css-1nsz2z9"
+    className="chakra-icon emotion-1"
     focusable={false}
     viewBox="0 0 33.787568 17.315006"
   >
@@ -71,17 +105,131 @@ exports[`Storyshots Common/Logo Logo White 1`] = `
 `;
 
 exports[`Storyshots Common/Logo Logos 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0>*:not(style)~*:not(style) {
+  margin-top: 0.5rem;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 4px;
+}
+
+.emotion-1>*:not(style)~*:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 4px;
+  margin-inline-start: 4px;
+}
+
+.emotion-2 {
+  width: 50px;
+  fill: gray.800;
+}
+
+.emotion-3 {
+  width: unset;
+  height: unset;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+}
+
+.emotion-4 {
+  width: 100px;
+  fill: gray.800;
+}
+
+.emotion-6 {
+  width: 200px;
+  fill: gray.800;
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 4px;
+  background: brand.800;
+}
+
+.emotion-8>*:not(style)~*:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 4px;
+  margin-inline-start: 4px;
+}
+
+.emotion-9 {
+  width: 50px;
+  fill: white;
+}
+
+.emotion-11 {
+  width: 100px;
+  fill: white;
+}
+
+.emotion-13 {
+  width: 200px;
+  fill: white;
+}
+
 <div
-  className="chakra-stack css-owjkmg"
+  className="chakra-stack emotion-0"
 >
   <div
-    className="chakra-stack css-1ofz3wq"
+    className="chakra-stack emotion-1"
   >
     <div
-      className="css-znsoff"
+      className="emotion-2"
     >
       <svg
-        className="chakra-icon css-1nsz2z9"
+        className="chakra-icon emotion-3"
         focusable={false}
         viewBox="0 0 33.787568 17.315006"
       >
@@ -110,10 +258,10 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div
-      className="css-1btwv0h"
+      className="emotion-4"
     >
       <svg
-        className="chakra-icon css-1nsz2z9"
+        className="chakra-icon emotion-3"
         focusable={false}
         viewBox="0 0 33.787568 17.315006"
       >
@@ -142,10 +290,10 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div
-      className="css-1bvkrzq"
+      className="emotion-6"
     >
       <svg
-        className="chakra-icon css-1nsz2z9"
+        className="chakra-icon emotion-3"
         focusable={false}
         viewBox="0 0 33.787568 17.315006"
       >
@@ -175,13 +323,13 @@ exports[`Storyshots Common/Logo Logos 1`] = `
     </div>
   </div>
   <div
-    className="chakra-stack css-16qyr4m"
+    className="chakra-stack emotion-8"
   >
     <div
-      className="css-1ya4nun"
+      className="emotion-9"
     >
       <svg
-        className="chakra-icon css-1nsz2z9"
+        className="chakra-icon emotion-3"
         focusable={false}
         viewBox="0 0 33.787568 17.315006"
       >
@@ -210,10 +358,10 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div
-      className="css-1qs4zf"
+      className="emotion-11"
     >
       <svg
-        className="chakra-icon css-1nsz2z9"
+        className="chakra-icon emotion-3"
         focusable={false}
         viewBox="0 0 33.787568 17.315006"
       >
@@ -242,10 +390,10 @@ exports[`Storyshots Common/Logo Logos 1`] = `
       </svg>
     </div>
     <div
-      className="css-7rn6ev"
+      className="emotion-13"
     >
       <svg
-        className="chakra-icon css-1nsz2z9"
+        className="chakra-icon emotion-3"
         focusable={false}
         viewBox="0 0 33.787568 17.315006"
       >

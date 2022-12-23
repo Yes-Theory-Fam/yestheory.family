@@ -2,7 +2,7 @@
 
 exports[`Storyshots Common/Link Link 1`] = `
 <a
-  className="chakra-link css-0"
+  className="chakra-link emotion-0"
 >
   I am a link
 </a>
