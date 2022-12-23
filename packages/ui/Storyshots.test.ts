@@ -1,4 +1,5 @@
 import { toCSSVar as mockToCSSVar } from "@chakra-ui/react";
+import { createSerializer } from "@emotion/jest";
 import path from "path";
 import initStoryshots, {
   multiSnapshotWithOptions,
@@ -20,5 +21,5 @@ initStoryshots({
   configPath: path.join(__dirname, ".storybook"),
   integrityOptions: { cwd: __dirname },
   test: multiSnapshotWithOptions(),
-  // TODO check if this needs a serializer
+  snapshotSerializers: [createSerializer()],
 });
