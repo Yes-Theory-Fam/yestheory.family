@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useRef, useState } from "react";
 import { Box, Image, useBreakpointValue } from "@chakra-ui/react";
 import { useIsomorphicLayoutEffect, useWindowSize } from "react-use";
+import { imageSrc } from "../../../../utils";
 import { getImageDimensions } from "./common";
 
 import * as Images from "../assets";
@@ -24,7 +25,7 @@ export const DudeOnMountainLayer: FC = () => {
 
   // When dependencies change
   useIsomorphicLayoutEffect(() => {
-    getImageDimensions(Images.dudeWebp).then(({ height, width }) => {
+    getImageDimensions(imageSrc(Images.dudeWebp)).then(({ height, width }) => {
       if (displayedFraction !== fractionRef.current) {
         return;
       }
@@ -62,8 +63,8 @@ export const DudeOnMountainLayer: FC = () => {
         maxWidth={"unset"}
         borderRadius={0}
         position={"absolute"}
-        src={Images.dudeWebp}
-        fallbackSrc={Images.dudePng}
+        src={imageSrc(Images.dudeWebp)}
+        fallbackSrc={imageSrc(Images.dudePng)}
         left={-leftOffset}
         top={`${imageTopOffset}vh`}
       />

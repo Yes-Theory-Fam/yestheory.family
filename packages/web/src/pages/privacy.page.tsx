@@ -1,3 +1,4 @@
+import { Link } from "@chakra-ui/react";
 import { FC } from "react";
 import { Heading } from "@yestheory.family/ui";
 import { VStack } from "@chakra-ui/react";
@@ -103,14 +104,14 @@ const Privacy: FC = () => {
         referred to as Hetzner).
       </p>
       <p>
-        For details, please view the data privacy policy of Hetzner:
-        <a
+        For details, please view the data privacy policy of Hetzner:{" "}
+        <Link
           href="https://www.hetzner.com/de/rechtliches/datenschutz"
           target="_blank"
           rel="noopener noreferrer"
         >
           https://www.hetzner.com/de/rechtliches/datenschutz
-        </a>
+        </Link>
         .
       </p>
       <p>
@@ -523,14 +524,14 @@ const Privacy: FC = () => {
       </p>
       <p>
         For more information on how YouTube handles user data, please consult
-        the YouTube Data Privacy Policy under:
-        <a
+        the YouTube Data Privacy Policy under:{" "}
+        <Link
           href="https://policies.google.com/privacy?hl=en"
           target="_blank"
           rel="noopener noreferrer"
         >
           https://policies.google.com/privacy?hl=en
-        </a>
+        </Link>
         .
       </p>
       <Heading
@@ -545,22 +546,22 @@ const Privacy: FC = () => {
         established in conjunction with this application.
       </p>
       <p>
-        For more information on Google Web Fonts, please follow this link:
-        <a
+        For more information on Google Web Fonts, please follow this link:{" "}
+        <Link
           href="https://developers.google.com/fonts/faq"
           target="_blank"
           rel="noopener noreferrer"
         >
           https://developers.google.com/fonts/faq
-        </a>
-        and consult Google’s Data Privacy Declaration under:
-        <a
+        </Link>
+        and consult Google’s Data Privacy Declaration under:{" "}
+        <Link
           href="https://policies.google.com/privacy?hl=en"
           target="_blank"
           rel="noopener noreferrer"
         >
           https://policies.google.com/privacy?hl=en
-        </a>
+        </Link>
         .
       </p>
       <Heading

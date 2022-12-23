@@ -6,7 +6,8 @@
       "Default GraphQL Endpoint": {
         "url": "http://localhost:5000/graphql",
         "headers": {
-          "user-agent": "JS GraphQL"
+          "user-agent": "JS GraphQL",
+          "Cookie": "ytf-cookie-consent=0;"
         },
         "introspect": false
       }

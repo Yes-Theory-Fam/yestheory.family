@@ -25,7 +25,7 @@ export type SignUpMutationVariables = Types.Exact<{ [key: string]: never }>;
 
 export type SignUpMutation = {
   __typename?: "Mutation";
-  signUp: {
+  buddyProjectSignUp: {
     __typename?: "BuddyProjectStatusPayload";
     status: Types.BuddyProjectStatus;
   };
@@ -53,7 +53,7 @@ export function useStateQuery(
 }
 export const SignUpDocument = gql`
   mutation SignUp {
-    signUp {
+    buddyProjectSignUp {
       status
     }
   }

@@ -1,11 +1,9 @@
 const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
 const withTM = require("next-transpile-modules")(["@yestheory.family/ui"]);
-const withImages = require("next-images");
 
 /** @returns {import("next").NextConfig} */
 const config = (phase) => ({
-  images: { disableStaticImages: true },
   pageExtensions: ["page.tsx"],
   productionBrowserSourceMaps: true,
   rewrites: () => [
@@ -34,4 +32,4 @@ const config = (phase) => ({
   ],
 });
 
-module.exports = (...args) => withImages(withTM(config(...args)));
+module.exports = (...args) => withTM(config(...args));

@@ -38,7 +38,7 @@ export const BuddyProjectButton: FC = () => {
   );
 
   useEffect(() => {
-    if (signUpData?.signUp.status === BuddyProjectStatus.SignedUp) {
+    if (signUpData?.buddyProjectSignUp.status === BuddyProjectStatus.SignedUp) {
       successOnOpen();
     }
   }, [successOnOpen, signUpData]);

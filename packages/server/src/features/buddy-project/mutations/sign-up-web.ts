@@ -27,7 +27,7 @@ class SignUpMutation {
 
   @Authorized()
   @Mutation(() => BuddyProjectStatusPayload)
-  public async signUp(
+  public async buddyProjectSignUp(
     @Ctx() ctx: YtfApolloContext
   ): Promise<BuddyProjectStatusPayload> {
     const { user } = ctx;

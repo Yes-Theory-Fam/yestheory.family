@@ -45,25 +45,27 @@ const Paragraphs: FC = () => {
 };
 
 const Wip: FC = () => {
-  const imageSize = 400;
-
   return (
     <>
       <Head>
         <title>Work In Progress!</title>
+        <meta
+          name="description"
+          content="This website is undergoing work but feel free to have a look around!"
+        />
       </Head>
       <Center mt={[16, null, 24]}>
         <VStack spacing={12} w={"90%"}>
-          <Box>
+          <Box maxW={400}>
             <Image
               src={underConstructionWebp}
               alt={"YesBot building a sandcastle :)"}
-              width={imageSize}
-              height={imageSize}
+              width={underConstructionWebp.width}
+              height={underConstructionWebp.height}
               priority
             />
           </Box>
-          <Heading frontText={"Under construction"} />
+          <Heading frontText={"Work in progress"} />
           <Paragraphs />
           <NextLink href={"https://discord.gg/yestheory"} legacyBehavior>
             <Button variant={"solid"}>Join Now</Button>
