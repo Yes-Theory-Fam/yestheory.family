@@ -1,27 +1,219 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
+.emotion-0 {
+  overflow: auto;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: docked;
+  background: white;
+}
+
+.emotion-1 {
+  display: block;
+  display: none;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.emotion-4 {
+  width: 50px;
+  fill: gray.800;
+}
+
+.emotion-5 {
+  width: unset;
+  height: unset;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+}
+
+.emotion-6 {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+}
+
+.emotion-7 {
+  display: none;
+  display: block;
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin: 6px;
+}
+
+.emotion-9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  max-width: 8xl;
+  width: full;
+}
+
+.emotion-9>*:not(style)~*:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 12px;
+  margin-inline-start: 12px;
+}
+
+.emotion-10 {
+  margin-right: auto;
+}
+
+.emotion-11 {
+  width: 100px;
+  fill: gray.800;
+}
+
+.emotion-13 {
+  text-transform: uppercase;
+  border-bottom: 2px;
+  border-color: transparent;
+  color: gray.700;
+  font-size: md;
+}
+
+.emotion-13:hover,
+.emotion-13[data-hover] {
+  border-color: brand.800;
+}
+
+.emotion-14 {
+  text-transform: uppercase;
+  border-bottom: 2px;
+  border-color: brand.800;
+  color: gray.700;
+  font-size: md;
+}
+
+.emotion-14:hover,
+.emotion-14[data-hover] {
+  border-color: brand.800;
+}
+
+.emotion-15 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.emotion-16 {
+  width: 4px;
+  height: 4px;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+  margin-right: 2px;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+  fill: white;
+}
+
+[role=group]:hover .emotion-16,
+[role=group][data-hover] .emotion-16,
+[data-group]:hover .emotion-16,
+[data-group][data-hover] .emotion-16,
+.group:hover .emotion-16,
+.group[data-hover] .emotion-16 {
+  fill: white;
+}
+
 <div
-  className="css-swx89l"
+  className="emotion-0"
   id="navigation"
 >
   <div
-    className="css-1yu1zd0"
+    className="emotion-1"
   >
     <div
-      className="css-16axjtf"
+      className="emotion-2"
     >
       <a
         aria-label="Home"
-        className="chakra-link css-3le2fk"
+        className="chakra-link emotion-3"
         href="/"
         rel="noopener noreferrer"
       >
         <div
-          className="css-znsoff"
+          className="emotion-4"
         >
           <svg
-            className="chakra-icon css-1nsz2z9"
+            className="chakra-icon emotion-5"
             focusable={false}
             viewBox="0 0 33.787568 17.315006"
           >
@@ -51,7 +243,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
         </div>
       </a>
       <svg
-        className="chakra-icon css-dvq678"
+        className="chakra-icon emotion-6"
         focusable={false}
         onClick={[Function]}
         viewBox="0 0 24 24"
@@ -64,24 +256,24 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
     </div>
   </div>
   <div
-    className="css-1kuyx4r"
+    className="emotion-7"
   >
     <div
-      className="css-1vh6z56"
+      className="emotion-8"
     >
       <div
-        className="chakra-stack css-1m56apc"
+        className="chakra-stack emotion-9"
       >
         <a
-          className="chakra-link css-1o9qqxh"
+          className="chakra-link emotion-10"
           href="/"
           rel="noopener noreferrer"
         >
           <div
-            className="css-1btwv0h"
+            className="emotion-11"
           >
             <svg
-              className="chakra-icon css-1nsz2z9"
+              className="chakra-icon emotion-5"
               focusable={false}
               viewBox="0 0 33.787568 17.315006"
             >
@@ -111,27 +303,27 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
           </div>
         </a>
         <a
-          className="chakra-link css-f6i9u1"
+          className="chakra-link emotion-13"
           href="/blog"
           rel="noopener noreferrer"
         >
           Blog
         </a>
         <a
-          className="chakra-link css-1q4kjoy"
+          className="chakra-link emotion-14"
           href="/photowall"
           rel="noopener noreferrer"
         >
           Photowall
         </a>
         <button
-          className="chakra-button css-4xx2wk"
+          className="chakra-button emotion-15"
           onClick={[Function]}
           role="group"
           type="button"
         >
           <svg
-            className="chakra-icon css-1sxb4fp"
+            className="chakra-icon emotion-16"
             focusable={false}
             viewBox="0 0 245 240"
           >
@@ -151,27 +343,303 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
 `;
 
 exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
+.emotion-0 {
+  overflow: auto;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: docked;
+  background: white;
+}
+
+.emotion-1 {
+  display: block;
+  display: none;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.emotion-4 {
+  width: 50px;
+  fill: gray.800;
+}
+
+.emotion-5 {
+  width: unset;
+  height: unset;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+}
+
+.emotion-6 {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+}
+
+.emotion-7 {
+  display: none;
+  display: block;
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin: 6px;
+}
+
+.emotion-9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  max-width: 8xl;
+  width: full;
+}
+
+.emotion-9>*:not(style)~*:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 12px;
+  margin-inline-start: 12px;
+}
+
+.emotion-10 {
+  margin-right: auto;
+}
+
+.emotion-11 {
+  width: 100px;
+  fill: gray.800;
+}
+
+.emotion-13 {
+  text-transform: uppercase;
+  border-bottom: 2px;
+  border-color: transparent;
+  color: gray.700;
+  font-size: md;
+}
+
+.emotion-13:hover,
+.emotion-13[data-hover] {
+  border-color: brand.800;
+}
+
+.emotion-14 {
+  text-transform: uppercase;
+  border-bottom: 2px;
+  border-color: brand.800;
+  color: gray.700;
+  font-size: md;
+}
+
+.emotion-14:hover,
+.emotion-14[data-hover] {
+  border-color: brand.800;
+}
+
+.emotion-15 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.emotion-16 {
+  pointer-events: none;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0px;
+}
+
+.emotion-17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-17>*:not(style)~*:not(style) {
+  margin-top: 1px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+}
+
+.emotion-18 {
+  color: brand.800;
+  font-size: 10px;
+  visibility: visible;
+}
+
+.emotion-19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-19>*:not(style)~*:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 2px;
+  margin-inline-start: 2px;
+}
+
+.emotion-20 {
+  border-radius: full;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: medium;
+  position: relative;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: brand.800;
+  background: transparent;
+}
+
+.emotion-22 {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  bottom: 0px;
+  right: 0;
+  -webkit-transform: translate(25%, 25%);
+  -moz-transform: translate(25%, 25%);
+  -ms-transform: translate(25%, 25%);
+  transform: translate(25%, 25%);
+  width: 4px;
+  height: 4px;
+  background: green;
+}
+
+.emotion-23 {
+  color: gray.800;
+}
+
+.emotion-24 {
+  color: brand.800;
+  font-size: 10px;
+  visibility: hidden;
+}
+
 <div
-  className="css-swx89l"
+  className="emotion-0"
   id="navigation"
 >
   <div
-    className="css-1yu1zd0"
+    className="emotion-1"
   >
     <div
-      className="css-16axjtf"
+      className="emotion-2"
     >
       <a
         aria-label="Home"
-        className="chakra-link css-3le2fk"
+        className="chakra-link emotion-3"
         href="/"
         rel="noopener noreferrer"
       >
         <div
-          className="css-znsoff"
+          className="emotion-4"
         >
           <svg
-            className="chakra-icon css-1nsz2z9"
+            className="chakra-icon emotion-5"
             focusable={false}
             viewBox="0 0 33.787568 17.315006"
           >
@@ -201,7 +669,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
         </div>
       </a>
       <svg
-        className="chakra-icon css-dvq678"
+        className="chakra-icon emotion-6"
         focusable={false}
         onClick={[Function]}
         viewBox="0 0 24 24"
@@ -214,24 +682,24 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
     </div>
   </div>
   <div
-    className="css-1kuyx4r"
+    className="emotion-7"
   >
     <div
-      className="css-1vh6z56"
+      className="emotion-8"
     >
       <div
-        className="chakra-stack css-1m56apc"
+        className="chakra-stack emotion-9"
       >
         <a
-          className="chakra-link css-1o9qqxh"
+          className="chakra-link emotion-10"
           href="/"
           rel="noopener noreferrer"
         >
           <div
-            className="css-1btwv0h"
+            className="emotion-11"
           >
             <svg
-              className="chakra-icon css-1nsz2z9"
+              className="chakra-icon emotion-5"
               focusable={false}
               viewBox="0 0 33.787568 17.315006"
             >
@@ -261,14 +729,14 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
           </div>
         </a>
         <a
-          className="chakra-link css-f6i9u1"
+          className="chakra-link emotion-13"
           href="/blog"
           rel="noopener noreferrer"
         >
           Blog
         </a>
         <a
-          className="chakra-link css-1q4kjoy"
+          className="chakra-link emotion-14"
           href="/photowall"
           rel="noopener noreferrer"
         >
@@ -278,47 +746,47 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
           aria-controls="menu-list-profile-menu"
           aria-expanded={false}
           aria-haspopup="menu"
-          className="chakra-menu__menu-button css-1eqi7qs"
+          className="chakra-menu__menu-button emotion-15"
           id="menu-button-profile-menu"
           onClick={[Function]}
           onKeyDown={[Function]}
         >
           <span
-            className="css-xl71ch"
+            className="emotion-16"
           >
             <div
-              className="chakra-stack css-192p3t8"
+              className="chakra-stack emotion-17"
             >
               <p
-                className="chakra-text css-x13lj8"
+                className="chakra-text emotion-18"
               >
                 Logged in as:
               </p>
               <div
-                className="chakra-stack css-15lgeks"
+                className="chakra-stack emotion-19"
               >
                 <span
-                  className="chakra-avatar css-vkvvxo"
+                  className="chakra-avatar emotion-20"
                 >
                   <div
                     aria-label="geisterfurz007#5952"
-                    className="chakra-avatar__initials css-0"
+                    className="chakra-avatar__initials emotion-21"
                     role="img"
                   >
                     g
                   </div>
                   <div
-                    className="chakra-avatar__badge css-1llap6j"
+                    className="chakra-avatar__badge emotion-22"
                   />
                 </span>
                 <p
-                  className="chakra-text css-8wu8jt"
+                  className="chakra-text emotion-23"
                 >
                   geisterfurz007#5952
                 </p>
               </div>
               <p
-                className="chakra-text css-1aj8j1t"
+                className="chakra-text emotion-24"
               >
                 Logged in as:
               </p>

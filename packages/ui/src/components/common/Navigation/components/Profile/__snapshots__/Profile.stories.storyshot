@@ -1,54 +1,195 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
+.emotion-0 {
+  padding: 4px;
+}
+
+.emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.emotion-2 {
+  pointer-events: none;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0px;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-3>*:not(style)~*:not(style) {
+  margin-top: 1px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+}
+
+.emotion-4 {
+  color: brand.800;
+  font-size: 10px;
+  visibility: visible;
+}
+
+.emotion-5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-5>*:not(style)~*:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 2px;
+  margin-inline-start: 2px;
+}
+
+.emotion-6 {
+  border-radius: full;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: medium;
+  position: relative;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: brand.800;
+  background: transparent;
+}
+
+.emotion-8 {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  bottom: 0px;
+  right: 0;
+  -webkit-transform: translate(25%, 25%);
+  -moz-transform: translate(25%, 25%);
+  -ms-transform: translate(25%, 25%);
+  transform: translate(25%, 25%);
+  width: 4px;
+  height: 4px;
+  background: green;
+}
+
+.emotion-9 {
+  color: gray.800;
+}
+
+.emotion-10 {
+  color: brand.800;
+  font-size: 10px;
+  visibility: hidden;
+}
+
 <div
-  className="css-2rlxtj"
+  className="emotion-0"
 >
   <button
     aria-controls="menu-list-profile-menu"
     aria-expanded={false}
     aria-haspopup="menu"
-    className="chakra-menu__menu-button css-1eqi7qs"
+    className="chakra-menu__menu-button emotion-1"
     id="menu-button-profile-menu"
     onClick={[Function]}
     onKeyDown={[Function]}
   >
     <span
-      className="css-xl71ch"
+      className="emotion-2"
     >
       <div
-        className="chakra-stack css-192p3t8"
+        className="chakra-stack emotion-3"
       >
         <p
-          className="chakra-text css-x13lj8"
+          className="chakra-text emotion-4"
         >
           Logged in as:
         </p>
         <div
-          className="chakra-stack css-15lgeks"
+          className="chakra-stack emotion-5"
         >
           <span
-            className="chakra-avatar css-vkvvxo"
+            className="chakra-avatar emotion-6"
           >
             <div
               aria-label="geisterfurz007#5952"
-              className="chakra-avatar__initials css-0"
+              className="chakra-avatar__initials emotion-7"
               role="img"
             >
               g
             </div>
             <div
-              className="chakra-avatar__badge css-1llap6j"
+              className="chakra-avatar__badge emotion-8"
             />
           </span>
           <p
-            className="chakra-text css-8wu8jt"
+            className="chakra-text emotion-9"
           >
             geisterfurz007#5952
           </p>
         </div>
         <p
-          className="chakra-text css-1aj8j1t"
+          className="chakra-text emotion-10"
         >
           Logged in as:
         </p>
@@ -60,54 +201,196 @@ exports[`Storyshots Common/Navigation/Profile Desktop Profile 1`] = `
 `;
 
 exports[`Storyshots Common/Navigation/Profile Mobile Profile 1`] = `
+.emotion-0 {
+  background: brand.800;
+  padding: 4px;
+}
+
+.emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.emotion-2 {
+  pointer-events: none;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0px;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-3>*:not(style)~*:not(style) {
+  margin-top: 1px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+}
+
+.emotion-4 {
+  color: white;
+  font-size: 10px;
+  visibility: visible;
+}
+
+.emotion-5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-5>*:not(style)~*:not(style) {
+  margin-top: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+  margin-bottom: 0px;
+  -webkit-margin-start: 2px;
+  margin-inline-start: 2px;
+}
+
+.emotion-6 {
+  border-radius: full;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: medium;
+  position: relative;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: white;
+  background: transparent;
+}
+
+.emotion-8 {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  bottom: 0px;
+  right: 0;
+  -webkit-transform: translate(25%, 25%);
+  -moz-transform: translate(25%, 25%);
+  -ms-transform: translate(25%, 25%);
+  transform: translate(25%, 25%);
+  width: 4px;
+  height: 4px;
+  background: green;
+}
+
+.emotion-9 {
+  color: white;
+}
+
+.emotion-10 {
+  color: white;
+  font-size: 10px;
+  visibility: hidden;
+}
+
 <div
-  className="css-1agdl1f"
+  className="emotion-0"
 >
   <button
     aria-controls="menu-list-profile-menu"
     aria-expanded={false}
     aria-haspopup="menu"
-    className="chakra-menu__menu-button css-1eqi7qs"
+    className="chakra-menu__menu-button emotion-1"
     id="menu-button-profile-menu"
     onClick={[Function]}
     onKeyDown={[Function]}
   >
     <span
-      className="css-xl71ch"
+      className="emotion-2"
     >
       <div
-        className="chakra-stack css-192p3t8"
+        className="chakra-stack emotion-3"
       >
         <p
-          className="chakra-text css-amg4kb"
+          className="chakra-text emotion-4"
         >
           Logged in as:
         </p>
         <div
-          className="chakra-stack css-15lgeks"
+          className="chakra-stack emotion-5"
         >
           <span
-            className="chakra-avatar css-18zvmmx"
+            className="chakra-avatar emotion-6"
           >
             <div
               aria-label="geisterfurz007#5952"
-              className="chakra-avatar__initials css-0"
+              className="chakra-avatar__initials emotion-7"
               role="img"
             >
               g
             </div>
             <div
-              className="chakra-avatar__badge css-1llap6j"
+              className="chakra-avatar__badge emotion-8"
             />
           </span>
           <p
-            className="chakra-text css-kbn7if"
+            className="chakra-text emotion-9"
           >
             geisterfurz007#5952
           </p>
         </div>
         <p
-          className="chakra-text css-1661vxi"
+          className="chakra-text emotion-10"
         >
           Logged in as:
         </p>

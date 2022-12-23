@@ -1,13 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Common/Button Login Button 1`] = `
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.emotion-1 {
+  width: 4px;
+  height: 4px;
+  display: inline-block;
+  line-height: 1em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  color: currentColor;
+  vertical-align: middle;
+  margin-right: 2px;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+  fill: white;
+}
+
+[role=group]:hover .emotion-1,
+[role=group][data-hover] .emotion-1,
+[data-group]:hover .emotion-1,
+[data-group][data-hover] .emotion-1,
+.group:hover .emotion-1,
+.group[data-hover] .emotion-1 {
+  fill: white;
+}
+
 <button
-  className="chakra-button css-4xx2wk"
+  className="chakra-button emotion-0"
   role="group"
   type="button"
 >
   <svg
-    className="chakra-icon css-1sxb4fp"
+    className="chakra-icon emotion-1"
     focusable={false}
     viewBox="0 0 245 240"
   >
@@ -23,8 +76,36 @@ exports[`Storyshots Common/Button Login Button 1`] = `
 `;
 
 exports[`Storyshots Common/Button Outlined Button 1`] = `
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 <button
-  className="chakra-button css-4xx2wk"
+  className="chakra-button emotion-0"
   label="Button"
   type="button"
 >
@@ -33,8 +114,36 @@ exports[`Storyshots Common/Button Outlined Button 1`] = `
 `;
 
 exports[`Storyshots Common/Button Solid Button 1`] = `
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 <button
-  className="chakra-button css-4xx2wk"
+  className="chakra-button emotion-0"
   label="Button"
   type="button"
 >

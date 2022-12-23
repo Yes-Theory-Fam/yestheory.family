@@ -1,76 +1,192 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Home/Parallax Parallax 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1 {
+  height: calc(100vh - 0px);
+  width: full;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: fixed;
+  height: 100vh;
+  top: 0px;
+  z-index: -400;
+  left: 0px;
+  right: 0px;
+}
+
+.emotion-3 {
+  color: brand.800;
+  font-size: 9xl;
+  font-size: 10rem;
+  font-size: 70vh;
+  text-transform: uppercase;
+  font-weight: black;
+}
+
+.emotion-4 {
+  position: absolute;
+  z-index: -300;
+  left: -35vw;
+}
+
+.emotion-5 {
+  object-fit: cover;
+  border-radius: 0px;
+  position: relative;
+  bottom: -200px;
+}
+
+.emotion-6 {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  position: fixed;
+  top: 0px;
+  overflow: visible;
+  z-index: -200;
+  height: 100vh;
+  width: 100vw;
+}
+
+.emotion-7 {
+  max-width: unset;
+  border-radius: 0px;
+  position: absolute;
+  left: 0px;
+  top: 45vh;
+}
+
+.emotion-8 {
+  height: calc(100vh - 0px);
+  position: relative;
+  overflow: hidden;
+  z-index: -100;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.emotion-9 {
+  position: absolute;
+  overflow: hidden;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.emotion-10 {
+  border-radius: 0px;
+  width: full;
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+}
+
+.emotion-14 {
+  border-radius: 0px;
+  width: full;
+  position: relative;
+}
+
+.emotion-17 {
+  height: 800px;
+  background: white;
+}
+
 <div
-  className="css-j7qwjs"
+  className="emotion-0"
 >
   <div
-    className="css-d4foqg"
+    className="emotion-1"
   >
     <div
-      className="css-ugispo"
+      className="emotion-2"
     >
       <p
-        className="chakra-text css-piruwc"
+        className="chakra-text emotion-3"
       >
         Yes
       </p>
     </div>
     <div
-      className="css-75c88u"
+      className="emotion-4"
     >
       <img
-        className="chakra-image__placeholder css-1s7ix7d"
+        className="chakra-image__placeholder emotion-5"
         src=""
       />
     </div>
     <div
-      className="css-dtrux7"
+      className="emotion-6"
     >
       <img
-        className="chakra-image__placeholder css-bett13"
+        className="chakra-image__placeholder emotion-7"
         src=""
       />
     </div>
     <div
-      className="css-r8post"
+      className="emotion-8"
     >
       <div
-        className="css-13n3cme"
+        className="emotion-9"
       >
         <img
-          className="chakra-image__placeholder css-18543gu"
+          className="chakra-image__placeholder emotion-10"
           src=""
         />
       </div>
       <div
-        className="css-13n3cme"
+        className="emotion-9"
       >
         <img
-          className="chakra-image__placeholder css-18543gu"
+          className="chakra-image__placeholder emotion-10"
           src=""
         />
       </div>
       <div
-        className="css-13n3cme"
+        className="emotion-9"
       >
         <img
-          className="chakra-image__placeholder css-9b71k"
+          className="chakra-image__placeholder emotion-14"
           src=""
         />
       </div>
       <div
-        className="css-13n3cme"
+        className="emotion-9"
       >
         <img
-          className="chakra-image__placeholder css-9b71k"
+          className="chakra-image__placeholder emotion-14"
           src=""
         />
       </div>
     </div>
   </div>
   <div
-    className="css-15vcxpl"
+    className="emotion-17"
   />
 </div>
 `;
