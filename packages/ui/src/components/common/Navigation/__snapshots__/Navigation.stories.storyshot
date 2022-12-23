@@ -12,6 +12,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation 1`] = `
       className="css-16axjtf"
     >
       <a
+        aria-label="Home"
         className="chakra-link css-3le2fk"
         href="/"
         rel="noopener noreferrer"
@@ -161,6 +162,7 @@ exports[`Storyshots Common/Navigation/Navigation Navigation logged in 1`] = `
       className="css-16axjtf"
     >
       <a
+        aria-label="Home"
         className="chakra-link css-3le2fk"
         href="/"
         rel="noopener noreferrer"

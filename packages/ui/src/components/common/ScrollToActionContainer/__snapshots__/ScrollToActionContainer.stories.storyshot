@@ -57,6 +57,7 @@ Array [
         className="css-16axjtf"
       >
         <a
+          aria-label="Home"
           className="chakra-link css-3le2fk"
           href="/"
           rel="noopener noreferrer"
