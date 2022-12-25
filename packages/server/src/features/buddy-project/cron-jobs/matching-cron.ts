@@ -35,6 +35,7 @@ export class MatchingCron {
 
   init() {
     cron.schedule(MatchingCron.cronSchedule, () => this.runMatching());
+    this.logger.info("Buddy Project-matcher initialized");
   }
 
   async runMatching() {

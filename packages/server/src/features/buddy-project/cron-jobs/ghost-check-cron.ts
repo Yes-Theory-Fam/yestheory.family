@@ -1,7 +1,9 @@
 import { Client, Guild } from "discord.js";
 import { Service } from "typedi";
 import cron from "node-cron";
+import winston from "winston";
 import { BuddyProjectEntry } from "../../../__generated__/type-graphql";
+import { Logger } from "../../../services/logging/log-service";
 import { GhostService } from "../services/ghost-service";
 import { MatchService } from "../services/match-service";
 
@@ -19,13 +21,15 @@ export class GhostCheckCron {
     private ghostService: GhostService,
     private matchService: MatchService,
     private guild: Guild,
-    private client: Client
+    private client: Client,
+    @Logger("buddy-project", "ghost-check-cron") private logger: winston.Logger
   ) {
     this.init();
   }
 
   private init() {
     cron.schedule(GhostCheckCron.cronSchedule, () => this.checkForGhosting());
+    this.logger.info("Ghost-Checker initialized");
   }
 
   async checkForGhosting() {

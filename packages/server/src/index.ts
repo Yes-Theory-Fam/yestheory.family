@@ -7,6 +7,7 @@ import { Discord } from "./features";
 import { launchPublicServer } from "./servers";
 import { launchYesBotServer } from "./servers/yesbot";
 import { launchYesBotSchemaServer } from "./servers/yesbot-schema";
+import { CronStartSideEffect } from "./services/cron/cron-start-side-effect";
 import { createServerLogger } from "./services/logging/log";
 
 config();
@@ -27,6 +28,8 @@ const main = async () => {
   await launchPublicServer();
   await launchYesBotServer();
   await launchYesBotSchemaServer();
+
+  Container.get(CronStartSideEffect);
 };
 
 main().then(() => logger.debug("Launched server"));
