@@ -80,11 +80,17 @@ export class MatchingCron {
   }
 
   async match([first, second]: [Snowflake, Snowflake]) {
+    const infoChannel = this.guild.channels.cache.find(
+      (c) => c.name === "buddy-project-info"
+    );
+
     try {
       await this.matchService.match([first, second]);
       const firstSentMessage = await this.trySendQuestions(
         first,
-        `Your buddy is ${second} oddquestions`
+        `Your buddy is <@${second}>! *Only shows up as numbers and symbols? Have a look at ${infoChannel} to find help.*
+
+*These will be the odd questions, you are not getting the chance to snoop on those yet!*`
       );
       if (!firstSentMessage) {
         await this.matchService.unmatch([first, second]);
@@ -93,7 +99,9 @@ export class MatchingCron {
 
       const secondSentMessage = await this.trySendQuestions(
         second,
-        `Your buddy is ${first} evenquestions`
+        `Your buddy is <@${first}>! *Only shows up as numbers and symbols? Have a look at ${infoChannel} to find help.*
+
+*These will be the even questions, you are not getting the chance to snoop on those yet!*`
       );
       if (!secondSentMessage) {
         await this.matchService.unmatch([first, second]);
