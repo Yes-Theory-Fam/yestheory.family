@@ -10,7 +10,6 @@ spec:
   template:
     metadata:
       labels: {{ .Values.database.service.labels | toYaml | nindent 8 }}
-        deployedOn: {{ now | date .Values.dateformat }}
     spec:
       containers:
         - name: {{ .Values.database.deployment.name }}

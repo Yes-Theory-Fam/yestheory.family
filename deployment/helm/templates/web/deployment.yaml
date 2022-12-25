@@ -9,7 +9,6 @@ spec:
   template:
     metadata:
       labels: {{ .Values.web.service.labels | toYaml | nindent 8 }}
-        deployedOn: {{ now | date .Values.dateformat }}
     spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets.github }}
