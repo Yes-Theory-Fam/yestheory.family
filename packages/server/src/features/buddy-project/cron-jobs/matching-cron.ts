@@ -47,14 +47,14 @@ export class MatchingCron {
     );
 
     const pairs = partition(2, ...idsToMatch);
-    this.logger.debug(`Matching ${pairs.length} pairs`);
+    if (pairs.length === 0) return;
 
     const matchingPromises = pairs.map((pair) =>
       this.match(pair as [string, string])
     );
 
     await Promise.all(matchingPromises);
-    this.logger.info("Done matching!");
+    this.logger.info(`Done matching ${pairs.length} pairs!`);
   }
 
   private async trySendQuestions(userId: string, message: string) {
