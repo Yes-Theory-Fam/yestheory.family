@@ -7,7 +7,7 @@ const Privacy: FC = () => {
   return (
     <VStack
       mt={[24, null, 64]}
-      mx={[8, null, null, 20, null, "auto"]}
+      mx={[8, null, null, 20, null, null, "auto"]}
       align={"flex-start"}
       maxW={"8xl"}
     >

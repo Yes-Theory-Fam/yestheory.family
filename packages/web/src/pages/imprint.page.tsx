@@ -7,7 +7,7 @@ const Imprint: FC = () => {
     <VStack
       align="flex-start"
       mt={[24, null, 64]}
-      mx={[8, null, null, 20, null, "auto"]}
+      mx={[8, null, null, 20, null, null, "auto"]}
       maxW={"8xl"}
     >
       <Heading frontText={"Site Notice"} size={"h2"} textAlign={"start"} />
