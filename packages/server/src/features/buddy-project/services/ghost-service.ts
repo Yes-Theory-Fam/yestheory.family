@@ -18,7 +18,7 @@ export class GhostService {
   constructor(private prisma: PrismaClient) {}
 
   async getGhostedBefore(before: Date): Promise<BuddyProjectEntry[]> {
-    return await this.prisma.buddyProjectEntry.findMany({
+    return this.prisma.buddyProjectEntry.findMany({
       where: { reportedGhostDate: { lte: before } },
     });
   }
