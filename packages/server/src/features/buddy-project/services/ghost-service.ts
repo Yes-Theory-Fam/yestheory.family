@@ -7,8 +7,9 @@ export enum MarkGhostedError {
   NOT_MATCHED,
   ALREADY_MARKED,
   BUDDY_MARKED_ALREADY,
-  WAITED_TOO_LITTLE,
+  WAITED_TOO_LITTLE_AFTER_MATCH,
   MARKED_TOO_OFTEN,
+  WAITED_TOO_LITTLE_AFTER_GHOST,
 }
 
 // Hours required to pass after matching until being ghosted is acceptable
@@ -34,7 +35,9 @@ export class GhostService {
         reportedGhostDate: true,
         ghostReportCount: true,
         buddyId: true,
-        buddy: { select: { reportedGhostDate: true } },
+        buddy: {
+          select: { reportedGhostDate: true, confirmedNotGhostingDate: true },
+        },
       },
     });
 
@@ -56,11 +59,18 @@ export class GhostService {
     }
 
     const timeSinceMatching = Date.now() - matchedDate.getTime();
-    const requiredTimeSinceMatching =
-      matchedGhostedDifferenceHours * 60 * 60 * 1000;
+    const requiredTime = matchedGhostedDifferenceHours * 60 * 60 * 1000;
 
-    if (timeSinceMatching < requiredTimeSinceMatching) {
-      return { error: MarkGhostedError.WAITED_TOO_LITTLE };
+    if (timeSinceMatching < requiredTime) {
+      return { error: MarkGhostedError.WAITED_TOO_LITTLE_AFTER_MATCH };
+    }
+
+    const lastConfirmedNotGhosting =
+      existingEntry.buddy.confirmedNotGhostingDate?.getTime() ?? 0;
+    const timeSinceNotGhostConfirmation = Date.now() - lastConfirmedNotGhosting;
+
+    if (timeSinceNotGhostConfirmation < requiredTime) {
+      return { error: MarkGhostedError.WAITED_TOO_LITTLE_AFTER_GHOST };
     }
 
     await this.prisma.buddyProjectEntry.update({
@@ -75,10 +85,17 @@ export class GhostService {
   }
 
   async markAsNotGhosting(userId: string) {
-    await this.prisma.buddyProjectEntry.update({
+    const clearGhostDate = this.prisma.buddyProjectEntry.update({
       where: { buddyId: userId },
       data: { reportedGhostDate: null },
     });
+
+    const updateConfirmNotGhosting = this.prisma.buddyProjectEntry.update({
+      where: { userId },
+      data: { confirmedNotGhostingDate: new Date() },
+    });
+
+    await this.prisma.$transaction([clearGhostDate, updateConfirmNotGhosting]);
   }
 
   async kick(userId: string) {

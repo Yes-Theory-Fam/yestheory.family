@@ -19,9 +19,9 @@ model BuddyProjectEntry {
 
   matchedDate       DateTime? @map("matched_date") @db.Timestamptz(3)
   reportedGhostDate DateTime? @map("reported_ghost_date") @db.Timestamptz(3)
-
   ghostReportCount Int @map("ghost_report_count") @db.Integer @default(0)
 
+  confirmedNotGhostingDate DateTime? @map("confirmed_not_ghosting_date") @db.Timestamptz(3)
   blocked Boolean @db.Boolean @default(false)
 
   // Prisma requires both directions; buddy is the buddy of this, while inverseBuddy is the entry this is the buddy of
