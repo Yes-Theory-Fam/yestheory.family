@@ -4,8 +4,8 @@ generator client {
 }
 
 generator typegraphql {
-  provider           = "typegraphql-prisma"
-  output             = "../src/__generated__/type-graphql"
+  provider = "typegraphql-prisma"
+  output   = "../src/__generated__/type-graphql"
 }
 
 datasource db {
@@ -20,6 +20,8 @@ model BuddyProjectEntry {
   matchedDate       DateTime? @map("matched_date") @db.Timestamptz(3)
   reportedGhostDate DateTime? @map("reported_ghost_date") @db.Timestamptz(3)
 
+  ghostReportCount Int @map("ghost_report_count") @db.Integer @default(0)
+
   blocked Boolean @db.Boolean @default(false)
 
   // Prisma requires both directions; buddy is the buddy of this, while inverseBuddy is the entry this is the buddy of
@@ -31,7 +33,7 @@ model BuddyProjectEntry {
 }
 
 model KeyValue {
-  key String @id
+  key   String @id
   value String
 
   @@map(name: "key_value")

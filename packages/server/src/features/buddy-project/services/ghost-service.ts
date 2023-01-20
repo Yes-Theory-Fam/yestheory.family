@@ -8,6 +8,7 @@ export enum MarkGhostedError {
   ALREADY_MARKED,
   BUDDY_MARKED_ALREADY,
   WAITED_TOO_LITTLE,
+  MARKED_TOO_OFTEN,
 }
 
 // Hours required to pass after matching until being ghosted is acceptable
@@ -31,6 +32,7 @@ export class GhostService {
       select: {
         matchedDate: true,
         reportedGhostDate: true,
+        ghostReportCount: true,
         buddyId: true,
         buddy: { select: { reportedGhostDate: true } },
       },
@@ -38,11 +40,17 @@ export class GhostService {
 
     if (!existingEntry) return { error: MarkGhostedError.NOT_SIGNED_UP };
 
-    const { matchedDate, reportedGhostDate } = existingEntry;
+    const { matchedDate, reportedGhostDate, ghostReportCount } = existingEntry;
     if (!matchedDate || !existingEntry.buddyId) {
       return { error: MarkGhostedError.NOT_MATCHED };
     }
+
     if (reportedGhostDate) return { error: MarkGhostedError.ALREADY_MARKED };
+
+    if (ghostReportCount >= 2) {
+      return { error: MarkGhostedError.MARKED_TOO_OFTEN };
+    }
+
     if (existingEntry.buddy?.reportedGhostDate !== null) {
       return { error: MarkGhostedError.BUDDY_MARKED_ALREADY };
     }
@@ -57,7 +65,10 @@ export class GhostService {
 
     await this.prisma.buddyProjectEntry.update({
       where: { userId },
-      data: { reportedGhostDate: new Date() },
+      data: {
+        reportedGhostDate: new Date(),
+        ghostReportCount: ghostReportCount + 1,
+      },
     });
 
     return { buddyId: existingEntry.buddyId };
