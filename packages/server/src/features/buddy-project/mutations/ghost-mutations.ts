@@ -20,6 +20,7 @@ class GhostMutations {
     @Arg("userId") userId: string
   ): Promise<MarkGhostedPayload> {
     const result = await this.ghostService.markAsGhosted(userId);
+
     if ("error" in result) {
       return new MarkGhostedPayload(false, result.error, undefined);
     }

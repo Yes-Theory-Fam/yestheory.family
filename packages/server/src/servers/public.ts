@@ -68,14 +68,12 @@ export const launchPublicServer = async () => {
       };
     },
     formatResponse: (response, reqContext) => {
-      if (response.errors) {
-        logger.error("Error executing graphql resolver", response.errors);
-      }
-
       const discordAuthError =
         response.errors?.filter((e) => e.message === discordAuthErrorCode) ??
         [];
       for (const authError of discordAuthError) {
+        // When the operation requires Discord authentication, we want to return a special code to indicate to the
+        // frontend that re-authentication is required.
         if (authError.extensions) {
           authError.extensions.code = discordAuthErrorCode;
         }
@@ -88,12 +86,19 @@ export const launchPublicServer = async () => {
       const user = (reqContext.context as YtfApolloContext).user;
 
       for (const authError of authErrors) {
-        // When the operation requires Discord authentication, we want to return a special code to indicate to the
-        // frontend that re-authentication is required.
         const code = user ? "UNAUTHORIZED" : "UNAUTHENTICATED";
 
         if (authError.extensions) authError.extensions.code = code;
       }
+
+      const unknownErrors =
+        response.errors?.filter(
+          (e) => !discordAuthError.includes(e) && !authErrors.includes(e)
+        ) ?? [];
+      if (unknownErrors.length > 0) {
+        logger.error("Error executing graphql resolver", unknownErrors);
+      }
+
       return response;
     },
   });

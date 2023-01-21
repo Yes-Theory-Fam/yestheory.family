@@ -14,11 +14,14 @@ import {
 interface SignupSuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
+
+  hasDmsClosed: boolean;
 }
 
 export const SignupSuccessModal: FC<SignupSuccessModalProps> = ({
   isOpen,
   onClose,
+  hasDmsClosed,
 }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -33,6 +36,17 @@ export const SignupSuccessModal: FC<SignupSuccessModalProps> = ({
             soon with your buddy and the questions. Until then, feel free to
             explore our server!
           </Text>
+
+          <br />
+
+          {hasDmsClosed && (
+            <Text fontSize={"sm"}>
+              <Text as={"b"}>Note:</Text> YesBot was not able to send you a
+              confirmation message because of your Privacy Settings. Make sure
+              to allow DMs from server members to be able to receive information
+              about your buddy.
+            </Text>
+          )}
         </ModalBody>
 
         <ModalFooter>

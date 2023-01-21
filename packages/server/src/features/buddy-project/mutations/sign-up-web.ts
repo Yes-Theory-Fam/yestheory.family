@@ -1,6 +1,13 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import { Client, Guild, GuildMember, Role, Snowflake } from "discord.js";
-import { Authorized, Ctx, Mutation } from "type-graphql";
+import {
+  Authorized,
+  Ctx,
+  Field,
+  Mutation,
+  ObjectType,
+  registerEnumType,
+} from "type-graphql";
 import winston from "winston";
 import { Logger } from "../../../services/logging/log-service";
 import {
@@ -14,6 +21,27 @@ import {
   BuddyProjectStatus,
   BuddyProjectStatusPayload,
 } from "../buddy-project-status";
+import { BuddyProjectService } from "../services/buddy-project.service";
+
+enum SignUpResult {
+  FULL_SUCCESS = "FULL_SUCCESS",
+  SUCCESS_DMS_CLOSED = "SUCCESS_DMS_CLOSED",
+  FAILURE = "FAILURE",
+}
+
+registerEnumType(SignUpResult, { name: "SignUpResult" });
+
+@ObjectType()
+class WebSignUpResult {
+  @Field(() => SignUpResult) result: SignUpResult;
+  @Field() status: BuddyProjectStatusPayload;
+
+  constructor(result: SignUpResult, status?: BuddyProjectStatusPayload) {
+    this.result = result;
+    this.status =
+      status ?? new BuddyProjectStatusPayload(BuddyProjectStatus.NOT_SIGNED_UP);
+  }
+}
 
 @Resolver(ResolverTarget.PUBLIC)
 class SignUpMutation {
@@ -22,20 +50,21 @@ class SignUpMutation {
     private discord: Client,
     private guild: Guild,
     private prisma: PrismaClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private buddyProjectService: BuddyProjectService
   ) {}
 
   @Authorized()
-  @Mutation(() => BuddyProjectStatusPayload)
+  @Mutation(() => WebSignUpResult)
   public async buddyProjectSignUp(
     @Ctx() ctx: YtfApolloContext
-  ): Promise<BuddyProjectStatusPayload> {
+  ): Promise<WebSignUpResult> {
     const { user } = ctx;
 
     const auth = await this.authService.ensureValidToken(ctx);
 
     if (!user || user.type !== AuthProvider.DISCORD) {
-      throw new Error("Cannot sign up user who isn't logged in with Discord!");
+      return new WebSignUpResult(SignUpResult.FAILURE);
     }
 
     // See https://www.prisma.io/docs/reference/api-reference/error-reference#p2002
@@ -55,7 +84,7 @@ class SignUpMutation {
       member = await this.guild.members.fetch(user.id);
 
       if (!member) {
-        throw new Error(`Couldn't add user ${user.id} to the server`);
+        return new WebSignUpResult(SignUpResult.FAILURE);
       }
     } else {
       const bpRole = this.getBuddyProjectRole();
@@ -69,7 +98,11 @@ class SignUpMutation {
         e instanceof Prisma.PrismaClientKnownRequestError &&
         e.code === uniqueConstraintFailedCode
       ) {
-        throw new Error("User already signed up!");
+        const status = await this.buddyProjectService.getBuddyProjectStatus(
+          user.id
+        );
+
+        return new WebSignUpResult(SignUpResult.FAILURE, status);
       }
 
       throw e;
@@ -80,11 +113,23 @@ class SignUpMutation {
     const smileEmote =
       this.guild.emojis.cache.find((e) => e.name === "yesbot_smile") ?? "🦥";
 
-    await dmChannel.send(
-      `Hooray, you are signed up to the buddy project! As mentioned on the website, it might take some time until you are matched. Have patience, I will message you again soon ${smileEmote}`
+    const successStatus = new BuddyProjectStatusPayload(
+      BuddyProjectStatus.SIGNED_UP,
+      null
     );
 
-    return new BuddyProjectStatusPayload(BuddyProjectStatus.SIGNED_UP, null);
+    try {
+      await dmChannel.send(
+        `Hooray, you are signed up to the buddy project! As mentioned on the website, it might take some time until you are matched. Have patience, I will message you again soon ${smileEmote}`
+      );
+    } catch {
+      return new WebSignUpResult(
+        SignUpResult.SUCCESS_DMS_CLOSED,
+        successStatus
+      );
+    }
+
+    return new WebSignUpResult(SignUpResult.FULL_SUCCESS, successStatus);
   }
 
   private getBuddyProjectRole(): Role {

@@ -1,13 +1,12 @@
-import { FC, useCallback } from "react";
-import { useBuddyProjectState } from "./context/context";
 import { Button, useDisclosure } from "@chakra-ui/react";
-import { BuddyProjectStatus } from "../../../__generated__/types";
-import { useSignUpMutation } from "./context/buddyproject.generated";
+import { FC, useCallback, useEffect } from "react";
+import { BuddyProjectStatus, SignUpResult } from "../../../__generated__/types";
 import { navigateToLogin } from "../../../context/user/user";
-import { useServerStateQuery } from "./server-state-query.generated";
+import { useSignUpMutation } from "./context/buddyproject.generated";
+import { useBuddyProjectState } from "./context/context";
 import { ServerJoinConfirmation } from "./server-join-confirmation";
+import { useServerStateQuery } from "./server-state-query.generated";
 import { SignupSuccessModal } from "./signup-success-modal";
-import { useEffect } from "react";
 
 export const BuddyProjectButton: FC = () => {
   const state = useBuddyProjectState();
@@ -38,7 +37,10 @@ export const BuddyProjectButton: FC = () => {
   );
 
   useEffect(() => {
-    if (signUpData?.buddyProjectSignUp.status === BuddyProjectStatus.SignedUp) {
+    if (
+      signUpData?.buddyProjectSignUp.result === SignUpResult.FullSuccess ||
+      signUpData?.buddyProjectSignUp.result === SignUpResult.SuccessDmsClosed
+    ) {
       successOnOpen();
     }
   }, [successOnOpen, signUpData]);
@@ -53,7 +55,14 @@ export const BuddyProjectButton: FC = () => {
   ) {
     return (
       <>
-        <SignupSuccessModal isOpen={successIsOpen} onClose={successOnClose} />
+        <SignupSuccessModal
+          hasDmsClosed={
+            signUpData?.buddyProjectSignUp.result ===
+            SignUpResult.SuccessDmsClosed
+          }
+          isOpen={successIsOpen}
+          onClose={successOnClose}
+        />
         <Button disabled>You signed up!</Button>
       </>
     );

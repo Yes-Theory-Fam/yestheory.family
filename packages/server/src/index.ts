@@ -29,7 +29,9 @@ const main = async () => {
   await launchYesBotServer();
   await launchYesBotSchemaServer();
 
-  Container.get(CronStartSideEffect);
+  if (!process.env.IS_E2E) {
+    Container.get(CronStartSideEffect);
+  }
 };
 
 main().then(() => logger.debug("Launched server"));

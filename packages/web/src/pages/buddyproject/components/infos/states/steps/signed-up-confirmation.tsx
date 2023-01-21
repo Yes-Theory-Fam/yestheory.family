@@ -9,5 +9,9 @@ export const SignedUpConfirmationStep: FC = () => (
       While you are waiting for your match, feel free to look around the{" "}
       <DiscordLink /> and get to know some of the people there!
     </Text>
+    <Text as={"b"}>
+      Be sure to stick around on the server. If you leave while not matched, you
+      will not get a buddy.
+    </Text>
   </Step>
 );

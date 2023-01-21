@@ -1,3 +1,5 @@
 packages/server/src/__generated__
 packages/web/.next
+packages/web/src/__generated__
+packages/web/**/*.generated.ts
 packages/ui/storybook-static

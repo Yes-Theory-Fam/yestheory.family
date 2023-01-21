@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen",
     "dev": "yarn codegen && yarn next",
     "e2e:open": "cypress open --config baseUrl=http://localhost:3000",
     "e2e:run": "cypress run --config baseUrl=http://localhost:3000",
