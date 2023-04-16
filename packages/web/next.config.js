@@ -1,11 +1,11 @@
 const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
-const withTM = require("next-transpile-modules")(["@yestheory.family/ui"]);
-
 /** @returns {import("next").NextConfig} */
 const config = (phase) => ({
-  pageExtensions: ["page.tsx"],
   productionBrowserSourceMaps: true,
+  experimental: {
+    appDir: true,
+  },
   rewrites: () => [
     {
       source: "/graphql",
@@ -23,7 +23,7 @@ const config = (phase) => ({
         { key: "X-Frame-Options", value: "DENY" },
         {
           key: "Content-Security-Policy",
-          value: `default-src 'self'; img-src 'self' https://cdn.discordapp.com/avatars/ data:; child-src 'none'; script-src 'self' ${
+          value: `default-src 'self'; img-src 'self' https://cdn.discordapp.com/avatars/ data:; child-src 'none'; script-src 'self' 'unsafe-inline' ${
             phase === PHASE_DEVELOPMENT_SERVER ? "'unsafe-eval'" : ""
           }; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'`,
         },
@@ -32,4 +32,4 @@ const config = (phase) => ({
   ],
 });
 
-module.exports = (...args) => withTM(config(...args));
+module.exports = (...args) => config(...args);

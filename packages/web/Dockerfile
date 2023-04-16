@@ -14,12 +14,7 @@ COPY yarn.lock package.json ./
 # Copy package.jsons of all related packages
 COPY packages/common/package.json ./packages/common/
 COPY packages/eslint-config/package.json ./packages/eslint-config/
-COPY packages/ui/package.json ./packages/ui/
 COPY packages/web/package.json ./packages/web/
-
-# Install dependencies for the workspace
-# TODO check if this is actually needed, I don't think it is
-RUN yarn plugin import workspace-tools
 
 WORKDIR /app/packages/web
 RUN yarn workspaces focus
@@ -30,14 +25,12 @@ WORKDIR /app
 
 # Copy node_modules and other side products from deps
 COPY --from=deps /app/packages/web/ ./packages/web/
-COPY --from=deps /app/packages/ui/ ./packages/ui/
 COPY --from=deps /app/node_modules/ ./node_modules/
 
 # Copy dependency information and source, then build
 COPY yarn.lock .
 COPY package.json .
 COPY packages/web/ ./packages/web
-COPY packages/ui/ ./packages/ui
 WORKDIR /app/packages/web
 
 RUN yarn build
@@ -49,9 +42,7 @@ WORKDIR /app
 ENV NODE_ENV production
 
 COPY --from=builder /app/node_modules/ ./node_modules
-
-COPY --from=builder /app/packages/ui/ ./packages/ui
-
+# TODO look into standalone output builds
 COPY --from=builder /app/packages/web/next.config.js ./packages/web/
 COPY --from=builder /app/packages/web/.next/ ./packages/web/.next/
 COPY --from=builder /app/packages/web/public/ ./packages/web/public/

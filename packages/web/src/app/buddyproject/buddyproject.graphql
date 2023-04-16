@@ -1,0 +1,25 @@
+query ServerState {
+  me {
+    isOnServer
+  }
+}
+
+query BuddyProjectState {
+  getBuddyProjectStatus {
+    buddy {
+      userId
+      username
+    }
+    status
+  }
+}
+
+mutation BuddyProjectSignUp {
+  buddyProjectSignUp {
+    result
+
+    status {
+      status
+    }
+  }
+}

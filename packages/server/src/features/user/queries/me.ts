@@ -1,4 +1,4 @@
-import { Authorized, Ctx, Query } from "type-graphql";
+import { Ctx, Query } from "type-graphql";
 import { AuthenticatedUser } from "../authenticated-user";
 import { YtfApolloContext } from "../../../types";
 import { Logger } from "../../../services/logging/log-service";
@@ -12,7 +12,6 @@ import {
 class MeResolver {
   constructor(@Logger("user", "Me") private logger: winston.Logger) {}
 
-  @Authorized()
   @Query(() => AuthenticatedUser, { nullable: true })
   me(@Ctx() { user }: YtfApolloContext): AuthenticatedUser | null {
     this.logger.debug("Returning user", user);

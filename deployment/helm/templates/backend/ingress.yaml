@@ -26,14 +26,6 @@ spec:
                 port:
                   number: {{ .Values.backend.service.port }}
 
-          - path: /graphql
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ .Values.backend.service.name }}
-                port:
-                  number: {{ .Values.backend.service.port }}
-
           - path: /_yesbot-schema
             pathType: Prefix
             backend:

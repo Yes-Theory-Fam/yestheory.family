@@ -29,6 +29,7 @@ jobs:
           sub-project: web
           token: ${{ secrets.GITHUB_TOKEN }}
 
+# TODO fix this with the new UI setup
   chromatic-deployment:
     name: "Chromatic Deployment"
     runs-on: ubuntu-latest
@@ -43,7 +44,7 @@ jobs:
         uses: chromaui/action@v1
         with:
           exitZeroOnChanges: true
-          workingDir: packages/ui
+          workingDir: packages/web
           buildScriptName: storybook:build
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

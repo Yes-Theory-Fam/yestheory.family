@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Storyshots Common/Link Link 1`] = `
-<a
-  className="chakra-link emotion-0"
->
-  I am a link
-</a>
-`;

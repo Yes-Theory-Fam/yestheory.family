@@ -12,7 +12,6 @@ import sessionConfig from "../config/session";
 import { authenticationRouter } from "../features";
 import { discordAuthErrorCode } from "../features/auth/auth-service";
 import { authChecker } from "../features/auth/graphql-auth-checker";
-import { requireCookieConsent } from "../features/auth/require-cookie-consent";
 import { ExportDirective } from "../graphql-directives";
 import { createServerLogger } from "../services/logging/log";
 import {
@@ -49,7 +48,6 @@ export const launchPublicServer = async () => {
   const app = new Koa();
   app.keys = ["grant"];
   app.proxy = !isDevelopment;
-  app.use(requireCookieConsent);
   app.use(koaSession(sessionConfig, app));
   app.use(mount("/oauth", koaGrant(grantConfig)));
   app.use(authenticationRouter.routes());
