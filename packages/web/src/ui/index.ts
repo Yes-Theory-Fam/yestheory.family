@@ -4,5 +4,4 @@ export * from "./common/heading/heading";
 export * from "./common/image/image";
 export * from "./common/link/link";
 export * from "./common/logo/logo";
-export * from "./common/modal/modal";
 export * from "./common/navigation";

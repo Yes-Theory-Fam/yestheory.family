@@ -6,6 +6,9 @@
     "plugin:@next/next/recommended",
     "plugin:storybook/recommended"
   ],
+  "rules": {
+    "react/prop-types": "off"
+  },
   "settings": {
     "react": {
       "version": "detect"

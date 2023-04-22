@@ -2,3 +2,4 @@
 "use client";
 
 export * from "./common/scroll-to-action-container/scroll-to-action-container";
+export * from "./common/modal/modal";

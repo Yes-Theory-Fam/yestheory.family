@@ -1,7 +1,8 @@
 "use client";
 
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
-import { Button, Modal } from "ui";
+import { Button } from "ui";
+import { Modal, ModalActionButton } from "ui/client";
 
 export const SignupSuccessModal = NiceModal.create<{ hasDmsClosed: boolean }>(
   ({ hasDmsClosed }) => {
@@ -9,8 +10,16 @@ export const SignupSuccessModal = NiceModal.create<{ hasDmsClosed: boolean }>(
 
     const close = () => modal.remove();
 
+    const actions: ModalActionButton[] = [
+      {
+        text: "Close",
+        className: "block ml-auto",
+        onClick: close,
+      },
+    ];
+
     return (
-      <Modal title="Everything went well!" onCancel={close}>
+      <Modal title="Everything went well!" onCancel={close} actions={actions}>
         <p>
           You are now signed up to the Buddy Project! YesBot will message you
           soon with your buddy and the questions. Until then, feel free to
@@ -26,10 +35,6 @@ export const SignupSuccessModal = NiceModal.create<{ hasDmsClosed: boolean }>(
             members to be able to receive information about your buddy.
           </p>
         )}
-
-        <Button className="block ml-auto" onClick={close}>
-          Close
-        </Button>
       </Modal>
     );
   }

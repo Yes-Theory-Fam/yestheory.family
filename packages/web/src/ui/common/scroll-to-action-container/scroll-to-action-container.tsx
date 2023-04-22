@@ -32,7 +32,7 @@ export const ScrollToActionContainer: FC<
   return (
     <div
       ref={selfRef}
-      className="min-h-screen flex flex-col justify-center items-center"
+      className="min-h-screen flex flex-col justify-center items-center relative"
     >
       {children}
       <button

@@ -1,4 +1,4 @@
-import { FC, ButtonHTMLAttributes, PropsWithChildren } from "react";
+import { FC, ButtonHTMLAttributes, PropsWithChildren, forwardRef } from "react";
 import { VariantProp, variants } from "../../variants";
 
 const baseClasses = "border uppercase rounded-full duration-300 relative";
@@ -30,14 +30,12 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProp<typeof buttonVariants> &
   VariantProp<typeof sizeVariants, "size">;
 
-export const Button: FC<PropsWithChildren<ButtonProps>> = ({
-  type = "button",
-  variant,
-  size,
-  className,
-  ...rest
-}) => {
+export const Button: FC<PropsWithChildren<ButtonProps>> = forwardRef<
+  HTMLButtonElement,
+  ButtonProps
+>(({ type = "button", variant, size, className, ...rest }, ref) => {
   const builtClassName = buttonVariants(variant, sizeVariants(size), className);
 
-  return <button type={type} {...rest} className={builtClassName} />;
-};
+  return <button ref={ref} type={type} {...rest} className={builtClassName} />;
+});
+Button.displayName = "Button";

@@ -1,16 +1,5 @@
-import { createElement, FC, ReactNode } from "react";
+import { FC, forwardRef } from "react";
 import { VariantProp, variants } from "../../variants";
-
-type DynamicProps = {
-  elementName: string;
-  children: ReactNode | ReactNode[];
-} & Record<string, unknown>;
-
-const Dynamic: FC<DynamicProps> = ({ elementName, children, ...props }) => {
-  const childArray = Array.isArray(children) ? children : [children];
-
-  return createElement(elementName, props, ...childArray);
-};
 
 const variant = variants(
   {
@@ -31,28 +20,39 @@ export type HeadingProps = VariantProp<typeof variant, "size"> & {
   center?: boolean;
 };
 
-export const Heading: FC<HeadingProps> = ({
-  frontText,
-  blueText,
-  backText,
-  size = "h1",
-  className,
-  center = size === "h1",
-}) => {
-  return (
-    <Dynamic
-      elementName={size}
-      className={variant(
-        size,
-        "text-gray-800 uppercase font-black",
-        center && "text-center mx-auto",
-        className
-      )}
-    >
-      {frontText}
-      {frontText.endsWith("\n") && <br />}
-      <span className="text-brand-800">{blueText ?? ""}</span>
-      {backText ?? ""}
-    </Dynamic>
-  );
-};
+export const Heading: FC<HeadingProps> = forwardRef<
+  HTMLHeadingElement,
+  HeadingProps
+>(
+  (
+    {
+      frontText,
+      blueText,
+      backText,
+      size = "h1",
+      className,
+      center = size === "h1",
+    },
+    ref
+  ) => {
+    const HElement = size;
+
+    return (
+      <HElement
+        ref={ref}
+        className={variant(
+          size,
+          "text-gray-800 uppercase font-black",
+          center && "text-center mx-auto",
+          className
+        )}
+      >
+        {frontText}
+        {frontText.endsWith("\n") && <br />}
+        <span className="text-brand-800">{blueText ?? ""}</span>
+        {backText ?? ""}
+      </HElement>
+    );
+  }
+);
+Heading.displayName = "Heading";
