@@ -3,7 +3,7 @@ import { Field, ObjectType } from "type-graphql";
 export interface DiscordProfile {
   id: string;
   username: string;
-  avatar: string;
+  avatar: string | null;
   discriminator: string;
 }
 
@@ -17,7 +17,7 @@ export enum AuthProvider {
 export class AuthenticatedUser {
   @Field() id: string;
   @Field() username: string;
-  @Field() avatarUrl: string;
+  @Field(() => String, { nullable: true }) avatarUrl: string | null;
   @Field() type: AuthProvider;
 
   constructor(
@@ -33,7 +33,10 @@ export class AuthenticatedUser {
   }
 
   static fromDiscordProfile(profile: DiscordProfile): AuthenticatedUser {
-    const avatarUrl = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=128`;
+    const avatarUrl = profile.avatar
+      ? `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png?size=128`
+      : null;
+
     return {
       id: profile.id,
       username: `${profile.username}#${profile.discriminator}`,

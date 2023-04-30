@@ -24,23 +24,18 @@ const config: CodegenConfig = {
     },
   },
   generates: {
-    "src/__generated__/types.ts": {
-      plugins: ["@atmina/only-enum-types"],
+    "src/__generated__/graphql.ts": {
+      plugins: [
+        "@atmina/only-enum-types",
+        "typescript-operations",
+        "typescript-graphql-request",
+      ],
       config: {
         scalars: {
           DateTime: "string",
         },
-      },
-    },
-    "./": {
-      preset: "near-operation-file",
-      presetConfig: {
-        baseTypesPath: "./src/__generated__/types.ts",
-      },
-      plugins: ["@atmina/local-typescript-operations", "typescript-urql"],
-      config: {
+        enumsAsTypes: true,
         preResolveTypes: true,
-        gqlImport: "urql#gql",
       },
     },
   },

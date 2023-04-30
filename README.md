@@ -2,34 +2,29 @@
 
 This project provides a monorepo setup for a Fullstack TypeScript project and comes with the following:
 
-## Backend
+## Server
 
 - [Koa](https://github.com/koajs/koa/)
 - [Apollo GraphQL Server](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-server-koa/)
 - [TypeGraphQL](https://github.com/MichalLytek/type-graphql/)
 - [Prisma ORM](https://github.com/prisma/prisma/)
 
-## UI Builder (subpackage to build/theme your UI in)
+## Web
 
 - [React](https://github.com/facebook/react/)
-- [Chakra-UI](https://github.com/chakra-ui/chakra-ui/)
+- [TailwindCSS](https://github.com/chakra-ui/chakra-ui/)
+- [Next.js](https://github.com/vercel/next.js/)
+- [graphql-request](<!-- TODO update reference -->) 
+- [graphql-code-generator](https://github.com/dotansimha/graphql-code-generator/)
 - [Storybook](https://github.com/storybookjs/storybook/)
 - [Chromatic](https://github.com/chromaui/chromatic-cli)
-
-## Frontend
-
-- [React](https://github.com/facebook/react/)
-- [Chakra-UI](https://github.com/chakra-ui/chakra-ui/)
-- [Next.js](https://github.com/vercel/next.js/)
-- [urql](https://github.com/FormidableLabs/urql/)
-- [graphql-code-generator](https://github.com/dotansimha/graphql-code-generator/)
 
 ## Tooling
 
 - [Prettier](https://github.com/prettier/prettier/)
 - [ESLint](https://github.com/eslint/eslint/)
 - [Docker](https://github.com/moby/moby)
-- [GitHub Action](https://github.com/features/actions)
+- [GitHub Actions](https://github.com/features/actions)
 - [Helm](https://helm.sh)
 - [ArgoCD](https://argo-cd.readthedocs.io) (under the hood)
 
@@ -62,7 +57,7 @@ You should follow these steps whenever you start a new project with this boilerp
 - Replace `@yestheory.family/` with `@<projectname>/` in all package.json files
 - Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `docker-compose.yml`
   and `docker-compose.yml`
-- Create a new project on [Chromatic](https://www.chromatic.com/) and place your project token in `packages/ui/.env`
+- Create a new project on [Chromatic](https://www.chromatic.com/) and place your project token in `packages/web/.env`
   as `CHROMATIC_PROJECT_TOKEN=token`
 
 #### GitHub Actions
@@ -104,7 +99,7 @@ suggesting an approach to only use one):
 - `.env` contains environment variables used in the [Docker setup](#docker)
 - `packages/server/.env` contains environment variables local to the server package, currently only used for providing
   the `PRISMA_DATABASE_URL` variable to prisma
-- `packages/ui/.env` contains the chromatic project token
+- `packages/web/.env` contains the chromatic project token
 - `packages/web/.env.local` contains variables usable in
   Next.js ([docs](https://nextjs.org/docs/basic-features/environment-variables))
 

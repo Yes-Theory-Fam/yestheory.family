@@ -3,8 +3,12 @@
     "@yestheory.family/eslint-config",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:@next/next/recommended"
+    "plugin:@next/next/recommended",
+    "plugin:storybook/recommended"
   ],
+  "rules": {
+    "react/prop-types": "off"
+  },
   "settings": {
     "react": {
       "version": "detect"

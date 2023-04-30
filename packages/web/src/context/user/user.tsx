@@ -1,12 +1,13 @@
-import {
-  FC,
-  ReactNode,
-  Context,
-  createContext,
-  useContext,
-  useCallback,
-} from "react";
-import { useCurrentUserQuery, User } from "./user.generated";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { FC, ReactNode, createContext, useContext, useState } from "react";
+
+export interface User {
+  id: string;
+  username: string;
+  avatarUrl?: string | null | undefined;
+}
 
 interface UserContextProps {
   readonly loggedIn: boolean;
@@ -14,52 +15,55 @@ interface UserContextProps {
   refetch: () => void;
 }
 
-const UserContext: Context<UserContextProps> = createContext<UserContextProps>({
-  get loggedIn() {
-    return false;
-  },
-  user: undefined,
-  refetch: () => {
-    /* no-op */
-  },
-});
+const UserContext = createContext<UserContextProps | null>(null);
 
 interface UserProviderProps {
   children: ReactNode;
+  initialUser: User | undefined;
 }
 
-export const UserProvider: FC<UserProviderProps> = ({ children }) => {
-  const [{ data }, refetch] = useCurrentUserQuery();
-  const loggedIn = !!data?.me;
+const refetchUser = async () => {
+  const response = await fetch("/api/user");
 
-  const cachelessRefetch = useCallback(
-    () => refetch({ requestPolicy: "network-only" }),
-    [refetch]
-  );
+  const newVar = await response.json();
+
+  return newVar as User;
+};
+
+export const UserProvider: FC<UserProviderProps> = ({
+  children,
+  initialUser,
+}) => {
+  const [user, setUser] = useState<User | undefined>(initialUser);
+  const router = useRouter();
+
+  const refetch = () =>
+    refetchUser()
+      .then(setUser)
+      .then(() => router.refresh());
+
+  const loggedIn = !!user;
 
   return (
-    <UserContext.Provider
-      value={{
-        loggedIn,
-        user: data?.me ?? undefined,
-        refetch: cachelessRefetch,
-      }}
-    >
+    <UserContext.Provider value={{ loggedIn, user, refetch }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-interface UserConsumerProps {
-  children: (context: UserContextProps) => ReactNode;
-}
+export const useAuth = (): UserContextProps => {
+  const context = useContext(UserContext);
 
-export const UserConsumer: FC<UserConsumerProps> = ({ children }) => (
-  <UserContext.Consumer>{children}</UserContext.Consumer>
-);
+  if (!context) {
+    throw new Error("Using UserContext outside of a valid provider");
+  }
+
+  return context;
+};
 
 export const useLoggedIn = (): boolean => {
-  const context = useContext(UserContext);
+  const context = useAuth();
+
   return context.loggedIn;
 };
 
