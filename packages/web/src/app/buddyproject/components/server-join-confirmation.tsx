@@ -1,7 +1,6 @@
 "use client";
 
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
-import { Button } from "ui";
 import { Modal, ModalActionButton } from "ui/client";
 
 export const ServerJoinConfirmationModal = NiceModal.create(() => {

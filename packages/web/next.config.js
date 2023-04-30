@@ -6,6 +6,12 @@ const config = (phase) => ({
   experimental: {
     appDir: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   rewrites: () => [
     {
       source: "/graphql",

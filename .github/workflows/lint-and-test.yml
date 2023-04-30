@@ -31,3 +31,23 @@ jobs:
         name: "Install and test"
         with:
           command: test
+
+  tsc-web:
+    name: "TSC Web"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/yarn-action
+        name: "Install and tsc web"
+        with:
+          command: workspace @yestheory.family/web tsc --noEmit
+
+  tsc-server:
+    name: "TSC Server"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/yarn-action
+        name: "Install and tsc server"
+        with:
+          command: workspace @yestheory.family/server tsc --noEmit
