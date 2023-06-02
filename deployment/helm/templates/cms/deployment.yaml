@@ -20,6 +20,8 @@ spec:
           env: {{ .Values.cms.deployment.containerEnv | toYaml | nindent 12 }}
             - name: FRONTEND_URL
               value: https://{{ .Values.common.baseDomain }}
+            - name: TYPESENSE_API_URL
+              value: "http://{{ .Values.typesense.service.name }}:8108"
             {{- range .Values.cms.deployment.secret.secrets }}
             - name: {{ .name }}
               valueFrom:
@@ -27,3 +29,8 @@ spec:
                   name: {{ $.Values.cms.deployment.secret.name }}
                   key: {{ .name }}
             {{- end }}
+            - name: TYPESENSE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.typesense.deployment.secret.name }}
+                  key: TYPESENSE_API_KEY
