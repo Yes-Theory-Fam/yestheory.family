@@ -170,6 +170,7 @@ typesense:
       containerPort: 8108
     containerEnv: []
     secret:
+      name: typesense-secret-env
       secrets: []
 
 database:
