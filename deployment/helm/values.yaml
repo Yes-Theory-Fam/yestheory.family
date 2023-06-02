@@ -180,10 +180,11 @@ typesense:
     port:
       name: typesense
       containerPort: 8108
-    containerEnv: []
     secret:
       name: typesense-secret-env
-      secrets: []
+      secrets:
+        - name: TYPESENSE_API_KEY
+          value:
 
 database:
   create: false

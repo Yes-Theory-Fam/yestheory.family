@@ -13,20 +13,14 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets.github }}
 
-# When creating a dedicated database, we want to ensure we are waiting for the correct database, so we don't seed the wrong one.
-{{- if .Values.database.create }}
-      initContainers:
-        - name: check-db-ready
-          image: postgres:13-alpine
-          command: ['sh', '-c', 'until pg_isready -h {{ .Values.database.service.name }}-{{ .Release.Name }} -p {{ .Values.database.service.port }} -U yesbot; do echo waiting for database; sleep 2; done;']
-{{- end }}
-
       containers:
         - name: {{ .Values.typesense.deployment.name }}
           image: {{ .Values.typesense.deployment.image.name }}:{{ .Values.typesense.deployment.image.tag }}
           ports:
             - {{ .Values.typesense.deployment.port | toYaml | nindent 14 }}
-          env: {{ .Values.typesense.deployment.containerEnv | toYaml | nindent 12 }}
+          env:
+            - name: TYPESENSE_DATA_DIR
+              value: /data
             {{- range .Values.typesense.deployment.secret.secrets }}
             - name: {{ .name }}
               valueFrom:
