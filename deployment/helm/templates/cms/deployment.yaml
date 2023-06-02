@@ -17,7 +17,13 @@ spec:
           image: {{ .Values.cms.deployment.image.name }}:{{ .Values.cms.deployment.image.tag }}
           ports:
             - {{ .Values.cms.deployment.port | toYaml | nindent 14}}
-          env:
-            {{/* .Values.cms.deployment.containerEnv | toYaml | nindent 12 */}}
+          env: {{ .Values.cms.deployment.containerEnv | toYaml | nindent 12 }}
             - name: FRONTEND_URL
               value: https://{{ .Values.common.baseDomain }}
+            {{- range .Values.cms.deployment.secret.secrets }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.cms.deployment.secret.name }}
+                  key: {{ .name }}
+            {{- end }}
