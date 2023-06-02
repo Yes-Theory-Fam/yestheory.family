@@ -34,3 +34,13 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.typesense.deployment.secret.name }}
                   key: TYPESENSE_API_KEY
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongo.deployment.secret.name }}
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongo.deployment.secret.name }}
+                  key: MONGO_INITDB_ROOT_PASSWORD

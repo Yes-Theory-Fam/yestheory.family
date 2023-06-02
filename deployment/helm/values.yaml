@@ -58,15 +58,17 @@ cms:
     containerEnv:
       - name: MONGODB_URI
         value: mongodb://ytf-mongo-service/cms
+      - name: ENABLE_DATASEEDER
+        value: "true"
 
     secret:
       name: cms-secret-env
       secrets:
         - name: PAYLOAD_SECRET
           value:
-        - name: MONGO_USERNAME
+        - name: INITIAL_ADMIN_MAIL
           value:
-        - name: MONGO_PASSWORD
+        - name: INITIAL_ADMIN_PASSWORD
           value:
 
 mongo:

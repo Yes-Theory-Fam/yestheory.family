@@ -5,8 +5,8 @@ export const seedUsers = async () => {
     key: "email",
     collection: "users",
     data: {
-      email: "admin@example.com",
-      password: "123456",
+      email: process.env.INITIAL_ADMIN_MAIL ?? "admin@example.com",
+      password: process.env.INITIAL_ADMIN_PASSWORD ?? "123456",
     },
   });
 };

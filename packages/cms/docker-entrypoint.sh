@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+if [ "$ENABLE_DATASEEDER" = "true" ]; then node ./packages/cms/dist/dataseeder/main.js ; fi
+
+exec "$@"
