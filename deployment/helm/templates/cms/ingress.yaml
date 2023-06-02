@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
         - admin.{{ .Values.common.baseDomain }}
-      secretName: {{ .Values.common.certName }}
+      secretName: {{ .Values.common.certName }}-admin
   rules:
     - host: admin.{{ .Values.common.baseDomain }}
       http:

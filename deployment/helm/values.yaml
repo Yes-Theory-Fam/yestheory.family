@@ -55,7 +55,19 @@ cms:
     port:
       name: payload
       containerPort: 3002
-    containerEnv: []
+    containerEnv:
+      - name: MONGODB_URI
+        value: mongodb://ytf-mongo-service/cms
+
+    secret:
+      name: cms-secret-env
+      secrets:
+        - name: PAYLOAD_SECRET
+          value:
+        - name: MONGO_USERNAME
+          value:
+        - name: MONGO_PASSWORD
+          value:
 
 mongo:
   create: false
