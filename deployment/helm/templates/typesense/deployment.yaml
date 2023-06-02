@@ -16,6 +16,10 @@ spec:
       containers:
         - name: {{ .Values.typesense.deployment.name }}
           image: {{ .Values.typesense.deployment.image.name }}:{{ .Values.typesense.deployment.image.tag }}
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "mkdir -p /data; /opt/typesense-server"
           ports:
             - {{ .Values.typesense.deployment.port | toYaml | nindent 14 }}
           env:
