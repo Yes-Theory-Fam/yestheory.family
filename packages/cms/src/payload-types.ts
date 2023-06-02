@@ -32,7 +32,7 @@ export interface Groupchat {
     id?: string;
   }[];
   description?: string;
-  platform: 'discord' | 'facebook' | 'signal' | 'telegram' | 'whatsapp';
+  platform: "discord" | "facebook" | "signal" | "telegram" | "whatsapp";
   updatedAt: string;
   createdAt: string;
 }
