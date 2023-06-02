@@ -73,6 +73,11 @@ const syncGroupchatsToTypesense = async () => {
       })
     );
 
+    if (typesenseChats.length === 0) {
+      console.info("No groupchats available, skipping import");
+      return;
+    }
+
     await typesenseClient
       .collections(collectionName)
       .documents()
