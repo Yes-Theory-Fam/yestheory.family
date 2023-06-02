@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.mongo.deployment.name }}
-          image: postgres:13
+          image: {{ .Values.mongo.deployment.image }}
           ports:
             - {{ .Values.mongo.deployment.port | toYaml | nindent 14 }}
           env:
