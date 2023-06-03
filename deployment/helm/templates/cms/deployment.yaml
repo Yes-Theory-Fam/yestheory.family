@@ -20,6 +20,8 @@ spec:
           env: {{ .Values.cms.deployment.containerEnv | toYaml | nindent 12 }}
             - name: FRONTEND_URL
               value: https://{{ .Values.common.baseDomain }}
+            - name: SERVER_URL
+              value: "https://admin.{{ .Values.common.baseDomain }}"
             - name: TYPESENSE_API_URL
               value: "http://{{ .Values.typesense.service.name }}:8108"
             {{- range .Values.cms.deployment.secret.secrets }}

@@ -4,7 +4,7 @@ import { Users } from "./collections/users";
 import { Groupchats } from "./collections/groupchats";
 
 export default buildConfig({
-  serverURL: "http://localhost:3001",
+  serverURL: process.env.SERVER_URL ?? "http://localhost:3001",
   admin: {
     user: Users.slug,
     buildPath: path.resolve(__dirname, "../build"),
