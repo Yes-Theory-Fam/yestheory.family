@@ -7,6 +7,8 @@ metadata:
     kubernetes.io/ingress.class: {{ .Values.Ingress.class }}
     kubernetes.io/tls-acme: 'true'
     cert-manager.io/cluster-issuer: {{ .Values.Ingress.issuer }}
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
   labels:
     app: typesense-ingress
 spec:
@@ -18,7 +20,7 @@ spec:
     - host: {{ .Values.common.baseDomain }}
       http:
         paths:
-          - path: /typesense/
+          - path: /typesense(/|$)(.*)
             pathType: Prefix
             backend:
               service:
