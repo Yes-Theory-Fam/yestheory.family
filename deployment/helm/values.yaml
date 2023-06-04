@@ -113,6 +113,8 @@ web:
     containerEnv:
       - name: SERVER_BACKEND_GRAPHQL_URL
         value: http://ytf-backend-service/graphql
+      - name: TYPESENSE_DIRECT_URL
+        value: http://ytf-typesense-service
 
 backend:
   ingress:

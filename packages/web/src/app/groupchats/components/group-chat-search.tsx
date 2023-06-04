@@ -3,19 +3,7 @@
 import { FC, useEffect, useState } from "react";
 import { GroupChatPlatform, GroupChatResult } from "ui/groupchats";
 import { GroupChatSearchBar } from "ui/groupchats/client";
-import { SearchClient } from "typesense";
-
-const searchClient = new SearchClient({
-  apiKey: "1234567890", // TODO configurable, safe for public consumption
-  nodes: [
-    {
-      host: "localhost",
-      port: 3000,
-      protocol: "http",
-      path: "/typesense",
-    },
-  ],
-});
+import { getTypesenseClient } from "../../../lib/typesense";
 
 type GroupchatResult = {
   id: string;
@@ -32,6 +20,7 @@ const fetchResults = async (
 ): Promise<GroupchatResult[]> => {
   const filterBy =
     platforms.length === 0 ? "" : `platform:[${platforms.join(",")}]`;
+  const searchClient = getTypesenseClient();
 
   const { hits } = await searchClient
     .collections<GroupchatResult>("groupchats")
