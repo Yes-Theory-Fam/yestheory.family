@@ -2,6 +2,7 @@ import express from "express";
 import payload from "payload";
 import { initPayload } from "./init-payload";
 import { setupCronJobs } from "./cron-jobs";
+import { typesenseReady } from "./lib/typesense";
 
 require("dotenv").config();
 const app = express();
@@ -19,6 +20,7 @@ const start = async () => {
     },
   });
 
+  await typesenseReady();
   await setupCronJobs();
 
   app.listen(3001);

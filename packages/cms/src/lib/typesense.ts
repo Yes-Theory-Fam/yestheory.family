@@ -17,3 +17,17 @@ export const typesenseClient = new Client({
   apiKey: process.env.TYPESENSE_API_KEY ?? "1234567890",
   connectionTimeoutSeconds: 2,
 });
+
+export const typesenseReady = async () => {
+  const waitASecond = async () =>
+    await new Promise((res) => setTimeout(res, 1000));
+
+  let maxAttempts = 10;
+
+  while (--maxAttempts) {
+    const result = await typesenseClient.health.retrieve();
+    if (result.ok) break;
+
+    await waitASecond();
+  }
+};

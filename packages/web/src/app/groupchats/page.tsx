@@ -1,6 +1,11 @@
 import { Heading } from "ui";
 import { CommonGroupChats } from "./components/common-group-chats";
 import { GroupChatSearch } from "./components/group-chat-search";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "",
+};
 
 /*
 TODO

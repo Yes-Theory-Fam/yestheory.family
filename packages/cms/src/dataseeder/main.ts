@@ -4,6 +4,7 @@ import { initPayload } from "../init-payload";
 import { seedUsers } from "./seed-users";
 import { seedGroupchats } from "./seed-groupchats";
 import { seedTypesenseKey } from "./seed-typesense-key";
+import { typesenseReady } from "../lib/typesense";
 
 export const main = async () => {
   process.env.PAYLOAD_CONFIG_PATH = path.resolve(
@@ -16,6 +17,7 @@ export const main = async () => {
   await seedUsers();
   await seedGroupchats();
 
+  await typesenseReady();
   await seedTypesenseKey();
 
   process.exit();

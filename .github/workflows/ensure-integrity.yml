@@ -79,9 +79,7 @@ jobs:
 
       - name: Run e2e tests
         run: |
-          docker-compose -f docker-compose.e2e.yml up --no-build -d server
-          docker-compose -f docker-compose.e2e.yml up --no-build -d cms
-          docker-compose -f docker-compose.e2e.yml up --no-build -d web
+          docker-compose -f docker-compose.e2e.yml up --no-build -d server cms web
           docker-compose -f docker-compose.e2e.yml run cypress
           docker-compose -f docker-compose.e2e.yml down
 #
