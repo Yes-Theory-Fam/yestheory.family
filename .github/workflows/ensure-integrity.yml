@@ -82,29 +82,29 @@ jobs:
           docker-compose -f docker-compose.e2e.yml up --no-build -d server cms web
           docker-compose -f docker-compose.e2e.yml run cypress
           docker-compose -f docker-compose.e2e.yml down
-#
-#  remove-test-containers:
-#    name: "Clean"
-#    # Run even if e2e-test failed
-#    if: ${{ always() }}
-#    needs: e2e-test
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: Delete server image
-#        uses: ./.github/actions/delete-image
-#        with:
-#          sub-project: server
-#          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
-#
-#      - name: Delete web image
-#        uses: ./.github/actions/delete-image
-#        with:
-#          sub-project: web
-#          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
-#
-#      - name: Delete cms image
-#        uses: ./.github/actions/delete-image
-#        with:
-#          sub-project: cms
-#          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
+
+  remove-test-containers:
+    name: "Clean"
+    # Run even if e2e-test failed
+    if: ${{ always() }}
+    needs: e2e-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Delete server image
+        uses: ./.github/actions/delete-image
+        with:
+          sub-project: server
+          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
+
+      - name: Delete web image
+        uses: ./.github/actions/delete-image
+        with:
+          sub-project: web
+          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
+
+      - name: Delete cms image
+        uses: ./.github/actions/delete-image
+        with:
+          sub-project: cms
+          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
