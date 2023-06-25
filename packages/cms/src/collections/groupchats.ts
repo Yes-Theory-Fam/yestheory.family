@@ -1,4 +1,5 @@
 import { type CollectionConfig } from "payload/types";
+import { typesenseClient } from "../lib/typesense";
 
 export const Groupchats: CollectionConfig = {
   slug: "groupchats",
@@ -36,7 +37,7 @@ export const Groupchats: CollectionConfig = {
       name: "keywords",
       type: "array",
       required: true,
-      fields: [{ name: "value", type: "text" }],
+      fields: [{ name: "value", type: "text", required: true }],
     },
     { name: "description", type: "text" },
     {
@@ -52,4 +53,19 @@ export const Groupchats: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc }) => {
+        await typesenseClient.collections("groupchats").documents().upsert(doc);
+      },
+    ],
+    afterDelete: [
+      async ({ id }) => {
+        await typesenseClient
+          .collections("groupchats")
+          .documents()
+          .delete(id.toString());
+      },
+    ],
+  },
 };
