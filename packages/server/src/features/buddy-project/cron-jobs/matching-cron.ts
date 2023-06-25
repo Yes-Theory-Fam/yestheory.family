@@ -6,6 +6,7 @@ import { BlockService } from "../services/block-service";
 import { BuddyProjectService } from "../services/buddy-project.service";
 import { MatchService } from "../services/match-service";
 import cron from "node-cron";
+import { evenQuestions, intro, oddQuestions } from "./texts";
 
 const partition = <T>(chunkSize = 2, ...items: T[]): T[][] => {
   const chunks: T[][] = [];
@@ -88,9 +89,7 @@ export class MatchingCron {
       await this.matchService.match([first, second]);
       const firstSentMessage = await this.trySendQuestions(
         first,
-        `Your buddy is <@${second}>! *Only shows up as numbers and symbols? Have a look at ${infoChannel} to find help.*
-
-*These will be the odd questions, you are not getting the chance to snoop on those yet!*`
+        `${intro(second, infoChannel)}\n\n${oddQuestions}`
       );
       if (!firstSentMessage) {
         await this.matchService.unmatch([first, second]);
@@ -99,9 +98,7 @@ export class MatchingCron {
 
       const secondSentMessage = await this.trySendQuestions(
         second,
-        `Your buddy is <@${first}>! *Only shows up as numbers and symbols? Have a look at ${infoChannel} to find help.*
-
-*These will be the even questions, you are not getting the chance to snoop on those yet!*`
+        `${intro(first, infoChannel)}\n\n${evenQuestions}`
       );
       if (!secondSentMessage) {
         await this.matchService.unmatch([first, second]);
