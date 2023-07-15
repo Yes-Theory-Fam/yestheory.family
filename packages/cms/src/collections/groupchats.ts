@@ -56,7 +56,14 @@ export const Groupchats: CollectionConfig = {
   hooks: {
     afterChange: [
       async ({ doc }) => {
-        await typesenseClient.collections("groupchats").documents().upsert(doc);
+        const typesenseDoc = {
+          ...doc,
+          keywords: doc.keywords.map((k) => k.value),
+        };
+        await typesenseClient
+          .collections("groupchats")
+          .documents()
+          .upsert(typesenseDoc);
       },
     ],
     afterDelete: [
