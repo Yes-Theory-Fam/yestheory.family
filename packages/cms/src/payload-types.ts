@@ -28,11 +28,12 @@ export interface Groupchat {
   name: string;
   url: string;
   keywords: {
-    value?: string;
+    value: string;
     id?: string;
   }[];
   description?: string;
-  platform: "discord" | "facebook" | "signal" | "telegram" | "whatsapp";
+  platform: 'discord' | 'facebook' | 'signal' | 'telegram' | 'whatsapp';
+  promoted: number;
   updatedAt: string;
   createdAt: string;
 }

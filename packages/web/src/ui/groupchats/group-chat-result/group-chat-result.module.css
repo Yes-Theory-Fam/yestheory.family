@@ -14,7 +14,7 @@
     grid-template-areas:
       "icon title join"
       "icon meta join"
-      "icon description description";
+      "icon description join";
   }
 }
 

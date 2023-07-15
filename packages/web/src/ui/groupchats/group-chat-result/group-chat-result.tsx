@@ -1,7 +1,15 @@
-import { FC, PropsWithChildren, ReactNode } from "react";
+import { FC, PropsWithChildren } from "react";
 import { Button } from "../../common/button/button";
 import gridClasses from "./group-chat-result.module.css";
 import { twMerge } from "tailwind-merge";
+import {
+  SiDiscord,
+  SiFacebook,
+  SiSignal,
+  SiTelegram,
+  SiWhatsapp,
+} from "@icons-pack/react-simple-icons";
+import { IconType } from "@icons-pack/react-simple-icons/types";
 
 const KeywordBadge: FC<PropsWithChildren> = ({ children }) => (
   <span
@@ -26,15 +34,20 @@ export type GroupChatResultProps = {
   description?: string;
   keywords: string[];
   url: string;
+  promoted: number;
 };
 
-// TODO see if we can make icon a JSX Constructor so we can pass the className in from here
-const platformIcons: Record<GroupChatPlatform, ReactNode> = {
-  facebook: "FB",
-  whatsapp: "WA",
-  signal: "SG",
-  telegram: "TE",
-  discord: "DC",
+type IconDefinition = {
+  Icon: IconType;
+  color: string;
+};
+
+const platformIcons: Record<GroupChatPlatform, IconDefinition> = {
+  facebook: { Icon: SiFacebook, color: "#1877F2" },
+  whatsapp: { Icon: SiWhatsapp, color: "#25D366" },
+  signal: { Icon: SiSignal, color: "#3A76F0" },
+  telegram: { Icon: SiTelegram, color: "#26A5E4" },
+  discord: { Icon: SiDiscord, color: "#5865F2" },
 };
 
 export const GroupChatResult: FC<GroupChatResultProps> = ({
@@ -43,8 +56,9 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
   description,
   keywords,
   url,
+  promoted,
 }) => {
-  const icon = platformIcons[platform];
+  const { Icon, color } = platformIcons[platform];
   const maxKeywords = 3;
   const firstKeywords = keywords.slice(0, maxKeywords);
   const remainingKeywordCount = keywords.length - maxKeywords;
@@ -54,8 +68,18 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
       <div
         className={twMerge(gridClasses.icon, "self-center justify-self-center")}
       >
-        {icon}
+        <Icon color={color} className={"sm:h-10 sm:w-10"} />
       </div>
+
+      <p className={twMerge(gridClasses.title, "font-bold")}>
+        {name}
+        {promoted ? (
+          <span className={"text-xs text-gray-500 font-normal ml-1"}>
+            (Promoted)
+          </span>
+        ) : undefined}
+      </p>
+
       <div className={twMerge(gridClasses.meta, "space-x-2")}>
         {firstKeywords.map((r) => (
           <KeywordBadge key={r}>{r}</KeywordBadge>
@@ -65,12 +89,14 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
           <KeywordBadge>+{remainingKeywordCount}</KeywordBadge>
         )}
       </div>
-      <p className={twMerge(gridClasses.title, "font-bold")}>{name}</p>
       <p className={gridClasses.description}>{description}</p>
 
       <a
         href={url}
-        className={twMerge(gridClasses.join, "sm:justify-self-end")}
+        className={twMerge(
+          gridClasses.join,
+          "sm:justify-self-end sm:self-center"
+        )}
       >
         <Button size={"tiny"} variant={"solid"}>
           Join

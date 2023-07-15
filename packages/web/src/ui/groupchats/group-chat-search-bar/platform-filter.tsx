@@ -2,6 +2,7 @@ import { FC } from "react";
 import { GroupChatPlatform } from "../group-chat-result/group-chat-result";
 import { ToggleButton } from "../../common/toggle-button/toggle-button";
 
+// TODO fetch these from Payload
 const allPlatforms: GroupChatPlatform[] = [
   "discord",
   "facebook",
@@ -30,7 +31,7 @@ export const PlatformFilter: FC<PlatformFilterProps> = ({
   return (
     <div
       className={
-        "flex justify-start gap-3 p-4 overflow-x-auto max-w-[calc(100vw_-_var(--scrollbar-width))]"
+        "flex justify-start gap-3 py-4 overflow-x-auto max-w-[calc(100vw_-_var(--scrollbar-width))]"
       }
     >
       {allPlatforms.map((p) => (

@@ -3289,6 +3289,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@icons-pack/react-simple-icons@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "@icons-pack/react-simple-icons@npm:8.0.1"
+  peerDependencies:
+    react: ^16.13 || ^17 || ^18
+  checksum: 0651e316cccf2a81ae01d38c219b852f698a221e07f2eab3f25d46f035fc2cbe70224953b739ec123cde32e7a4e94c4688f16cf89e0e6134855b8ddc58dc380f
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -7327,6 +7336,7 @@ __metadata:
     "@graphql-codegen/typescript-graphql-request": ^4.5.9
     "@graphql-codegen/typescript-operations": ^3.0.2
     "@heroicons/react": ^2.0.16
+    "@icons-pack/react-simple-icons": ^8.0.1
     "@next/eslint-plugin-next": 13.3.1-canary.8
     "@radix-ui/react-dialog": ^1.0.3
     "@radix-ui/react-dropdown-menu": ^2.0.4

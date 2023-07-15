@@ -67,7 +67,7 @@ const Page = async () => {
   return (
     <>
       <CTA />
-      <div className="mx-auto px-8 my-6 min-h-[75vh] flex flex-col justify-center items-center gap-8">
+      <div className="mx-auto my-6 min-h-[75vh] flex flex-col justify-center items-center gap-8">
         <InfoGrid state={status} buddyName={buddy?.username ?? "Unmatched"} />
         <BuddyProjectButton
           state={status}

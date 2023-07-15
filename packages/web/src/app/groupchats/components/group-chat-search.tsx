@@ -12,6 +12,7 @@ type GroupchatResult = {
   url: string;
   description: string;
   platform: GroupChatPlatform;
+  promoted: number;
 };
 
 const fetchResults = async (
@@ -30,6 +31,7 @@ const fetchResults = async (
         q: queryText,
         query_by: "name,keywords,description",
         filter_by: filterBy,
+        sort_by: "promoted:desc",
       },
       {}
     );
@@ -42,7 +44,6 @@ const fetchResults = async (
 };
 
 export const GroupChatSearch: FC = () => {
-  // TODO SWR
   const [results, setResults] = useState<GroupchatResult[]>([]);
 
   useEffect(() => {
@@ -50,16 +51,19 @@ export const GroupChatSearch: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={"flex flex-col gap-4"}>
       <GroupChatSearchBar
         onSearchChange={({ query, platforms }) =>
           fetchResults(query, platforms).then(setResults)
         }
       />
 
-      <div className="divide-y">
+      <div className={"flex flex-col gap-2"}>
         {results.map((r) => (
-          <GroupChatResult key={r.id} {...r} />
+          <>
+            <GroupChatResult key={r.id} {...r} />
+            <div className={"h-px mx-4 bg-gray-100 min-w-max last:hidden"} />
+          </>
         ))}
       </div>
     </div>

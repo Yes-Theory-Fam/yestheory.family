@@ -3,6 +3,7 @@ import { schedule } from "node-cron";
 import { typesenseClient } from "../lib/typesense";
 import { CollectionCreateSchema } from "typesense/lib/Typesense/Collections";
 
+// TODO see if we can remove this alltogether thanks to the hook
 export const setupGroupchatSync = async () => {
   console.info("Setting up groupchats!");
   await ensureTypesenseCollectionExists();
@@ -37,6 +38,10 @@ const schema: CollectionCreateSchema = {
       name: "platform",
       type: "string",
       facet: true,
+    },
+    {
+      name: "promoted",
+      type: "int32",
     },
   ],
 };

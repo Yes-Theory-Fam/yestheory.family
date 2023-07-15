@@ -52,6 +52,18 @@ export const Groupchats: CollectionConfig = {
         { label: "WhatsApp", value: "whatsapp" },
       ],
     },
+    {
+      name: "promoted",
+      type: "number",
+      min: 0,
+      max: 100,
+      required: true,
+      defaultValue: 0,
+      admin: {
+        description:
+          "This value may be used to push results. A value of 0 means no promotion. Any value between 1 and 100 may be used to order promoted groupchats.",
+      },
+    },
   ],
   hooks: {
     afterChange: [
