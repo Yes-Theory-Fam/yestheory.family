@@ -64,7 +64,12 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
   const remainingKeywordCount = keywords.length - maxKeywords;
 
   return (
-    <div className={twMerge("gap-2 md:gap-3 p-4", gridClasses["result-grid"])}>
+    <div
+      className={twMerge(
+        "gap-2 md:gap-3 p-4 hover:bg-gray-50/50",
+        gridClasses["result-grid"]
+      )}
+    >
       <div
         className={twMerge(gridClasses.icon, "self-center justify-self-center")}
       >
@@ -97,6 +102,8 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
           gridClasses.join,
           "sm:justify-self-end sm:self-center"
         )}
+        target={"_blank"}
+        rel="noreferrer"
       >
         <Button size={"tiny"} variant={"solid"}>
           Join

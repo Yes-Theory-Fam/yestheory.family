@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { Guild } from "discord.js";
 import { Arg, Field, Mutation, ObjectType } from "type-graphql";
 import winston from "winston";
@@ -30,7 +29,7 @@ class SignUpYesBotMutation {
       });
     } catch (e) {
       if (
-        e instanceof PrismaClientKnownRequestError &&
+        e instanceof Prisma.PrismaClientKnownRequestError &&
         e.code === uniqueConstraintFailedCode
       ) {
         return new BuddyProjectSignUpYesBotPayload(

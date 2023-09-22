@@ -39,7 +39,7 @@ export class AuthenticatedUser {
 
     return {
       id: profile.id,
-      username: `${profile.username}#${profile.discriminator}`,
+      username: profile.username,
       avatarUrl,
       type: AuthProvider.DISCORD,
     };

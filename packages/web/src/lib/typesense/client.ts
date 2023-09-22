@@ -1,13 +1,7 @@
-import { SearchClient } from "typesense";
 import { NodeConfiguration } from "typesense/lib/Typesense/Configuration";
+import { SearchClient } from "typesense";
 
-let instance: SearchClient | null = null;
-
-const apiKey = "yestheory-family-typesense-search-key";
-
-export const getTypesenseClient = () => {
-  if (instance) return instance;
-
+export const getTypesenseClient = (apiKey: string) => {
   const isServer = typeof window === "undefined";
 
   let node: NodeConfiguration;
@@ -39,10 +33,8 @@ export const getTypesenseClient = () => {
     };
   }
 
-  instance = new SearchClient({
+  return new SearchClient({
     apiKey,
     nodes: [node],
   });
-
-  return instance;
 };

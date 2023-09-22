@@ -1,9 +1,7 @@
-import { headers } from "next/headers";
 import { Footer } from "ui";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
 import { Metadata } from "next";
 import { CookieConsent } from "../components/cookie-consent/cookie-consent";
-import { graphqlWithHeaders } from "../lib/graphql";
 import { Nav } from "./nav";
 import { Providers } from "./providers";
 
@@ -34,11 +32,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = async ({ children }: PropsWithChildren) => {
-  const [user] = await graphqlWithHeaders(headers(), (sdk) =>
-    sdk.CurrentUser()
-  );
-
+const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="en">
       <head>
@@ -48,24 +42,26 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body>
-        <Providers initialUser={user.me ?? undefined}>
-          <CookieConsent />
-          <div className="flex flex-col min-h-screen justify-between">
-            <Nav />
+        <Suspense>
+          <Providers>
+            <CookieConsent />
+            <div className="flex flex-col min-h-screen justify-between">
+              <Nav />
 
-            <main className="max-w-7xl mx-auto w-full px-4 md:px-8">
-              {children}
-            </main>
-            <div className="pt-6 bg-white">
-              <Footer
-                links={[
-                  { text: "Imprint", href: "/legal/imprint" },
-                  { text: "Privacy", href: "/legal/privacy" },
-                ]}
-              />
+              <main className="max-w-7xl mx-auto w-full px-4 md:px-8">
+                {children}
+              </main>
+              <div className="pt-6 bg-white">
+                <Footer
+                  links={[
+                    { text: "Imprint", href: "/legal/imprint" },
+                    { text: "Privacy", href: "/legal/privacy" },
+                  ]}
+                />
+              </div>
             </div>
-          </div>
-        </Providers>
+          </Providers>
+        </Suspense>
       </body>
     </html>
   );

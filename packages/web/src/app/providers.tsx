@@ -2,21 +2,17 @@
 
 import NiceModal from "@ebay/nice-modal-react";
 import { FC, PropsWithChildren } from "react";
-import { UserProvider, User } from "../context/user/user";
+import { UserProvider } from "../context/user/user";
 import { ScrollbarWidthProvider } from "../components/scrollbar-width-provider";
+import { UrqlProvider } from "../lib/urql/context";
 
-interface ProviderProps {
-  initialUser: User | undefined;
-}
-
-export const Providers: FC<PropsWithChildren<ProviderProps>> = ({
-  children,
-  initialUser,
-}) => {
+export const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
     <NiceModal.Provider>
-      <ScrollbarWidthProvider />
-      <UserProvider initialUser={initialUser}>{children}</UserProvider>
+      <UrqlProvider>
+        <ScrollbarWidthProvider />
+        <UserProvider>{children}</UserProvider>
+      </UrqlProvider>
     </NiceModal.Provider>
   );
 };

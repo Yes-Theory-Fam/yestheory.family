@@ -4,8 +4,9 @@ generator client {
 }
 
 generator typegraphql {
-  provider = "typegraphql-prisma"
-  output   = "../src/__generated__/type-graphql"
+  provider           = "typegraphql-prisma"
+  output             = "../src/__generated__/type-graphql"
+  emitTranspiledCode = true
 }
 
 datasource db {
@@ -19,10 +20,10 @@ model BuddyProjectEntry {
 
   matchedDate       DateTime? @map("matched_date") @db.Timestamptz(3)
   reportedGhostDate DateTime? @map("reported_ghost_date") @db.Timestamptz(3)
-  ghostReportCount Int @map("ghost_report_count") @db.Integer @default(0)
+  ghostReportCount  Int       @default(0) @map("ghost_report_count") @db.Integer
 
   confirmedNotGhostingDate DateTime? @map("confirmed_not_ghosting_date") @db.Timestamptz(3)
-  blocked Boolean @db.Boolean @default(false)
+  blocked                  Boolean   @default(false) @db.Boolean
 
   // Prisma requires both directions; buddy is the buddy of this, while inverseBuddy is the entry this is the buddy of
   // They should end up being the same entry but are required regardless.

@@ -1,9 +1,13 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import { GroupChatPlatform, GroupChatResult } from "ui/groupchats";
 import { GroupChatSearchBar } from "ui/groupchats/client";
-import { getTypesenseClient } from "../../../lib/typesense";
+import { SearchClient } from "typesense";
+import { useTypesenseClient } from "../../../lib/typesense/use-typesense-client";
+import { navigateToLogin, useAuth } from "../../../context/user/user";
+import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 
 type GroupchatResult = {
   id: string;
@@ -17,11 +21,11 @@ type GroupchatResult = {
 
 const fetchResults = async (
   queryText: string,
-  platforms: GroupChatPlatform[]
+  platforms: GroupChatPlatform[],
+  searchClient: SearchClient
 ): Promise<GroupchatResult[]> => {
   const filterBy =
     platforms.length === 0 ? "" : `platform:[${platforms.join(",")}]`;
-  const searchClient = getTypesenseClient();
 
   const { hits } = await searchClient
     .collections<GroupchatResult>("groupchats")
@@ -45,25 +49,50 @@ const fetchResults = async (
 
 export const GroupChatSearch: FC = () => {
   const [results, setResults] = useState<GroupchatResult[]>([]);
+  const searchClient = useTypesenseClient();
+
+  const { loggedIn } = useAuth();
 
   useEffect(() => {
-    fetchResults("", []).then(setResults);
-  }, []);
+    fetchResults("", [], searchClient).then(setResults);
+  }, [searchClient]);
 
   return (
-    <div className={"flex flex-col gap-4"}>
+    <div className={"flex flex-col gap-4 max-w-4xl mx-auto"}>
       <GroupChatSearchBar
         onSearchChange={({ query, platforms }) =>
-          fetchResults(query, platforms).then(setResults)
+          fetchResults(query, platforms, searchClient).then(setResults)
         }
       />
 
       <div className={"flex flex-col gap-2"}>
-        {results.map((r) => (
+        {!loggedIn && (
           <>
-            <GroupChatResult key={r.id} {...r} />
-            <div className={"h-px mx-4 bg-gray-100 min-w-max last:hidden"} />
+            <p>
+              <ExclamationTriangleIcon
+                className={"h-6 w-6 text-warning inline-block mr-2"}
+              />
+              Not seeing what you are looking for? Only Facebook groups and
+              Instagram pages are available without{" "}
+              <Link
+                href={"#"}
+                onClick={navigateToLogin}
+                className={"underline decoration-brand-500 decoration"}
+              >
+                logging in with Discord
+              </Link>
+              .
+            </p>
+
+            <hr />
           </>
+        )}
+
+        {results.map((r) => (
+          <Fragment key={r.id}>
+            <GroupChatResult {...r} />
+            <div className={"h-px mx-4 bg-gray-100 min-w-max last:hidden"} />
+          </Fragment>
         ))}
       </div>
     </div>

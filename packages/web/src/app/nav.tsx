@@ -4,10 +4,6 @@ import { FC } from "react";
 import { Navigation } from "ui";
 import { navigateToLogin, useAuth } from "../context/user/user";
 
-const logout = async () => {
-  await fetch("/api/logout", { credentials: "include", method: "POST" });
-};
-
 export const Nav: FC = () => {
   const auth = useAuth();
 
@@ -21,7 +17,7 @@ export const Nav: FC = () => {
       menuItems={[
         {
           key: "logout",
-          onClick: () => logout().then(() => auth.refetch()),
+          onClick: auth.logout,
           label: "Logout",
         },
       ]}

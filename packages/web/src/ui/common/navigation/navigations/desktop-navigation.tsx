@@ -17,7 +17,7 @@ export const DesktopNavigation: FC<NavigationProps> = ({
   }, [links]);
 
   return (
-    <div className="hidden md:flex gap-12 max-w-7xl w-full my-6 mx-auto items-center px-6">
+    <div className="hidden md:flex gap-12 max-w-7xl w-full mx-auto items-center px-6 h-28">
       <Link hideUnderline className="mr-auto" href={"/"}>
         <Logo variant="color" size={"medium"} />
       </Link>

@@ -1,6 +1,6 @@
 import { typesenseClient } from "../lib/typesense";
 
-const apiKey = "yestheory-family-typesense-search-key";
+export const apiKey = "yestheory-family-typesense-search-key";
 
 export const seedTypesenseKey = async () => {
   try {

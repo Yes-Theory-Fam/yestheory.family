@@ -1,7 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { FC, ReactNode, createContext, useContext, useState } from "react";
+import { FC, ReactNode, createContext, useContext, useMemo } from "react";
+import {
+  useCurrentUserQuery,
+  useLogoutMutation,
+} from "./user.client.generated";
 
 export interface User {
   id: string;
@@ -13,42 +16,33 @@ interface UserContextProps {
   readonly loggedIn: boolean;
   user: User | undefined;
   refetch: () => void;
+
+  logout: () => Promise<void>;
 }
 
 const UserContext = createContext<UserContextProps | null>(null);
 
 interface UserProviderProps {
   children: ReactNode;
-  initialUser: User | undefined;
 }
 
-const refetchUser = async () => {
-  const response = await fetch("/api/user");
+export const UserProvider: FC<UserProviderProps> = ({ children }) => {
+  const [{ data }, refetch] = useCurrentUserQuery();
+  const [, logout] = useLogoutMutation();
 
-  const newVar = await response.json();
+  console.log(data);
 
-  return newVar as User;
-};
-
-export const UserProvider: FC<UserProviderProps> = ({
-  children,
-  initialUser,
-}) => {
-  const [user, setUser] = useState<User | undefined>(initialUser);
-  const router = useRouter();
-
-  const refetch = () =>
-    refetchUser()
-      .then(setUser)
-      .then(() => router.refresh());
-
+  const user = data?.me ?? undefined;
   const loggedIn = !!user;
 
-  return (
-    <UserContext.Provider value={{ loggedIn, user, refetch }}>
-      {children}
-    </UserContext.Provider>
-  );
+  const value = useMemo(() => {
+    const logoutAndRefetch = () =>
+      logout({}).then(() => window.location.reload());
+
+    return { loggedIn, user, refetch, logout: logoutAndRefetch };
+  }, [loggedIn, user, refetch, logout]);
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export const useAuth = (): UserContextProps => {
@@ -59,12 +53,6 @@ export const useAuth = (): UserContextProps => {
   }
 
   return context;
-};
-
-export const useLoggedIn = (): boolean => {
-  const context = useAuth();
-
-  return context.loggedIn;
 };
 
 export const navigateToLogin = (): void => {
