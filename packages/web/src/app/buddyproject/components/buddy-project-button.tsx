@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { FC, useCallback } from "react";
 import { Button } from "ui";
 import { type BuddyProjectStatus } from "../../../__generated__/graphql";
-import { navigateToLogin } from "../../../context/user/user";
 import { ServerJoinConfirmationModal } from "./server-join-confirmation";
 import { SignupSuccessModal } from "./signup-success-modal";
-import { useBuddyProjectSignUpMutation } from "../buddyproject.client.generated";
+import { buddyProjectSignUp } from "../actions/signup-server-action";
+import { navigateToLogin } from "../../../context/user/navigate-to-login";
 
 export type BuddyProjectButtonProps = {
   isLoggedIn: boolean;
@@ -22,7 +22,6 @@ export const BuddyProjectButton: FC<BuddyProjectButtonProps> = ({
   state,
 }) => {
   const router = useRouter();
-  const [, buddyProjectSignUp] = useBuddyProjectSignUpMutation();
 
   const signUp = useCallback(async () => {
     if (!isOnServer) {
@@ -33,8 +32,8 @@ export const BuddyProjectButton: FC<BuddyProjectButtonProps> = ({
       if (!confirmedJoinServer) return;
     }
 
-    const signUpResultData = await buddyProjectSignUp({});
-    const signUpResult = signUpResultData.data?.buddyProjectSignUp.result;
+    const signUpResult = await buddyProjectSignUp();
+
     if (
       signUpResult === "FULL_SUCCESS" ||
       signUpResult === "SUCCESS_DMS_CLOSED"

@@ -2,10 +2,17 @@
 
 import { FC } from "react";
 import { Navigation } from "ui";
-import { navigateToLogin, useAuth } from "../context/user/user";
+import { navigateToLogin } from "../context/user/navigate-to-login";
+import { logout } from "../context/user/logout-server-action";
+import { CurrentUserQuery } from "../__generated__/graphql";
+import { useRouter } from "next/navigation";
 
-export const Nav: FC = () => {
-  const auth = useAuth();
+export type NavProps = {
+  user: Exclude<CurrentUserQuery["me"], null>;
+};
+
+export const Nav: FC<NavProps> = ({ user }) => {
+  const router = useRouter();
 
   return (
     <Navigation
@@ -17,11 +24,11 @@ export const Nav: FC = () => {
       menuItems={[
         {
           key: "logout",
-          onClick: auth.logout,
+          onClick: () => logout().then(() => router.refresh()),
           label: "Logout",
         },
       ]}
-      user={auth.user}
+      user={user}
     />
   );
 };

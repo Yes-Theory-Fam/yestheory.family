@@ -4,10 +4,10 @@ import { FC, Fragment, useEffect, useState } from "react";
 import { GroupChatPlatform, GroupChatResult } from "ui/groupchats";
 import { GroupChatSearchBar } from "ui/groupchats/client";
 import { SearchClient } from "typesense";
-import { useTypesenseClient } from "../../../lib/typesense/use-typesense-client";
-import { navigateToLogin, useAuth } from "../../../context/user/user";
 import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { navigateToLogin } from "../../../context/user/navigate-to-login";
+import { useTypesense } from "../../../context/typesense/provider";
 
 type GroupchatResult = {
   id: string;
@@ -47,26 +47,26 @@ const fetchResults = async (
   );
 };
 
-export const GroupChatSearch: FC = () => {
+export const GroupChatSearch: FC<{ isLoggedIn: boolean }> = ({
+  isLoggedIn,
+}) => {
   const [results, setResults] = useState<GroupchatResult[]>([]);
-  const searchClient = useTypesenseClient();
-
-  const { loggedIn } = useAuth();
+  const { client } = useTypesense();
 
   useEffect(() => {
-    fetchResults("", [], searchClient).then(setResults);
-  }, [searchClient]);
+    fetchResults("", [], client).then(setResults);
+  }, [client]);
 
   return (
     <div className={"flex flex-col gap-4 max-w-4xl mx-auto"}>
       <GroupChatSearchBar
         onSearchChange={({ query, platforms }) =>
-          fetchResults(query, platforms, searchClient).then(setResults)
+          fetchResults(query, platforms, client).then(setResults)
         }
       />
 
       <div className={"flex flex-col gap-2"}>
-        {!loggedIn && (
+        {!isLoggedIn && (
           <>
             <p>
               <ExclamationTriangleIcon

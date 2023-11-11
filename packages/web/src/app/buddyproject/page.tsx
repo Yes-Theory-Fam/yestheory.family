@@ -4,15 +4,8 @@ import { ScrollToActionContainer } from "ui/client";
 import { InfoGrid } from "ui/buddyproject";
 import { buddyProjectSvg, yesbotBuddyProjectWebp } from "../../../assets";
 import { BuddyProjectButton } from "./components/buddy-project-button";
-import { getUrqlClient } from "../../lib/urql/get-client";
-import {
-  BuddyProjectStateDocument,
-  BuddyProjectStateQuery,
-  BuddyProjectStateQueryVariables,
-  ServerStateDocument,
-  ServerStateQuery,
-  ServerStateQueryVariables,
-} from "./buddyproject.server.generated";
+import { graphqlWithHeaders } from "../../lib/graphql/client";
+import { headers } from "next/headers";
 
 const title = "The Buddy Project";
 const description =
@@ -52,25 +45,17 @@ const CTA = () => {
 };
 
 const Page = async () => {
-  const client = getUrqlClient();
-  const x = await client.query<ServerStateQuery, ServerStateQueryVariables>(
-    ServerStateDocument,
-    {}
-  );
+  const x = await graphqlWithHeaders((sdk) => sdk.ServerState());
 
-  const currentUser = x.data?.me;
+  const currentUser = x.me;
   const isLoggedIn = !!currentUser;
   const isOnServer = currentUser?.isOnServer ?? false;
 
   const emptyState = { status: "NOT_SIGNED_UP", buddy: null } as const;
 
   const state = isLoggedIn
-    ? (
-        await client.query<
-          BuddyProjectStateQuery,
-          BuddyProjectStateQueryVariables
-        >(BuddyProjectStateDocument, {})
-      ).data?.getBuddyProjectStatus ?? emptyState
+    ? (await graphqlWithHeaders((sdk) => sdk.BuddyProjectState()))
+        .getBuddyProjectStatus ?? emptyState
     : emptyState;
   const { status, buddy } = state;
 

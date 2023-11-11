@@ -6,6 +6,7 @@ import { Nav } from "./nav";
 import { Providers } from "./providers";
 
 import "../../styles/globals.css";
+import { getCurrentUser } from "../context/user/user";
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +33,9 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = ({ children }: PropsWithChildren) => {
+const RootLayout = async ({ children }: PropsWithChildren) => {
+  const user = await getCurrentUser();
+
   return (
     <html lang="en">
       <head>
@@ -43,10 +46,10 @@ const RootLayout = ({ children }: PropsWithChildren) => {
       </head>
       <body>
         <Suspense>
-          <Providers>
+          <Providers user={user}>
             <CookieConsent />
             <div className="flex flex-col min-h-screen justify-between">
-              <Nav />
+              <Nav user={user} />
 
               <main className="max-w-7xl mx-auto w-full px-4 md:px-8">
                 {children}

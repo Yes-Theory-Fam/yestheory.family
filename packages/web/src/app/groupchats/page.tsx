@@ -1,22 +1,25 @@
 import { Heading } from "ui";
 import { GroupChatSearch } from "./components/group-chat-search";
 import { Metadata } from "next";
+import { getIsLoggedIn } from "../../context/user/user";
+import { TypesenseProvider } from "../../context/typesense/provider";
+import { graphqlWithHeaders } from "../../lib/graphql/client";
 
 export const metadata: Metadata = {
-  title: "",
+  title: "Groupchats",
 };
 
-/*
-TODO
- - Fix UI looking like absolute dogshit
-*/
+const GroupChats = async () => {
+  const isLoggedIn = await getIsLoggedIn();
+  const apiKey = await graphqlWithHeaders((sdk) => sdk.TypesenseApiKey());
 
-const GroupChats = () => {
   return (
     <div className="mt-28">
       <Heading frontText="Group" blueText="chats" />
 
-      <GroupChatSearch />
+      <TypesenseProvider apiKey={apiKey.groupchatSearchToken}>
+        <GroupChatSearch isLoggedIn={isLoggedIn} />
+      </TypesenseProvider>
     </div>
   );
 };

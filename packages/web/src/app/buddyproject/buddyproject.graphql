@@ -13,3 +13,13 @@ query BuddyProjectState {
     status
   }
 }
+
+mutation BuddyProjectSignUp {
+  buddyProjectSignUp {
+    result
+
+    status {
+      status
+    }
+  }
+}

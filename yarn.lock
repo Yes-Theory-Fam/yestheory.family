@@ -5,18 +5,6 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@0no-co/graphql.web@npm:^1.0.1":
-  version: 1.0.4
-  resolution: "@0no-co/graphql.web@npm:1.0.4"
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  peerDependenciesMeta:
-    graphql:
-      optional: true
-  checksum: d415fb2f063a024e2d382e8dc5e66929d0d9bf94f2c22e03cde201dc2fa03e15d21274dbe5c23a26ce016a4cac3db93ad99fb454de76fd94bc1600fd7062eebe
-  languageName: node
-  linkType: hard
-
 "@alloc/quick-lru@npm:^5.2.0":
   version: 5.2.0
   resolution: "@alloc/quick-lru@npm:5.2.0"
@@ -247,22 +235,6 @@ __metadata:
   dependencies:
     node-fetch: ^2.6.1
   checksum: af39bdfb4c2b35bd2c6acc540a5e302730dae17e73d3a18cd1a4aa50c1c741cb1869dffdef1379c491da5ad2e3cfa2bf3a8064e6046c12b46c6a97f54f100a8d
-  languageName: node
-  linkType: hard
-
-"@atmina/local-typescript-operations@npm:0.8.0":
-  version: 0.8.0
-  resolution: "@atmina/local-typescript-operations@npm:0.8.0"
-  dependencies:
-    "@graphql-codegen/plugin-helpers": ^5.0.0
-    "@graphql-codegen/typescript": ^4.0.0
-    "@graphql-codegen/typescript-operations": ^4.0.0
-    "@graphql-codegen/visitor-plugin-common": ^4.0.1
-    auto-bind: ^4.0.0
-  peerDependencies:
-    "@graphql-codegen/near-operation-file-preset": ^2.5.0
-    graphql: ^15.8.0 || ^16.0.0
-  checksum: 5217170024b25ce0a54bc82983739a31e7916fba19f9c7542178418f6060d7546f3e024e721ee534ecda94c9a3133b925ecbce72a70d665258b4a514ef36a104
   languageName: node
   linkType: hard
 
@@ -3479,19 +3451,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript-graphql-request@npm:^4.5.9":
-  version: 4.5.9
-  resolution: "@graphql-codegen/typescript-graphql-request@npm:4.5.9"
+"@graphql-codegen/typescript-graphql-request@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@graphql-codegen/typescript-graphql-request@npm:6.0.0"
   dependencies:
     "@graphql-codegen/plugin-helpers": ^3.0.0
     "@graphql-codegen/visitor-plugin-common": 2.13.1
     auto-bind: ~4.0.0
-    tslib: ~2.4.0
+    tslib: ~2.6.0
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-    graphql-request: ^3.4.0 || ^4.0.0 || ~5.0.0 || ~5.1.0
+    graphql-request: ^6.0.0
     graphql-tag: ^2.0.0
-  checksum: fe924b3d17a1aee8bc5022e4b6cc0b8acba81c5e3ebf410892472898e2e44823ff339f58d3354902d7a5f77e28ef57968d55b1623ba4884a74eed54bb14b66c3
+  checksum: c04b0a2cb1bb6a4a4eea3ee47303d2f72694adad73f1fd7e1d683c4055b536909fe0c124f43a359a0474d92a57365e6099be0f493cef07d8f5e603e6df420166
   languageName: node
   linkType: hard
 
@@ -3522,21 +3494,6 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 82cd58ceb7406a3ff7aa5b36a58c9303fd819259679c2de10411f9e22c4fd142068d711714f68259c64eab86ea0a2b3d761959fa59fa5140ca3f1382a5ab5169
-  languageName: node
-  linkType: hard
-
-"@graphql-codegen/typescript-urql@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@graphql-codegen/typescript-urql@npm:4.0.0"
-  dependencies:
-    "@graphql-codegen/plugin-helpers": ^3.0.0
-    "@graphql-codegen/visitor-plugin-common": 2.13.1
-    auto-bind: ~4.0.0
-    tslib: ~2.6.0
-  peerDependencies:
-    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-    graphql-tag: ^2.0.0
-  checksum: 218358883fd15a5cb8d6fef03c6a95b6f6b689196cfa80ef60e025985f8bbe654acf381da7f9879ed897eaac5f461e0ea59b46c6c7b6ba54468baeb3d5fc387e
   languageName: node
   linkType: hard
 
@@ -3610,7 +3567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/visitor-plugin-common@npm:4.0.1, @graphql-codegen/visitor-plugin-common@npm:^4.0.1":
+"@graphql-codegen/visitor-plugin-common@npm:4.0.1":
   version: 4.0.1
   resolution: "@graphql-codegen/visitor-plugin-common@npm:4.0.1"
   dependencies:
@@ -4294,7 +4251,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-typed-document-node/core@npm:3.2.0, @graphql-typed-document-node/core@npm:^3.1.1":
+"@graphql-typed-document-node/core@npm:3.2.0, @graphql-typed-document-node/core@npm:^3.1.1, @graphql-typed-document-node/core@npm:^3.2.0":
   version: 3.2.0
   resolution: "@graphql-typed-document-node/core@npm:3.2.0"
   peerDependencies:
@@ -8599,27 +8556,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urql/core@npm:^4.1.0":
-  version: 4.1.3
-  resolution: "@urql/core@npm:4.1.3"
-  dependencies:
-    "@0no-co/graphql.web": ^1.0.1
-    wonka: ^6.3.2
-  checksum: bb8bea3caa4cdcf92c5109da8d643b4a70784d7a8987bb48aa466d41c126cb48fcd8693f0ee160bd363b0438c525068816a9e77f60984a63473e503f8b39b7d8
-  languageName: node
-  linkType: hard
-
-"@urql/next@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@urql/next@npm:1.0.0"
-  peerDependencies:
-    next: ">=13.0.0"
-    react: ">=18.0.0"
-    urql: ^4.0.0
-  checksum: c01b553c06d5ddea91cd83f6995a0643b6617249ca081b9b5dcecc02fdd90bbb470a1cb722e650a965ba0a55e18e5f849308040a9fdbe62e7a7099c85364f13a
-  languageName: node
-  linkType: hard
-
 "@webassemblyjs/ast@npm:1.11.6, @webassemblyjs/ast@npm:^1.11.5":
   version: 1.11.6
   resolution: "@webassemblyjs/ast@npm:1.11.6"
@@ -9097,15 +9033,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@yestheory.family/web@workspace:packages/web"
   dependencies:
-    "@atmina/local-typescript-operations": 0.8.0
     "@atmina/only-enum-types": 0.7.0
     "@ebay/nice-modal-react": ^1.2.9
     "@fontsource/roboto": ^4.5.8
     "@graphql-codegen/cli": 2.16.1
     "@graphql-codegen/near-operation-file-preset": 2.4.4
-    "@graphql-codegen/typescript-graphql-request": ^4.5.9
+    "@graphql-codegen/typescript-graphql-request": ^6.0.0
     "@graphql-codegen/typescript-operations": ^3.0.2
-    "@graphql-codegen/typescript-urql": ^4.0.0
     "@heroicons/react": ^2.0.16
     "@icons-pack/react-simple-icons": ^8.0.1
     "@next/eslint-plugin-next": 13.5.3
@@ -9119,7 +9053,6 @@ __metadata:
     "@storybook/testing-library": 0.2.2
     "@types/cookie": 0.5.1
     "@types/prettier": ^2.7.2
-    "@urql/next": ^1.0.0
     "@yestheory.family/eslint-config": ^1.0.0
     autoprefixer: ^10.4.13
     chromatic: ^6.17.3
@@ -9131,6 +9064,7 @@ __metadata:
     eslint-plugin-storybook: ^0.6.15
     framer-motion: ^10.2.3
     graphql: 16.8.0
+    graphql-request: ^6.1.0
     next: 13.5.3
     postcss: ^8.4.21
     react: 18.2.0
@@ -9144,7 +9078,6 @@ __metadata:
     tsconfig-paths-webpack-plugin: ^4.0.1
     typescript: 4.9.4
     typesense: ^1.5.3
-    urql: ^4.0.5
   languageName: unknown
   linkType: soft
 
@@ -14962,6 +14895,18 @@ __metadata:
   peerDependencies:
     graphql: 14 - 16
   checksum: 8b65d5c1b0cad8996a843b52305b2712ffbf842c700487d4cee1ed719f22baacaacfddafb65572bcddd67d57fd1d2d389dee2430ffba4b34c3ab542d079446c7
+  languageName: node
+  linkType: hard
+
+"graphql-request@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "graphql-request@npm:6.1.0"
+  dependencies:
+    "@graphql-typed-document-node/core": ^3.2.0
+    cross-fetch: ^3.1.5
+  peerDependencies:
+    graphql: 14 - 16
+  checksum: 6d62630a0169574442320651c1f7626c0c602025c3c46b19e09417c9579bb209306ee63de9793a03be2e1701bb7f13971f8545d99bc6573e340f823af0ad35b2
   languageName: node
   linkType: hard
 
@@ -24437,18 +24382,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"urql@npm:^4.0.5":
-  version: 4.0.5
-  resolution: "urql@npm:4.0.5"
-  dependencies:
-    "@urql/core": ^4.1.0
-    wonka: ^6.3.2
-  peerDependencies:
-    react: ">= 16.8.0"
-  checksum: e8fe5ee624970d289f5832d3f62bab980e26d2e1b141cc6f82d4c1d009f6481bf58ff5f27971fac55bc8f953dbed6d7aaf62f005782bfd9d130c5c3e4033188b
-  languageName: node
-  linkType: hard
-
 "use-callback-ref@npm:^1.3.0":
   version: 1.3.0
   resolution: "use-callback-ref@npm:1.3.0"
@@ -25057,13 +24990,6 @@ __metadata:
     triple-beam: ^1.3.0
     winston-transport: ^4.5.0
   checksum: f7b901798b92ab9e93c850110bf6e98500e9a0e762b62dab410cf928b2a4145533dfa6d3d2b24f7bf0dc94b53808d5bd28aaaeff9a4b43b89ea4c798cce308ea
-  languageName: node
-  linkType: hard
-
-"wonka@npm:^6.3.2":
-  version: 6.3.4
-  resolution: "wonka@npm:6.3.4"
-  checksum: 6bb57955cb2982fb469a7824484e6854b436f89a7f10b6a981348789d88fbc944665771adc4cc404f62416417eb47ab2b8657d898e5301ccd4a53eaac6a10508
   languageName: node
   linkType: hard
 

@@ -1,9 +1,0 @@
-mutation BuddyProjectSignUp {
-  buddyProjectSignUp {
-    result
-
-    status {
-      status
-    }
-  }
-}
