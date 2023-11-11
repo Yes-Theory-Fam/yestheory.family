@@ -1,6 +1,5 @@
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v10";
-import fetch from "node-fetch";
 import { Service } from "typedi";
 import { URLSearchParams } from "url";
 import { createServerLogger } from "../../services/logging/log";

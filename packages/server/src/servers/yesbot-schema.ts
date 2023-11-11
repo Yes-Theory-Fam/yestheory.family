@@ -1,6 +1,5 @@
 import Koa from "koa";
 import { getIntrospectionQuery } from "graphql";
-import fetch from "node-fetch";
 import { isDevelopment } from "../config";
 import { createServerLogger } from "../services/logging/log";
 import Router from "@koa/router";
