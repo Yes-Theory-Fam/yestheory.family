@@ -25,7 +25,10 @@ services:
       DISCORD_CLIENT_ID: skipped
       DISCORD_CLIENT_SECRET: skipped
       DISCORD_SCOPES: skipped
+
+      CMS_ENDPOINT: "http://cms:3001/api/graphql"
     depends_on:
+      - cms
       - postgres
 
   web:
