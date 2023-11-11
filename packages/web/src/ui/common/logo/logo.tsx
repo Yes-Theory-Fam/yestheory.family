@@ -7,7 +7,7 @@ const sizeVariants = variants(
     medium: "w-[100px]",
     large: "w-[200px]",
   },
-  "medium"
+  "medium",
 );
 
 type LogoColorVariant = "color" | "white";

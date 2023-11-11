@@ -3,7 +3,7 @@ import { type Payload } from "payload";
 
 export type QueryFactory<TResult, TResolvedArgs> = (
   graphql: typeof GraphQL,
-  payload: Payload
+  payload: Payload,
 ) => {
   type?: GraphQL.GraphQLType;
   args: Record<string, unknown>;
@@ -32,7 +32,7 @@ export type QueryFactory<TResult, TResolvedArgs> = (
  * })
  */
 export const mergeQueries = <TResult, TResolvedArgs>(
-  queryFactories: Record<string, QueryFactory<TResult, TResolvedArgs>>
+  queryFactories: Record<string, QueryFactory<TResult, TResolvedArgs>>,
 ) => {
   return (graphql: typeof GraphQL, payload: Payload) => {
     const queries: {

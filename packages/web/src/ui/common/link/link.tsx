@@ -7,7 +7,7 @@ const colorVariants = variants(
     inline: "text-brand-800",
     black: "text-gray-800",
   },
-  "inline"
+  "inline",
 );
 
 export type LinkProps = NextLinkProps &
@@ -35,7 +35,7 @@ export const Link: FC<PropsWithChildren<LinkProps>> = ({
         inverted && "text-white",
         !hideUnderline &&
           (inverted ? "hover:border-white" : "hover:border-brand-800"),
-        className
+        className,
       )}
       {...rest}
     />

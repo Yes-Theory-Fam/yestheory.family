@@ -15,7 +15,7 @@ const buttonVariants = variants(
     solid: `${baseClasses} ${shadow} text-white bg-brand-800 border-none disabled:bg-opacity-50`,
     outlined: `${baseClasses} ${shadow} text-brand-800 border-brand-800 bg-white disabled:opacity-50`,
   },
-  "solid"
+  "solid",
 );
 
 const sizeVariants = variants(
@@ -24,7 +24,7 @@ const sizeVariants = variants(
     small: "p-3 min-w-[200px] text-sm",
     medium: "p-4 min-w-[260px]",
   },
-  "medium"
+  "medium",
 );
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &

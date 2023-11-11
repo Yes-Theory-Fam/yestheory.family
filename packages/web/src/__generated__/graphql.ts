@@ -14,7 +14,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 };
 export type MakeEmpty<
   T extends { [key: string]: unknown },
-  K extends keyof T
+  K extends keyof T,
 > = { [_ in K]?: never };
 export type Incremental<T> =
   | T
@@ -141,23 +141,23 @@ export const LogoutDocument = gql`
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
   operationName: string,
-  operationType?: string
+  operationType?: string,
 ) => Promise<T>;
 
 const defaultWrapper: SdkFunctionWrapper = (
   action,
   _operationName,
-  _operationType
+  _operationType,
 ) => action();
 
 export function getSdk(
   client: GraphQLClient,
-  withWrapper: SdkFunctionWrapper = defaultWrapper
+  withWrapper: SdkFunctionWrapper = defaultWrapper,
 ) {
   return {
     ServerState(
       variables?: ServerStateQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<ServerStateQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
@@ -166,57 +166,57 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "ServerState",
-        "query"
+        "query",
       );
     },
     BuddyProjectState(
       variables?: BuddyProjectStateQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<BuddyProjectStateQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
           client.request<BuddyProjectStateQuery>(
             BuddyProjectStateDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders }
+            { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         "BuddyProjectState",
-        "query"
+        "query",
       );
     },
     BuddyProjectSignUp(
       variables?: BuddyProjectSignUpMutationVariables,
-      requestHeaders?: GraphQLClientRequestHeaders
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<BuddyProjectSignUpMutation> {
       return withWrapper(
         (wrappedRequestHeaders) =>
           client.request<BuddyProjectSignUpMutation>(
             BuddyProjectSignUpDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders }
+            { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         "BuddyProjectSignUp",
-        "mutation"
+        "mutation",
       );
     },
     TypesenseApiKey(
       variables?: TypesenseApiKeyQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<TypesenseApiKeyQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
           client.request<TypesenseApiKeyQuery>(
             TypesenseApiKeyDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders }
+            { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         "TypesenseApiKey",
-        "query"
+        "query",
       );
     },
     CurrentUser(
       variables?: CurrentUserQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<CurrentUserQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
@@ -225,12 +225,12 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "CurrentUser",
-        "query"
+        "query",
       );
     },
     Logout(
       variables?: LogoutMutationVariables,
-      requestHeaders?: GraphQLClientRequestHeaders
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<LogoutMutation> {
       return withWrapper(
         (wrappedRequestHeaders) =>
@@ -239,7 +239,7 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "Logout",
-        "mutation"
+        "mutation",
       );
     },
   };

@@ -22,7 +22,7 @@ export class GhostCheckCron {
     private matchService: MatchService,
     private guild: Guild,
     private client: Client,
-    @Logger("buddy-project", "ghost-check-cron") private logger: winston.Logger
+    @Logger("buddy-project", "ghost-check-cron") private logger: winston.Logger,
   ) {
     this.init();
   }
@@ -35,15 +35,14 @@ export class GhostCheckCron {
   async checkForGhosting() {
     const referenceTime = new Date();
     referenceTime.setHours(
-      referenceTime.getHours() - ghostedRematchDifferenceHours
+      referenceTime.getHours() - ghostedRematchDifferenceHours,
     );
 
-    const relevantGhostedEntries = await this.ghostService.getGhostedBefore(
-      referenceTime
-    );
+    const relevantGhostedEntries =
+      await this.ghostService.getGhostedBefore(referenceTime);
 
     const ghostHandlingPromises = relevantGhostedEntries.map((entry) =>
-      this.handleGhoster(entry)
+      this.handleGhoster(entry),
     );
 
     await Promise.all(ghostHandlingPromises);
@@ -61,7 +60,7 @@ export class GhostCheckCron {
     const user = await this.client.users.fetch(userId);
     const dm = await user.createDM();
     await dm.send(
-      "Hey there! Sadly your buddy didn't respond to me in time, sorry! I removed your match so you will be rematched again soon :)"
+      "Hey there! Sadly your buddy didn't respond to me in time, sorry! I removed your match so you will be rematched again soon :)",
     );
   }
 
@@ -72,7 +71,7 @@ export class GhostCheckCron {
     // Let's hope 50 are enough :)
     const lastMessages = await dm.messages.fetch({ limit: 50 });
     const ghostWarningMessage = lastMessages.find(
-      (m) => m.author.bot && !!m.content.match(ghostWarningMessageRegex)
+      (m) => m.author.bot && !!m.content.match(ghostWarningMessageRegex),
     );
 
     await ghostWarningMessage?.delete();
@@ -81,7 +80,7 @@ export class GhostCheckCron {
       `**Buddy Project Ghosted**
 
 Hey there! It appears you have gone offline on us and didn't reach out to your buddy. I tried contacting you but without success 😦
-As a consequence I removed your signup from the buddy project. Once you are around again, feel free to sign up again at <https://yestheory.family/buddyproject> and be sure to stick around on Discord!`
+As a consequence I removed your signup from the buddy project. Once you are around again, feel free to sign up again at <https://yestheory.family/buddyproject> and be sure to stick around on Discord!`,
     );
   }
 }

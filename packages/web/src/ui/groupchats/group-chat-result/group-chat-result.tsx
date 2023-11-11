@@ -67,7 +67,7 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
     <div
       className={twMerge(
         "gap-2 md:gap-3 p-4 hover:bg-gray-50/50",
-        gridClasses["result-grid"]
+        gridClasses["result-grid"],
       )}
     >
       <div
@@ -100,7 +100,7 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
         href={url}
         className={twMerge(
           gridClasses.join,
-          "sm:justify-self-end sm:self-center"
+          "sm:justify-self-end sm:self-center",
         )}
         target={"_blank"}
         rel="noreferrer"

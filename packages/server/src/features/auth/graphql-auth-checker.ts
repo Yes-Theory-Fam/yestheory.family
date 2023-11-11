@@ -10,7 +10,7 @@ export const authChecker =
 const checkRolePermissions = (
   { context }: ResolverData<YtfApolloContext>,
   roles: string[],
-  guild: Guild
+  guild: Guild,
 ) => {
   if (!context.user) {
     return false;

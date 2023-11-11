@@ -51,13 +51,13 @@ class SignUpMutation {
     private guild: Guild,
     private prisma: PrismaClient,
     private authService: AuthService,
-    private buddyProjectService: BuddyProjectService
+    private buddyProjectService: BuddyProjectService,
   ) {}
 
   @Authorized()
   @Mutation(() => WebSignUpResult)
   public async buddyProjectSignUp(
-    @Ctx() ctx: YtfApolloContext
+    @Ctx() ctx: YtfApolloContext,
   ): Promise<WebSignUpResult> {
     const { user } = ctx;
 
@@ -99,7 +99,7 @@ class SignUpMutation {
         e.code === uniqueConstraintFailedCode
       ) {
         const status = await this.buddyProjectService.getBuddyProjectStatus(
-          user.id
+          user.id,
         );
 
         return new WebSignUpResult(SignUpResult.FAILURE, status);
@@ -115,17 +115,17 @@ class SignUpMutation {
 
     const successStatus = new BuddyProjectStatusPayload(
       BuddyProjectStatus.SIGNED_UP,
-      null
+      null,
     );
 
     try {
       await dmChannel.send(
-        `Hooray, you are signed up to the buddy project! As mentioned on the website, it might take some time until you are matched. Have patience, I will message you again soon ${smileEmote}`
+        `Hooray, you are signed up to the buddy project! As mentioned on the website, it might take some time until you are matched. Have patience, I will message you again soon ${smileEmote}`,
       );
     } catch {
       return new WebSignUpResult(
         SignUpResult.SUCCESS_DMS_CLOSED,
-        successStatus
+        successStatus,
       );
     }
 
@@ -136,12 +136,12 @@ class SignUpMutation {
     const roleName = `Buddy Project ${new Date().getFullYear()}`;
 
     const bpRole = this.guild.roles.cache.find(
-      (role) => role.name === roleName
+      (role) => role.name === roleName,
     );
 
     if (!bpRole) {
       throw new Error(
-        `Could not find a role with the name '${roleName}' in the specified guild!`
+        `Could not find a role with the name '${roleName}' in the specified guild!`,
       );
     }
 
@@ -150,7 +150,7 @@ class SignUpMutation {
 
   private async addMember(
     accessToken: string,
-    userId: Snowflake
+    userId: Snowflake,
   ): Promise<void> {
     if (!accessToken) return;
     const bpRole = this.getBuddyProjectRole();

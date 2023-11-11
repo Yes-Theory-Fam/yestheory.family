@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 export const variants = <Variants extends Record<string, string>>(
   variantClassNames: Variants,
-  defaultVariant: keyof Variants
+  defaultVariant: keyof Variants,
 ): ((
   variant: keyof Variants | undefined,
   ...classNamesToMerge: (string | undefined | false)[]
@@ -10,7 +10,7 @@ export const variants = <Variants extends Record<string, string>>(
   return (variant, ...classNamesToMerge) => {
     return twMerge(
       variantClassNames[variant ?? defaultVariant],
-      ...classNamesToMerge
+      ...classNamesToMerge,
     );
   };
 };

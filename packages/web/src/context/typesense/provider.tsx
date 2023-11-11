@@ -13,7 +13,7 @@ import { getTypesenseClient } from "./client";
 export type TypesenseContextData = { client: SearchClient };
 
 export const TypesenseContext = createContext<TypesenseContextData | null>(
-  null
+  null,
 );
 
 export type TypesenseProviderProps = PropsWithChildren<{

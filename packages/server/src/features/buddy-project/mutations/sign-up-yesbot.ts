@@ -13,12 +13,12 @@ class SignUpYesBotMutation {
   constructor(
     @Logger("buddy-project", "signup-yesbot") private logger: winston.Logger,
     private guild: Guild,
-    private prisma: PrismaClient
+    private prisma: PrismaClient,
   ) {}
 
   @Mutation(() => BuddyProjectSignUpYesBotPayload)
   public async signUp(
-    @Arg("userId") userId: string
+    @Arg("userId") userId: string,
   ): Promise<BuddyProjectSignUpYesBotPayload> {
     // See https://www.prisma.io/docs/reference/api-reference/error-reference#p2002
     const uniqueConstraintFailedCode = "P2002";
@@ -34,7 +34,7 @@ class SignUpYesBotMutation {
       ) {
         return new BuddyProjectSignUpYesBotPayload(
           false,
-          "You are already signed up!"
+          "You are already signed up!",
         );
       }
     }
@@ -43,7 +43,7 @@ class SignUpYesBotMutation {
     if (!member) {
       return new BuddyProjectSignUpYesBotPayload(
         false,
-        "I could not find you on the server!"
+        "I could not find you on the server!",
       );
     }
 
@@ -52,7 +52,7 @@ class SignUpYesBotMutation {
     if (!role) {
       return new BuddyProjectSignUpYesBotPayload(
         false,
-        "I could not find the Buddy Project role on the server!"
+        "I could not find the Buddy Project role on the server!",
       );
     }
 

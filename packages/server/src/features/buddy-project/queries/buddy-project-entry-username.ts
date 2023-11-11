@@ -13,12 +13,12 @@ class BuddyProjectEntryUsernameResolver {
   constructor(
     @Logger("buddy-project", "buddy-project-entry-username")
     private logger: winston.Logger,
-    private guild: Guild
+    private guild: Guild,
   ) {}
 
   @FieldResolver(() => String, { nullable: true })
   public async username(
-    @Root() entry: BuddyProjectEntry
+    @Root() entry: BuddyProjectEntry,
   ): Promise<string | null> {
     const id = entry.userId;
     const member = await this.guild.members.fetch(id);

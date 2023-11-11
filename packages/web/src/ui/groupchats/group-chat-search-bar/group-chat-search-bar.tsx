@@ -19,7 +19,7 @@ type SearchReducerAction =
 
 const searchReducer = (
   state: SearchChangeArgs,
-  action: SearchReducerAction
+  action: SearchReducerAction,
 ): SearchChangeArgs => {
   switch (action.type) {
     case "clearQuery":

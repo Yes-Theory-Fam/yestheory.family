@@ -22,7 +22,7 @@ import { Profile } from "../profile/profile";
 interface MobileHeadlineProps {
   logoVariant: LogoProps["variant"];
   icon: JSXElementConstructor<
-    SVGProps<SVGSVGElement> & { title?: string; titleId?: string }
+    Omit<SVGProps<SVGSVGElement>, "ref"> & { title?: string; titleId?: string }
   >;
   onClick: () => void;
 }

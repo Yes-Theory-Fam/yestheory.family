@@ -26,7 +26,7 @@ export class GhostService {
   }
 
   async markAsGhosted(
-    userId: string
+    userId: string,
   ): Promise<{ error: MarkGhostedError } | { buddyId: string }> {
     const existingEntry = await this.prisma.buddyProjectEntry.findUnique({
       where: { userId },

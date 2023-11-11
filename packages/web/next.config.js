@@ -3,9 +3,6 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 /** @returns {import("next").NextConfig} */
 const config = (phase) => ({
   productionBrowserSourceMaps: true,
-  experimental: {
-    serverActions: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

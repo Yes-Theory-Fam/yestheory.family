@@ -12,7 +12,7 @@ import { AuthenticatedUser, AuthProvider } from "../authenticated-user";
 class UserServerStateResolver {
   constructor(
     @Logger("user", "server-state") private logger: winston.Logger,
-    private guild: Guild
+    private guild: Guild,
   ) {}
 
   @Authorized()

@@ -29,7 +29,7 @@ export const launchYesBotSchemaServer = () => {
           "Content-Type": "application/json",
           "x-yesbot-authentication": process.env.YESBOT_API_TOKEN,
         },
-      }
+      },
     );
 
     ctx.body = await response.json();
@@ -39,6 +39,6 @@ export const launchYesBotSchemaServer = () => {
   app.use(router.allowedMethods());
 
   app.listen({ port: thisPort }, () =>
-    logger.info(`Backend listening on port ${thisPort}`)
+    logger.info(`Backend listening on port ${thisPort}`),
   );
 };

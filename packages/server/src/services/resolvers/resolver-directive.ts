@@ -25,7 +25,7 @@ const logger = createServerLogger("services", "resolver");
 
 export const Resolver = (
   resolverTarget: ResolverTarget | ResolverTarget[],
-  args?: ClassTypeResolver | ClassType | undefined
+  args?: ClassTypeResolver | ClassType | undefined,
 ) => {
   const resolverTargets = Array.isArray(resolverTarget)
     ? resolverTarget
@@ -48,43 +48,41 @@ export const Resolver = (
   };
 };
 
-const collectResolvers = (): Promise<void> =>
-  new Promise((res, rej) => {
-    logger.info("Collecting resolvers");
+const collectResolvers = async (): Promise<void> => {
+  logger.info("Collecting resolvers");
 
-    const extension = process.env.NODE_ENV === "production" ? ".js" : ".ts";
-    const baseDirectory =
-      process.env.NODE_ENV === "production" ? "dist" : "src";
+  const extension = process.env.NODE_ENV === "production" ? ".js" : ".ts";
+  const baseDirectory = process.env.NODE_ENV === "production" ? "dist" : "src";
 
-    glob(`${baseDirectory}/features/**/*${extension}`, async (e, matches) => {
-      if (e) {
-        logger.error("Error loading resolvers: ", e);
-        rej(e);
-        return;
-      }
+  let matches: string[];
 
-      const importPromises = matches.map((p) => {
-        const split = p.split(".");
-        split.unshift();
-        const modulePath = path.join(process.cwd(), split.join("."));
+  try {
+    matches = await glob(`${baseDirectory}/features/**/*${extension}`);
+  } catch (e) {
+    logger.error("Error loading resolvers: ", e);
+    throw e;
+  }
 
-        return import(modulePath);
-      });
+  const importPromises = matches.map((p) => {
+    const split = p.split(".");
+    split.unshift();
+    const modulePath = path.join(process.cwd(), split.join("."));
 
-      try {
-        await Promise.all(importPromises);
-      } catch (e) {
-        logger.error("Error loading resolvers: ", e);
-        rej(e);
-        return;
-      }
-      logger.debug("Loading complete!");
-      res();
-    });
+    return import(modulePath);
   });
 
+  try {
+    await Promise.all(importPromises);
+  } catch (e) {
+    logger.error("Error loading resolvers: ", e);
+    throw e;
+  }
+
+  logger.debug("Loading complete!");
+};
+
 export const getResolvers = async (
-  target: ResolverTarget
+  target: ResolverTarget,
 ): Promise<NonEmptyArray<Class>> => {
   const resolversForTarget = resolvers[target];
 
@@ -94,7 +92,7 @@ export const getResolvers = async (
 
   if (resolversForTarget.length === 0) {
     throw new Error(
-      "No resolver was loaded, make sure at least one resolver is tagged with the Resolver decorator from the service directory!"
+      "No resolver was loaded, make sure at least one resolver is tagged with the Resolver decorator from the service directory!",
     );
   }
 

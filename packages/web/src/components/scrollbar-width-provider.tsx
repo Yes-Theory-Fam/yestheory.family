@@ -11,7 +11,7 @@ export const ScrollbarWidthProvider: FC = () => {
     const scrollbarWidth = windowInnerWidth - clientWidth;
     document.documentElement.style.setProperty(
       "--scrollbar-width",
-      `${scrollbarWidth}px`
+      `${scrollbarWidth}px`,
     );
   }, []);
 

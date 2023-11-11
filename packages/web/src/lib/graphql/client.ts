@@ -29,7 +29,7 @@ export const getGraphqlClient = () => {
                 depth: null,
                 colors: true,
               }),
-              util.inspect(JSON.stringify(requestHeaders, null, 4))
+              util.inspect(JSON.stringify(requestHeaders, null, 4)),
             );
             return req;
           }
@@ -40,7 +40,7 @@ export const getGraphqlClient = () => {
 };
 
 export const graphqlWithHeaders = async <T>(
-  cb: (sdk: Sdk) => Promise<T>
+  cb: (sdk: Sdk) => Promise<T>,
 ): Promise<T> => {
   const client = getGraphqlClient();
 

@@ -8,7 +8,7 @@ export const getTypesenseClient = (apiKey: string) => {
 
   if (isServer) {
     const directUrl = new URL(
-      process.env.TYPESENSE_DIRECT_URL ?? "http://localhost:8108"
+      process.env.TYPESENSE_DIRECT_URL ?? "http://localhost:8108",
     );
     const protocol = directUrl.protocol;
     const port =

@@ -36,5 +36,5 @@ export const SignupSuccessModal = NiceModal.create<{ hasDmsClosed: boolean }>(
         )}
       </Modal>
     );
-  }
+  },
 );

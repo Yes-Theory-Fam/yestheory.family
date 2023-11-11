@@ -53,7 +53,7 @@ const ensureTypesenseCollectionExists = async () => {
 
   if (schemaExists) {
     console.info(
-      "Groupchats already schema exists in typesense, let's delete so we can update!"
+      "Groupchats already schema exists in typesense, let's delete so we can update!",
     );
     await typesenseClient.collections(collectionName).delete();
   }
@@ -75,7 +75,7 @@ const syncGroupchatsToTypesense = async () => {
       ({ createdAt, updatedAt, keywords, ...rest }) => ({
         ...rest,
         keywords: keywords?.map(({ value }) => value) ?? [],
-      })
+      }),
     );
 
     if (typesenseChats.length === 0) {

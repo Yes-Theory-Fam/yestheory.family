@@ -5,7 +5,6 @@ import { InfoGrid } from "ui/buddyproject";
 import { buddyProjectSvg, yesbotBuddyProjectWebp } from "../../../assets";
 import { BuddyProjectButton } from "./components/buddy-project-button";
 import { graphqlWithHeaders } from "../../lib/graphql/client";
-import { headers } from "next/headers";
 
 const title = "The Buddy Project";
 const description =
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     type: "website",
-    images: [process.env.FRONTEND_URL + yesbotBuddyProjectWebp.src],
+    images: yesbotBuddyProjectWebp.src,
     url: "https://yestheory.family/buddyproject",
     description,
   },

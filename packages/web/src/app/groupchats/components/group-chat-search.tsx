@@ -22,7 +22,7 @@ type GroupchatResult = {
 const fetchResults = async (
   queryText: string,
   platforms: GroupChatPlatform[],
-  searchClient: SearchClient
+  searchClient: SearchClient,
 ): Promise<GroupchatResult[]> => {
   const filterBy =
     platforms.length === 0 ? "" : `platform:[${platforms.join(",")}]`;
@@ -37,7 +37,7 @@ const fetchResults = async (
         filter_by: filterBy,
         sort_by: "promoted:desc",
       },
-      {}
+      {},
     );
 
   return (

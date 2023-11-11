@@ -24,7 +24,7 @@ export class AuthenticatedUser {
     id: string,
     username: string,
     avatarUrl: string,
-    provider: AuthProvider
+    provider: AuthProvider,
   ) {
     this.id = id;
     this.username = username;

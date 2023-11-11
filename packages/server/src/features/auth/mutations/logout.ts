@@ -14,7 +14,7 @@ import { AuthService, YtfAuthContext } from "../auth-service";
 class LogoutMutation {
   constructor(
     @Logger("auth", "logout") private logger: winston.Logger,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   @Authorized()
@@ -38,7 +38,7 @@ class LogoutMutation {
       .filter((t): t is string => !!t);
 
     const invalidatePromises = tokens.map((t) =>
-      this.authService.invalidateToken(t, provider)
+      this.authService.invalidateToken(t, provider),
     );
 
     await Promise.all(invalidatePromises);

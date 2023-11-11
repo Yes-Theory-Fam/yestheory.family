@@ -9,7 +9,7 @@ import { typesenseReady } from "../lib/typesense";
 export const main = async () => {
   process.env.PAYLOAD_CONFIG_PATH = path.resolve(
     __dirname,
-    `../payload.config${path.extname(__filename)}`
+    `../payload.config${path.extname(__filename)}`,
   );
 
   await initPayload({ local: true });

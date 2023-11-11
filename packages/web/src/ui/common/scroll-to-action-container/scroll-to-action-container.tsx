@@ -16,7 +16,7 @@ export const ScrollToActionContainer: FC<
     const navBarElement = document.querySelector("#navigation");
     if (!navBarElement) {
       throw new Error(
-        "Failed to resolve #navigation element to determine scroll amount. Make sure an element with that ID exists!"
+        "Failed to resolve #navigation element to determine scroll amount. Make sure an element with that ID exists!",
       );
     }
 

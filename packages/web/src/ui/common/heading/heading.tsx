@@ -9,7 +9,7 @@ const variant = variants(
     h4: "text-lg sm:text-xl md:text-2xl my-1",
     h5: "text-base sm:text-lg md:text-xl",
   },
-  "h1"
+  "h1",
 );
 
 export type HeadingProps = VariantProp<typeof variant, "size"> & {
@@ -33,7 +33,7 @@ export const Heading: FC<HeadingProps> = forwardRef<
       className,
       center = size === "h1",
     },
-    ref
+    ref,
   ) => {
     const HElement = size;
 
@@ -44,7 +44,7 @@ export const Heading: FC<HeadingProps> = forwardRef<
           size,
           "text-gray-800 uppercase font-black",
           center && "text-center mx-auto",
-          className
+          className,
         )}
       >
         {frontText}
@@ -53,6 +53,6 @@ export const Heading: FC<HeadingProps> = forwardRef<
         {backText ?? ""}
       </HElement>
     );
-  }
+  },
 );
 Heading.displayName = "Heading";

@@ -9,6 +9,7 @@ import "../../styles/globals.css";
 import { getCurrentUser } from "../context/user/user";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.FRONTEND_URL),
   title: {
     absolute: "YesTheory Family",
     template: "%s - YesTheory Family",

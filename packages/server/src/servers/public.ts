@@ -118,7 +118,7 @@ export const launchPublicServer = async () => {
 
       const authErrors =
         response.errors?.filter((e) =>
-          e.message.startsWith("Access denied!")
+          e.message.startsWith("Access denied!"),
         ) ?? [];
       const user = (reqContext.context as YtfApolloContext).user;
 
@@ -130,7 +130,7 @@ export const launchPublicServer = async () => {
 
       const unknownErrors =
         response.errors?.filter(
-          (e) => !discordAuthError.includes(e) && !authErrors.includes(e)
+          (e) => !discordAuthError.includes(e) && !authErrors.includes(e),
         ) ?? [];
       if (unknownErrors.length > 0) {
         logger.error("Error executing graphql resolver", unknownErrors);

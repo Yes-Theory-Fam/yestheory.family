@@ -26,7 +26,7 @@ export const BuddyProjectButton: FC<BuddyProjectButtonProps> = ({
   const signUp = useCallback(async () => {
     if (!isOnServer) {
       const confirmedJoinServer = await NiceModal.show(
-        ServerJoinConfirmationModal
+        ServerJoinConfirmationModal,
       );
 
       if (!confirmedJoinServer) return;

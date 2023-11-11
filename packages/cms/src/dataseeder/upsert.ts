@@ -19,7 +19,7 @@ type UpsertArgs<T extends CollectionKey> = {
 } & Omit<CreateOptions<T> & UpdateOptions<T>, "id" | "where">;
 
 export const upsert = async <T extends CollectionKey>(
-  optionsAndKey: UpsertArgs<T>
+  optionsAndKey: UpsertArgs<T>,
 ) => {
   const { key, ...options } = optionsAndKey;
   const firstKey: CollectionField<T> = Array.isArray(key) ? key[0] : key;

@@ -1,7 +1,7 @@
 import { Client } from "typesense";
 
 const apiUrl = new URL(
-  process.env.TYPESENSE_API_URL ?? "http://localhost:8108"
+  process.env.TYPESENSE_API_URL ?? "http://localhost:8108",
 );
 
 const protocol = apiUrl.protocol;

@@ -14,7 +14,7 @@ const fmt = format.printf(({ level, message, timestamp, ...meta }) => {
   // Add a json-kinda dict with metadata if present
   if (Object.keys(fields).length > 0) {
     return `${out}${level} [${kind}] [${program}]: ${message} ${JSON.stringify(
-      fields
+      fields,
     )}`;
   }
   return `${out}${level} [${kind}] [${program}]: ${message}`;
@@ -32,7 +32,7 @@ if (SHOW_TIMESTAMP) {
   formatters.push(
     format.timestamp({
       format: "HH:mm:ss.SSS",
-    })
+    }),
   );
 }
 
@@ -49,7 +49,7 @@ const rootLogger = createLogger(loggerOpts);
 
 export const createServerLogger = (
   kind: string,
-  program: string
+  program: string,
 ): winston.Logger => {
   return rootLogger.child({
     kind,

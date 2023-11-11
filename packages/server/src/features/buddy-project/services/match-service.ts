@@ -8,7 +8,7 @@ export class MatchService {
 
   constructor(
     private prisma: PrismaClient,
-    private keyValueStore: KeyValueStore
+    private keyValueStore: KeyValueStore,
   ) {}
 
   async isEnabled(): Promise<boolean> {
