@@ -25,7 +25,7 @@ export const initialize = async (skipLogin = false): Promise<DiscordValues> => {
 
   if (!client.readyAt) {
     logger.info(
-      "Client is not ready, delaying, retrying remaining initialization in a second."
+      "Client is not ready, delaying, retrying remaining initialization in a second.",
     );
     return new Promise((res, rej) => {
       setTimeout(() => initialize(true).then(res).catch(rej), 1000);

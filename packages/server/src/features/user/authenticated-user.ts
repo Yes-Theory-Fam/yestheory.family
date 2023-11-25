@@ -24,7 +24,7 @@ export class AuthenticatedUser {
     id: string,
     username: string,
     avatarUrl: string,
-    provider: AuthProvider
+    provider: AuthProvider,
   ) {
     this.id = id;
     this.username = username;
@@ -39,7 +39,7 @@ export class AuthenticatedUser {
 
     return {
       id: profile.id,
-      username: `${profile.username}#${profile.discriminator}`,
+      username: profile.username,
       avatarUrl,
       type: AuthProvider.DISCORD,
     };

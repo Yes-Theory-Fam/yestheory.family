@@ -17,7 +17,7 @@ class GhostMutations {
 
   @Mutation(() => MarkGhostedPayload)
   async markGhosted(
-    @Arg("userId") userId: string
+    @Arg("userId") userId: string,
   ): Promise<MarkGhostedPayload> {
     const result = await this.ghostService.markAsGhosted(userId);
 
@@ -52,7 +52,7 @@ class MarkGhostedPayload {
   constructor(
     success: boolean,
     error: MarkGhostedError | undefined,
-    buddyId: string | undefined
+    buddyId: string | undefined,
   ) {
     this.success = success;
     this.error = error;

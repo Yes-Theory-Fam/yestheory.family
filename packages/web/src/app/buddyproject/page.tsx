@@ -1,12 +1,10 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
 import { Image } from "ui";
 import { ScrollToActionContainer } from "ui/client";
 import { InfoGrid } from "ui/buddyproject";
 import { buddyProjectSvg, yesbotBuddyProjectWebp } from "../../../assets";
-import { graphqlWithHeaders } from "../../lib/graphql";
-import { getCurrentUser } from "../api/user/common";
 import { BuddyProjectButton } from "./components/buddy-project-button";
+import { graphqlWithHeaders } from "../../lib/graphql/client";
 
 const title = "The Buddy Project";
 const description =
@@ -18,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     type: "website",
-    images: [process.env.FRONTEND_URL + yesbotBuddyProjectWebp.src],
+    images: yesbotBuddyProjectWebp.src,
     url: "https://yestheory.family/buddyproject",
     description,
   },
@@ -45,29 +43,25 @@ const CTA = () => {
   );
 };
 
-const isCurrentUserOnServer = async () => {
-  const [data] = await graphqlWithHeaders(headers(), (sdk) =>
-    sdk.ServerState()
-  );
-
-  return data.me?.isOnServer ?? false;
-};
-
 const Page = async () => {
-  const currentUser = await getCurrentUser();
+  const x = await graphqlWithHeaders((sdk) => sdk.ServerState());
+
+  const currentUser = x.me;
   const isLoggedIn = !!currentUser;
-  const isOnServer = await isCurrentUserOnServer();
+  const isOnServer = currentUser?.isOnServer ?? false;
+
+  const emptyState = { status: "NOT_SIGNED_UP", buddy: null } as const;
 
   const state = isLoggedIn
-    ? (await graphqlWithHeaders(headers(), (sdk) => sdk.BuddyProjectState()))[0]
-        .getBuddyProjectStatus
-    : ({ status: "NOT_SIGNED_UP", buddy: null } as const);
+    ? (await graphqlWithHeaders((sdk) => sdk.BuddyProjectState()))
+        .getBuddyProjectStatus ?? emptyState
+    : emptyState;
   const { status, buddy } = state;
 
   return (
     <>
       <CTA />
-      <div className="mx-auto px-8 my-6 min-h-[75vh] flex flex-col justify-center items-center gap-8">
+      <div className="mx-auto my-6 min-h-[75vh] flex flex-col justify-center items-center gap-8">
         <InfoGrid state={status} buddyName={buddy?.username ?? "Unmatched"} />
         <BuddyProjectButton
           state={status}

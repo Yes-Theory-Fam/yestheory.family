@@ -1,4 +1,4 @@
-import { ApolloServer } from "apollo-server-koa";
+import { ApolloServer, gql } from "apollo-server-koa";
 import { Guild } from "discord.js";
 import grant from "grant";
 import Koa, { Context } from "koa";
@@ -19,6 +19,11 @@ import {
   ResolverTarget,
 } from "../services/resolvers/resolver-directive";
 import { YtfApolloContext } from "../types";
+import { buildHTTPExecutor } from "@graphql-tools/executor-http";
+import { stitchSchemas } from "@graphql-tools/stitch";
+import { schemaFromExecutor } from "@graphql-tools/wrap";
+import { delegateToSchema } from "@graphql-tools/delegate";
+import { OperationTypeNode } from "graphql/language/ast";
 
 const logger = createServerLogger("server", "public");
 
@@ -36,11 +41,45 @@ export const launchPublicServer = async () => {
 
   const resolvers = await getResolvers(ResolverTarget.PUBLIC);
 
-  const schema = buildSchemaSync({
+  const publicServerSchema = buildSchemaSync({
     directives: [ExportDirective],
     resolvers,
     container: Container,
     ...additionalOptions,
+  });
+
+  const cmsExecutor = buildHTTPExecutor({
+    endpoint: process.env.CMS_ENDPOINT,
+  });
+  const cmsSchema = {
+    schema: await schemaFromExecutor(cmsExecutor),
+    executor: cmsExecutor,
+  };
+
+  const stitchedSchema = stitchSchemas({
+    subschemas: [publicServerSchema],
+    mergeDirectives: true,
+    typeDefs: gql`
+      extend type Query {
+        groupchatSearchToken: String!
+      }
+    `,
+    resolvers: {
+      Query: {
+        groupchatSearchToken: {
+          resolve(parent, _, context, info) {
+            return delegateToSchema({
+              schema: cmsSchema,
+              operation: OperationTypeNode.QUERY,
+              fieldName: "searchTokenByAuthenticated",
+              args: { isAuthenticated: !!context.user },
+              context,
+              info,
+            });
+          },
+        },
+      },
+    },
   });
 
   const port = process.env["BACKEND_PORT"] ?? 5000;
@@ -53,7 +92,7 @@ export const launchPublicServer = async () => {
   app.use(authenticationRouter.routes());
 
   const server = new ApolloServer({
-    schema,
+    schema: stitchedSchema,
     context: (req): YtfApolloContext => {
       const ctx: Context = req.ctx;
       const maybeUser = ctx.session?.user;
@@ -79,7 +118,7 @@ export const launchPublicServer = async () => {
 
       const authErrors =
         response.errors?.filter((e) =>
-          e.message.startsWith("Access denied!")
+          e.message.startsWith("Access denied!"),
         ) ?? [];
       const user = (reqContext.context as YtfApolloContext).user;
 
@@ -91,7 +130,7 @@ export const launchPublicServer = async () => {
 
       const unknownErrors =
         response.errors?.filter(
-          (e) => !discordAuthError.includes(e) && !authErrors.includes(e)
+          (e) => !discordAuthError.includes(e) && !authErrors.includes(e),
         ) ?? [];
       if (unknownErrors.length > 0) {
         logger.error("Error executing graphql resolver", unknownErrors);

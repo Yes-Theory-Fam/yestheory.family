@@ -3,11 +3,7 @@
     "es6": true,
     "node": true
   },
-  "plugins": ["prettier"],
   "extends": ["eslint:recommended"],
-  "rules": {
-    "prettier/prettier": "error"
-  },
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
@@ -31,11 +27,10 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
       },
-      "plugins": ["@typescript-eslint", "prettier"],
+      "plugins": ["@typescript-eslint"],
       "rules": {
         "no-await-in-loop": "error",
         "curly": ["error", "multi-line", "consistent"],
-        "default-case": "error",
         "default-case-last": "error",
         "@typescript-eslint/default-param-last": "error",
         "eqeqeq": "error",

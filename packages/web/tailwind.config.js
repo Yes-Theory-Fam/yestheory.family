@@ -1,5 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{ts,tsx}"],
+  future: { hoverOnlyWhenSupported: true },
   theme: {
     extend: {
       backgroundImage: {
@@ -36,6 +38,7 @@ module.exports = {
       white: "#ffffff",
       black: "#000000",
       transparent: "#00000000",
+      warning: "#ffc940",
       brand: {
         50: "#e2f4ff",
         100: "#bae2ff",

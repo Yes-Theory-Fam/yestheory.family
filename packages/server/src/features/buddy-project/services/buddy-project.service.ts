@@ -37,7 +37,7 @@ export class BuddyProjectService {
   }
 
   async getBuddyProjectStatus(
-    userId: string
+    userId: string,
   ): Promise<BuddyProjectStatusPayload> {
     const entry = await this.prisma.buddyProjectEntry.findUnique({
       where: { userId: userId },

@@ -22,7 +22,7 @@ export const LoginButton: FC<LoginButtonProps> = ({
       <DiscordLogo
         className={twMerge(
           "h-5 w-5 transition-fill duration-300",
-          inverted ? "fill-brand-800 group-hover:fill-white" : "fill-white"
+          inverted ? "fill-brand-800 group-hover:fill-white" : "fill-white",
         )}
       />
       Sign in with Discord

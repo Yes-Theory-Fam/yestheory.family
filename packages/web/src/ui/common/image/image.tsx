@@ -8,7 +8,7 @@ const shadowVariants = variants(
     right: "shadow-image-right",
     none: "",
   },
-  "none"
+  "none",
 );
 
 export type ImageProps = NextImageProps &

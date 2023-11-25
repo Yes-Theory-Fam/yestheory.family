@@ -1,7 +1,7 @@
 import { FC, ButtonHTMLAttributes, PropsWithChildren, forwardRef } from "react";
 import { VariantProp, variants } from "../../variants";
 
-const baseClasses = "border uppercase rounded-full duration-300 relative";
+const baseClasses = "border uppercase rounded-lg duration-300 relative";
 const shadowBefore =
   "before:content-[''] before:h-[10px] before:left-[5%] before:opacity-0 before:pointer-events-none before:absolute " +
   "before:top-full before:w-[90%] before:z-[-1] before:transition-[transform,opacity] before:duration-300 " +
@@ -15,15 +15,16 @@ const buttonVariants = variants(
     solid: `${baseClasses} ${shadow} text-white bg-brand-800 border-none disabled:bg-opacity-50`,
     outlined: `${baseClasses} ${shadow} text-brand-800 border-brand-800 bg-white disabled:opacity-50`,
   },
-  "solid"
+  "solid",
 );
 
 const sizeVariants = variants(
   {
-    small: "h-unset p-3 min-w-[200px] text-sm",
-    medium: "h-unset p-4 min-w-[260px]",
+    tiny: "py-2 px-4 text-sm normal-case",
+    small: "p-3 min-w-[200px] text-sm",
+    medium: "p-4 min-w-[260px]",
   },
-  "medium"
+  "medium",
 );
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &

@@ -29,7 +29,7 @@ export class MatchingCron {
     private blockService: BlockService,
     private client: Client,
     private guild: Guild,
-    @Logger("buddy-project", "matching-cron") private logger: winston.Logger
+    @Logger("buddy-project", "matching-cron") private logger: winston.Logger,
   ) {
     this.init();
   }
@@ -44,14 +44,14 @@ export class MatchingCron {
     if (!enabled) return;
 
     const idsToMatch = await this.buddyProjectService.getUnmatchedBuddyIds(
-      MatchingCron.matchAmount
+      MatchingCron.matchAmount,
     );
 
     const pairs = partition(2, ...idsToMatch);
     if (pairs.length === 0) return;
 
     const matchingPromises = pairs.map((pair) =>
-      this.match(pair as [string, string])
+      this.match(pair as [string, string]),
     );
 
     await Promise.all(matchingPromises);
@@ -76,20 +76,20 @@ export class MatchingCron {
       "Right, this one is going to be disappointing... I had already matched you " +
         "but your match had their DMs disabled, so I had to rollback everything.\n\n" +
         "This message was sent to make sure you are not left wondering why I sent you a message that suddenly vanished. " +
-        "Don't worry, you are still signed up and will be matched soon (that time hopefully with better luck though)!"
+        "Don't worry, you are still signed up and will be matched soon (that time hopefully with better luck though)!",
     );
   }
 
   async match([first, second]: [Snowflake, Snowflake]) {
     const infoChannel = this.guild.channels.cache.find(
-      (c) => c.name === "buddy-project-info"
+      (c) => c.name === "buddy-project-info",
     );
 
     try {
       await this.matchService.match([first, second]);
       const firstSentMessage = await this.trySendQuestions(
         first,
-        `${intro(second, infoChannel)}\n\n${oddQuestions}`
+        `${intro(second, infoChannel)}\n\n${oddQuestions}`,
       );
       if (!firstSentMessage) {
         await this.matchService.unmatch([first, second]);
@@ -98,7 +98,7 @@ export class MatchingCron {
 
       const secondSentMessage = await this.trySendQuestions(
         second,
-        `${intro(first, infoChannel)}\n\n${evenQuestions}`
+        `${intro(first, infoChannel)}\n\n${evenQuestions}`,
       );
       if (!secondSentMessage) {
         await this.matchService.unmatch([first, second]);

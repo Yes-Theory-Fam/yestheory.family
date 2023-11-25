@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { Guild } from "discord.js";
 import { Arg, Field, Mutation, ObjectType } from "type-graphql";
 import winston from "winston";
@@ -14,12 +13,12 @@ class SignUpYesBotMutation {
   constructor(
     @Logger("buddy-project", "signup-yesbot") private logger: winston.Logger,
     private guild: Guild,
-    private prisma: PrismaClient
+    private prisma: PrismaClient,
   ) {}
 
   @Mutation(() => BuddyProjectSignUpYesBotPayload)
   public async signUp(
-    @Arg("userId") userId: string
+    @Arg("userId") userId: string,
   ): Promise<BuddyProjectSignUpYesBotPayload> {
     // See https://www.prisma.io/docs/reference/api-reference/error-reference#p2002
     const uniqueConstraintFailedCode = "P2002";
@@ -30,12 +29,12 @@ class SignUpYesBotMutation {
       });
     } catch (e) {
       if (
-        e instanceof PrismaClientKnownRequestError &&
+        e instanceof Prisma.PrismaClientKnownRequestError &&
         e.code === uniqueConstraintFailedCode
       ) {
         return new BuddyProjectSignUpYesBotPayload(
           false,
-          "You are already signed up!"
+          "You are already signed up!",
         );
       }
     }
@@ -44,7 +43,7 @@ class SignUpYesBotMutation {
     if (!member) {
       return new BuddyProjectSignUpYesBotPayload(
         false,
-        "I could not find you on the server!"
+        "I could not find you on the server!",
       );
     }
 
@@ -53,7 +52,7 @@ class SignUpYesBotMutation {
     if (!role) {
       return new BuddyProjectSignUpYesBotPayload(
         false,
-        "I could not find the Buddy Project role on the server!"
+        "I could not find the Buddy Project role on the server!",
       );
     }
 

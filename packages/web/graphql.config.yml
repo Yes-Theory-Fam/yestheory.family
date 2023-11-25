@@ -1,0 +1,9 @@
+schema: schema.graphql
+extensions:
+  endpoints:
+    Backend:
+      url: http://localhost:5000/graphql
+      headers:
+        user-agent: JS GraphQL
+        Cookie: ytf-cookie-consent=0;
+      introspect: false

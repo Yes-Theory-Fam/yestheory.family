@@ -3,9 +3,6 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 /** @returns {import("next").NextConfig} */
 const config = (phase) => ({
   productionBrowserSourceMaps: true,
-  experimental: {
-    appDir: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -16,6 +13,10 @@ const config = (phase) => ({
     {
       source: "/graphql",
       destination: "http://localhost:5000/graphql",
+    },
+    {
+      source: "/typesense/:slug*",
+      destination: "http://localhost:8108/:slug*",
     },
     {
       source: "/oauth/:slug*",

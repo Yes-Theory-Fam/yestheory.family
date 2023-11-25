@@ -32,8 +32,8 @@ export const Modal = ({
 }: PropsWithChildren<ModalProps>) => (
   <Root open={true}>
     <Portal>
-      <Overlay className="fixed inset-0 bg-gray-500/30 z-50">
-        <Content className="flex flex-col justify-between items-start gap-6 bg-white p-4 md:p-8 rounded mx-auto max-w-2xl shadow relative inset-0 top-1/2 -translate-y-1/2">
+      <Overlay className="fixed inset-0 bg-gray-500/30 z-50 backdrop-blur-sm">
+        <Content className="flex flex-col justify-between items-start gap-6 bg-white p-4 md:p-8 rounded mx-auto max-w-2xl shadow-lg relative inset-0 top-1/2 -translate-y-1/2">
           <Title asChild>
             <Heading size={"h3"} frontText={title} />
           </Title>

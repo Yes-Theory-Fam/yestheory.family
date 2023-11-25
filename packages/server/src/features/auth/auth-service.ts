@@ -1,6 +1,5 @@
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v10";
-import fetch from "node-fetch";
 import { Service } from "typedi";
 import { URLSearchParams } from "url";
 import { createServerLogger } from "../../services/logging/log";
@@ -36,7 +35,7 @@ const discordAuthError = new Error(discordAuthErrorCode);
 export class AuthService {
   public async refreshToken(
     refreshToken: string,
-    authProvider: AuthProvider
+    authProvider: AuthProvider,
   ): Promise<YtfAuthContext> {
     const logger = createServerLogger("authService", "refreshToken");
 
@@ -87,7 +86,7 @@ export class AuthService {
 
   public async invalidateToken(
     token: string,
-    provider: AuthProvider
+    provider: AuthProvider,
   ): Promise<void> {
     const revokeUrl = revokeUrls[provider];
 
@@ -114,7 +113,7 @@ export class AuthService {
   }
 
   public async ensureValidToken(
-    ctx: YtfApolloContext
+    ctx: YtfApolloContext,
   ): Promise<YtfAuthContext> {
     const { auth, user } = ctx;
 

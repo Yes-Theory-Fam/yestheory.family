@@ -54,7 +54,7 @@ export const Profile: FC<ProfileProps> = ({ user, variant, menuItems }) => {
         >
           {menuItems.map((i) => (
             <Item
-              className="bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 text-left hover:outline-none"
+              className="bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 text-left hover:outline-none cursor-pointer"
               onClick={() => i.onClick?.()}
               key={i.key}
             >

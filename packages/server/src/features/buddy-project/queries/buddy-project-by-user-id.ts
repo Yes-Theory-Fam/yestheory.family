@@ -12,7 +12,7 @@ class BuddyProjectByUserIdQuery {
 
   @Query(() => BuddyProjectStatusPayload)
   public async getBuddy(
-    @Arg("userId") userId: string
+    @Arg("userId") userId: string,
   ): Promise<BuddyProjectStatusPayload> {
     return await this.buddyProjectService.getBuddyProjectStatus(userId);
   }

@@ -6,8 +6,8 @@ import { Constructable } from "typedi/types/types/constructable.type";
 export function Logger(kind: string, program: string) {
   return function (
     object: Constructable<unknown>,
-    propertyName: string,
-    index?: number
+    propertyName: string | undefined,
+    index?: number,
   ): void {
     const logger = createServerLogger(kind, program);
     Container.registerHandler({

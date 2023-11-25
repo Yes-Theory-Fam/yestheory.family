@@ -1,0 +1,39 @@
+.result-grid {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-areas:
+    "icon title"
+    "icon meta"
+    "description description"
+    "join join";
+}
+
+@media screen and (min-width: 640px) {
+  .result-grid {
+    grid-template-columns: 3rem 1fr 3rem;
+    grid-template-areas:
+      "icon title join"
+      "icon meta join"
+      "icon description join";
+  }
+}
+
+.icon {
+  grid-area: icon;
+}
+
+.title {
+  grid-area: title;
+}
+
+.join {
+  grid-area: join;
+}
+
+.meta {
+  grid-area: meta;
+}
+
+.description {
+  grid-area: description;
+}

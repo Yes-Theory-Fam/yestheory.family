@@ -13,7 +13,7 @@ export class BlockService {
     private guild: Guild,
     private client: Client,
     private prisma: PrismaClient,
-    @Logger("buddy-project", "block-service") private logger: winston.Logger
+    @Logger("buddy-project", "block-service") private logger: winston.Logger,
   ) {}
 
   private async updateBlocked(userId: string, blocked: boolean) {
@@ -35,7 +35,8 @@ export class BlockService {
 
   private getDmsInfoChannel(): TextChannel {
     const disabledDmsChannel = this.guild.channels.cache.find(
-      (c): c is TextChannel => c.name === BlockService.DMS_DISABLED_CHANNEL_NAME
+      (c): c is TextChannel =>
+        c.name === BlockService.DMS_DISABLED_CHANNEL_NAME,
     );
 
     if (!disabledDmsChannel) {

@@ -1,0 +1,48 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.cms.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels: {{ .Values.cms.service.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.cms.service.labels | toYaml | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.github }}
+      containers:
+        - name: {{ .Values.cms.deployment.name }}
+          image: {{ .Values.cms.deployment.image.name }}:{{ .Values.cms.deployment.image.tag }}
+          ports:
+            - {{ .Values.cms.deployment.port | toYaml | nindent 14}}
+          env: {{ .Values.cms.deployment.containerEnv | toYaml | nindent 12 }}
+            - name: FRONTEND_URL
+              value: https://{{ .Values.common.baseDomain }}
+            - name: SERVER_URL
+              value: "https://admin.{{ .Values.common.baseDomain }}"
+            - name: TYPESENSE_API_URL
+              value: "http://{{ .Values.typesense.service.name }}:8108"
+            {{- range .Values.cms.deployment.secret.secrets }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.cms.deployment.secret.name }}
+                  key: {{ .name }}
+            {{- end }}
+            - name: TYPESENSE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.typesense.deployment.secret.name }}
+                  key: TYPESENSE_API_KEY
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongo.deployment.secret.name }}
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongo.deployment.secret.name }}
+                  key: MONGO_INITDB_ROOT_PASSWORD

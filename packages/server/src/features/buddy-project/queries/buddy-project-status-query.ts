@@ -13,13 +13,13 @@ import { BuddyProjectService } from "../services/buddy-project.service";
 class BuddyProjectStatusQuery {
   constructor(
     @Logger("buddy-project", "status") private logger: winston.Logger,
-    private buddyProjectService: BuddyProjectService
+    private buddyProjectService: BuddyProjectService,
   ) {}
 
   @Authorized()
   @Query(() => BuddyProjectStatusPayload)
   public async getBuddyProjectStatus(
-    @Ctx() { user }: YtfApolloContext
+    @Ctx() { user }: YtfApolloContext,
   ): Promise<BuddyProjectStatusPayload> {
     if (!user) throw new Error();
 

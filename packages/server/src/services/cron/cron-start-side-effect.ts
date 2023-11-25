@@ -6,6 +6,6 @@ import { GhostCheckCron } from "../../features/buddy-project/cron-jobs/ghost-che
 export class CronStartSideEffect {
   constructor(
     private matchingCron: MatchingCron,
-    private ghostCheckCron: GhostCheckCron
+    private ghostCheckCron: GhostCheckCron,
   ) {}
 }

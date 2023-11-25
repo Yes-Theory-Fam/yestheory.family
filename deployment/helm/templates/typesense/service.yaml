@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.typesense.service.name }}
+  labels: {{ .Values.typesense.service.labels | toYaml | nindent 4 }}
+spec:
+  ports:
+    - port: {{ .Values.typesense.service.port }}
+      targetPort: {{ .Values.typesense.deployment.port.name }}
+  selector: {{ .Values.typesense.service.labels | toYaml | nindent 4 }}

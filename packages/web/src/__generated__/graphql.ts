@@ -1,5 +1,5 @@
 import { GraphQLClient } from "graphql-request";
-import * as Dom from "graphql-request/dist/types.dom";
+import { GraphQLClientRequestHeaders } from "graphql-request/build/cjs/types";
 import gql from "graphql-tag";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -12,6 +12,15 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T,
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
+    };
 
 export type BuddyProjectStatus = "MATCHED" | "NOT_SIGNED_UP" | "SIGNED_UP";
 
@@ -55,28 +64,29 @@ export type BuddyProjectSignUpMutation = {
   };
 };
 
-export type AuthPocQueryVariables = Exact<{ [key: string]: never }>;
+export type TypesenseApiKeyQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AuthPocQuery = {
+export type TypesenseApiKeyQuery = {
   __typename?: "Query";
-  me?: { __typename?: "AuthenticatedUser"; username: string } | null;
+  groupchatSearchToken: string;
 };
-
-export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
-
-export type LogoutMutation = { __typename?: "Mutation"; logout: boolean };
 
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never }>;
 
 export type CurrentUserQuery = {
   __typename?: "Query";
   me?: {
-    __typename?: "AuthenticatedUser";
+    __typename: "AuthenticatedUser";
     id: string;
     username: string;
     avatarUrl?: string | null;
+    isOnServer: boolean;
   } | null;
 };
+
+export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
+
+export type LogoutMutation = { __typename?: "Mutation"; logout: boolean };
 
 export const ServerStateDocument = gql`
   query ServerState {
@@ -106,10 +116,19 @@ export const BuddyProjectSignUpDocument = gql`
     }
   }
 `;
-export const AuthPocDocument = gql`
-  query AuthPoc {
-    me {
+export const TypesenseApiKeyDocument = gql`
+  query TypesenseApiKey {
+    groupchatSearchToken
+  }
+`;
+export const CurrentUserDocument = gql`
+  query CurrentUser {
+    me @export(exportName: "User") {
+      __typename
+      id
       username
+      avatarUrl
+      isOnServer
     }
   }
 `;
@@ -118,36 +137,27 @@ export const LogoutDocument = gql`
     logout
   }
 `;
-export const CurrentUserDocument = gql`
-  query CurrentUser {
-    me @export(exportName: "User") {
-      id
-      username
-      avatarUrl
-    }
-  }
-`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
   operationName: string,
-  operationType?: string
+  operationType?: string,
 ) => Promise<T>;
 
 const defaultWrapper: SdkFunctionWrapper = (
   action,
   _operationName,
-  _operationType
+  _operationType,
 ) => action();
 
 export function getSdk(
   client: GraphQLClient,
-  withWrapper: SdkFunctionWrapper = defaultWrapper
+  withWrapper: SdkFunctionWrapper = defaultWrapper,
 ) {
   return {
     ServerState(
       variables?: ServerStateQueryVariables,
-      requestHeaders?: Dom.RequestInit["headers"]
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<ServerStateQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
@@ -156,70 +166,57 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "ServerState",
-        "query"
+        "query",
       );
     },
     BuddyProjectState(
       variables?: BuddyProjectStateQueryVariables,
-      requestHeaders?: Dom.RequestInit["headers"]
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<BuddyProjectStateQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
           client.request<BuddyProjectStateQuery>(
             BuddyProjectStateDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders }
+            { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         "BuddyProjectState",
-        "query"
+        "query",
       );
     },
     BuddyProjectSignUp(
       variables?: BuddyProjectSignUpMutationVariables,
-      requestHeaders?: Dom.RequestInit["headers"]
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<BuddyProjectSignUpMutation> {
       return withWrapper(
         (wrappedRequestHeaders) =>
           client.request<BuddyProjectSignUpMutation>(
             BuddyProjectSignUpDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders }
+            { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         "BuddyProjectSignUp",
-        "mutation"
+        "mutation",
       );
     },
-    AuthPoc(
-      variables?: AuthPocQueryVariables,
-      requestHeaders?: Dom.RequestInit["headers"]
-    ): Promise<AuthPocQuery> {
+    TypesenseApiKey(
+      variables?: TypesenseApiKeyQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<TypesenseApiKeyQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<AuthPocQuery>(AuthPocDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        "AuthPoc",
-        "query"
-      );
-    },
-    Logout(
-      variables?: LogoutMutationVariables,
-      requestHeaders?: Dom.RequestInit["headers"]
-    ): Promise<LogoutMutation> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<LogoutMutation>(LogoutDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        "Logout",
-        "mutation"
+          client.request<TypesenseApiKeyQuery>(
+            TypesenseApiKeyDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        "TypesenseApiKey",
+        "query",
       );
     },
     CurrentUser(
       variables?: CurrentUserQueryVariables,
-      requestHeaders?: Dom.RequestInit["headers"]
+      requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<CurrentUserQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
@@ -228,7 +225,21 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "CurrentUser",
-        "query"
+        "query",
+      );
+    },
+    Logout(
+      variables?: LogoutMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<LogoutMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<LogoutMutation>(LogoutDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "Logout",
+        "mutation",
       );
     },
   };

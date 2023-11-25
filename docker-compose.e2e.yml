@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: ytfe2e
 
   server:
-    image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:pr-234
     hostname: server
     ports:
       - "5000:5000"
@@ -25,11 +25,14 @@ services:
       DISCORD_CLIENT_ID: skipped
       DISCORD_CLIENT_SECRET: skipped
       DISCORD_SCOPES: skipped
+
+      CMS_ENDPOINT: "http://cms:3001/api/graphql"
     depends_on:
+      - cms
       - postgres
 
   web:
-    image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:pr-234
     environment:
       SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
       FRONTEND_URL: http://web:3000
@@ -37,6 +40,46 @@ services:
       - "3000:3000"
     depends_on:
       - server
+
+  cms:
+    image: ghcr.io/yes-theory-fam/yestheory-family-cms:pr-234
+    environment:
+      MONGODB_URI: mongodb://mongo/cms
+      ENABLE_DATASEEDER: "true"
+      PAYLOAD_SECRET: asdfghjkl
+      INITIAL_ADMIN_MAIL: admin@example.com
+      INITIAL_ADMIN_PASSWORD: example
+      MONGO_USERNAME: ytfe2e
+      MONGO_PASSWORD: ytfe2e
+      TYPESENSE_API_KEY: 1234567890
+      TYPESENSE_API_URL: http://typesense:8108
+      SERVER_URL: http://localhost:3001
+      FRONTEND_URL: http://localhost:3000
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+      - typesense
+
+  mongo:
+    image: mongo:6.0.5
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ytfe2e
+      MONGO_INITDB_ROOT_PASSWORD: ytfe2e
+    ports:
+      - "27017:27017"
+
+  typesense:
+    image: typesense/typesense:0.25.1
+    restart: unless-stopped
+    environment:
+      TYPESENSE_API_KEY: 1234567890
+      TYPESENSE_DATA_DIR: /data
+    ports:
+      - "8108:8108"
+    volumes:
+      - "typesense-data:/data"
 
   cypress:
     image: cypress/included:11.0.1
@@ -49,3 +92,6 @@ services:
       - ./packages/web/cypress/wait-for-it.sh:/wait-for-it.sh
     depends_on:
       - web
+
+volumes:
+  typesense-data:
