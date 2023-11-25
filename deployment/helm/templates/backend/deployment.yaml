@@ -36,5 +36,7 @@ spec:
                   name: {{ $.Values.backend.deployment.secret.name }}
                   key: {{ .name }}
             {{- end }}
+            - name: CMS_ENDPOINT
+              value: "http://{{ .Values.cms.service.name }}/api/graphql"
             - name: FRONTEND_HOST
               value: https://{{ .Values.common.baseDomain }}
