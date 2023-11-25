@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: ytfe2e
 
   server:
-    image: ghcr.io/yes-theory-fam/yestheory-family-server:pr-234
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
     hostname: server
     ports:
       - "5000:5000"
@@ -32,7 +32,7 @@ services:
       - postgres
 
   web:
-    image: ghcr.io/yes-theory-fam/yestheory-family-web:pr-234
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
     environment:
       SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
       FRONTEND_URL: http://web:3000
@@ -42,7 +42,7 @@ services:
       - server
 
   cms:
-    image: ghcr.io/yes-theory-fam/yestheory-family-cms:pr-234
+    image: ghcr.io/yes-theory-fam/yestheory-family-cms:COMMIT_HASH
     environment:
       MONGODB_URI: mongodb://mongo/cms
       ENABLE_DATASEEDER: "true"
