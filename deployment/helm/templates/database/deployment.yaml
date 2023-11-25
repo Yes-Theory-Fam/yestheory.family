@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.database.deployment.name }}
-          image: postgres:13
+          image: postgres:15.3
           ports:
             - {{ .Values.database.deployment.port | toYaml | nindent 14 }}
           env:

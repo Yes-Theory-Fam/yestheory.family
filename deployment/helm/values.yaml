@@ -57,6 +57,29 @@ cms:
       containerPort: 3002
     containerEnv: []
 
+mongo:
+  create: false
+  service:
+    port: 27017
+    name: ytf-mongo-service
+    labels:
+      app: ytf-mongo
+  deployment:
+    name: ytf-mongo-deployment
+    image: mongo:6.0.5
+    port:
+      name: mongo
+      containerPort: 27017
+    containerEnv:
+
+    secret:
+      name: mongo-secret-env
+      secrets:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: yestheoryfamily
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: yestheoryfamily
+
 web:
   ingress:
     name: ytf-web-ingress

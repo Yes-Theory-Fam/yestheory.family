@@ -7,5 +7,5 @@ metadata:
 spec:
   ports:
     - port: {{ .Values.typesense.service.port }}
-      targetPort: {{ .Values.typesense.deployment.ports.public.name }}
+      targetPort: {{ .Values.typesense.deployment.port.name }}
   selector: {{ .Values.typesense.service.labels | toYaml | nindent 4 }}

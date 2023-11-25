@@ -29,7 +29,17 @@ jobs:
           sub-project: web
           token: ${{ secrets.GITHUB_TOKEN }}
 
-# TODO fix this with the new UI setup
+  docker-build-cms:
+    name: "Docker Build CMS"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/docker-build
+        name: "Build Container"
+        with:
+          sub-project: cms
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   chromatic-deployment:
     name: "Chromatic Deployment"
     runs-on: ubuntu-latest
@@ -51,7 +61,7 @@ jobs:
 
   e2e-test:
     name: "Cypress E2E-Test"
-    needs: [ docker-build-server, docker-build-web ]
+    needs: [ docker-build-server, docker-build-web, docker-build-cms ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -70,6 +80,7 @@ jobs:
       - name: Run e2e tests
         run: |
           docker-compose -f docker-compose.e2e.yml up --no-build -d server
+          docker-compose -f docker-compose.e2e.yml up --no-build -d cms
           docker-compose -f docker-compose.e2e.yml up --no-build -d web
           docker-compose -f docker-compose.e2e.yml run cypress
           docker-compose -f docker-compose.e2e.yml down
@@ -92,4 +103,10 @@ jobs:
         uses: ./.github/actions/delete-image
         with:
           sub-project: web
+          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
+
+      - name: Delete cms image
+        uses: ./.github/actions/delete-image
+        with:
+          sub-project: cms
           token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
