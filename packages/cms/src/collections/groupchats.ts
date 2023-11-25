@@ -68,7 +68,7 @@ export const Groupchats: CollectionConfig = {
   hooks: {
     afterChange: [
       async ({ doc, context }) => {
-        if ('dataseeder' in context && context.dataseeder) return;
+        if ("dataseeder" in context && context.dataseeder) return;
 
         const typesenseDoc = {
           ...doc,
