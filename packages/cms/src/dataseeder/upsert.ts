@@ -41,10 +41,10 @@ export const upsert = async <T extends CollectionKey>(
   if (totalDocs > 1) throw new Error("Key is not unique");
   if (totalDocs === 1) {
     const id = docs[0].id;
-    await payload.update({ id, ...options });
+    await payload.update({ id, ...options, context: { dataseeder: true } });
     console.info(`${collection}: Updated ${keyValue}`);
   } else {
-    await payload.create({ ...options });
+    await payload.create({ ...options, context: { dataseeder: true } });
     console.info(`${collection}: Created ${keyValue}`);
   }
 };
