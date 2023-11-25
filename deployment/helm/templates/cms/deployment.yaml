@@ -1,0 +1,22 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.cms.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels: {{ .Values.cms.service.labels | toYaml | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ .Values.cms.service.labels | toYaml | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.github }}
+      containers:
+        - name: {{ .Values.cms.deployment.name }}
+          image: {{ .Values.cms.deployment.image.name }}:{{ .Values.cms.deployment.image.tag }}
+          ports:
+            - {{ .Values.cms.deployment.port | toYaml | nindent 14}}
+          env: {{ .Values.cms.deployment.containerEnv | toYaml | nindent 12 }}
+            - name: FRONTEND_URL
+              value: https://{{ .Values.common.baseDomain }}

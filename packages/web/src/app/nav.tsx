@@ -13,7 +13,10 @@ export const Nav: FC = () => {
 
   return (
     <Navigation
-      links={[{ text: "Buddy Project", href: "/buddyproject" }]}
+      links={[
+        { text: "Buddy Project", href: "/buddyproject" },
+        { text: "Groupchats", href: "/groupchats" },
+      ]}
       onLoginButtonClick={navigateToLogin}
       menuItems={[
         {

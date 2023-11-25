@@ -18,6 +18,10 @@ const config = (phase) => ({
       destination: "http://localhost:5000/graphql",
     },
     {
+      source: "/typesense/:slug*",
+      destination: "http://localhost:8108/:slug*",
+    },
+    {
       source: "/oauth/:slug*",
       destination: "http://localhost:5000/oauth/:slug*",
     },

@@ -35,7 +35,6 @@
       "rules": {
         "no-await-in-loop": "error",
         "curly": ["error", "multi-line", "consistent"],
-        "default-case": "error",
         "default-case-last": "error",
         "@typescript-eslint/default-param-last": "error",
         "eqeqeq": "error",

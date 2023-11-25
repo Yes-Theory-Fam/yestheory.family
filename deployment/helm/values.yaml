@@ -39,6 +39,24 @@ common:
   baseDomain: yestheory.family
   certName: cert
 
+cms:
+  ingress:
+    name: ytf-cms-ingress
+  service:
+    name: ytf-cms-service
+    port: 80
+    labels:
+      app: ytf-cms
+  deployment:
+    name: ytf-cms-deployment
+    image:
+      name: ghcr.io/yes-theory-fam/yestheory-family-cms
+      tag: latest
+    port:
+      name: payload
+      containerPort: 3002
+    containerEnv: []
+
 web:
   ingress:
     name: ytf-web-ingress
@@ -110,6 +128,26 @@ backend:
           value:
         - name: YESBOT_API_TOKEN
           value:
+
+typesense:
+  ingress:
+    name: ytf-typesense-ingress
+  service:
+    name: ytf-typesense-service
+    port: 8108
+    labels:
+      app: ytf-typesense
+  deployment:
+    name: ytf-typesense-deployment
+    image:
+      name: typesense/typesense
+      tag: 0.24.1
+    port:
+      name: typesense
+      containerPort: 8108
+    containerEnv: []
+    secret:
+      secrets: []
 
 database:
   create: false
