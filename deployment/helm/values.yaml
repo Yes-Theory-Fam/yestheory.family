@@ -180,7 +180,7 @@ typesense:
     name: ytf-typesense-deployment
     image:
       name: typesense/typesense
-      tag: 0.24.1
+      tag: 0.25.1
     port:
       name: typesense
       containerPort: 8108
