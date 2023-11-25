@@ -9,7 +9,7 @@
     "format:check": "prettier --check packages",
     "format:write": "prettier --write packages",
     "server:dev": "yarn workspace @yestheory.family/server start",
-    "server:generate": "yarn workspace @yestheory.family/server packages/server/prisma generate",
+    "server:generate": "yarn workspace @yestheory.family/server generate",
     "storybook": "yarn workspace @yestheory.family/web storybook",
     "test": "yarn workspaces foreach run test",
     "web:dev": "yarn workspace @yestheory.family/web dev",

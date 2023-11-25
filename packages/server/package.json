@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
+    "generate": "prisma generate",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --max-warnings=0",
     "postinstall": "prisma generate",
     "start": "ts-node-dev --files src/index.ts",
