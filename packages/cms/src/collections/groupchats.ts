@@ -18,6 +18,19 @@ export const Groupchats: CollectionConfig = {
       required: true,
     },
     {
+      name: "platform",
+      type: "select",
+      required: true,
+      options: [
+        { label: "Discord", value: "discord" },
+        { label: "Facebook", value: "facebook" },
+        { label: "Signal", value: "signal" },
+        { label: "Telegram", value: "telegram" },
+        { label: "WhatsApp", value: "whatsapp" },
+      ],
+    },
+    { name: "description", type: "text" },
+    {
       name: "url",
       type: "text",
       required: true,
@@ -38,19 +51,6 @@ export const Groupchats: CollectionConfig = {
       type: "array",
       required: true,
       fields: [{ name: "value", type: "text", required: true }],
-    },
-    { name: "description", type: "text" },
-    {
-      name: "platform",
-      type: "select",
-      required: true,
-      options: [
-        { label: "Discord", value: "discord" },
-        { label: "Facebook", value: "facebook" },
-        { label: "Signal", value: "signal" },
-        { label: "Telegram", value: "telegram" },
-        { label: "WhatsApp", value: "whatsapp" },
-      ],
     },
     {
       name: "promoted",
