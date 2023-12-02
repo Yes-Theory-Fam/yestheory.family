@@ -56,8 +56,6 @@ cms:
       name: payload
       containerPort: 3002
     containerEnv:
-      - name: MONGODB_URI
-        value: mongodb://ytf-mongo-service/cms
       - name: ENABLE_DATASEEDER
         value: "true"
 
@@ -70,29 +68,8 @@ cms:
           value:
         - name: INITIAL_ADMIN_PASSWORD
           value:
-
-mongo:
-  create: false
-  service:
-    port: 27017
-    name: ytf-mongo-service
-    labels:
-      app: ytf-mongo
-  deployment:
-    name: ytf-mongo-deployment
-    image: mongo:6.0.5
-    port:
-      name: mongo
-      containerPort: 27017
-    containerEnv:
-
-    secret:
-      name: mongo-secret-env
-      secrets:
-        - name: MONGO_INITDB_ROOT_USERNAME
-          value: yestheoryfamily
-        - name: MONGO_INITDB_ROOT_PASSWORD
-          value: yestheoryfamily
+        - name: DATABASE_URI
+          value: postgres://username:password@ytf-database-service:5432/payload
 
 web:
   ingress:
