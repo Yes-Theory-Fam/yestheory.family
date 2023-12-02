@@ -1,9 +1,10 @@
 import { QueryFactory } from "../../utils/merge-queries";
 import { typesenseClient } from "../../lib/typesense";
-import { Config } from "payload/generated-types";
 import { apiKey } from "../../dataseeder/seed-typesense-key";
+import { GeneratedTypes } from "payload";
 
-type GroupchatPlatform = Config["collections"]["groupchats"]["platform"];
+type GroupchatPlatform =
+  GeneratedTypes["collections"]["groupchats"]["platform"];
 
 export const searchTokenByAuthenticatedQuery: QueryFactory<
   string,

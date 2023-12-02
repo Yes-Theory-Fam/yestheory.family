@@ -72,8 +72,9 @@ const syncGroupchatsToTypesense = async () => {
     });
 
     const typesenseChats = groupchats.map(
-      ({ createdAt, updatedAt, keywords, ...rest }) => ({
+      ({ id, createdAt, updatedAt, keywords, ...rest }) => ({
         ...rest,
+        id: id.toString(),
         keywords: keywords?.map(({ value }) => value) ?? [],
       }),
     );

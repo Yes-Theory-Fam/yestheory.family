@@ -8,10 +8,7 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "jsx": "react",
-    "paths": {
-      "payload/generated-types": ["./src/payload-types.ts"]
-    }
+    "jsx": "react"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "build"],

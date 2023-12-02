@@ -11,12 +11,6 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_DB_NAME}
 
-  mongo:
-    image: mongo:6.0.5
-    restart: unless-stopped
-    ports:
-      - "27017:27017"
-
   server:
     image: yestheory-family-server:latest
     build:

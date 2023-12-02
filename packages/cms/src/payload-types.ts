@@ -10,33 +10,65 @@ export interface Config {
   collections: {
     users: User;
     groupchats: Groupchat;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   globals: {};
 }
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  salt?: string;
-  hash?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
-  password?: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 export interface Groupchat {
-  id: string;
+  id: number;
   name: string;
+  platform: "discord" | "facebook" | "signal" | "telegram" | "whatsapp";
+  description?: string | null;
   url: string;
   keywords: {
     value: string;
-    id?: string;
+    id?: string | null;
   }[];
-  description?: string;
-  platform: "discord" | "facebook" | "signal" | "telegram" | "whatsapp";
   promoted: number;
   updatedAt: string;
   createdAt: string;
+}
+export interface PayloadPreference {
+  id: number;
+  user: {
+    relationTo: "users";
+    value: number | User;
+  };
+  key?: string | null;
+  value?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface PayloadMigration {
+  id: number;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+
+declare module "payload" {
+  export interface GeneratedTypes extends Config {}
 }

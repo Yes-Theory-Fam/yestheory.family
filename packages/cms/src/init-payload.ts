@@ -1,25 +1,18 @@
 import { config } from "dotenv";
 import payload from "payload";
 import { type InitOptions } from "payload/config";
+import { ensureDbExists } from "./utils/ensure-db-exists";
 
 export const initPayload = async (additionalOptions?: Partial<InitOptions>) => {
   config();
 
-  if (!process.env.PAYLOAD_SECRET) throw new Error("Missing PAYLOAD_SECRET");
-  if (!process.env.MONGODB_URI) throw new Error("Missing MONGODB_URI");
+  console.info("Ensuring database exists");
+  await ensureDbExists();
 
-  const mongoOptions = process.env.MONGO_PASSWORD
-    ? {
-        authSource: "admin",
-        user: process.env.MONGO_USERNAME,
-        pass: process.env.MONGO_PASSWORD,
-      }
-    : undefined;
+  if (!process.env.PAYLOAD_SECRET) throw new Error("Missing PAYLOAD_SECRET");
 
   return await payload.init({
     secret: process.env.PAYLOAD_SECRET,
-    mongoURL: process.env.MONGODB_URI,
-    mongoOptions,
     ...additionalOptions,
   });
 };

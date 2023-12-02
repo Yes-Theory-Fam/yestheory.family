@@ -72,6 +72,7 @@ export const Groupchats: CollectionConfig = {
 
         const typesenseDoc = {
           ...doc,
+          id: doc.id.toString(),
           keywords: doc.keywords.map((k) => k.value),
         };
         await typesenseClient
