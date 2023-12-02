@@ -4,10 +4,13 @@ import { FC, Fragment, useEffect, useState } from "react";
 import { GroupChatPlatform, GroupChatResult } from "ui/groupchats";
 import { GroupChatSearchBar } from "ui/groupchats/client";
 import { SearchClient } from "typesense";
-import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
+import {
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { navigateToLogin } from "../../../context/user/navigate-to-login";
-import { useTypesense } from "../../../context/typesense/provider";
+import { useTypesense } from "../../../context/typesense";
 
 type GroupchatResult = {
   id: string;
@@ -66,27 +69,40 @@ export const GroupChatSearch: FC<{ isLoggedIn: boolean }> = ({
       />
 
       <div className={"flex flex-col gap-2"}>
-        {!isLoggedIn && (
-          <>
-            <p>
-              <ExclamationTriangleIcon
-                className={"h-6 w-6 text-warning inline-block mr-2"}
-              />
-              Not seeing what you are looking for? Only Facebook groups and
-              Instagram pages are available without{" "}
-              <Link
-                href={"#"}
-                onClick={navigateToLogin}
-                className={"underline decoration-brand-500 decoration"}
-              >
-                logging in with Discord
-              </Link>
-              .
-            </p>
+        <p>Not seeing what you are looking for?</p>
+        <p>
+          <InformationCircleIcon
+            className={"h-6 w-6 text-brand-800 inline-block mr-2"}
+          />
+          Ask the group&apos;s admin to shoot me a message{" "}
+          <a
+            className={"underline decoration-brand-500"}
+            href="https://discord.com/users/290193372407136256"
+            target={"_blank"}
+            rel="noreferrer"
+          >
+            over on Discord
+          </a>{" "}
+          to get the group on here!
+        </p>
 
-            <hr />
-          </>
+        {!isLoggedIn && (
+          <p>
+            <ExclamationTriangleIcon
+              className={"h-6 w-6 text-warning inline-block mr-2"}
+            />
+            Only Facebook groups and Instagram pages are available without{" "}
+            <Link
+              href={"#"}
+              onClick={navigateToLogin}
+              className={"underline decoration-brand-500"}
+            >
+              logging in with Discord
+            </Link>
+            .
+          </p>
         )}
+        <hr />
 
         {results.map((r) => (
           <Fragment key={r.id}>
