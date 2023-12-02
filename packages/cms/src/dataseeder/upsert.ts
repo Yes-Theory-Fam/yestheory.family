@@ -1,5 +1,4 @@
-import payload from "payload";
-import { type Config as GeneratedTypes } from "payload/generated-types";
+import payload, { GeneratedTypes } from "payload";
 
 type CollectionKey = keyof GeneratedTypes["collections"];
 type CreateOptions<T extends CollectionKey> = Parameters<
