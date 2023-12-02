@@ -3,7 +3,6 @@ import payload from "payload";
 import { initPayload } from "./init-payload";
 import { setupCronJobs } from "./cron-jobs";
 import { typesenseReady } from "./lib/typesense";
-import { ensureDbExists } from "./utils/ensure-db-exists";
 
 require("dotenv").config();
 const app = express();
