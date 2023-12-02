@@ -16,7 +16,10 @@ const config: Config = {
   },
   editor: slateEditor({}),
   collections: [Users, Groupchats],
-  db: postgresAdapter({ pool: { connectionString: process.env.DATABASE_URI } }),
+  db: postgresAdapter({
+    migrationDir: path.resolve(__dirname, "migrations"),
+    pool: { connectionString: process.env.DATABASE_URI },
+  }),
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
