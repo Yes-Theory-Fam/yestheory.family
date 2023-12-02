@@ -2,7 +2,7 @@ import { Heading } from "ui";
 import { GroupChatSearch } from "./components/group-chat-search";
 import { Metadata } from "next";
 import { getIsLoggedIn } from "../../context/user/user";
-import { TypesenseProvider } from "../../context/typesense/provider";
+import { TypesenseProvider } from "../../context/typesense";
 import { graphqlWithHeaders } from "../../lib/graphql/client";
 
 export const metadata: Metadata = {
