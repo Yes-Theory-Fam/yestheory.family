@@ -6,8 +6,6 @@ export type SearchInputProps = {
   onChange: (newValue: string) => void;
 };
 
-// TODO pagination
-
 export const SearchInput: FC<SearchInputProps> = ({ onChange }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
