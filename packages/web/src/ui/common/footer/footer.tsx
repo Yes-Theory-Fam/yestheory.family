@@ -11,11 +11,11 @@ export type FooterProps = { links: FooterLinkDefinition[] };
 
 export const Footer: FC<FooterProps> = ({ links }) => {
   return (
-    <div className="flex flex-col bg-white py-4 items-center gap-2">
+    <footer className="flex flex-col bg-white py-4 items-center gap-2">
       <Logo />
       <FooterLinkRow links={links} />
       <AffiliationExclusion />
       <Copyright />
-    </div>
+    </footer>
   );
 };

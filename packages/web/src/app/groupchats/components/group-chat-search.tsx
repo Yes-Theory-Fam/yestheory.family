@@ -1,70 +1,34 @@
 "use client";
 
-import { FC, Fragment, useEffect, useState } from "react";
+import { FC, Fragment, useState } from "react";
 import { GroupChatPlatform, GroupChatResult } from "ui/groupchats";
 import { GroupChatSearchBar } from "ui/groupchats/client";
-import { SearchClient } from "typesense";
 import {
   ExclamationTriangleIcon,
   InformationCircleIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { navigateToLogin } from "../../../context/user/navigate-to-login";
-import { useTypesense } from "../../../context/typesense";
-
-type GroupchatResult = {
-  id: string;
-  name: string;
-  keywords: string[];
-  url: string;
-  description: string;
-  platform: GroupChatPlatform;
-  promoted: number;
-};
-
-const fetchResults = async (
-  queryText: string,
-  platforms: GroupChatPlatform[],
-  searchClient: SearchClient,
-): Promise<GroupchatResult[]> => {
-  const filterBy =
-    platforms.length === 0 ? "" : `platform:[${platforms.join(",")}]`;
-
-  const { hits } = await searchClient
-    .collections<GroupchatResult>("groupchats")
-    .documents()
-    .search(
-      {
-        q: queryText,
-        query_by: "name,keywords,description",
-        filter_by: filterBy,
-        sort_by: "promoted:desc",
-      },
-      {},
-    );
-
-  return (
-    hits
-      ?.map((h) => h.document)
-      .filter((x): x is GroupchatResult => "name" in x) ?? []
-  );
-};
+import { useGroupchatSearch } from "./use-groupchat-search";
 
 export const GroupChatSearch: FC<{ isLoggedIn: boolean }> = ({
   isLoggedIn,
 }) => {
-  const [results, setResults] = useState<GroupchatResult[]>([]);
-  const { client } = useTypesense();
+  const [search, setSearch] = useState<{
+    query: string;
+    platforms: GroupChatPlatform[];
+  }>({ query: "", platforms: [] });
 
-  useEffect(() => {
-    fetchResults("", [], client).then(setResults);
-  }, [client]);
+  const { loading, groupchats } = useGroupchatSearch(
+    search.query,
+    search.platforms,
+  );
 
   return (
     <div className={"flex flex-col gap-4 max-w-4xl mx-auto"}>
       <GroupChatSearchBar
         onSearchChange={({ query, platforms }) =>
-          fetchResults(query, platforms, client).then(setResults)
+          setSearch({ query, platforms })
         }
       />
 
@@ -104,12 +68,14 @@ export const GroupChatSearch: FC<{ isLoggedIn: boolean }> = ({
         )}
         <hr />
 
-        {results.map((r) => (
+        {groupchats.map((r) => (
           <Fragment key={r.id}>
             <GroupChatResult {...r} />
             <div className={"h-px mx-4 bg-gray-100 min-w-max last:hidden"} />
           </Fragment>
         ))}
+
+        {loading && "Loading..."}
       </div>
     </div>
   );
