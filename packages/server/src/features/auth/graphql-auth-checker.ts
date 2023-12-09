@@ -1,6 +1,6 @@
-import { AuthChecker, ResolverData } from "type-graphql";
-import { YtfApolloContext } from "../../types";
-import { Guild } from "discord.js";
+import {type Guild} from 'discord.js';
+import {type AuthChecker, type ResolverData} from 'type-graphql';
+import {type YtfApolloContext} from '../../types';
 
 export const authChecker =
   (guild: Guild): AuthChecker<YtfApolloContext> =>
@@ -8,7 +8,7 @@ export const authChecker =
     checkRolePermissions(context, roles, guild);
 
 const checkRolePermissions = (
-  { context }: ResolverData<YtfApolloContext>,
+  {context}: ResolverData<YtfApolloContext>,
   roles: string[],
   guild: Guild,
 ) => {
@@ -26,6 +26,6 @@ const checkRolePermissions = (
     return false;
   }
 
-  const memberRoles = guildMember.roles.cache.map(({ name }) => name);
+  const memberRoles = guildMember.roles.cache.map(({name}) => name);
   return roles.every((role) => memberRoles.includes(role));
 };

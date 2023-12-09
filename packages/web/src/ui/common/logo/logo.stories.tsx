@@ -1,21 +1,21 @@
-import { StoryFn, Meta } from "@storybook/react";
-import { twMerge } from "tailwind-merge";
-import { Logo, LogoProps } from "./logo";
+import {type StoryFn, type Meta} from '@storybook/react';
+import {twMerge} from 'tailwind-merge';
+import {Logo, type LogoProps} from './logo';
 
 export default {
-  title: "Common/Logo",
+  title: 'Common/Logo',
   component: Logo,
   argTypes: {
     size: {
-      options: ["small", "medium", "large"],
+      options: ['small', 'medium', 'large'],
       control: {
-        type: "radio",
+        type: 'radio',
       },
     },
     variant: {
-      options: ["color", "white"],
+      options: ['color', 'white'],
       control: {
-        type: "radio",
+        type: 'radio',
       },
     },
   },
@@ -23,14 +23,14 @@ export default {
 
 const Template: StoryFn<LogoProps> = (args) => {
   const background =
-    args.variant === "white" ? "bg-brand-800" : "bg-transparent";
+    args.variant === 'white' ? 'bg-brand-800' : 'bg-transparent';
 
   return (
-    <div className={twMerge(background, "p-4")}>
+    <div className={twMerge(background, 'p-4')}>
       <Logo {...args} />
     </div>
   );
 };
 
 export const LogoStory = Template.bind({});
-LogoStory.storyName = "Logo";
+LogoStory.storyName = 'Logo';

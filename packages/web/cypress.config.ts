@@ -1,5 +1,5 @@
-import { defineConfig } from "cypress";
-import setup from "./cypress/plugins";
+import {defineConfig} from 'cypress';
+import setup from './cypress/plugins';
 
 export default defineConfig({
   chromeWebSecurity: false,
@@ -10,6 +10,6 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       setup(on, config);
     },
-    baseUrl: "http://web:3000",
+    baseUrl: 'http://web:3000',
   },
 });

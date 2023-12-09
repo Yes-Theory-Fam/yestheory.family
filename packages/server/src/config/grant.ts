@@ -1,4 +1,4 @@
-import { GrantConfig } from "grant";
+import {type GrantConfig} from 'grant';
 
 const {
   DISCORD_CLIENT_ID,
@@ -7,12 +7,12 @@ const {
   FRONTEND_HOST,
 } = process.env;
 
-const prefix = "/oauth";
+const prefix = '/oauth';
 
 const config: GrantConfig = {
   defaults: {
     origin: FRONTEND_HOST,
-    transport: "session",
+    transport: 'session',
     prefix,
   },
   discord: {
@@ -20,7 +20,7 @@ const config: GrantConfig = {
     client_id: DISCORD_CLIENT_ID,
     client_secret: DISCORD_CLIENT_SECRET,
     scope: DISCORD_SCOPES?.split(/\s*,\s*/g),
-    response: ["tokens", "profile", "raw"],
+    response: ['tokens', 'profile', 'raw'],
   },
 };
 

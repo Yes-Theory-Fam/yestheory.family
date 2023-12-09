@@ -1,7 +1,7 @@
-import { createContext, FC, PropsWithChildren, useMemo } from "react";
-import { CurrentUserQuery } from "../../__generated__/graphql";
+import {createContext, type FC, type PropsWithChildren, useMemo} from 'react';
+import {type CurrentUserQuery} from '../../__generated__/graphql';
 
-export type User = Exclude<CurrentUserQuery["me"], null>;
+export type User = Exclude<CurrentUserQuery['me'], null>;
 
 export type UserContextData = {
   user: User | null;
@@ -14,8 +14,8 @@ export type UserProviderProps = PropsWithChildren<{
   user: User | null;
 }>;
 
-export const UserProvider: FC<UserProviderProps> = ({ user, children }) => {
-  const value = useMemo(() => ({ user, isLoggedIn: !!user }), [user]);
+export const UserProvider: FC<UserProviderProps> = ({user, children}) => {
+  const value = useMemo(() => ({user, isLoggedIn: !!user}), [user]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

@@ -1,9 +1,9 @@
-import { GraphQLClient } from "graphql-request";
-import { GraphQLClientRequestHeaders } from "graphql-request/build/cjs/types";
-import gql from "graphql-tag";
+import {GraphQLClient} from 'graphql-request';
+import {GraphQLClientRequestHeaders} from 'graphql-request/build/cjs/types';
+import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
+export type Exact<T extends {[key: string]: unknown}> = {
   [K in keyof T]: T[K];
 };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
@@ -12,36 +12,35 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T,
-> = { [_ in K]?: never };
+export type MakeEmpty<T extends {[key: string]: unknown}, K extends keyof T> = {
+  [_ in K]?: never;
+};
 export type Incremental<T> =
   | T
   | {
-      [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
     };
 
-export type BuddyProjectStatus = "MATCHED" | "NOT_SIGNED_UP" | "SIGNED_UP";
+export type BuddyProjectStatus = 'MATCHED' | 'NOT_SIGNED_UP' | 'SIGNED_UP';
 
-export type SignUpResult = "FAILURE" | "FULL_SUCCESS" | "SUCCESS_DMS_CLOSED";
+export type SignUpResult = 'FAILURE' | 'FULL_SUCCESS' | 'SUCCESS_DMS_CLOSED';
 
-export type ServerStateQueryVariables = Exact<{ [key: string]: never }>;
+export type ServerStateQueryVariables = Exact<{[key: string]: never}>;
 
 export type ServerStateQuery = {
-  __typename?: "Query";
-  me?: { __typename?: "AuthenticatedUser"; isOnServer: boolean } | null;
+  __typename?: 'Query';
+  me?: {__typename?: 'AuthenticatedUser'; isOnServer: boolean} | null;
 };
 
-export type BuddyProjectStateQueryVariables = Exact<{ [key: string]: never }>;
+export type BuddyProjectStateQueryVariables = Exact<{[key: string]: never}>;
 
 export type BuddyProjectStateQuery = {
-  __typename?: "Query";
+  __typename?: 'Query';
   getBuddyProjectStatus: {
-    __typename?: "BuddyProjectStatusPayload";
+    __typename?: 'BuddyProjectStatusPayload';
     status: BuddyProjectStatus;
     buddy?: {
-      __typename?: "BuddyProjectEntry";
+      __typename?: 'BuddyProjectEntry';
       userId: string;
       username?: string | null;
     } | null;
@@ -53,30 +52,30 @@ export type BuddyProjectSignUpMutationVariables = Exact<{
 }>;
 
 export type BuddyProjectSignUpMutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   buddyProjectSignUp: {
-    __typename?: "WebSignUpResult";
+    __typename?: 'WebSignUpResult';
     result: SignUpResult;
     status: {
-      __typename?: "BuddyProjectStatusPayload";
+      __typename?: 'BuddyProjectStatusPayload';
       status: BuddyProjectStatus;
     };
   };
 };
 
-export type TypesenseApiKeyQueryVariables = Exact<{ [key: string]: never }>;
+export type TypesenseApiKeyQueryVariables = Exact<{[key: string]: never}>;
 
 export type TypesenseApiKeyQuery = {
-  __typename?: "Query";
+  __typename?: 'Query';
   groupchatSearchToken: string;
 };
 
-export type CurrentUserQueryVariables = Exact<{ [key: string]: never }>;
+export type CurrentUserQueryVariables = Exact<{[key: string]: never}>;
 
 export type CurrentUserQuery = {
-  __typename?: "Query";
+  __typename?: 'Query';
   me?: {
-    __typename: "AuthenticatedUser";
+    __typename: 'AuthenticatedUser';
     id: string;
     username: string;
     avatarUrl?: string | null;
@@ -84,9 +83,9 @@ export type CurrentUserQuery = {
   } | null;
 };
 
-export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
+export type LogoutMutationVariables = Exact<{[key: string]: never}>;
 
-export type LogoutMutation = { __typename?: "Mutation"; logout: boolean };
+export type LogoutMutation = {__typename?: 'Mutation'; logout: boolean};
 
 export const ServerStateDocument = gql`
   query ServerState {
@@ -165,8 +164,8 @@ export function getSdk(
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        "ServerState",
-        "query",
+        'ServerState',
+        'query',
       );
     },
     BuddyProjectState(
@@ -178,10 +177,10 @@ export function getSdk(
           client.request<BuddyProjectStateQuery>(
             BuddyProjectStateDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders },
+            {...requestHeaders, ...wrappedRequestHeaders},
           ),
-        "BuddyProjectState",
-        "query",
+        'BuddyProjectState',
+        'query',
       );
     },
     BuddyProjectSignUp(
@@ -193,10 +192,10 @@ export function getSdk(
           client.request<BuddyProjectSignUpMutation>(
             BuddyProjectSignUpDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders },
+            {...requestHeaders, ...wrappedRequestHeaders},
           ),
-        "BuddyProjectSignUp",
-        "mutation",
+        'BuddyProjectSignUp',
+        'mutation',
       );
     },
     TypesenseApiKey(
@@ -208,10 +207,10 @@ export function getSdk(
           client.request<TypesenseApiKeyQuery>(
             TypesenseApiKeyDocument,
             variables,
-            { ...requestHeaders, ...wrappedRequestHeaders },
+            {...requestHeaders, ...wrappedRequestHeaders},
           ),
-        "TypesenseApiKey",
-        "query",
+        'TypesenseApiKey',
+        'query',
       );
     },
     CurrentUser(
@@ -224,8 +223,8 @@ export function getSdk(
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        "CurrentUser",
-        "query",
+        'CurrentUser',
+        'query',
       );
     },
     Logout(
@@ -238,8 +237,8 @@ export function getSdk(
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        "Logout",
-        "mutation",
+        'Logout',
+        'mutation',
       );
     },
   };

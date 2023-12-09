@@ -4,10 +4,10 @@
   "scripts": {
     "e2e:open": "yarn workspace @yestheory.family/web e2e:open",
     "e2e:run": "yarn workspace @yestheory.family/web e2e:run",
-    "eslint:check": "yarn workspaces foreach --all run lint",
-    "eslint:write": "yarn workspaces foreach --all run lint --fix",
-    "format:check": "prettier --check packages",
-    "format:write": "prettier --write packages",
+    "eslint:check": "yarn workspaces foreach --all run eslint:check",
+    "eslint:fix": "yarn workspaces foreach --all run eslint:fix",
+    "prettier:check": "yarn workspaces foreach --all run prettier:check",
+    "prettier:fix": "yarn workspaces foreach --all run prettier:fix",
     "server:dev": "yarn workspace @yestheory.family/server start",
     "server:generate": "yarn workspace @yestheory.family/server generate",
     "storybook": "yarn workspace @yestheory.family/web storybook",
@@ -18,9 +18,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "devDependencies": {
-    "prettier": "3.1.0"
-  },
   "resolutions": {
     "react-test-renderer": "18.2.0"
   },

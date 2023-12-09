@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { FC } from "react";
-import { Heading, Link } from "ui";
+import {type FC} from 'react';
+import {Heading, Link} from 'ui';
 
 const Imprint: FC = () => {
   return (
     <>
-      <Heading frontText={"Site Notice"} size={"h2"} />
+      <Heading frontText='Site Notice' size='h2' />
 
       <Heading
-        frontText={"Information pursuant to Sect. 5 German Telemedia Act (TMG)"}
-        size={"h3"}
+        frontText='Information pursuant to Sect. 5 German Telemedia Act (TMG)'
+        size='h3'
       />
       <p>
         Michel von Varendorff
@@ -20,10 +20,10 @@ const Imprint: FC = () => {
         10435 Berlin
       </p>
 
-      <Heading frontText={"Contact"} size={"h3"} />
+      <Heading frontText='Contact' size='h3' />
       <p>E-mail: michelvonv@me.com</p>
 
-      <Heading frontText={"VAT ID"} size={"h3"} />
+      <Heading frontText='VAT ID' size='h3' />
       <p>
         Sales tax identification number according to Sect. 27 a of the Sales Tax
         Law:
@@ -31,7 +31,7 @@ const Imprint: FC = () => {
         DE353294170
       </p>
 
-      <Heading frontText={"Person responsible for editorial"} size={"h3"} />
+      <Heading frontText='Person responsible for editorial' size='h3' />
       <p>
         Michel von Varendorff
         <br />
@@ -40,14 +40,14 @@ const Imprint: FC = () => {
         10435 Berlin
       </p>
 
-      <Heading frontText={"EU dispute resolution"} size={"h3"} />
+      <Heading frontText='EU dispute resolution' size='h3' />
       <p>
         The European Commission provides a platform for online dispute
-        resolution (ODR):{" "}
+        resolution (ODR):{' '}
         <Link
-          href="https://ec.europa.eu/consumers/odr/"
-          target="_blank"
-          rel="noopener noreferrer"
+          href='https://ec.europa.eu/consumers/odr/'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           https://ec.europa.eu/consumers/odr/
         </Link>
@@ -55,10 +55,8 @@ const Imprint: FC = () => {
       </p>
 
       <Heading
-        frontText={
-          "Dispute resolution proceedings in front of a consumer arbitration board"
-        }
-        size={"h3"}
+        frontText='Dispute resolution proceedings in front of a consumer arbitration board'
+        size='h3'
       />
       <p>
         We are not willing or obliged to participate in dispute resolution

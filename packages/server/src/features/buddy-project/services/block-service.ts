@@ -1,25 +1,25 @@
-import { PrismaClient } from "@prisma/client";
-import { Client, Guild, TextChannel } from "discord.js";
-import { Service } from "typedi";
-import winston from "winston";
-import { Logger } from "../../../services/logging/log-service";
+import {PrismaClient} from '@prisma/client';
+import {Client, Guild, type TextChannel} from 'discord.js';
+import {Service} from 'typedi';
+import winston from 'winston';
+import {Logger} from '../../../services/logging/log-service';
 
 @Service()
 export class BlockService {
   private static readonly DMS_DISABLED_CHANNEL_NAME =
-    "buddy-project-dms-disabled";
+    'buddy-project-dms-disabled';
 
   constructor(
     private guild: Guild,
     private client: Client,
     private prisma: PrismaClient,
-    @Logger("buddy-project", "block-service") private logger: winston.Logger,
+    @Logger('buddy-project', 'block-service') private logger: winston.Logger,
   ) {}
 
   private async updateBlocked(userId: string, blocked: boolean) {
     await this.prisma.buddyProjectEntry.update({
-      where: { userId },
-      data: { blocked },
+      where: {userId},
+      data: {blocked},
     });
   }
 
@@ -40,7 +40,7 @@ export class BlockService {
     );
 
     if (!disabledDmsChannel) {
-      const message = "Could not find disabled DMs channel";
+      const message = 'Could not find disabled DMs channel';
       this.logger.error(message);
       throw new Error(message);
     }
@@ -58,7 +58,7 @@ export class BlockService {
 
     const ping = await disabledDmsChannel.send({
       content: `<@${userId}>`,
-      allowedMentions: { users: [userId] },
+      allowedMentions: {users: [userId]},
     });
     await ping.delete();
   }

@@ -1,32 +1,33 @@
-import { FC, PropsWithChildren } from "react";
-import { Button } from "../../common/button/button";
-import gridClasses from "./group-chat-result.module.css";
-import { twMerge } from "tailwind-merge";
 import {
   SiDiscord,
+  SiDiscordHex,
   SiFacebook,
+  SiFacebookHex,
   SiSignal,
+  SiSignalHex,
   SiTelegram,
+  SiTelegramHex,
   SiWhatsapp,
-} from "@icons-pack/react-simple-icons";
-import { IconType } from "@icons-pack/react-simple-icons/types";
+  SiWhatsappHex,
+} from '@icons-pack/react-simple-icons';
+import {type FC, type PropsWithChildren} from 'react';
+import {twMerge} from 'tailwind-merge';
+import {Button} from '../../common/button/button';
+import gridClasses from './group-chat-result.module.css';
 
-const KeywordBadge: FC<PropsWithChildren> = ({ children }) => (
-  <span
-    className={
-      "p-1 text-brand-800 border border-brand-800 inline-block text-xs rounded-md capitalize"
-    }
-  >
+const KeywordBadge: FC<PropsWithChildren> = ({children}) => (
+  <span className='inline-block rounded-md border border-brand-800 p-1 text-xs capitalize text-brand-800'>
     {children}
   </span>
 );
+
 // TODO get this from the generated graphql stuff
 export type GroupChatPlatform =
-  | "facebook"
-  | "whatsapp"
-  | "signal"
-  | "telegram"
-  | "discord";
+  | 'facebook'
+  | 'whatsapp'
+  | 'signal'
+  | 'telegram'
+  | 'discord';
 
 export type GroupChatResultProps = {
   platform: GroupChatPlatform;
@@ -37,17 +38,19 @@ export type GroupChatResultProps = {
   promoted: number;
 };
 
+type IconType = typeof SiDiscord;
+
 type IconDefinition = {
   Icon: IconType;
   color: string;
 };
 
 const platformIcons: Record<GroupChatPlatform, IconDefinition> = {
-  facebook: { Icon: SiFacebook, color: "#1877F2" },
-  whatsapp: { Icon: SiWhatsapp, color: "#25D366" },
-  signal: { Icon: SiSignal, color: "#3A76F0" },
-  telegram: { Icon: SiTelegram, color: "#26A5E4" },
-  discord: { Icon: SiDiscord, color: "#5865F2" },
+  facebook: {Icon: SiFacebook, color: SiFacebookHex},
+  whatsapp: {Icon: SiWhatsapp, color: SiWhatsappHex},
+  signal: {Icon: SiSignal, color: SiSignalHex},
+  telegram: {Icon: SiTelegram, color: SiTelegramHex},
+  discord: {Icon: SiDiscord, color: SiDiscordHex},
 };
 
 export const GroupChatResult: FC<GroupChatResultProps> = ({
@@ -58,7 +61,7 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
   url,
   promoted,
 }) => {
-  const { Icon, color } = platformIcons[platform];
+  const {Icon, color} = platformIcons[platform];
   const maxKeywords = 3;
   const firstKeywords = keywords.slice(0, maxKeywords);
   const remainingKeywordCount = keywords.length - maxKeywords;
@@ -66,26 +69,26 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
   return (
     <div
       className={twMerge(
-        "gap-2 md:gap-3 p-4 hover:bg-gray-50/50",
-        gridClasses["result-grid"],
+        'gap-2 p-4 hover:bg-gray-50/50 md:gap-3',
+        gridClasses['result-grid'],
       )}
     >
       <div
-        className={twMerge(gridClasses.icon, "self-center justify-self-center")}
+        className={twMerge(gridClasses.icon, 'self-center justify-self-center')}
       >
-        <Icon color={color} className={"sm:h-10 sm:w-10"} />
+        <Icon color={color} className='sm:h-10 sm:w-10' />
       </div>
 
-      <p className={twMerge(gridClasses.title, "font-bold")}>
+      <p className={twMerge(gridClasses.title, 'font-bold')}>
         {name}
         {promoted ? (
-          <span className={"text-xs text-gray-500 font-normal ml-1"}>
+          <span className='ml-1 text-xs font-normal text-gray-500'>
             (Promoted)
           </span>
         ) : undefined}
       </p>
 
-      <div className={twMerge(gridClasses.meta, "space-x-2")}>
+      <div className={twMerge(gridClasses.meta, 'space-x-2')}>
         {firstKeywords.map((r) => (
           <KeywordBadge key={r}>{r}</KeywordBadge>
         ))}
@@ -100,12 +103,12 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
         href={url}
         className={twMerge(
           gridClasses.join,
-          "sm:justify-self-end sm:self-center",
+          'sm:self-center sm:justify-self-end',
         )}
-        target={"_blank"}
-        rel="noreferrer"
+        target='_blank'
+        rel='noreferrer'
       >
-        <Button size={"tiny"} variant={"solid"}>
+        <Button size='tiny' variant='solid'>
           Join
         </Button>
       </a>

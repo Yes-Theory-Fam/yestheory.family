@@ -1,4 +1,4 @@
-const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
+const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
 
 /** @returns {import("next").NextConfig} */
 const config = (phase) => ({
@@ -11,27 +11,27 @@ const config = (phase) => ({
   },
   rewrites: () => [
     {
-      source: "/graphql",
-      destination: "http://localhost:5000/graphql",
+      source: '/graphql',
+      destination: 'http://localhost:5000/graphql',
     },
     {
-      source: "/typesense/:slug*",
-      destination: "http://localhost:8108/:slug*",
+      source: '/typesense/:slug*',
+      destination: 'http://localhost:8108/:slug*',
     },
     {
-      source: "/oauth/:slug*",
-      destination: "http://localhost:5000/oauth/:slug*",
+      source: '/oauth/:slug*',
+      destination: 'http://localhost:5000/oauth/:slug*',
     },
   ],
   headers: () => [
     {
-      source: "/:path*",
+      source: '/:path*',
       headers: [
-        { key: "X-Frame-Options", value: "DENY" },
+        {key: 'X-Frame-Options', value: 'DENY'},
         {
-          key: "Content-Security-Policy",
+          key: 'Content-Security-Policy',
           value: `default-src 'self'; img-src 'self' https://cdn.discordapp.com/avatars/ data:; child-src 'none'; script-src 'self' 'unsafe-inline' ${
-            phase === PHASE_DEVELOPMENT_SERVER ? "'unsafe-eval'" : ""
+            phase === PHASE_DEVELOPMENT_SERVER ? "'unsafe-eval'" : ''
           }; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'`,
         },
       ],

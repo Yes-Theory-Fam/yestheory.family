@@ -1,26 +1,26 @@
-import { Meta, StoryObj } from "@storybook/react";
+import {type Meta, type StoryObj} from '@storybook/react';
+import {Step} from '../common';
 import {
   ChattingWithYourBuddyStep,
   JoinStep,
   MatchedStep,
   SignedUpConfirmationStep,
   WaitForMatchStep,
-} from ".";
-import { Step } from "../common";
+} from '.';
 
 export default {
-  title: "Buddy Project/Steps",
+  title: 'Buddy Project/Steps',
   component: Step,
 } satisfies Meta;
 
 export const Steps: StoryObj = {
   render: () => {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         <JoinStep />
         <WaitForMatchStep />
         <SignedUpConfirmationStep />
-        <MatchedStep buddyName="ExampleBuddy#1234" />
+        <MatchedStep buddyName='ExampleBuddy#1234' />
         <ChattingWithYourBuddyStep />
       </div>
     );

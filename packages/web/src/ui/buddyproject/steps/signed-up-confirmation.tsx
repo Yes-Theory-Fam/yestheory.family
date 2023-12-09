@@ -1,11 +1,11 @@
-import { FC } from "react";
-import { DiscordLink, Step } from "../common";
+import {type FC} from 'react';
+import {DiscordLink, Step} from '../common';
 
 export const SignedUpConfirmationStep: FC = () => (
-  <Step heading={"You have signed up!"}>
+  <Step heading='You have signed up!'>
     <p>You are signed up for the Buddy Project.</p>
     <p>
-      While you are waiting for your match, feel free to look around the{" "}
+      While you are waiting for your match, feel free to look around the{' '}
       <DiscordLink /> and get to know some of the people there!
     </p>
     <strong>

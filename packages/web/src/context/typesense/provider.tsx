@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
 import {
   createContext,
-  FC,
-  PropsWithChildren,
+  type FC,
+  type PropsWithChildren,
   useContext,
   useMemo,
-} from "react";
-import { SearchClient } from "typesense";
-import { getTypesenseClient } from "./client";
+} from 'react';
+import {type SearchClient} from 'typesense';
+import {getTypesenseClient} from './client';
 
-export type TypesenseContextData = { client: SearchClient };
+export type TypesenseContextData = {client: SearchClient};
 
 export const TypesenseContext = createContext<TypesenseContextData | null>(
   null,
@@ -27,7 +27,7 @@ export const TypesenseProvider: FC<TypesenseProviderProps> = ({
   const value = useMemo(() => {
     const client = getTypesenseClient(apiKey);
 
-    return { client };
+    return {client};
   }, [apiKey]);
 
   return (
@@ -40,7 +40,7 @@ export const TypesenseProvider: FC<TypesenseProviderProps> = ({
 export const useTypesense = () => {
   const ctx = useContext(TypesenseContext);
 
-  if (!ctx) throw new Error("useTypesense used outside of TypesenseProvider");
+  if (!ctx) throw new Error('useTypesense used outside of TypesenseProvider');
 
   return ctx;
 };

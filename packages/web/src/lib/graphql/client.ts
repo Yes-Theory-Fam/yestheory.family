@@ -1,15 +1,15 @@
-import { GraphQLClient } from "graphql-request";
-import { headers } from "next/headers";
-import { notFound } from "next/navigation";
-import util from "node:util";
-import { getSdk, Sdk } from "../../__generated__/graphql";
+import util from 'node:util';
+import {GraphQLClient} from 'graphql-request';
+import {headers} from 'next/headers';
+import {notFound} from 'next/navigation';
+import {getSdk, type Sdk} from '../../__generated__/graphql';
 
 export const getGraphqlClient = () => {
   const requestHeaders = headers();
 
   if (!process.env.SERVER_BACKEND_GRAPHQL_URL) {
-    if (process.env.NODE_ENV !== "production") {
-      throw new Error("Missing SERVER_BACKEND_GRAPHQL_URL");
+    if (process.env.NODE_ENV !== 'production') {
+      throw new Error('Missing SERVER_BACKEND_GRAPHQL_URL');
     }
 
     notFound();
@@ -17,13 +17,13 @@ export const getGraphqlClient = () => {
 
   const client = new GraphQLClient(process.env.SERVER_BACKEND_GRAPHQL_URL, {
     headers: {
-      Cookie: requestHeaders.get("Cookie") ?? "",
+      Cookie: requestHeaders.get('Cookie') ?? '',
     },
     requestMiddleware:
-      process.env.GRAPHQL_DEBUG === "true"
+      process.env.GRAPHQL_DEBUG === 'true'
         ? (req) => {
             console.info(
-              "GraphQL:",
+              'GraphQL:',
               util.inspect(JSON.parse(req.body as string), {
                 showHidden: false,
                 depth: null,
@@ -47,4 +47,4 @@ export const graphqlWithHeaders = async <T>(
   return await cb(client);
 };
 
-export * from "../../__generated__/graphql";
+export * from '../../__generated__/graphql';

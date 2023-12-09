@@ -1,11 +1,11 @@
-import { Client, Guild } from "discord.js";
-import { Service } from "typedi";
-import cron from "node-cron";
-import winston from "winston";
-import { BuddyProjectEntry } from "../../../__generated__/type-graphql";
-import { Logger } from "../../../services/logging/log-service";
-import { GhostService } from "../services/ghost-service";
-import { MatchService } from "../services/match-service";
+import {Client, Guild} from 'discord.js';
+import cron from 'node-cron';
+import {Service} from 'typedi';
+import winston from 'winston';
+import {type BuddyProjectEntry} from '../../../__generated__/type-graphql';
+import {Logger} from '../../../services/logging/log-service';
+import {GhostService} from '../services/ghost-service';
+import {MatchService} from '../services/match-service';
 
 // Hours between reporting being ghosted and being rematched
 const ghostedRematchDifferenceHours = 24;
@@ -15,21 +15,21 @@ const ghostWarningMessageRegex = /^\*\*Buddy Project Ghosting\*\*$/gm;
 
 @Service()
 export class GhostCheckCron {
-  private static cronSchedule = "*/10 * * * *"; // Every 10 minutes
+  private static cronSchedule = '*/10 * * * *'; // Every 10 minutes
 
   constructor(
     private ghostService: GhostService,
     private matchService: MatchService,
     private guild: Guild,
     private client: Client,
-    @Logger("buddy-project", "ghost-check-cron") private logger: winston.Logger,
+    @Logger('buddy-project', 'ghost-check-cron') private logger: winston.Logger,
   ) {
     this.init();
   }
 
   private init() {
     cron.schedule(GhostCheckCron.cronSchedule, () => this.checkForGhosting());
-    this.logger.info("Ghost-Checker initialized");
+    this.logger.info('Ghost-Checker initialized');
   }
 
   async checkForGhosting() {
@@ -48,7 +48,7 @@ export class GhostCheckCron {
     await Promise.all(ghostHandlingPromises);
   }
 
-  private async handleGhoster({ userId, buddyId }: BuddyProjectEntry) {
+  private async handleGhoster({userId, buddyId}: BuddyProjectEntry) {
     await this.matchService.unmatch(userId);
     if (buddyId) await this.ghostService.kick(buddyId);
 
@@ -69,7 +69,7 @@ export class GhostCheckCron {
     const dm = await user.createDM();
 
     // Let's hope 50 are enough :)
-    const lastMessages = await dm.messages.fetch({ limit: 50 });
+    const lastMessages = await dm.messages.fetch({limit: 50});
     const ghostWarningMessage = lastMessages.find(
       (m) => m.author.bot && !!m.content.match(ghostWarningMessageRegex),
     );

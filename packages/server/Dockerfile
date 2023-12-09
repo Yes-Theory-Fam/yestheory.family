@@ -12,8 +12,6 @@ COPY .yarnrc.yml ./
 COPY yarn.lock package.json ./
 
 # Copy package.jsons of all related packages
-COPY packages/common/package.json ./packages/common/
-COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/server/package.json ./packages/server/
 
 # Install dependencies for the workspace

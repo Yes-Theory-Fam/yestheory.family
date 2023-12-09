@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { Step } from "../common";
+import {type FC} from 'react';
+import {Step} from '../common';
 
 export type ChattingWithYourBuddyProps = {
   isMatched?: boolean;
@@ -8,7 +8,7 @@ export type ChattingWithYourBuddyProps = {
 export const ChattingWithYourBuddyStep: FC<ChattingWithYourBuddyProps> = ({
   isMatched = false,
 }) => {
-  const heading = `How ${isMatched ? "does" : "will"} it work?`;
+  const heading = `How ${isMatched ? 'does' : 'will'} it work?`;
 
   return (
     <Step heading={heading}>

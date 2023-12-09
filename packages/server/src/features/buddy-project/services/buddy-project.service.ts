@@ -1,9 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-import { Service } from "typedi";
+import {PrismaClient} from '@prisma/client';
+import {Service} from 'typedi';
 import {
   BuddyProjectStatus,
   BuddyProjectStatusPayload,
-} from "../buddy-project-status";
+} from '../buddy-project-status';
 
 const shuffle = <T>(...items: T[]): T[] => {
   const copy = [...items];
@@ -28,11 +28,11 @@ export class BuddyProjectService {
 
   async getUnmatchedBuddyIds(limit: number): Promise<string[]> {
     const allAvailableIds = await this.prisma.buddyProjectEntry.findMany({
-      select: { userId: true },
-      where: { buddyId: null, blocked: false },
+      select: {userId: true},
+      where: {buddyId: null, blocked: false},
     });
 
-    const shuffledIds = shuffle(...allAvailableIds.map(({ userId }) => userId));
+    const shuffledIds = shuffle(...allAvailableIds.map(({userId}) => userId));
     return shuffledIds.slice(0, limit);
   }
 
@@ -40,8 +40,8 @@ export class BuddyProjectService {
     userId: string,
   ): Promise<BuddyProjectStatusPayload> {
     const entry = await this.prisma.buddyProjectEntry.findUnique({
-      where: { userId: userId },
-      include: { buddy: true },
+      where: {userId: userId},
+      include: {buddy: true},
     });
 
     if (!entry) {

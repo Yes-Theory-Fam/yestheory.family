@@ -1,12 +1,12 @@
-import { Client, Guild, Message, Snowflake } from "discord.js";
-import { Service } from "typedi";
-import winston from "winston";
-import { Logger } from "../../../services/logging/log-service";
-import { BlockService } from "../services/block-service";
-import { BuddyProjectService } from "../services/buddy-project.service";
-import { MatchService } from "../services/match-service";
-import cron from "node-cron";
-import { evenQuestions, intro, oddQuestions } from "./texts";
+import {Client, Guild, type Message, type Snowflake} from 'discord.js';
+import cron from 'node-cron';
+import {Service} from 'typedi';
+import winston from 'winston';
+import {Logger} from '../../../services/logging/log-service';
+import {BlockService} from '../services/block-service';
+import {BuddyProjectService} from '../services/buddy-project.service';
+import {MatchService} from '../services/match-service';
+import {evenQuestions, intro, oddQuestions} from './texts';
 
 const partition = <T>(chunkSize = 2, ...items: T[]): T[][] => {
   const chunks: T[][] = [];
@@ -21,7 +21,7 @@ const partition = <T>(chunkSize = 2, ...items: T[]): T[][] => {
 @Service()
 export class MatchingCron {
   static readonly matchAmount = 100;
-  static readonly cronSchedule = "*/30 * * * *"; // Every 30 minutes
+  static readonly cronSchedule = '*/30 * * * *'; // Every 30 minutes
 
   constructor(
     private matchService: MatchService,
@@ -29,14 +29,14 @@ export class MatchingCron {
     private blockService: BlockService,
     private client: Client,
     private guild: Guild,
-    @Logger("buddy-project", "matching-cron") private logger: winston.Logger,
+    @Logger('buddy-project', 'matching-cron') private logger: winston.Logger,
   ) {
     this.init();
   }
 
   init() {
     cron.schedule(MatchingCron.cronSchedule, () => this.runMatching());
-    this.logger.info("Buddy Project-matcher initialized");
+    this.logger.info('Buddy Project-matcher initialized');
   }
 
   async runMatching() {
@@ -73,16 +73,16 @@ export class MatchingCron {
   private static async explainUnfortunateCircumstances(firstMessage: Message) {
     await firstMessage.delete();
     await firstMessage.channel.send(
-      "Right, this one is going to be disappointing... I had already matched you " +
-        "but your match had their DMs disabled, so I had to rollback everything.\n\n" +
-        "This message was sent to make sure you are not left wondering why I sent you a message that suddenly vanished. " +
+      'Right, this one is going to be disappointing... I had already matched you ' +
+        'but your match had their DMs disabled, so I had to rollback everything.\n\n' +
+        'This message was sent to make sure you are not left wondering why I sent you a message that suddenly vanished. ' +
         "Don't worry, you are still signed up and will be matched soon (that time hopefully with better luck though)!",
     );
   }
 
   async match([first, second]: [Snowflake, Snowflake]) {
     const infoChannel = this.guild.channels.cache.find(
-      (c) => c.name === "buddy-project-info",
+      (c) => c.name === 'buddy-project-info',
     );
 
     try {
@@ -106,7 +106,7 @@ export class MatchingCron {
         await MatchingCron.explainUnfortunateCircumstances(firstSentMessage);
       }
     } catch (e) {
-      this.logger.error("Error while matching", e);
+      this.logger.error('Error while matching', e);
     }
   }
 }

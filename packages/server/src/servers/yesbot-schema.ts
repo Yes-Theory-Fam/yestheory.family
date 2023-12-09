@@ -1,10 +1,10 @@
-import Koa from "koa";
-import { getIntrospectionQuery } from "graphql";
-import { isDevelopment } from "../config";
-import { createServerLogger } from "../services/logging/log";
-import Router from "@koa/router";
+import Router from '@koa/router';
+import {getIntrospectionQuery} from 'graphql';
+import Koa from 'koa';
+import {isDevelopment} from '../config';
+import {createServerLogger} from '../services/logging/log';
 
-const logger = createServerLogger("server", "yesbot-schema");
+const logger = createServerLogger('server', 'yesbot-schema');
 
 // To avoid exposing the entirety of YesBot's API to this backend, this server acts as a proxy to fetch the schema in CI
 export const launchYesBotSchemaServer = () => {
@@ -17,16 +17,16 @@ export const launchYesBotSchemaServer = () => {
   app.proxy = !isDevelopment;
 
   const router = new Router();
-  router.post("/_yesbot-schema", async (ctx) => {
-    const introspectionQuery = getIntrospectionQuery({ descriptions: false });
+  router.post('/_yesbot-schema', async (ctx) => {
+    const introspectionQuery = getIntrospectionQuery({descriptions: false});
     const response = await fetch(
       `http://127.0.0.1:${yesbotServerPort}/graphql`,
       {
-        method: "POST",
-        body: JSON.stringify({ query: introspectionQuery }),
+        method: 'POST',
+        body: JSON.stringify({query: introspectionQuery}),
         headers: {
-          "Content-Type": "application/json",
-          "x-yesbot-authentication": process.env.YESBOT_API_TOKEN,
+          'Content-Type': 'application/json',
+          'x-yesbot-authentication': process.env.YESBOT_API_TOKEN,
         },
       },
     );
@@ -37,7 +37,7 @@ export const launchYesBotSchemaServer = () => {
   app.use(router.routes());
   app.use(router.allowedMethods());
 
-  app.listen({ port: thisPort }, () =>
+  app.listen({port: thisPort}, () =>
     logger.info(`Backend listening on port ${thisPort}`),
   );
 };

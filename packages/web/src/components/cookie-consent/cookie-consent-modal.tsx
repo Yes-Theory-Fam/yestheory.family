@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import NiceModal, { useModal } from "@ebay/nice-modal-react";
-import { useCallback } from "react";
-import { Link } from "ui";
-import { Modal, ModalActionButton } from "ui/client";
+import {useModal, create as createNiceModal} from '@ebay/nice-modal-react';
+import {useCallback} from 'react';
+import {Link} from 'ui';
+import {Modal, type ModalActionButton} from 'ui/client';
 
-const cookieAcceptName = "ytf-cookie-consent";
+const cookieAcceptName = 'ytf-cookie-consent';
 
-export const CookieConsentModal = NiceModal.create(() => {
+export const CookieConsentModal = createNiceModal(() => {
   const modal = useModal();
 
   const acceptCookies = useCallback(() => {
@@ -15,30 +15,30 @@ export const CookieConsentModal = NiceModal.create(() => {
     const expiryDate = new Date();
     expiryDate.setUTCFullYear(expiryDate.getUTCFullYear() + 1);
 
-    const isSecure = window.location.protocol === "https:";
+    const isSecure = window.location.protocol === 'https:';
     document.cookie = `${cookieAcceptName}=${Date.now()};expires=${expiryDate.toUTCString()};domain=${host}${
-      isSecure ? ";secure" : ""
+      isSecure ? ';secure' : ''
     }`;
 
     modal.resolve();
     modal.remove();
-  }, []);
+  }, [modal]);
 
   const actions = [
     {
-      text: "Decline",
-      variant: "outlined",
-      onClick: () => (window.location.href = "https://example.com"),
+      text: 'Decline',
+      variant: 'outlined',
+      onClick: () => (window.location.href = 'https://example.com'),
     },
     {
-      text: "Accept",
-      variant: "outlined",
+      text: 'Accept',
+      variant: 'outlined',
       onClick: acceptCookies,
     },
   ] satisfies ModalActionButton[];
 
   return (
-    <Modal title="Real quick!" actions={actions}>
+    <Modal title='Real quick!' actions={actions}>
       <p>
         This website uses cookies to function. We promise to only use cookies
         that are required to make the website functional!
@@ -47,8 +47,8 @@ export const CookieConsentModal = NiceModal.create(() => {
         use this website.
       </p>
       <p>
-        Find more information on the use of cookies in our{" "}
-        <Link href={"/privacy"}>Privacy Policy</Link>!
+        Find more information on the use of cookies in our{' '}
+        <Link href='/legal/privacy'>Privacy Policy</Link>!
       </p>
     </Modal>
   );

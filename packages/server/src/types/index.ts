@@ -1,6 +1,6 @@
-import { AuthenticatedUser } from "../features";
-import koa from "koa";
-import { YtfAuthContext } from "../features/auth/auth-service";
+import type koa from 'koa';
+import {type AuthenticatedUser} from '../features';
+import {type YtfAuthContext} from '../features/auth/auth-service';
 
 export interface YtfApolloContext {
   user: AuthenticatedUser | null;

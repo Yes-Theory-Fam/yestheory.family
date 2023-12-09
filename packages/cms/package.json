@@ -13,7 +13,12 @@
     "serve": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
-    "generate:graphQLSchema": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:graphQLSchema"
+    "generate:graphQLSchema": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:graphQLSchema",
+    "lint": "yarn run lint:fix && yarn run prettier:fix",
+    "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . --write"
   },
   "dependencies": {
     "@payloadcms/bundler-vite": "^0.1.5",
@@ -26,13 +31,18 @@
     "typesense": "^1.7.2"
   },
   "devDependencies": {
+    "@atmina/linting": "^2.0.1",
+    "@types/eslint": "^8.44.8",
     "@types/express": "^4.17.21",
     "@types/node-cron": "^3.0.11",
     "@types/pg": "^8.10.9",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.2"
-  }
+  },
+  "prettier": "@atmina/linting/prettier"
 }

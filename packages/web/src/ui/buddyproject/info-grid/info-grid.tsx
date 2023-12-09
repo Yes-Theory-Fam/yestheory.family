@@ -1,27 +1,27 @@
-import { FC } from "react";
-import { Heading, Image } from "ui";
-import { yesbotBuddyProjectWebp } from "../../../../assets";
-import { SectionHeading } from "../common";
-import { type BuddyProjectStatus } from "../../../__generated__/graphql";
+import {type FC} from 'react';
+import {Heading, Image} from 'ui';
+import {yesbotBuddyProjectWebp} from '../../../../assets';
+import {type BuddyProjectStatus} from '../../../__generated__/graphql';
+import {SectionHeading} from '../common';
 import {
   SignedUpConfirmationStep,
   MatchedStep,
   ChattingWithYourBuddyStep,
   JoinStep,
   WaitForMatchStep,
-} from "../steps";
+} from '../steps';
 
 const InfoHeader: FC = () => {
   return (
-    <div className="flex flex-col">
+    <div className='flex flex-col'>
       <Heading
-        frontText={"Find a stranger\n"}
-        blueText="Discover a friend"
-        className="normal-case"
+        frontText={'Find a stranger\n'}
+        blueText='Discover a friend'
+        className='normal-case'
         center={false}
-        size={"h2"}
+        size='h2'
       />
-      <SectionHeading text={"Hi!"} />
+      <SectionHeading text='Hi!' />
       <p>
         An opportunity to get to know a person miles away from you, building a
         new friendship, and discovering a new way of living, what’s not to like?
@@ -31,7 +31,7 @@ const InfoHeader: FC = () => {
 };
 
 const states = {
-  MATCHED: ({ buddyName }: { buddyName: string }) => (
+  MATCHED: ({buddyName}: {buddyName: string}) => (
     <>
       <SignedUpConfirmationStep />
       <MatchedStep buddyName={buddyName} />
@@ -59,23 +59,23 @@ export type InfoGridProps = {
   buddyName?: string;
 };
 
-export const InfoGrid: FC<InfoGridProps> = ({ state, buddyName }) => {
+export const InfoGrid: FC<InfoGridProps> = ({state, buddyName}) => {
   const StateInfo = states[state];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <div className="lg:col-span-2 self-center">
+    <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
+      <div className='self-center lg:col-span-2'>
         <InfoHeader />
       </div>
-      <div className="flex items-center justify-center relative max-w-[700px] w-full h-full min-h-[400px] lg:min-h-[unset]">
+      <div className='relative flex h-full min-h-[400px] w-full max-w-[700px] items-center justify-center lg:min-h-[unset]'>
         <Image
           src={yesbotBuddyProjectWebp}
-          alt="Illustration of YesBot delivering a letter with a heart on it to a postbox with the Discord logo on it"
+          alt='Illustration of YesBot delivering a letter with a heart on it to a postbox with the Discord logo on it'
           fill
-          className="object-contain"
+          className='object-contain'
         />
       </div>
-      <StateInfo buddyName={buddyName ?? ""} />
+      <StateInfo buddyName={buddyName ?? ''} />
     </div>
   );
 };

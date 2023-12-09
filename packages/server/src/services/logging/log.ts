@@ -1,12 +1,13 @@
-import winston, { createLogger, format, transports } from "winston";
+import type winston from 'winston';
+import {createLogger, format, transports} from 'winston';
 
 const USE_COLORS = process.stdout.isTTY;
 const SHOW_TIMESTAMP = process.stdout.isTTY;
 
-const fmt = format.printf(({ level, message, timestamp, ...meta }) => {
-  const { kind, program, ...fields } = meta;
+const fmt = format.printf(({level, message, timestamp, ...meta}) => {
+  const {kind, program, ...fields} = meta;
 
-  let out = "";
+  let out = '';
   if (SHOW_TIMESTAMP) {
     out += `${timestamp} `;
   }
@@ -31,7 +32,7 @@ if (USE_COLORS) {
 if (SHOW_TIMESTAMP) {
   formatters.push(
     format.timestamp({
-      format: "HH:mm:ss.SSS",
+      format: 'HH:mm:ss.SSS',
     }),
   );
 }
@@ -40,7 +41,7 @@ if (SHOW_TIMESTAMP) {
 formatters.push(fmt);
 
 const loggerOpts: winston.LoggerOptions = {
-  level: process.env.NODE_ENV === "production" ? "info" : "debug",
+  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
   format: format.combine(...formatters),
   transports: [new transports.Console()],
 };
