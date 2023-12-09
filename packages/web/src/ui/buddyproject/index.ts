@@ -1,1 +1,1 @@
-export * from "./info-grid/info-grid";
+export * from './info-grid/info-grid';

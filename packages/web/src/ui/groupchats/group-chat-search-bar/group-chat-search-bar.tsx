@@ -1,7 +1,7 @@
-import { FC, useEffect, useReducer } from "react";
-import { GroupChatPlatform } from "../index";
-import { SearchInput } from "./search-input";
-import { PlatformFilter } from "./platform-filter";
+import {type FC} from 'react';
+import {type GroupChatPlatform} from '../index';
+import {PlatformFilter} from './platform-filter';
+import {SearchInput} from './search-input';
 
 type SearchChangeArgs = {
   query: string;
@@ -9,24 +9,25 @@ type SearchChangeArgs = {
 };
 
 export type GroupChatSearchBarProps = {
+  search: SearchChangeArgs;
   onSearchChange: (search: SearchChangeArgs) => void;
 };
 
 type SearchReducerAction =
-  | { type: "clearQuery" }
-  | { type: "setQuery"; query: string }
-  | { type: "togglePlatform"; platform: GroupChatPlatform };
+  | {type: 'clearQuery'}
+  | {type: 'setQuery'; query: string}
+  | {type: 'togglePlatform'; platform: GroupChatPlatform};
 
 const searchReducer = (
   state: SearchChangeArgs,
   action: SearchReducerAction,
 ): SearchChangeArgs => {
   switch (action.type) {
-    case "clearQuery":
-      return { ...state, query: "" };
-    case "setQuery":
-      return { ...state, query: action.query };
-    case "togglePlatform":
+    case 'clearQuery':
+      return {...state, query: ''};
+    case 'setQuery':
+      return {...state, query: action.query};
+    case 'togglePlatform':
       return {
         ...state,
         platforms: state.platforms.includes(action.platform)
@@ -37,28 +38,24 @@ const searchReducer = (
 };
 
 export const GroupChatSearchBar: FC<GroupChatSearchBarProps> = ({
+  search,
   onSearchChange,
-}) => {
-  const [currentSearch, dispatch] = useReducer(searchReducer, {
-    query: "",
-    platforms: [],
-  });
-
-  useEffect(() => {
-    onSearchChange(currentSearch);
-  }, [currentSearch]);
-
-  return (
-    <div className={"container mx-auto max-w-4xl"}>
-      <SearchInput
-        onChange={(newValue) => dispatch({ type: "setQuery", query: newValue })}
-      />
-      <PlatformFilter
-        selectedPlatforms={currentSearch.platforms}
-        onPlatformToggle={(p) => {
-          dispatch({ type: "togglePlatform", platform: p });
-        }}
-      />
-    </div>
-  );
-};
+}) => (
+  <div className='container mx-auto max-w-4xl'>
+    <SearchInput
+      onChange={(newValue) =>
+        onSearchChange(
+          searchReducer(search, {type: 'setQuery', query: newValue}),
+        )
+      }
+    />
+    <PlatformFilter
+      selectedPlatforms={search.platforms}
+      onPlatformToggle={(p) => {
+        onSearchChange(
+          searchReducer(search, {type: 'togglePlatform', platform: p}),
+        );
+      }}
+    />
+  </div>
+);

@@ -1,2 +1,2 @@
-export * from "./client";
-export { TypesenseProvider, useTypesense } from "./provider";
+export * from './client';
+export {TypesenseProvider, useTypesense} from './provider';

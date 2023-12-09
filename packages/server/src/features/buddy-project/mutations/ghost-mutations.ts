@@ -1,15 +1,9 @@
-import {
-  Arg,
-  Field,
-  Mutation,
-  ObjectType,
-  registerEnumType,
-} from "type-graphql";
+import {Arg, Field, Mutation, ObjectType, registerEnumType} from 'type-graphql';
 import {
   Resolver,
   ResolverTarget,
-} from "../../../services/resolvers/resolver-directive";
-import { GhostService, MarkGhostedError } from "../services/ghost-service";
+} from '../../../services/resolvers/resolver-directive';
+import {GhostService, MarkGhostedError} from '../services/ghost-service';
 
 @Resolver(ResolverTarget.YESBOT)
 class GhostMutations {
@@ -17,11 +11,11 @@ class GhostMutations {
 
   @Mutation(() => MarkGhostedPayload)
   async markGhosted(
-    @Arg("userId") userId: string,
+    @Arg('userId') userId: string,
   ): Promise<MarkGhostedPayload> {
     const result = await this.ghostService.markAsGhosted(userId);
 
-    if ("error" in result) {
+    if ('error' in result) {
       return new MarkGhostedPayload(false, result.error, undefined);
     }
 
@@ -29,24 +23,24 @@ class GhostMutations {
   }
 
   @Mutation(() => Boolean)
-  async markAsNotGhosting(@Arg("userId") userId: string): Promise<boolean> {
+  async markAsNotGhosting(@Arg('userId') userId: string): Promise<boolean> {
     await this.ghostService.markAsNotGhosting(userId);
 
     return true;
   }
 }
 
-registerEnumType(MarkGhostedError, { name: "MarkGhostedError" });
+registerEnumType(MarkGhostedError, {name: 'MarkGhostedError'});
 
 @ObjectType()
 class MarkGhostedPayload {
   @Field()
   public success: boolean;
 
-  @Field(() => MarkGhostedError, { nullable: true })
+  @Field(() => MarkGhostedError, {nullable: true})
   public error: MarkGhostedError | undefined;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => String, {nullable: true})
   public buddyId: string | undefined;
 
   constructor(

@@ -1,12 +1,12 @@
-import { Heading } from "ui";
-import { GroupChatSearch } from "./components/group-chat-search";
-import { Metadata } from "next";
-import { getIsLoggedIn } from "../../context/user/user";
-import { TypesenseProvider } from "../../context/typesense";
-import { graphqlWithHeaders } from "../../lib/graphql/client";
+import {type Metadata} from 'next';
+import {Heading} from 'ui';
+import {TypesenseProvider} from '../../context/typesense';
+import {getIsLoggedIn} from '../../context/user/user';
+import {graphqlWithHeaders} from '../../lib/graphql/client';
+import {GroupChatSearch} from './components/group-chat-search';
 
 export const metadata: Metadata = {
-  title: "Groupchats",
+  title: 'Groupchats',
 };
 
 const GroupChats = async () => {
@@ -14,8 +14,8 @@ const GroupChats = async () => {
   const apiKey = await graphqlWithHeaders((sdk) => sdk.TypesenseApiKey());
 
   return (
-    <div className="mt-28">
-      <Heading frontText="Group" blueText="chats" />
+    <div className='mt-28'>
+      <Heading frontText='Group' blueText='chats' />
 
       <TypesenseProvider apiKey={apiKey.groupchatSearchToken}>
         <GroupChatSearch isLoggedIn={isLoggedIn} />

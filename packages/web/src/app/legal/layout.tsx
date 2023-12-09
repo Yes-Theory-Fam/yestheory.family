@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren } from "react";
+import {type FC, type PropsWithChildren} from 'react';
 
-const LegalLayout: FC<PropsWithChildren> = ({ children }) => {
+const LegalLayout: FC<PropsWithChildren> = ({children}) => {
   return (
-    <div className="mt-16 md:mt-24 mx-4 md:mx-8 xl:mx-auto text-left flex flex-col items-start">
+    <div className='mx-4 mt-16 flex flex-col items-start text-left md:mx-8 md:mt-24 xl:mx-auto'>
       {children}
     </div>
   );

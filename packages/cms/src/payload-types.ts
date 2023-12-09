@@ -10,8 +10,8 @@ export interface Config {
   collections: {
     users: User;
     groupchats: Groupchat;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   globals: {};
 }
@@ -31,7 +31,7 @@ export interface User {
 export interface Groupchat {
   id: number;
   name: string;
-  platform: "discord" | "facebook" | "signal" | "telegram" | "whatsapp";
+  platform: 'discord' | 'facebook' | 'signal' | 'telegram' | 'whatsapp';
   description?: string | null;
   url: string;
   keywords: {
@@ -45,7 +45,7 @@ export interface Groupchat {
 export interface PayloadPreference {
   id: number;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: number | User;
   };
   key?: string | null;
@@ -69,6 +69,6 @@ export interface PayloadMigration {
   createdAt: string;
 }
 
-declare module "payload" {
+declare module 'payload' {
   export interface GeneratedTypes extends Config {}
 }

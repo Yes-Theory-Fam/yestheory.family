@@ -1,6 +1,6 @@
-import { Service } from "typedi";
-import { MatchingCron } from "../../features/buddy-project/cron-jobs/matching-cron";
-import { GhostCheckCron } from "../../features/buddy-project/cron-jobs/ghost-check-cron";
+import {Service} from 'typedi';
+import {GhostCheckCron} from '../../features/buddy-project/cron-jobs/ghost-check-cron';
+import {MatchingCron} from '../../features/buddy-project/cron-jobs/matching-cron';
 
 @Service()
 export class CronStartSideEffect {

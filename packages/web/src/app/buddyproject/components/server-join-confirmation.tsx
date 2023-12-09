@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import NiceModal, { useModal } from "@ebay/nice-modal-react";
-import { Modal, ModalActionButton } from "ui/client";
+import {useModal, create as createNiceModal} from '@ebay/nice-modal-react';
+import {Modal, type ModalActionButton} from 'ui/client';
 
-export const ServerJoinConfirmationModal = NiceModal.create(() => {
+export const ServerJoinConfirmationModal = createNiceModal(() => {
   const modal = useModal();
 
   const confirm = () => {
@@ -18,14 +18,14 @@ export const ServerJoinConfirmationModal = NiceModal.create(() => {
 
   const actions = [
     {
-      text: "No",
+      text: 'No',
       onClick: cancel,
     },
-    { text: "Yes", onClick: confirm },
+    {text: 'Yes', onClick: confirm},
   ] satisfies ModalActionButton[];
 
   return (
-    <Modal title={"Just to be sure!"} onCancel={cancel} actions={actions}>
+    <Modal title='Just to be sure!' onCancel={cancel} actions={actions}>
       <p>
         To join the Buddy project, you have to join the Yes Fam Discord server.
         Continue?

@@ -1,4 +1,4 @@
-import { GuildBasedChannel } from "discord.js";
+import {type GuildBasedChannel} from 'discord.js';
 
 export const oddQuestions = `1. What were the highest and lowest points in your life so far respectively?
 3. What is the one thing that you regret saying ”no” to?

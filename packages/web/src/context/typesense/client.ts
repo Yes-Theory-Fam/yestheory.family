@@ -1,18 +1,18 @@
-import { NodeConfiguration } from "typesense/lib/Typesense/Configuration";
-import { SearchClient } from "typesense";
+import {SearchClient} from 'typesense';
+import {type NodeConfiguration} from 'typesense/lib/Typesense/Configuration';
 
 export const getTypesenseClient = (apiKey: string) => {
-  const isServer = typeof window === "undefined";
+  const isServer = typeof window === 'undefined';
 
   let node: NodeConfiguration;
 
   if (isServer) {
     const directUrl = new URL(
-      process.env.TYPESENSE_DIRECT_URL ?? "http://localhost:8108",
+      process.env.TYPESENSE_DIRECT_URL ?? 'http://localhost:8108',
     );
     const protocol = directUrl.protocol;
     const port =
-      Number(directUrl.port) || (directUrl.protocol === "http" ? 80 : 443);
+      Number(directUrl.port) || (directUrl.protocol === 'http' ? 80 : 443);
 
     node = {
       host: directUrl.hostname,
@@ -23,13 +23,13 @@ export const getTypesenseClient = (apiKey: string) => {
     const protocol = window.location.protocol;
     const port =
       Number(window.location.port) ||
-      (window.location.protocol === "http" ? 80 : 443);
+      (window.location.protocol === 'http' ? 80 : 443);
 
     node = {
       host: window.location.hostname,
       port: port,
       protocol: protocol.substring(0, protocol.length - 1),
-      path: "/typesense",
+      path: '/typesense',
     };
   }
 

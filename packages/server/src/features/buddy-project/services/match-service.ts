@@ -1,10 +1,10 @@
-import { PrismaClient, PrismaPromise } from "@prisma/client";
-import { Service } from "typedi";
-import { KeyValueStore } from "../../../services/key-value-store";
+import {PrismaClient, type PrismaPromise} from '@prisma/client';
+import {Service} from 'typedi';
+import {KeyValueStore} from '../../../services/key-value-store';
 
 @Service()
 export class MatchService {
-  private static readonly _enabledKey = "buddy-project-matching-enabled";
+  private static readonly _enabledKey = 'buddy-project-matching-enabled';
 
   constructor(
     private prisma: PrismaClient,
@@ -14,7 +14,7 @@ export class MatchService {
   async isEnabled(): Promise<boolean> {
     const value = await this.keyValueStore.get(MatchService._enabledKey);
 
-    return value === "true";
+    return value === 'true';
   }
 
   async setEnabled(enabled: boolean): Promise<void> {
@@ -25,15 +25,15 @@ export class MatchService {
     const userIds = Array.isArray(userId) ? userId : [userId];
 
     await this.prisma.buddyProjectEntry.updateMany({
-      where: { userId: { in: userIds } },
-      data: { buddyId: null, matchedDate: null, reportedGhostDate: null },
+      where: {userId: {in: userIds}},
+      data: {buddyId: null, matchedDate: null, reportedGhostDate: null},
     });
   }
 
   private matchWith(userId: string, buddyId: string): PrismaPromise<unknown> {
     return this.prisma.buddyProjectEntry.update({
-      where: { userId },
-      data: { buddyId, matchedDate: new Date() },
+      where: {userId},
+      data: {buddyId, matchedDate: new Date()},
     });
   }
 

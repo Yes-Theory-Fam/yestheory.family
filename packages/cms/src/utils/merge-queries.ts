@@ -1,5 +1,5 @@
-import type * as GraphQL from "graphql";
-import { type Payload } from "payload";
+import type * as GraphQL from 'graphql';
+import {type Payload} from 'payload';
 
 export type QueryFactory<TResult, TResolvedArgs> = (
   graphql: typeof GraphQL,

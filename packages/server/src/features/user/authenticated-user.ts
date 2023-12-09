@@ -1,4 +1,4 @@
-import { Field, ObjectType } from "type-graphql";
+import {Field, ObjectType} from 'type-graphql';
 
 export interface DiscordProfile {
   id: string;
@@ -17,7 +17,7 @@ export enum AuthProvider {
 export class AuthenticatedUser {
   @Field() id: string;
   @Field() username: string;
-  @Field(() => String, { nullable: true }) avatarUrl: string | null;
+  @Field(() => String, {nullable: true}) avatarUrl: string | null;
   @Field() type: AuthProvider;
 
   constructor(

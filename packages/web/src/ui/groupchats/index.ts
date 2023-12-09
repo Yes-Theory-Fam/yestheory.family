@@ -1,1 +1,1 @@
-export * from "./group-chat-result/group-chat-result";
+export * from './group-chat-result/group-chat-result';

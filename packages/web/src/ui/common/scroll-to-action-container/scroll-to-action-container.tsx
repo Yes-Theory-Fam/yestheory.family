@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { type FC, type PropsWithChildren, useRef } from "react";
+import {ChevronDownIcon} from '@heroicons/react/24/solid';
+import {type FC, type PropsWithChildren, useRef} from 'react';
 
 export type ScrollToActionContainerProps = {
   text: string;
@@ -9,14 +9,14 @@ export type ScrollToActionContainerProps = {
 
 export const ScrollToActionContainer: FC<
   PropsWithChildren<ScrollToActionContainerProps>
-> = ({ children, text }) => {
+> = ({children, text}) => {
   const selfRef = useRef<HTMLDivElement>(null);
 
   const scrollToContent = () => {
-    const navBarElement = document.querySelector("#navigation");
+    const navBarElement = document.querySelector('#navigation');
     if (!navBarElement) {
       throw new Error(
-        "Failed to resolve #navigation element to determine scroll amount. Make sure an element with that ID exists!",
+        'Failed to resolve #navigation element to determine scroll amount. Make sure an element with that ID exists!',
       );
     }
 
@@ -25,22 +25,22 @@ export const ScrollToActionContainer: FC<
 
     window.scroll({
       top: selfHeight - navbarHeight,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
   return (
     <div
       ref={selfRef}
-      className="min-h-screen flex flex-col justify-center items-center relative"
+      className='relative flex min-h-screen flex-col items-center justify-center'
     >
       {children}
       <button
-        className="absolute bottom-3 cursor-pointer left-[50%] -translate-x-1/2 flex flex-col items-center left text-brand-800"
+        className='left absolute bottom-3 left-[50%] flex -translate-x-1/2 cursor-pointer flex-col items-center text-brand-800'
         onClick={scrollToContent}
       >
-        <p className="text-xs uppercase">{text}</p>
-        <ChevronDownIcon className="w-6 h-6" />
+        <p className='text-xs uppercase'>{text}</p>
+        <ChevronDownIcon className='h-6 w-6' />
       </button>
     </div>
   );

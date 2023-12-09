@@ -1,30 +1,30 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { ToggleButton, ToggleButtonProps } from "./toggle-button";
+import {type Meta, type StoryObj} from '@storybook/react';
+import {ToggleButton, type ToggleButtonProps} from './toggle-button';
 
 const config = {
-  title: "Common/ToggleButton",
+  title: 'Common/ToggleButton',
   component: ToggleButton,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
-    label: "Toggle me!",
+    label: 'Toggle me!',
   },
 } satisfies Meta<ToggleButtonProps>;
 
 export default config;
 
 export const InteractiveToggleButton: StoryObj<typeof config> = {
-  name: "ToggleButton",
+  name: 'ToggleButton',
 };
 
 export const CheckedToggleButton: StoryObj<typeof config> = {
-  name: "Checked ToggleButton",
+  name: 'Checked ToggleButton',
   args: {
     checked: true,
   },
 };
 
 export const UncheckedToggleButton: StoryObj<typeof config> = {
-  name: "Unchecked ToggleButton",
+  name: 'Unchecked ToggleButton',
   args: {
     checked: false,
   },

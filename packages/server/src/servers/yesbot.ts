@@ -1,19 +1,19 @@
-import { ApolloServer } from "apollo-server-koa";
-import Koa, { Middleware } from "koa";
-import { buildSchemaSync } from "type-graphql";
-import { Container } from "typedi";
-import { isDevelopment } from "../config";
-import { ExportDirective } from "../graphql-directives";
-import { createServerLogger } from "../services/logging/log";
+import {ApolloServer} from 'apollo-server-koa';
+import Koa, {type Middleware} from 'koa';
+import {buildSchemaSync} from 'type-graphql';
+import {Container} from 'typedi';
+import {isDevelopment} from '../config';
+import {ExportDirective} from '../graphql-directives';
+import {createServerLogger} from '../services/logging/log';
 import {
   getResolvers,
   ResolverTarget,
-} from "../services/resolvers/resolver-directive";
+} from '../services/resolvers/resolver-directive';
 
-const logger = createServerLogger("server", "yesbot");
+const logger = createServerLogger('server', 'yesbot');
 
-const requireValidToken: Middleware = async ({ headers, res }, next) => {
-  const yesbotAuthHeader = headers["x-yesbot-authentication"] ?? "";
+const requireValidToken: Middleware = async ({headers, res}, next) => {
+  const yesbotAuthHeader = headers['x-yesbot-authentication'] ?? '';
   const requiredValue = process.env.YESBOT_API_TOKEN;
 
   if (yesbotAuthHeader !== requiredValue) {
@@ -47,7 +47,7 @@ export const launchYesBotServer = async () => {
     csrfPrevention: true,
     formatResponse: (response) => {
       if (response.errors) {
-        logger.error("Error executing graphql resolver", response.errors);
+        logger.error('Error executing graphql resolver', response.errors);
       }
 
       return response;
@@ -55,9 +55,9 @@ export const launchYesBotServer = async () => {
   });
 
   await server.start();
-  server.applyMiddleware({ app });
+  server.applyMiddleware({app});
 
-  app.listen({ port }, () => logger.info(`Backend listening on port ${port}`));
+  app.listen({port}, () => logger.info(`Backend listening on port ${port}`));
 
   return app;
 };

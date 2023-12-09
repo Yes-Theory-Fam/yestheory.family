@@ -1,31 +1,31 @@
-import { ApolloServer, gql } from "apollo-server-koa";
-import { Guild } from "discord.js";
-import grant from "grant";
-import Koa, { Context } from "koa";
-import mount from "koa-mount";
-import koaSession from "koa-session";
-import { BuildSchemaOptions, buildSchemaSync } from "type-graphql";
-import { Container } from "typedi";
-import { isDevelopment } from "../config";
-import grantConfig from "../config/grant";
-import sessionConfig from "../config/session";
-import { authenticationRouter } from "../features";
-import { discordAuthErrorCode } from "../features/auth/auth-service";
-import { authChecker } from "../features/auth/graphql-auth-checker";
-import { ExportDirective } from "../graphql-directives";
-import { createServerLogger } from "../services/logging/log";
+import {delegateToSchema} from '@graphql-tools/delegate';
+import {buildHTTPExecutor} from '@graphql-tools/executor-http';
+import {stitchSchemas} from '@graphql-tools/stitch';
+import {schemaFromExecutor} from '@graphql-tools/wrap';
+import {ApolloServer, gql} from 'apollo-server-koa';
+import {Guild} from 'discord.js';
+import grant from 'grant';
+import {OperationTypeNode} from 'graphql/language/ast';
+import Koa, {type Context} from 'koa';
+import mount from 'koa-mount';
+import koaSession from 'koa-session';
+import {type BuildSchemaOptions, buildSchemaSync} from 'type-graphql';
+import {Container} from 'typedi';
+import {isDevelopment} from '../config';
+import grantConfig from '../config/grant';
+import sessionConfig from '../config/session';
+import {authenticationRouter} from '../features';
+import {discordAuthErrorCode} from '../features/auth/auth-service';
+import {authChecker} from '../features/auth/graphql-auth-checker';
+import {ExportDirective} from '../graphql-directives';
+import {createServerLogger} from '../services/logging/log';
 import {
   getResolvers,
   ResolverTarget,
-} from "../services/resolvers/resolver-directive";
-import { YtfApolloContext } from "../types";
-import { buildHTTPExecutor } from "@graphql-tools/executor-http";
-import { stitchSchemas } from "@graphql-tools/stitch";
-import { schemaFromExecutor } from "@graphql-tools/wrap";
-import { delegateToSchema } from "@graphql-tools/delegate";
-import { OperationTypeNode } from "graphql/language/ast";
+} from '../services/resolvers/resolver-directive';
+import {type YtfApolloContext} from '../types';
 
-const logger = createServerLogger("server", "public");
+const logger = createServerLogger('server', 'public');
 
 export const launchPublicServer = async () => {
   const additionalOptions: Partial<BuildSchemaOptions> = {};
@@ -71,8 +71,8 @@ export const launchPublicServer = async () => {
             return delegateToSchema({
               schema: cmsSchema,
               operation: OperationTypeNode.QUERY,
-              fieldName: "searchTokenByAuthenticated",
-              args: { isAuthenticated: !!context.user },
+              fieldName: 'searchTokenByAuthenticated',
+              args: {isAuthenticated: !!context.user},
               context,
               info,
             });
@@ -82,13 +82,13 @@ export const launchPublicServer = async () => {
     },
   });
 
-  const port = process.env["BACKEND_PORT"] ?? 5000;
+  const port = process.env['BACKEND_PORT'] ?? 5000;
   const koaGrant = grant.koa();
   const app = new Koa();
-  app.keys = ["grant"];
+  app.keys = ['grant'];
   app.proxy = !isDevelopment;
   app.use(koaSession(sessionConfig, app));
-  app.use(mount("/oauth", koaGrant(grantConfig)));
+  app.use(mount('/oauth', koaGrant(grantConfig)));
   app.use(authenticationRouter.routes());
 
   const server = new ApolloServer({
@@ -118,12 +118,12 @@ export const launchPublicServer = async () => {
 
       const authErrors =
         response.errors?.filter((e) =>
-          e.message.startsWith("Access denied!"),
+          e.message.startsWith('Access denied!'),
         ) ?? [];
       const user = (reqContext.context as YtfApolloContext).user;
 
       for (const authError of authErrors) {
-        const code = user ? "UNAUTHORIZED" : "UNAUTHENTICATED";
+        const code = user ? 'UNAUTHORIZED' : 'UNAUTHENTICATED';
 
         if (authError.extensions) authError.extensions.code = code;
       }
@@ -133,7 +133,7 @@ export const launchPublicServer = async () => {
           (e) => !discordAuthError.includes(e) && !authErrors.includes(e),
         ) ?? [];
       if (unknownErrors.length > 0) {
-        logger.error("Error executing graphql resolver", unknownErrors);
+        logger.error('Error executing graphql resolver', unknownErrors);
       }
 
       return response;
@@ -142,10 +142,10 @@ export const launchPublicServer = async () => {
   await server.start();
   server.applyMiddleware({
     app,
-    cors: { origin: process.env.FRONTEND_HOST, credentials: true },
+    cors: {origin: process.env.FRONTEND_HOST, credentials: true},
   });
 
-  app.listen({ port }, () => logger.info(`Backend listening on port ${port}`));
+  app.listen({port}, () => logger.info(`Backend listening on port ${port}`));
 
   return app;
 };

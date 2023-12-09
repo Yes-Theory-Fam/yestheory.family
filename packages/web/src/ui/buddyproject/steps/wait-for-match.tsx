@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { Step } from "../common";
+import {type FC} from 'react';
+import {Step} from '../common';
 
 export const WaitForMatchStep: FC = () => (
-  <Step heading={"What happens next?"}>
+  <Step heading='What happens next?'>
     <p>
       As soon as the sign-up deadline is reached, everyone will be matched with
       a buddy.

@@ -1,5 +1,11 @@
-import { Prisma, PrismaClient } from "@prisma/client";
-import { Client, Guild, GuildMember, Role, Snowflake } from "discord.js";
+import {Prisma, PrismaClient} from '@prisma/client';
+import {
+  Client,
+  Guild,
+  type GuildMember,
+  type Role,
+  type Snowflake,
+} from 'discord.js';
 import {
   Authorized,
   Ctx,
@@ -7,29 +13,29 @@ import {
   Mutation,
   ObjectType,
   registerEnumType,
-} from "type-graphql";
-import winston from "winston";
-import { Logger } from "../../../services/logging/log-service";
+} from 'type-graphql';
+import winston from 'winston';
+import {Logger} from '../../../services/logging/log-service';
 import {
   Resolver,
   ResolverTarget,
-} from "../../../services/resolvers/resolver-directive";
-import { YtfApolloContext } from "../../../types";
-import { AuthService } from "../../auth/auth-service";
-import { AuthProvider } from "../../user";
+} from '../../../services/resolvers/resolver-directive';
+import {YtfApolloContext} from '../../../types';
+import {AuthService} from '../../auth/auth-service';
+import {AuthProvider} from '../../user';
 import {
   BuddyProjectStatus,
   BuddyProjectStatusPayload,
-} from "../buddy-project-status";
-import { BuddyProjectService } from "../services/buddy-project.service";
+} from '../buddy-project-status';
+import {BuddyProjectService} from '../services/buddy-project.service';
 
 enum SignUpResult {
-  FULL_SUCCESS = "FULL_SUCCESS",
-  SUCCESS_DMS_CLOSED = "SUCCESS_DMS_CLOSED",
-  FAILURE = "FAILURE",
+  FULL_SUCCESS = 'FULL_SUCCESS',
+  SUCCESS_DMS_CLOSED = 'SUCCESS_DMS_CLOSED',
+  FAILURE = 'FAILURE',
 }
 
-registerEnumType(SignUpResult, { name: "SignUpResult" });
+registerEnumType(SignUpResult, {name: 'SignUpResult'});
 
 @ObjectType()
 class WebSignUpResult {
@@ -46,7 +52,7 @@ class WebSignUpResult {
 @Resolver(ResolverTarget.PUBLIC)
 class SignUpMutation {
   constructor(
-    @Logger("buddy-project", "signup") private logger: winston.Logger,
+    @Logger('buddy-project', 'signup') private logger: winston.Logger,
     private discord: Client,
     private guild: Guild,
     private prisma: PrismaClient,
@@ -59,7 +65,7 @@ class SignUpMutation {
   public async buddyProjectSignUp(
     @Ctx() ctx: YtfApolloContext,
   ): Promise<WebSignUpResult> {
-    const { user } = ctx;
+    const {user} = ctx;
 
     const auth = await this.authService.ensureValidToken(ctx);
 
@@ -68,13 +74,13 @@ class SignUpMutation {
     }
 
     // See https://www.prisma.io/docs/reference/api-reference/error-reference#p2002
-    const uniqueConstraintFailedCode = "P2002";
+    const uniqueConstraintFailedCode = 'P2002';
 
     let member: GuildMember | undefined;
     try {
       member = await this.guild.members.fetch(user.id);
     } catch (e) {
-      this.logger.debug("Could not find requested member on the server: ", {
+      this.logger.debug('Could not find requested member on the server: ', {
         id: user.id,
       });
     }
@@ -92,7 +98,7 @@ class SignUpMutation {
     }
 
     try {
-      await this.prisma.buddyProjectEntry.create({ data: { userId: user.id } });
+      await this.prisma.buddyProjectEntry.create({data: {userId: user.id}});
     } catch (e) {
       if (
         e instanceof Prisma.PrismaClientKnownRequestError &&
@@ -111,7 +117,7 @@ class SignUpMutation {
     this.logger.debug(`Signed up ${user.id} to the buddy project.`);
     const dmChannel = await member.createDM();
     const smileEmote =
-      this.guild.emojis.cache.find((e) => e.name === "yesbot_smile") ?? "🦥";
+      this.guild.emojis.cache.find((e) => e.name === 'yesbot_smile') ?? '🦥';
 
     const successStatus = new BuddyProjectStatusPayload(
       BuddyProjectStatus.SIGNED_UP,
@@ -156,6 +162,6 @@ class SignUpMutation {
     const bpRole = this.getBuddyProjectRole();
 
     // Let's just blindly pretend this is going to work first try for now
-    await this.guild.members.add(userId, { accessToken, roles: [bpRole] });
+    await this.guild.members.add(userId, {accessToken, roles: [bpRole]});
   }
 }

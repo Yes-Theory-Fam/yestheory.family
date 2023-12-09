@@ -1,9 +1,9 @@
-import { parse } from "pg-connection-string";
-import { Client } from "pg";
+import {Client} from 'pg';
+import {parse} from 'pg-connection-string';
 
 export const ensureDbExists = async () => {
   const uri = process.env.DATABASE_URI;
-  const { database, user, password, host, port } = parse(uri);
+  const {database, user, password, host, port} = parse(uri);
 
   const postgresUri = `postgres://${user}:${password}@${host}:${port}/postgres`;
   const client = new Client(postgresUri);

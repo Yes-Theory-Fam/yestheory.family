@@ -1,7 +1,10 @@
-import { MigrateUpArgs, MigrateDownArgs } from "@payloadcms/db-postgres";
-import { sql } from "drizzle-orm";
+import {
+  type MigrateUpArgs,
+  type MigrateDownArgs,
+} from '@payloadcms/db-postgres';
+import {sql} from 'drizzle-orm';
 
-export async function up({ payload }: MigrateUpArgs): Promise<void> {
+export async function up({payload}: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
@@ -96,7 +99,7 @@ END $$;
 `);
 }
 
-export async function down({ payload }: MigrateDownArgs): Promise<void> {
+export async function down({payload}: MigrateDownArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
 
 DROP TABLE "users";

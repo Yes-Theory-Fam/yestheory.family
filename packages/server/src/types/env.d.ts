@@ -1,6 +1,6 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
-    NODE_ENV: "development" | "production" | "test";
+    NODE_ENV: 'development' | 'production' | 'test';
     IS_E2E: string;
     FRONTEND_HOST: string;
     PRISMA_DATABASE_URL: string;

@@ -1,13 +1,13 @@
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
-import React, { FC, PropsWithChildren } from "react";
-import { VariantProp, variants } from "../../variants";
+import NextLink, {type LinkProps as NextLinkProps} from 'next/link';
+import React, {type FC, type PropsWithChildren} from 'react';
+import {type VariantProp, variants} from '../../variants';
 
 const colorVariants = variants(
   {
-    inline: "text-brand-800",
-    black: "text-gray-800",
+    inline: 'text-brand-800',
+    black: 'text-gray-800',
   },
-  "inline",
+  'inline',
 );
 
 export type LinkProps = NextLinkProps &
@@ -30,11 +30,11 @@ export const Link: FC<PropsWithChildren<LinkProps>> = ({
     <NextLink
       className={colorVariants(
         variant,
-        "border-b-2 border-transparent no-underline",
-        active && (inverted ? "border-white" : "border-brand-800"),
-        inverted && "text-white",
+        'border-b-2 border-transparent no-underline',
+        active && (inverted ? 'border-white' : 'border-brand-800'),
+        inverted && 'text-white',
         !hideUnderline &&
-          (inverted ? "hover:border-white" : "hover:border-brand-800"),
+          (inverted ? 'hover:border-white' : 'hover:border-brand-800'),
         className,
       )}
       {...rest}

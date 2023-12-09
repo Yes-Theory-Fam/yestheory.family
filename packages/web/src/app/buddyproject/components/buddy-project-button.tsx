@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import NiceModal from "@ebay/nice-modal-react";
-import { useRouter } from "next/navigation";
-import { FC, useCallback } from "react";
-import { Button } from "ui";
-import { type BuddyProjectStatus } from "../../../__generated__/graphql";
-import { ServerJoinConfirmationModal } from "./server-join-confirmation";
-import { SignupSuccessModal } from "./signup-success-modal";
-import { buddyProjectSignUp } from "../actions/signup-server-action";
-import { navigateToLogin } from "../../../context/user/navigate-to-login";
+import {show as showNiceModal} from '@ebay/nice-modal-react';
+import {useRouter} from 'next/navigation';
+import {type FC, useCallback} from 'react';
+import {Button} from 'ui';
+import {type BuddyProjectStatus} from '../../../__generated__/graphql';
+import {navigateToLogin} from '../../../context/user/navigate-to-login';
+import {buddyProjectSignUp} from '../actions/signup-server-action';
+import {ServerJoinConfirmationModal} from './server-join-confirmation';
+import {SignupSuccessModal} from './signup-success-modal';
 
 export type BuddyProjectButtonProps = {
   isLoggedIn: boolean;
@@ -25,7 +25,7 @@ export const BuddyProjectButton: FC<BuddyProjectButtonProps> = ({
 
   const signUp = useCallback(async () => {
     if (!isOnServer) {
-      const confirmedJoinServer = await NiceModal.show(
+      const confirmedJoinServer = await showNiceModal(
         ServerJoinConfirmationModal,
       );
 
@@ -35,22 +35,22 @@ export const BuddyProjectButton: FC<BuddyProjectButtonProps> = ({
     const signUpResult = await buddyProjectSignUp();
 
     if (
-      signUpResult === "FULL_SUCCESS" ||
-      signUpResult === "SUCCESS_DMS_CLOSED"
+      signUpResult === 'FULL_SUCCESS' ||
+      signUpResult === 'SUCCESS_DMS_CLOSED'
     ) {
-      void NiceModal.show(SignupSuccessModal, {
-        hasDmsClosed: signUpResult === "SUCCESS_DMS_CLOSED",
+      void showNiceModal(SignupSuccessModal, {
+        hasDmsClosed: signUpResult === 'SUCCESS_DMS_CLOSED',
       });
     }
 
     router.refresh();
-  }, [buddyProjectSignUp, isOnServer, useRouter]);
+  }, [isOnServer, router]);
 
   if (!isLoggedIn) {
     return <Button onClick={navigateToLogin}>Log in with Discord</Button>;
   }
 
-  if (state === "MATCHED" || state === "SIGNED_UP") {
+  if (state === 'MATCHED' || state === 'SIGNED_UP') {
     return <Button disabled>You signed up!</Button>;
   }
 

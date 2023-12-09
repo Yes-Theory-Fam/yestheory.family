@@ -1,4 +1,4 @@
-import { twMerge } from "tailwind-merge";
+import {twMerge} from 'tailwind-merge';
 
 export const variants = <Variants extends Record<string, string>>(
   variantClassNames: Variants,
@@ -22,6 +22,6 @@ type InferVariantKeysFromVarianted<Varianted> = Varianted extends (
   ? X
   : never;
 
-export type VariantProp<Varianted, Key extends string = "variant"> = {
+export type VariantProp<Varianted, Key extends string = 'variant'> = {
   [key in Key]?: InferVariantKeysFromVarianted<Varianted>;
 };

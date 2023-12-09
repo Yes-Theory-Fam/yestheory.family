@@ -1,15 +1,17 @@
-import express from "express";
-import payload from "payload";
-import { initPayload } from "./init-payload";
-import { setupCronJobs } from "./cron-jobs";
-import { typesenseReady } from "./lib/typesense";
+import {config} from 'dotenv';
+import express from 'express';
+import payload from 'payload';
+import {setupCronJobs} from './cron-jobs';
+import {initPayload} from './init-payload';
+import {typesenseReady} from './lib/typesense';
 
-require("dotenv").config();
+config();
+
 const app = express();
 
 // Redirect root to Admin panel
-app.get("/", (_, res) => {
-  res.redirect("/admin");
+app.get('/', (_, res) => {
+  res.redirect('/admin');
 });
 
 const start = async () => {

@@ -1,7 +1,7 @@
-import "reflect-metadata";
-import { Container } from "typedi";
-import { createServerLogger } from "./log";
-import { Constructable } from "typedi/types/types/constructable.type";
+import 'reflect-metadata';
+import {Container} from 'typedi';
+import {type Constructable} from 'typedi/types/types/constructable.type';
+import {createServerLogger} from './log';
 
 export function Logger(kind: string, program: string) {
   return function (

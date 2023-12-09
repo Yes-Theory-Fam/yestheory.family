@@ -1,12 +1,12 @@
-import { FC } from "react";
-import { Heading, Link } from "ui";
+import {type FC} from 'react';
+import {Heading, Link} from 'ui';
 
 const Privacy: FC = () => {
   return (
     <>
-      <Heading frontText={"Privacy Policy"} size={"h2"} />
-      <Heading frontText={"1. An overview of data protection"} size={"h3"} />
-      <Heading frontText={"General information"} size={"h4"} />
+      <Heading frontText='Privacy Policy' size='h2' />
+      <Heading frontText='1. An overview of data protection' size='h3' />
+      <Heading frontText='General information' size='h4' />
       <p>
         The following information will provide you with an easy to navigate
         overview of what will happen with your personal data when you visit this
@@ -15,12 +15,10 @@ const Privacy: FC = () => {
         matter of data protection, please consult our Data Protection
         Declaration, which we have included beneath this copy.
       </p>
-      <Heading frontText={"Data recording on this website"} size={"h4"} />
+      <Heading frontText='Data recording on this website' size='h4' />
       <Heading
-        frontText={
-          "Who is the responsible party for the recording of data on this website (i.e., the “controller”)?"
-        }
-        size={"h5"}
+        frontText='Who is the responsible party for the recording of data on this website (i.e., the “controller”)?'
+        size='h5'
       />
       <p>
         The data on this website is processed by the operator of the website,
@@ -28,7 +26,7 @@ const Privacy: FC = () => {
         the responsible party (referred to as the “controller” in the GDPR)” in
         this Privacy Policy.
       </p>
-      <Heading frontText={"How do we record your data?"} size={"h5"} />
+      <Heading frontText='How do we record your data?' size='h5' />
       <p>
         We collect your data as a result of your sharing of your data with us.
         This may, for instance be information you enter into our contact form.
@@ -41,8 +39,8 @@ const Privacy: FC = () => {
         automatically when you access this website.
       </p>
       <Heading
-        frontText={"What are the purposes we use your data for?"}
-        size={"h5"}
+        frontText='What are the purposes we use your data for?'
+        size='h5'
       />
       <p>
         A portion of the information is generated to guarantee the error free
@@ -50,10 +48,8 @@ const Privacy: FC = () => {
         patterns.
       </p>
       <Heading
-        frontText={
-          "What rights do you have as far as your information is concerned?"
-        }
-        size={"h5"}
+        frontText='What rights do you have as far as your information is concerned?'
+        size='h5'
       />
       <p>
         You have the right to receive information about the source, recipients,
@@ -70,19 +66,19 @@ const Privacy: FC = () => {
         Please do not hesitate to contact us at any time if you have questions
         about this or any other data protection related issues.
       </p>
-      <Heading frontText={"2. Hosting"} size={"h3"} />
-      <Heading frontText={"Hetzner"} size={"h4"} />
+      <Heading frontText='2. Hosting' size='h3' />
+      <Heading frontText='Hetzner' size='h4' />
       <p>
         We host our website with Hetzner. The provider is the Hetzner Online
         GmbH, Industriestr. 25, 91710 Gunzenhausen, Germany (hereinafter
         referred to as Hetzner).
       </p>
       <p>
-        For details, please view the data privacy policy of Hetzner:{" "}
+        For details, please view the data privacy policy of Hetzner:{' '}
         <Link
-          href="https://www.hetzner.com/de/rechtliches/datenschutz"
-          target="_blank"
-          rel="noopener noreferrer"
+          href='https://www.hetzner.com/de/rechtliches/datenschutz'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           https://www.hetzner.com/de/rechtliches/datenschutz
         </Link>
@@ -94,7 +90,7 @@ const Privacy: FC = () => {
         respective consent was obtained, processing will occur exclusively based
         on Art. 6(1)(a) GDPR. This consent may be revoked at any time.
       </p>
-      <Heading frontText={"Data processing"} size={"h5"} />
+      <Heading frontText='Data processing' size='h5' />
       <p>
         We have concluded a data processing agreement (DPA) with the
         above-mentioned provider. This is a contract mandated by data privacy
@@ -102,10 +98,10 @@ const Privacy: FC = () => {
         visitors only based on our instructions and in compliance with the GDPR.
       </p>
       <Heading
-        frontText={"3. General information and mandatory information"}
-        size={"h3"}
+        frontText='3. General information and mandatory information'
+        size='h3'
       />
-      <Heading frontText={"Data protection"} size={"h4"} />
+      <Heading frontText='Data protection' size='h4' />
       <p>
         The operators of this website and its pages take the protection of your
         personal data very seriously. Hence, we handle your personal data as
@@ -125,10 +121,8 @@ const Privacy: FC = () => {
         is not possible to completely protect data against third-party access.
       </p>
       <Heading
-        frontText={
-          "Information about the responsible party (referred to as the “controller” in the GDPR)"
-        }
-        size={"h4"}
+        frontText='Information about the responsible party (referred to as the “controller” in the GDPR)'
+        size='h4'
       />
       <p>The data processing controller on this website is:</p>
       <p>
@@ -145,7 +139,7 @@ const Privacy: FC = () => {
         purposes of and resources for the processing of personal data (e.g.,
         names, e-mail addresses, etc.).
       </p>
-      <Heading frontText={"Storage duration"} size={"h4"} />
+      <Heading frontText='Storage duration' size='h4' />
       <p>
         Unless a more specific storage period has been specified in this privacy
         policy, your personal data will remain with us until the purpose for
@@ -157,10 +151,8 @@ const Privacy: FC = () => {
         reasons cease to apply.
       </p>
       <Heading
-        frontText={
-          "Information on data transfer to the USA and other non-EU countries"
-        }
-        size={"h4"}
+        frontText='Information on data transfer to the USA and other non-EU countries'
+        size='h4'
       />
       <p>
         Among other things, we use tools of companies domiciled in the United
@@ -177,8 +169,8 @@ const Privacy: FC = () => {
         have no control over these processing activities.
       </p>
       <Heading
-        frontText={"Revocation of your consent to the processing of data"}
-        size={"h4"}
+        frontText='Revocation of your consent to the processing of data'
+        size='h4'
       />
       <p>
         A wide range of data processing transactions are possible only subject
@@ -187,10 +179,8 @@ const Privacy: FC = () => {
         of any data collection that occurred prior to your revocation.
       </p>
       <Heading
-        frontText={
-          "Right to object to the collection of data in special cases; right to object to direct advertising (Art. 21 GDPR)"
-        }
-        size={"h4"}
+        frontText='Right to object to the collection of data in special cases; right to object to direct advertising (Art. 21 GDPR)'
+        size='h4'
       />
       <p>
         IN THE EVENT THAT DATA ARE PROCESSED ON THE BASIS OF ART. 6(1)(E) OR (F)
@@ -216,10 +206,8 @@ const Privacy: FC = () => {
         (OBJECTION PURSUANT TO ART. 21(2) GDPR).
       </p>
       <Heading
-        frontText={
-          "Right to log a complaint with the competent supervisory agency"
-        }
-        size={"h4"}
+        frontText='Right to log a complaint with the competent supervisory agency'
+        size='h4'
       />
       <p>
         In the event of violations of the GDPR, data subjects are entitled to
@@ -229,7 +217,7 @@ const Privacy: FC = () => {
         complaint is in effect regardless of any other administrative or court
         proceedings available as legal recourses.
       </p>
-      <Heading frontText={"Right to data portability"} size={"h4"} />
+      <Heading frontText='Right to data portability' size='h4' />
       <p>
         You have the right to demand that we hand over any data we automatically
         process on the basis of your consent or in order to fulfil a contract be
@@ -237,7 +225,7 @@ const Privacy: FC = () => {
         format. If you should demand the direct transfer of the data to another
         controller, this will be done only if it is technically feasible.
       </p>
-      <Heading frontText={"SSL and/or TLS encryption"} size={"h4"} />
+      <Heading frontText='SSL and/or TLS encryption' size='h4' />
       <p>
         For security reasons and to protect the transmission of confidential
         content, such as purchase orders or inquiries you submit to us as the
@@ -251,8 +239,8 @@ const Privacy: FC = () => {
         cannot be read by third parties.
       </p>
       <Heading
-        frontText={"Information about, rectification and eradication of data"}
-        size={"h4"}
+        frontText='Information about, rectification and eradication of data'
+        size='h4'
       />
       <p>
         Within the scope of the applicable statutory provisions, you have the
@@ -263,10 +251,7 @@ const Privacy: FC = () => {
         or any other questions about personal data, please do not hesitate to
         contact us at any time.
       </p>
-      <Heading
-        frontText={"Right to demand processing restrictions"}
-        size={"h4"}
-      />
+      <Heading frontText='Right to demand processing restrictions' size='h4' />
       <p>
         You have the right to demand the imposition of restrictions as far as
         the processing of your personal data is concerned. To do so, you may
@@ -308,7 +293,7 @@ const Privacy: FC = () => {
         important public interest reasons cited by the European Union or a
         member state of the EU.
       </p>
-      <Heading frontText={"Rejection of unsolicited e-mails"} size={"h4"} />
+      <Heading frontText='Rejection of unsolicited e-mails' size='h4' />
       <p>
         We herewith object to the use of contact information published in
         conjunction with the mandatory information to be provided in our Site
@@ -317,8 +302,8 @@ const Privacy: FC = () => {
         the express right to take legal action in the event of the unsolicited
         sending of promotional information, for instance via SPAM messages.
       </p>
-      <Heading frontText={"4. Recording of data on this website"} size={"h3"} />
-      <Heading frontText={"Cookies"} size={"h4"} />
+      <Heading frontText='4. Recording of data on this website' size='h3' />
+      <Heading frontText='Cookies' size='h4' />
       <p>
         Our websites and pages use what the industry refers to as “cookies.”
         Cookies are small text files that do not cause any damage to your
@@ -371,7 +356,7 @@ const Privacy: FC = () => {
         with this Data Protection Policy and, if applicable, ask for your
         consent.
       </p>
-      <Heading frontText={"Server log files"} size={"h4"} />
+      <Heading frontText='Server log files' size='h4' />
       <p>
         The provider of this website and its pages automatically collects and
         stores information in so-called server log files, which your browser
@@ -390,7 +375,7 @@ const Privacy: FC = () => {
         depiction and the optimization of the operator’s website. In order to
         achieve this, server log files must be recorded.
       </p>
-      <Heading frontText={"Request by e-mail, telephone, or fax"} size={"h4"} />
+      <Heading frontText='Request by e-mail, telephone, or fax' size='h4' />
       <p>
         If you contact us by e-mail, telephone or fax, your request, including
         all resulting personal data (name, request) will be stored and processed
@@ -413,10 +398,10 @@ const Privacy: FC = () => {
         Mandatory statutory provisions - in particular statutory retention
         periods - remain unaffected.
       </p>
-      <Heading frontText={"5. Plug-ins and Tools"} size={"h3"} />
+      <Heading frontText='5. Plug-ins and Tools' size='h3' />
       <Heading
-        frontText={"YouTube with expanded data protection integration"}
-        size={"h4"}
+        frontText='YouTube with expanded data protection integration'
+        size='h4'
       />
       <p>
         Our website embeds videos of the website YouTube. The website operator
@@ -465,17 +450,17 @@ const Privacy: FC = () => {
       </p>
       <p>
         For more information on how YouTube handles user data, please consult
-        the YouTube Data Privacy Policy under:{" "}
+        the YouTube Data Privacy Policy under:{' '}
         <Link
-          href="https://policies.google.com/privacy?hl=en"
-          target="_blank"
-          rel="noopener noreferrer"
+          href='https://policies.google.com/privacy?hl=en'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           https://policies.google.com/privacy?hl=en
         </Link>
         .
       </p>
-      <Heading frontText={"Google Web Fonts (local embedding)"} size={"h4"} />
+      <Heading frontText='Google Web Fonts (local embedding)' size='h4' />
       <p>
         This website uses so-called Web Fonts provided by Google to ensure the
         uniform use of fonts on this site. These Google fonts are locally
@@ -483,31 +468,31 @@ const Privacy: FC = () => {
         established in conjunction with this application.
       </p>
       <p>
-        For more information on Google Web Fonts, please follow this link:{" "}
+        For more information on Google Web Fonts, please follow this link:{' '}
         <Link
-          href="https://developers.google.com/fonts/faq"
-          target="_blank"
-          rel="noopener noreferrer"
+          href='https://developers.google.com/fonts/faq'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           https://developers.google.com/fonts/faq
         </Link>
-        and consult Google’s Data Privacy Declaration under:{" "}
+        and consult Google’s Data Privacy Declaration under:{' '}
         <Link
-          href="https://policies.google.com/privacy?hl=en"
-          target="_blank"
-          rel="noopener noreferrer"
+          href='https://policies.google.com/privacy?hl=en'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           https://policies.google.com/privacy?hl=en
         </Link>
         .
       </p>
       <Heading
-        frontText={"6. eCommerce and payment service providers"}
-        size={"h3"}
+        frontText='6. eCommerce and payment service providers'
+        size='h3'
       />
       <Heading
-        frontText={"Processing of data (customer and contract data)"}
-        size={"h4"}
+        frontText='Processing of data (customer and contract data)'
+        size='h4'
       />
       <p>
         We collect, process, and use personal data only to the extent necessary

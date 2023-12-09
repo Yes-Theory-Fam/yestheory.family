@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useSelectedLayoutSegments } from "next/navigation";
-import { FC } from "react";
-import { Link } from "../../link/link";
-import { NavLinkDefinition } from "../navigation.types";
+import {useSelectedLayoutSegments} from 'next/navigation';
+import {type FC} from 'react';
+import {Link} from '../../link/link';
+import {type NavLinkDefinition} from '../navigation.types';
 
-export const NavLink: FC<NavLinkDefinition> = ({ href, text, ...rest }) => {
+export const NavLink: FC<NavLinkDefinition> = ({href, text, ...rest}) => {
   const selectedSegment = useSelectedLayoutSegments();
   const hrefString = href.toString();
-  const withoutLeadingSlash = hrefString.startsWith("/")
+  const withoutLeadingSlash = hrefString.startsWith('/')
     ? hrefString.substring(1)
     : hrefString;
-  const hrefSegmentLength = withoutLeadingSlash.split("/").length;
-  const segmentMatch = selectedSegment.slice(0, hrefSegmentLength).join("/");
+  const hrefSegmentLength = withoutLeadingSlash.split('/').length;
+  const segmentMatch = selectedSegment.slice(0, hrefSegmentLength).join('/');
 
   const active =
     segmentMatch.length > 0 && withoutLeadingSlash.startsWith(segmentMatch);
@@ -21,8 +21,8 @@ export const NavLink: FC<NavLinkDefinition> = ({ href, text, ...rest }) => {
     <Link
       {...rest}
       href={href}
-      className="uppercase"
-      variant={"black"}
+      className='uppercase'
+      variant='black'
       active={active}
     >
       {text}

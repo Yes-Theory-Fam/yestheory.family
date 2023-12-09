@@ -20,7 +20,7 @@ jobs:
       - uses: ./.github/actions/yarn-action
         name: "Install and check formatting"
         with:
-          command: format:check
+          command: prettier:check
 
   test:
     name: "Test"
@@ -51,3 +51,13 @@ jobs:
         name: "Install and tsc server"
         with:
           command: workspace @yestheory.family/server tsc --noEmit
+
+  tsc-cms:
+    name: "TSC CMS"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/yarn-action
+        name: "Install and tsc cms"
+        with:
+          command: workspace @yestheory.family/cms tsc --noEmit

@@ -1,10 +1,10 @@
-import { Arg, Query } from "type-graphql";
+import {Arg, Query} from 'type-graphql';
 import {
   Resolver,
   ResolverTarget,
-} from "../../../services/resolvers/resolver-directive";
-import { BuddyProjectStatusPayload } from "../buddy-project-status";
-import { BuddyProjectService } from "../services/buddy-project.service";
+} from '../../../services/resolvers/resolver-directive';
+import {BuddyProjectStatusPayload} from '../buddy-project-status';
+import {BuddyProjectService} from '../services/buddy-project.service';
 
 @Resolver(ResolverTarget.YESBOT)
 class BuddyProjectByUserIdQuery {
@@ -12,7 +12,7 @@ class BuddyProjectByUserIdQuery {
 
   @Query(() => BuddyProjectStatusPayload)
   public async getBuddy(
-    @Arg("userId") userId: string,
+    @Arg('userId') userId: string,
   ): Promise<BuddyProjectStatusPayload> {
     return await this.buddyProjectService.getBuddyProjectStatus(userId);
   }

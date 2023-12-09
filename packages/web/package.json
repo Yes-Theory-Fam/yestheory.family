@@ -9,13 +9,18 @@
     "dev": "yarn codegen && yarn next",
     "e2e:open": "cypress open --config baseUrl=http://localhost:3000",
     "e2e:run": "cypress run --config baseUrl=http://localhost:3000",
-    "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\" --max-warnings=0",
+    "lint": "yarn run lint:fix && yarn run prettier:fix",
     "start": "next start",
     "test": "echo web: ok",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . --write"
   },
   "devDependencies": {
+    "@atmina/linting": "^2.0.1",
     "@atmina/only-enum-types": "0.7.0",
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/near-operation-file-preset": "3.0.0",
@@ -29,16 +34,17 @@
     "@storybook/react": "7.6.3",
     "@storybook/testing-library": "0.2.2",
     "@types/cookie": "0.6.0",
+    "@types/eslint": "^8.44.8",
     "@types/prettier": "^3.0.0",
-    "@yestheory.family/eslint-config": "^1.0.0",
     "autoprefixer": "^10.4.16",
     "chromatic": "^9.1.0",
     "cypress": "11.2.0",
     "env-cmd": "^10.1.0",
-    "eslint": "8.55.0",
+    "eslint": "^8.55.0",
     "eslint-config-next": "^14.0.3",
     "eslint-plugin-storybook": "^0.6.15",
     "postcss": "^8.4.32",
+    "prettier": "^3.1.0",
     "storybook": "7.6.3",
     "tailwindcss": "^3.3.5",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
@@ -64,5 +70,6 @@
     "tailwind-merge": "^2.0.0",
     "typesense": "^1.7.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "prettier": "@atmina/linting/prettier"
 }

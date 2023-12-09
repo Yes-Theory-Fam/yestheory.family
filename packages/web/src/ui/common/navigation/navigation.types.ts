@@ -1,4 +1,4 @@
-import { LinkProps } from "../link/link";
+import {type LinkProps} from '../link/link';
 
 export interface User {
   username: string;
