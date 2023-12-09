@@ -10,6 +10,7 @@ const config = {
   component: GroupChatSearchBar,
   args: {
     onSearchChange: action('searchChange'),
+    search: {query: '', platforms: []},
   },
 } satisfies Meta<GroupChatSearchBarProps>;
 
