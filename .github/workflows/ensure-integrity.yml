@@ -1,14 +1,12 @@
 name: 'Ensure Integrity'
-on:
-  pull_request: null
-  push:
-    branches: [master]
+on: push
 env:
   OWNER: yes-theory-fam
 
 jobs:
   docker-build-server:
     name: "Docker Build Server"
+    if: ${{ !contains(github.event.head_commit.message, '[skip build]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,6 +18,7 @@ jobs:
 
   docker-build-web:
     name: "Docker Build Web"
+    if: ${{ !contains(github.event.head_commit.message, '[skip build]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,6 +32,7 @@ jobs:
 
   docker-build-cms:
     name: "Docker Build CMS"
+    if: ${{ !contains(github.event.head_commit.message, '[skip build]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -65,6 +65,7 @@ jobs:
     name: "Playwright E2E-Test"
     needs: [ docker-build-server, docker-build-web, docker-build-cms ]
     runs-on: ubuntu-latest
+    if: ${{ always() && !cancelled() && !failure() }}
     steps:
       - uses: actions/checkout@v3
 
