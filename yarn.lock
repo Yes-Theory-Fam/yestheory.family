@@ -10813,6 +10813,7 @@ __metadata:
     "@playwright/test": "npm:^1.40.1"
     "@types/eslint": "npm:^8.44.8"
     "@types/node": "npm:^20.10.4"
+    dotenv: "npm:^16.3.1"
     eslint: "npm:^8.55.0"
     prettier: "npm:^3.1.1"
   languageName: unknown
