@@ -1,14 +1,16 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: {{ .Values.backend.deployment.name }}
+  name: ytf-backend-deployment
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
-    matchLabels: {{ .Values.backend.service.labels | toYaml | nindent 6 }}
+    matchLabels:
+      app: ytf-backend
   template:
     metadata:
-      labels: {{ .Values.backend.service.labels | toYaml | nindent 8 }}
+      labels:
+        app: ytf-backend
     spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets.github }}
@@ -22,21 +24,30 @@ spec:
 {{- end }}
 
       containers:
-        - name: {{ .Values.backend.deployment.name }}
+        - name: ytf-backend
           image: {{ .Values.backend.deployment.image.name }}:{{ .Values.backend.deployment.image.tag }}
           ports:
-            - {{ .Values.backend.deployment.ports.public | toYaml | nindent 14 }}
-            - {{ .Values.backend.deployment.ports.yesbot | toYaml | nindent 14 }}
-            - {{ .Values.backend.deployment.ports.yesbotSchema | toYaml | nindent 14 }}
-          env: {{ .Values.backend.deployment.containerEnv | toYaml | nindent 12 }}
-            {{- range .Values.backend.deployment.secret.secrets }}
+            - name: public
+              containerPort: 5000
+            - name: yesbot
+              containerPort: 5001
+            - name: yesbot-schema
+              containerPort: 5002
+
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: DISCORD_SCOPES
+              value: "identify,guilds.join"
+            - name: CMS_ENDPOINT
+              value: "http://ytf-cms-service/api/graphql"
+            - name: FRONTEND_HOST
+              value: https://{{ .Values.common.baseDomain }}
+
+            {{- range .Values.backend.secret.secrets }}
             - name: {{ .name }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ $.Values.backend.deployment.secret.name }}
+                  name: ytf-backend-secret
                   key: {{ .name }}
             {{- end }}
-            - name: CMS_ENDPOINT
-              value: "http://{{ .Values.cms.service.name }}/api/graphql"
-            - name: FRONTEND_HOST
-              value: https://{{ .Values.common.baseDomain }}

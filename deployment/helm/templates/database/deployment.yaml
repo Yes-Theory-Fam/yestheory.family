@@ -3,25 +3,28 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: {{ .Values.database.deployment.name }}
+  name: ytf-database-deployment
 spec:
   selector:
-    matchLabels: {{ .Values.database.service.labels | toYaml | nindent 6 }}
+    matchLabels:
+      app: ytf-database
   template:
     metadata:
-      labels: {{ .Values.database.service.labels | toYaml | nindent 8 }}
+      labels:
+        app: ytf-database
     spec:
       containers:
-        - name: {{ .Values.database.deployment.name }}
-          image: postgres:15.3
+        - name: ytf-database
+          image: postgres:13
           ports:
-            - {{ .Values.database.deployment.port | toYaml | nindent 14 }}
+            - name: postgres
+              containerPort: 5432
           env:
-            {{- range .Values.database.deployment.secret.secrets }}
+            {{- range .Values.database.secret.secrets }}
             - name: {{ .name }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ $.Values.database.deployment.secret.name }}
+                  name: ytf-database-secret
                   key: {{ .name }}
             {{- end }}
 {{- end -}}

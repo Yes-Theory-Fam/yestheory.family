@@ -2,10 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: {{ .Values.backend.service.name }}
-  labels: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+  name: ytf-backend-service
+  labels:
+    app: ytf-backend
 spec:
   ports:
-    - port: {{ .Values.backend.service.port }}
-      targetPort: {{ .Values.backend.deployment.ports.public.name }}
-  selector: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+    - port: 80
+      targetPort: public
+  selector:
+    app: ytf-backend

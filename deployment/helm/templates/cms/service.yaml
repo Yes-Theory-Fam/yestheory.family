@@ -2,10 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: {{ .Values.cms.service.name }}
-  labels: {{ .Values.cms.service.labels | toYaml | nindent 4 }}
+  name: ytf-cms-service
+  labels:
+    app: ytf-cms
 spec:
   ports:
     - port: 80
-      targetPort: {{ .Values.cms.deployment.port.name }}
-  selector: {{ .Values.cms.service.labels | toYaml | nindent 4 }}
+      targetPort: payload
+  selector:
+    app: ytf-cms

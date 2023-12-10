@@ -1,22 +1,29 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: {{ .Values.web.deployment.name }}
+  name: ytf-web-deployment
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
-    matchLabels: {{ .Values.web.service.labels | toYaml | nindent 6 }}
+    matchLabels:
+      app: ytf-web
   template:
     metadata:
-      labels: {{ .Values.web.service.labels | toYaml | nindent 8 }}
+      labels:
+        app: ytf-web
     spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets.github }}
       containers:
-        - name: {{ .Values.web.deployment.name }}
+        - name: ytf-web
           image: {{ .Values.web.deployment.image.name }}:{{ .Values.web.deployment.image.tag }}
           ports:
-            - {{ .Values.web.deployment.port | toYaml | nindent 14}}
-          env: {{ .Values.web.deployment.containerEnv | toYaml | nindent 12 }}
+            - name: next
+              containerPort: 3000
+          env:
+            - name: SERVER_BACKEND_GRAPHQL_URL
+              value: http://ytf-backend-service/graphql
+            - name: TYPESENSE_DIRECT_URL
+              value: http://ytf-typesense-service
             - name: FRONTEND_URL
               value: https://{{ .Values.common.baseDomain }}

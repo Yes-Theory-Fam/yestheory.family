@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.typesense.ingress.name }}
+  name: ytf-typesense-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
-    kubernetes.io/ingress.class: {{ .Values.Ingress.class }}
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
     kubernetes.io/tls-acme: 'true'
-    cert-manager.io/cluster-issuer: {{ .Values.Ingress.issuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.issuer }}
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
   labels:
@@ -24,6 +24,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.typesense.service.name }}
+                name: ytf-typesense-service
                 port:
-                  number: {{ .Values.typesense.service.port }}
+                  number: 8108

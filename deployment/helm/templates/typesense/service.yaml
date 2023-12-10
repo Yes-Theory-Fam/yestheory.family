@@ -2,10 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: {{ .Values.typesense.service.name }}
-  labels: {{ .Values.typesense.service.labels | toYaml | nindent 4 }}
+  name: ytf-typesense-service
+  labels:
+    app: ytf-typesense
 spec:
   ports:
-    - port: {{ .Values.typesense.service.port }}
-      targetPort: {{ .Values.typesense.deployment.port.name }}
-  selector: {{ .Values.typesense.service.labels | toYaml | nindent 4 }}
+    - port: 8108
+      targetPort: typesense
+  selector:
+    app: ytf-typesense

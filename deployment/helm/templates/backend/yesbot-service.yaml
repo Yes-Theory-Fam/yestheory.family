@@ -2,13 +2,15 @@ kind: Service
 apiVersion: v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: {{ .Values.backend.yesbotService.name }}
-  labels: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+  name: ytf-backend-yesbot-service
+  labels:
+    app: ytf-backend
 spec:
   ports:
-    - port: {{ .Values.backend.yesbotService.port }}
-      targetPort: {{ .Values.backend.deployment.ports.yesbot.name }}
-  selector: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+    - port: 5001
+      targetPort: yesbot
+  selector:
+    app: ytf-backend
 
 ---
 
@@ -16,10 +18,12 @@ kind: Service
 apiVersion: v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: {{ .Values.backend.yesbotSchemaService.name }}
-  labels: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+  name: ytf-backend-yesbot-schema-service
+  labels:
+    app: ytf-backend
 spec:
   ports:
-    - port: {{ .Values.backend.yesbotSchemaService.port }}
-      targetPort: {{ .Values.backend.deployment.ports.yesbotSchema.name }}
-  selector: {{ .Values.backend.service.labels | toYaml | nindent 4 }}
+    - port: 5002
+      targetPort: yesbot-schema
+  selector:
+    app: ytf-backend
