@@ -52,7 +52,7 @@ services:
       TYPESENSE_API_KEY: 1234567890
       TYPESENSE_API_URL: http://typesense:8108
       SERVER_URL: http://localhost:3001
-      FRONTEND_URL: http://localhost:3000
+      FRONTEND_URL: http://web:3000
     ports:
       - "3001:3001"
     depends_on:
