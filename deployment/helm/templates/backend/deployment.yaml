@@ -20,7 +20,7 @@ spec:
       initContainers:
         - name: check-db-ready
           image: postgres:13-alpine
-          command: ['sh', '-c', 'until pg_isready -h {{ .Values.database.service.name }}-{{ .Release.Name }} -p {{ .Values.database.service.port }} -U yesbot; do echo waiting for database; sleep 2; done;']
+          command: ['sh', '-c', 'until pg_isready -h ytf-database-service -p 5432 -U yesbot; do echo waiting for database; sleep 2; done;']
 {{- end }}
 
       containers:
