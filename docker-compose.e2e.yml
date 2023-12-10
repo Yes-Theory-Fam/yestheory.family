@@ -72,7 +72,7 @@ services:
   playwright:
     image: mcr.microsoft.com/playwright:v1.40.1-focal
     entrypoint: "/bin/bash"
-    command: "/wait-for-it.sh -t 30 --strict server:5000 -- yarn playwright test"
+    command: "./wait-for-it.sh -t 30 --strict server:5000 -- ./install-and-run.sh"
     working_dir: /e2e
     volumes:
       - ./packages/e2e:/e2e
