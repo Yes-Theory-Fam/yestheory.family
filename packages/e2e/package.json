@@ -1,6 +1,5 @@
 {
   "name": "e2e",
-  "packageManager": "yarn@4.0.2",
   "devDependencies": {
     "@atmina/linting": "^2.0.1",
     "@playwright/test": "^1.40.1",
