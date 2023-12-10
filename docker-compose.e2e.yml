@@ -52,7 +52,7 @@ services:
       TYPESENSE_API_KEY: 1234567890
       TYPESENSE_API_URL: http://typesense:8108
       SERVER_URL: http://localhost:3001
-      FRONTEND_URL: http://localhost:3000
+      FRONTEND_URL: http://web:3000
     ports:
       - "3001:3001"
     depends_on:
@@ -69,17 +69,21 @@ services:
     volumes:
       - "typesense-data:/data"
 
-  cypress:
-    image: cypress/included:11.0.1
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.40.1-focal
     entrypoint: "/bin/bash"
-    command: "/wait-for-it.sh -t 30 --strict server:5000 -- ./cypress/install-and-run.sh"
+    command: "./wait-for-it.sh -t 30 --strict server:5000 -- ./install-and-run.sh"
     working_dir: /e2e
     volumes:
-      - ./packages/web/cypress:/e2e/cypress
-      - ./packages/web/cypress.config.ts:/e2e/cypress.config.ts
-      - ./packages/web/cypress/wait-for-it.sh:/wait-for-it.sh
+      - ./packages/e2e:/e2e
+    environment:
+      FRONTEND_URL: http://web:3000
     depends_on:
       - web
+      - server
+      - cms
+      - postgres
+      - typesense
 
 volumes:
   typesense-data:

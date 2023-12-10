@@ -1,0 +1,20 @@
+{
+  "name": "e2e",
+  "devDependencies": {
+    "@atmina/linting": "^2.0.1",
+    "@playwright/test": "^1.40.1",
+    "@types/eslint": "^8.44.8",
+    "@types/node": "^20.10.4",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.1"
+  },
+  "scripts": {
+    "lint": "yarn run lint:fix && yarn run prettier:fix",
+    "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . --write"
+  },
+  "prettier": "@atmina/linting/prettier"
+}

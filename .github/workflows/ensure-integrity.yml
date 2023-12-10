@@ -62,7 +62,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
   e2e-test:
-    name: "Cypress E2E-Test"
+    name: "Playwright E2E-Test"
     needs: [ docker-build-server, docker-build-web, docker-build-cms ]
     runs-on: ubuntu-latest
     steps:
@@ -82,10 +82,9 @@ jobs:
       - name: Run e2e tests
         run: |
           docker-compose -f docker-compose.e2e.yml up --no-build -d server cms web
-          sleep 10
-          docker-compose -f docker-compose.e2e.yml logs cms server
-          docker-compose -f docker-compose.e2e.yml run cypress
+          docker-compose -f docker-compose.e2e.yml run playwright
           docker-compose -f docker-compose.e2e.yml down
+# TODO upload artifacts like videos / reports
 
   remove-test-containers:
     name: "Clean"

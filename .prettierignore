@@ -1,5 +1,0 @@
-packages/cms/build
-packages/server/src/__generated__
-packages/web/.next
-packages/web/src/__generated__
-packages/web/storybook-static
