@@ -3561,12 +3561,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koa/cors@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@koa/cors@npm:4.0.0"
+"@koa/cors@npm:5.0.0":
+  version: 5.0.0
+  resolution: "@koa/cors@npm:5.0.0"
   dependencies:
     vary: "npm:^1.1.2"
-  checksum: 1509d98b72e321dda99a78b28626142a473533c84bde72b4ee7a76716bd91243765ec3d1790a214e4c5b4c398e72a6abace77f04dbcc7c499c955eed943494f0
+  checksum: 3a0e32fbc422a5f9a41540ce3b7499d46073ddb0e4e851394a74bac5ecd0eaa1f24a8f189b7bd6a50c5863788ae6945c52d990edf99fdd2151a4404f266fe2e7
   languageName: node
   linkType: hard
 
@@ -7594,7 +7594,7 @@ __metadata:
     "@graphql-tools/executor-http": "npm:^1.0.4"
     "@graphql-tools/stitch": "npm:^9.0.3"
     "@graphql-tools/wrap": "npm:^10.0.1"
-    "@koa/cors": "npm:4.0.0"
+    "@koa/cors": "npm:5.0.0"
     "@koa/router": "npm:12.0.1"
     "@nestjs/class-validator": "npm:0.13.4"
     "@prisma/client": "npm:5.5.2"
