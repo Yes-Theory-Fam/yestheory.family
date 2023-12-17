@@ -10,6 +10,7 @@ export interface Config {
   collections: {
     users: User;
     groupchats: Groupchat;
+    'groupchat-keywords': GroupchatKeyword;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -34,11 +35,14 @@ export interface Groupchat {
   platform: 'discord' | 'facebook' | 'signal' | 'telegram' | 'whatsapp';
   description?: string | null;
   url: string;
-  keywords: {
-    value: string;
-    id?: string | null;
-  }[];
+  keywords: (number | GroupchatKeyword)[];
   promoted: number;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface GroupchatKeyword {
+  id: number;
+  value?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -68,6 +72,7 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

@@ -48,9 +48,12 @@ export const Groupchats: CollectionConfig = {
     },
     {
       name: 'keywords',
-      type: 'array',
+      type: 'relationship',
+      hasMany: true,
+      relationTo: 'groupchat-keywords',
       required: true,
-      fields: [{name: 'value', type: 'text', required: true}],
+      minRows: 1,
+      maxRows: 6,
     },
     {
       name: 'promoted',
