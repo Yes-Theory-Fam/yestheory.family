@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.backend.ingress.name }}
+  name: ytf-backend-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
-    kubernetes.io/ingress.class: {{ .Values.Ingress.class }}
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
     kubernetes.io/tls-acme: 'true'
-    cert-manager.io/cluster-issuer: {{ .Values.Ingress.issuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.issuer }}
   labels:
     app: backend-ingress
 spec:
@@ -22,14 +22,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.backend.service.name }}
+                name: ytf-backend-service
                 port:
-                  number: {{ .Values.backend.service.port }}
+                  number: 80
 
           - path: /_yesbot-schema
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.backend.yesbotSchemaService.name }}
+                name: ytf-backend-yesbot-schema-service
                 port:
-                  number: {{ .Values.backend.yesbotSchemaService.port }}
+                  number: 5002

@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.cms.ingress.name }}
+  name: ytf-cms-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
-    kubernetes.io/ingress.class: {{ .Values.Ingress.class }}
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
     kubernetes.io/tls-acme: 'true'
-    cert-manager.io/cluster-issuer: {{ .Values.Ingress.issuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.issuer }}
   labels:
     app: cms-ingress
 spec:
@@ -22,6 +22,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.cms.service.name }}
+                name: ytf-cms-service
                 port:
-                  number: {{ .Values.cms.service.port }}
+                  number: 80

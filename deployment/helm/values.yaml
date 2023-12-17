@@ -1,37 +1,9 @@
-# Default values for helm.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
 imagePullSecrets:
   github: github
 
 # TODO Extract DB user/pwd/name to variables and reuse them if possible
 
-Ingress:
+ingress:
   class: public
   issuer: letsencrypt-prod
 
@@ -40,162 +12,63 @@ common:
   certName: cert
 
 cms:
-  ingress:
-    name: ytf-cms-ingress
-  service:
-    name: ytf-cms-service
-    port: 80
-    labels:
-      app: ytf-cms
   deployment:
-    name: ytf-cms-deployment
     image:
       name: ghcr.io/yes-theory-fam/yestheory-family-cms
       tag: latest
-    port:
-      name: payload
-      containerPort: 3002
-    containerEnv:
-      - name: ENABLE_DATASEEDER
-        value: "true"
 
-    secret:
-      name: cms-secret-env
-      secrets:
-        - name: PAYLOAD_SECRET
-          value:
-        - name: INITIAL_ADMIN_MAIL
-          value:
-        - name: INITIAL_ADMIN_PASSWORD
-          value:
-        - name: DATABASE_URI
-          value: postgres://username:password@ytf-database-service:5432/payload
+  secret:
+    secrets:
+      - name: PAYLOAD_SECRET
+        value:
+      - name: INITIAL_ADMIN_MAIL
+        value:
+      - name: INITIAL_ADMIN_PASSWORD
+        value:
+      - name: DATABASE_URI
+        value: postgres://username:password@ytf-database-service:5432/payload
 
 web:
-  ingress:
-    name: ytf-web-ingress
-  service:
-    name: ytf-web-service
-    port: 80
-    labels:
-      app: ytf-web
   deployment:
-    name: ytf-web-deployment
     image:
       name: ghcr.io/yes-theory-fam/yestheory-family-web
       tag: latest
-    port:
-      name: next
-      containerPort: 3000
-    containerEnv:
-      - name: SERVER_BACKEND_GRAPHQL_URL
-        value: http://ytf-backend-service/graphql
-      - name: TYPESENSE_DIRECT_URL
-        value: http://ytf-typesense-service
 
 backend:
-  ingress:
-    name: ytf-backend-ingress
-  service:
-    name: ytf-backend-service
-    port: 80
-    labels:
-      app: ytf-backend
-  yesbotService:
-    name: ytf-backend-yesbot-service
-    port: 5001
-  yesbotSchemaService:
-    name: ytf-backend-yesbot-schema-service
-    port: 5002
-
   deployment:
-    name: ytf-backend-deployment
     image:
       name: ghcr.io/yes-theory-fam/yestheory-family-server
       tag: latest
-    ports:
-      public:
-        name: public
-        containerPort: 5000
-      yesbot:
-        name: yesbot
-        containerPort: 5001
-      yesbotSchema:
-        name: yesbot-schema
-        containerPort: 5002
-    containerEnv:
-      - name: NODE_ENV
-        value: production
-      - name: DISCORD_SCOPES
-        value: "identify,guilds.join"
 
-    secret:
-      name: backend-secret-env
-      secrets:
-        - name: PRISMA_DATABASE_URL
-          value:
-        - name: DISCORD_BOT_TOKEN
-          value:
-        - name: DISCORD_TARGET_GUILD
-          value:
-        - name: DISCORD_CLIENT_ID
-          value:
-        - name: DISCORD_CLIENT_SECRET
-          value:
-        - name: YESBOT_API_TOKEN
-          value:
+  secret:
+    secrets:
+      - name: PRISMA_DATABASE_URL
+        value:
+      - name: DISCORD_BOT_TOKEN
+        value:
+      - name: DISCORD_TARGET_GUILD
+        value:
+      - name: DISCORD_CLIENT_ID
+        value:
+      - name: DISCORD_CLIENT_SECRET
+        value:
+      - name: YESBOT_API_TOKEN
+        value:
 
 typesense:
-  ingress:
-    name: ytf-typesense-ingress
-  service:
-    name: ytf-typesense-service
-    port: 8108
-    labels:
-      app: ytf-typesense
-  deployment:
-    name: ytf-typesense-deployment
-    image:
-      name: typesense/typesense
-      tag: 0.25.1
-    port:
-      name: typesense
-      containerPort: 8108
-    secret:
-      name: typesense-secret-env
-      secrets:
-        - name: TYPESENSE_API_KEY
-          value:
+  secret:
+    secrets:
+      - name: TYPESENSE_API_KEY
+        value:
 
 database:
   create: false
-  service:
-    port: 5432
-    name: ytf-database-service
-    labels:
-      app: ytf-database
-  deployment:
-    name: ytf-database-deployment
-    image: postgres:13
-    port:
-      name: postgres
-      containerPort: 5432
-    containerEnv:
 
-    secret:
-      name: database-secret-env
-      secrets:
-        - name: POSTGRES_PASSWORD
-          value: yesbot
-        - name: POSTGRES_USER
-          value: yesbot
-        - name: POSTGRES_DB
-          value: yesbot
-
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 2
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  secret:
+    secrets:
+      - name: POSTGRES_PASSWORD
+        value: yesbot
+      - name: POSTGRES_USER
+        value: yesbot
+      - name: POSTGRES_DB
+        value: yesbot
