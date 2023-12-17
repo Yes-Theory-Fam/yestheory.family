@@ -69,13 +69,17 @@ const syncGroupchatsToTypesense = async () => {
     const {docs: groupchats} = await payload.find({
       collection: collectionName,
       pagination: false,
+      depth: 2,
     });
 
     const typesenseChats = groupchats.map(
       ({id, createdAt, updatedAt, keywords, ...rest}) => ({
         ...rest,
         id: id.toString(),
-        keywords: keywords?.map(({value}) => value) ?? [],
+        keywords:
+          keywords?.map((keyword) =>
+            typeof keyword === 'object' ? keyword.value : undefined,
+          ) ?? [],
       }),
     );
 

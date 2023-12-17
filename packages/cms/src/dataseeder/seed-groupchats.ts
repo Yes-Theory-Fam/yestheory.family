@@ -1,6 +1,26 @@
 import {upsert} from './upsert';
 
+const keywords: Record<string, number> = {};
+
+let keywordId = 0;
+const seedKeywords = async () => {
+  const keywordValues = ['Hamburg', 'Germany', 'Europe', 'Global'];
+  for (const keyword of keywordValues) {
+    await upsert({
+      collection: 'groupchat-keywords',
+      key: 'value',
+      data: {
+        id: keywordId++,
+        value: keyword,
+      },
+    });
+    keywords[keyword] = keywordId;
+  }
+};
+
 export const seedGroupchats = async () => {
+  await seedKeywords();
+
   await upsert({
     collection: 'groupchats',
     key: 'name',
@@ -9,7 +29,7 @@ export const seedGroupchats = async () => {
       description: 'Hamburgs YesFam group on WhatsApp',
       platform: 'whatsapp',
       url: 'https://example.com',
-      keywords: [{value: 'Hamburg'}, {value: 'Germany'}, {value: 'Europe'}],
+      keywords: [keywords['Hamburg'], keywords['Germany'], keywords['Europe']],
       promoted: 0,
     },
   });
@@ -23,7 +43,7 @@ export const seedGroupchats = async () => {
         'The semi-official community run Discord server of the Yes Fam',
       platform: 'discord',
       url: 'https://discord.gg/yestheory',
-      keywords: [{value: 'Global'}],
+      keywords: [keywords['Global']],
       promoted: 100,
     },
   });
