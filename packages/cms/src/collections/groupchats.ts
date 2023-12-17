@@ -1,3 +1,4 @@
+import payload from 'payload';
 import {type CollectionConfig} from 'payload/types';
 import {typesenseClient} from '../lib/typesense';
 
@@ -73,10 +74,15 @@ export const Groupchats: CollectionConfig = {
       async ({doc, context}) => {
         if ('dataseeder' in context && context.dataseeder) return;
 
+        const keywords = await payload.find({
+          collection: 'groupchat-keywords',
+          where: {id: {equals: doc.keywords.join(',')}},
+        });
+
         const typesenseDoc = {
           ...doc,
           id: doc.id.toString(),
-          keywords: doc.keywords.map((k) => k.value),
+          keywords: keywords.docs.map((k) => k.value),
         };
         await typesenseClient
           .collections('groupchats')
