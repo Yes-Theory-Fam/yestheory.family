@@ -12,7 +12,7 @@ export type SessionUser = {
 
 export const enum AuthState {
   MISSING_COOKIE = 'MISSING_COOKIE',
-  MISSING_USER = 'MISSING_USER',
+  MISSING_ACCESS = 'MISSING_ACCESS',
   AUTHENTICATED = 'AUTHENTICATED',
   LOADING = 'LOADING',
 }
@@ -60,7 +60,7 @@ export const Users: CollectionConfig = {
           return res.status(200).send(AuthState.MISSING_COOKIE);
 
         const user = req.user as SessionUser;
-        if (!user) return res.status(200).send(AuthState.MISSING_USER);
+        if (!user) return res.status(200).send(AuthState.MISSING_ACCESS);
 
         res.status(200).send(AuthState.AUTHENTICATED);
       },
