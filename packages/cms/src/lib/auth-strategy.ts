@@ -1,8 +1,9 @@
 import {type IncomingHttpHeaders} from 'http';
 import {type AuthProvider} from '@yestheory.family/server/src/features';
-import {Strategy as CustomStrategy} from 'passport-custom';
-import payload from 'payload';
+import {Strategy as CustomStrategy, type VerifyCallback} from 'passport-custom';
+import payload, {type GeneratedTypes} from 'payload';
 import parseCookies from 'payload/dist/utilities/parseCookies';
+import {NotFound} from 'payload/errors';
 
 const backend = process.env.BACKEND_URL ?? 'http://localhost:5000';
 
@@ -16,15 +17,19 @@ type MeQueryData = null | {me: MeQueryMe};
 type MeQueryResult = {data: MeQueryData};
 
 const expressToFetchHeaders = (incoming: IncomingHttpHeaders): HeadersInit => {
-  return Object.fromEntries(
-    Object.entries(incoming).map(([k, v]) => [
-      k,
-      Array.isArray(v) ? v.join(',') : v,
-    ]),
-  );
+  return {Cookie: incoming.cookie};
 };
 
-export const ytfAuthStrategy = new CustomStrategy(async function (req, done) {
+const toRequestUser = (user: GeneratedTypes['collections']['users']) => ({
+  collection: 'users',
+  id: user.id,
+  user,
+});
+
+type AsyncVerifyCallback = (
+  ...args: Parameters<VerifyCallback>
+) => Promise<void>;
+const login: AsyncVerifyCallback = async (req, done) => {
   const gqlBody = {
     query: 'query Test {\n\tme {\n\t\tid\n\t}\n}\n',
     operationName: 'Test',
@@ -52,10 +57,30 @@ export const ytfAuthStrategy = new CustomStrategy(async function (req, done) {
     return done('Unauthenticated');
   }
 
-  const payloadUser = await payload.findByID({
-    id: user.id,
-    collection: 'users',
-  });
+  try {
+    const payloadUser = await payload.findByID({
+      id: user.id,
+      collection: 'users',
+    });
 
-  done(null, {collection: 'users', user: payloadUser, id: user.id});
-});
+    done(null, toRequestUser(payloadUser));
+  } catch (e) {
+    if (e instanceof NotFound) {
+      const createdUser = await payload.create({
+        collection: 'users',
+        data: {id: user.id, roles: []},
+      });
+
+      return done(null, toRequestUser(createdUser));
+    }
+    console.error(e);
+    done('Unauthenticated', null);
+  }
+};
+
+export const ytfAuthStrategy = new CustomStrategy(async (req, done) =>
+  login(req, done).catch((err) => {
+    console.error(err);
+    done(err);
+  }),
+);

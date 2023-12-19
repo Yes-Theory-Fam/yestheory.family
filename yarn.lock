@@ -6333,6 +6333,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@total-typescript/ts-reset@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@total-typescript/ts-reset@npm:0.5.1"
+  checksum: f773a2b91707fab677c361837ef7855522d470e8a3abc0b9209a04832715feb0aa1ef0d10db880c1232acbd2c84222ec7c1bbf3f92d1d34d18c18ce08d304e45
+  languageName: node
+  linkType: hard
+
 "@ts-morph/common@npm:~0.21.0":
   version: 0.21.0
   resolution: "@ts-morph/common@npm:0.21.0"
@@ -7574,6 +7581,7 @@ __metadata:
     "@payloadcms/bundler-vite": "npm:^0.1.5"
     "@payloadcms/db-postgres": "npm:^0.2.0"
     "@payloadcms/richtext-slate": "npm:^1.2.1"
+    "@total-typescript/ts-reset": "npm:^0.5.1"
     "@types/eslint": "npm:^8.44.8"
     "@types/express": "npm:^4.17.21"
     "@types/node-cron": "npm:^3.0.11"

@@ -18,7 +18,7 @@ export interface Config {
 }
 export interface User {
   id: string;
-  roles: ('owner' | 'groupchat-admin' | 'groupchats')[];
+  roles?: ('owner' | 'groupchats-admin' | 'groupchats')[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -30,6 +30,7 @@ export interface Groupchat {
   url: string;
   keywords: (number | GroupchatKeyword)[];
   promoted: number;
+  owners?: (string | User)[] | null;
   updatedAt: string;
   createdAt: string;
 }

@@ -1,11 +1,16 @@
 import payload from 'payload';
 import {type CollectionConfig} from 'payload/types';
+import {allowUpdateDeleteOwner} from '../access/allow-update-delete-owner';
+import {requireOneOf} from '../access/require-one-of';
 import {typesenseClient} from '../lib/typesense';
 
 export const Groupchats: CollectionConfig = {
   slug: 'groupchats',
   access: {
     read: () => true,
+    create: requireOneOf('groupchats-admin', 'groupchats'),
+    update: allowUpdateDeleteOwner,
+    delete: allowUpdateDeleteOwner,
   },
   admin: {
     useAsTitle: 'name',
@@ -66,6 +71,26 @@ export const Groupchats: CollectionConfig = {
       admin: {
         description:
           'This value may be used to push results. A value of 0 means no promotion. Any value between 1 and 100 may be used to order promoted groupchats.',
+      },
+    },
+    {
+      name: 'owners',
+      type: 'relationship',
+      relationTo: 'users',
+      admin: {
+        hidden: true,
+      },
+      hasMany: true,
+      hooks: {
+        beforeChange: [
+          async ({operation, data, req}) => {
+            if (operation !== 'create') return;
+
+            const ownerId = req.user.id;
+            data.owners ??= [];
+            if (!data.owners.includes(ownerId)) data.owners.push(ownerId);
+          },
+        ],
       },
     },
   ],

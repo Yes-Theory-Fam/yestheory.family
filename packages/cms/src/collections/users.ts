@@ -1,5 +1,13 @@
+import {type GeneratedTypes} from 'payload';
 import {type CollectionConfig} from 'payload/types';
+import {requireOneOf} from '../access/require-one-of';
 import {ytfAuthStrategy} from '../lib/auth-strategy';
+
+export type SessionUser = {
+  collection: 'users';
+  id: string;
+  user: GeneratedTypes['collections']['users'];
+};
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -12,6 +20,12 @@ export const Users: CollectionConfig = {
         strategy: ytfAuthStrategy,
       },
     ],
+  },
+  access: {
+    create: () => false,
+    update: requireOneOf(),
+    delete: requireOneOf(),
+    read: requireOneOf(),
   },
   admin: {
     useAsTitle: 'id',
@@ -31,12 +45,11 @@ export const Users: CollectionConfig = {
       name: 'roles',
       type: 'select',
       hasMany: true,
-      required: true,
       label: 'Roles',
       defaultValue: [],
       options: [
         {label: 'Owner', value: 'owner'},
-        {label: 'Groupchat-Admin', value: 'groupchat-admin'},
+        {label: 'Groupchat-Admin', value: 'groupchats-admin'},
         {label: 'Groupchats', value: 'groupchats'},
       ],
     },
