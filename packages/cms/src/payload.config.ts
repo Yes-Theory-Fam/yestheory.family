@@ -6,14 +6,21 @@ import {buildConfig, type Config} from 'payload/config';
 import {GroupchatKeywords} from './collections/groupchat-keywords';
 import {Groupchats} from './collections/groupchats';
 import {Users} from './collections/users';
+import {AfterLogin} from './components/after-login';
 import {searchTokenByAuthenticatedQuery} from './graphql/queries/search-token-by-authenticated';
+import {externals} from './plugins/externals';
+import {tailwind} from './plugins/tailwind';
 import {mergeQueries} from './utils/merge-queries';
 
 const config: Config = {
   admin: {
     user: Users.slug,
+    css: path.resolve(__dirname, './styles/tailwind.css'),
     buildPath: path.resolve(__dirname, '../build'),
     bundler: viteBundler(),
+    components: {
+      afterLogin: [AfterLogin],
+    },
   },
   editor: slateEditor({}),
   collections: [Users, Groupchats, GroupchatKeywords],
@@ -24,6 +31,7 @@ const config: Config = {
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
+  plugins: [tailwind, externals],
   graphQL: {
     queries: mergeQueries({
       searchTokenByAuthenticated: searchTokenByAuthenticatedQuery,

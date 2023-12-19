@@ -38,7 +38,9 @@ const login: AsyncVerifyCallback = async (req, done) => {
   const cookies = parseCookies(req);
   const koaSess = cookies['koa.sess'];
   if (!koaSess) {
-    return done('Not logged in');
+    // Null as error because it's technically not an error. We are not returning a user either though, so this doesn't
+    //   count as authentication in case of introspection or otherwise.
+    return done(null, null);
   }
 
   const response = await fetch(`${backend}/graphql`, {
@@ -54,7 +56,7 @@ const login: AsyncVerifyCallback = async (req, done) => {
 
   const user = body.data?.me;
   if (!user) {
-    return done('Unauthenticated');
+    return done(null);
   }
 
   try {
@@ -66,21 +68,13 @@ const login: AsyncVerifyCallback = async (req, done) => {
     done(null, toRequestUser(payloadUser));
   } catch (e) {
     if (e instanceof NotFound) {
-      const createdUser = await payload.create({
-        collection: 'users',
-        data: {id: user.id, roles: []},
-      });
-
-      return done(null, toRequestUser(createdUser));
+      return done(null, null);
     }
-    console.error(e);
-    done('Unauthenticated', null);
+
+    done(e);
   }
 };
 
 export const ytfAuthStrategy = new CustomStrategy(async (req, done) =>
-  login(req, done).catch((err) => {
-    console.error(err);
-    done(err);
-  }),
+  login(req, done).catch(done),
 );

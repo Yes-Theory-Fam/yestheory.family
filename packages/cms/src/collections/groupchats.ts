@@ -83,8 +83,13 @@ export const Groupchats: CollectionConfig = {
       hasMany: true,
       hooks: {
         beforeChange: [
-          async ({operation, data, req}) => {
-            if (operation !== 'create') return;
+          async ({operation, context, data, req}) => {
+            if (
+              operation !== 'create' ||
+              ('dataseeder' in context && context.dataseeder)
+            ) {
+              return;
+            }
 
             const ownerId = req.user.id;
             data.owners ??= [];

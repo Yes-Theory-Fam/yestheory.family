@@ -7,7 +7,7 @@ type Role = GeneratedTypes['collections']['users']['roles'][number];
 export function requireOneOf(...args: Role[]): Access<unknown, SessionUser> {
   return ({req}) => {
     const user: SessionUser = req.user;
-    if (!user) {
+    if (!user?.user) {
       return false;
     }
 
