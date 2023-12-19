@@ -15,7 +15,7 @@ export const domain = getRootDomain(frontend);
 const sessionConfig: Partial<opts> = {
   key: 'koa.sess',
   secure: !isDevelopment,
-  sameSite: 'lax',
+  sameSite: 'none',
   path: '/',
   domain,
 };

@@ -29,6 +29,8 @@ spec:
               value: "https://admin.{{ .Values.common.baseDomain }}"
             - name: TYPESENSE_API_URL
               value: "http://ytf-typesense-service:8108"
+            - name: BACKEND_URL
+              value: http://ytf-backend-service
             {{- range .Values.cms.secret.secrets }}
             - name: {{ .name }}
               valueFrom:
