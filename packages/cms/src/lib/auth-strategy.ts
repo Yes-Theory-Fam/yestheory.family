@@ -33,6 +33,6 @@ const login: AsyncVerifyCallback = async (req, done) => {
   }
 };
 
-export const ytfAuthStrategy = new CustomStrategy(async (req, done) =>
+export const ytfAuthStrategy = new CustomStrategy((req, done) =>
   login(req, done).catch(done),
 );

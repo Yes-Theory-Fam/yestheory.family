@@ -97,9 +97,9 @@ export const Users: CollectionConfig = {
           body: JSON.stringify(gqlBody),
         });
 
-        const json = await response.json();
+        type AccessRequestResult = {data: null | {requestAccess: boolean}};
+        const json = (await response.json()) as AccessRequestResult;
 
-        // TODO typing
         if (json.data?.requestAccess) {
           return res.status(200).send('Ok');
         }

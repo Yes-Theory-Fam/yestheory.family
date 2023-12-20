@@ -1,14 +1,8 @@
 import type {IncomingHttpHeaders} from 'http';
-import type {AuthProvider} from '@yestheory.family/server/src/features';
 import {type Request} from 'express';
 import parseCookies from 'payload/dist/utilities/parseCookies';
 
-type MeQueryMe = null | {
-  id: string;
-  username: string;
-  avatarUrl: string;
-  provider: AuthProvider;
-};
+type MeQueryMe = null | {id: string};
 type MeQueryData = null | {me: MeQueryMe};
 type MeQueryResult = {data: MeQueryData};
 

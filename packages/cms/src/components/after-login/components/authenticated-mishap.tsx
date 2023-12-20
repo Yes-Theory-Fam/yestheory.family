@@ -7,7 +7,7 @@ export const AuthenticatedMishap: FC = () => {
       shouldn&apos;t see this...
       <br />
       If you are actually seeing this, you probably know whom to contact.
-      Contact them!
+      Contact them with as much information on how to reproduce this as you can!
     </p>
   );
 };

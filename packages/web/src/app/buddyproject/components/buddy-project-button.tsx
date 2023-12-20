@@ -47,7 +47,9 @@ export const BuddyProjectButton: FC<BuddyProjectButtonProps> = ({
   }, [isOnServer, router]);
 
   if (!isLoggedIn) {
-    return <Button onClick={navigateToLogin}>Log in with Discord</Button>;
+    return (
+      <Button onClick={() => navigateToLogin()}>Log in with Discord</Button>
+    );
   }
 
   if (state === 'MATCHED' || state === 'SIGNED_UP') {
