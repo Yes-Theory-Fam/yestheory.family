@@ -251,6 +251,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@atmina/formbuilder@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "@atmina/formbuilder@npm:0.0.6"
+  peerDependencies:
+    react: ">=16.9.0"
+    react-dom: ">=16.9.0"
+    react-hook-form: ^7.33.0
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+  checksum: 2fee27b56fee0d5cd35266591247d6ee64bb461fc7bd0c142328fdff0e4150f10811d44bc64c70bc407d0d29a4a2a6285a3f589c06afe644b06e29e26e815ccc
+  languageName: node
+  linkType: hard
+
 "@atmina/linting@npm:^2.0.1":
   version: 2.0.1
   resolution: "@atmina/linting@npm:2.0.1"
@@ -7570,6 +7584,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@yestheory.family/cms@workspace:packages/cms"
   dependencies:
+    "@atmina/formbuilder": "npm:^0.0.6"
     "@atmina/linting": "npm:^2.0.1"
     "@payloadcms/bundler-vite": "npm:^0.1.5"
     "@payloadcms/db-postgres": "npm:^0.2.0"
@@ -7580,6 +7595,7 @@ __metadata:
     "@types/passport": "npm:^1.0.16"
     "@types/pg": "npm:^8.10.9"
     autoprefixer: "npm:^10.4.16"
+    clsx: "npm:^2.0.0"
     copyfiles: "npm:^2.4.1"
     cross-env: "npm:^7.0.3"
     dotenv: "npm:^16.3.1"
@@ -7590,6 +7606,8 @@ __metadata:
     payload: "npm:^2.3.1"
     postcss-loader: "npm:^7.3.3"
     prettier: "npm:^3.1.0"
+    react: "npm:^18.2.0"
+    react-hook-form: "npm:^7.49.2"
     tailwindcss: "npm:^3.4.0"
     ts-node: "npm:^10.9.1"
     ts-node-dev: "npm:^2.0.0"
@@ -9448,6 +9466,13 @@ __metadata:
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 5ded6f61f15f1fa0350e691ccec43a28b12fb8e64c8e94715f2a937bc3722d4c3ed41d6e945c971fc4dcc2a7213a43323beaf2e1c28654af63ba70c9968a8643
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: 943766d1b02fee3538c871e56638d87f973fbc2d6291ce221215ea436fdecb9be97ad323f411839c2d52c45640c449b1a53fbfe7e8b3d529b4e263308b630c9a
   languageName: node
   linkType: hard
 
@@ -18019,6 +18044,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hook-form@npm:^7.49.2":
+  version: 7.49.2
+  resolution: "react-hook-form@npm:7.49.2"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 7895d65b8458c42d46eb338803bb0fd1aab42fc69ecf80b47846eace9493a10cac5b05c9b744a5f9f1f7969a3e2703fc2118cdab97e49a7798a72d09f106383f
+  languageName: node
+  linkType: hard
+
 "react-i18next@npm:11.18.6":
   version: 11.18.6
   resolution: "react-i18next@npm:11.18.6"
@@ -18261,7 +18295,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
+"react@npm:18.2.0, react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:

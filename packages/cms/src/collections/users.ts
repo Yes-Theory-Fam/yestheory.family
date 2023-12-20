@@ -3,12 +3,23 @@ import parseCookies from 'payload/dist/utilities/parseCookies';
 import {type CollectionConfig} from 'payload/types';
 import {requireOneOf} from '../access/require-one-of';
 import {ytfAuthStrategy} from '../lib/auth-strategy';
+import {getUserIdFromRequest} from '../lib/get-user-id-from-request';
 
-export type SessionUser = {
+type PayloadUser = GeneratedTypes['collections']['users'];
+
+export type WebSessionUser = {
   collection: 'users';
   id: string;
-  user: GeneratedTypes['collections']['users'];
+  user: PayloadUser;
 };
+
+export type APIKeyUser = {
+  id: string;
+  roles: PayloadUser['roles'];
+  _strategy: 'api-key';
+};
+
+export type SessionUser = WebSessionUser | APIKeyUser;
 
 export const enum AuthState {
   MISSING_COOKIE = 'MISSING_COOKIE',
@@ -20,7 +31,7 @@ export const enum AuthState {
 export const Users: CollectionConfig = {
   slug: 'users',
   auth: {
-    useAPIKey: false,
+    useAPIKey: true,
     disableLocalStrategy: true,
     strategies: [
       {
@@ -56,13 +67,44 @@ export const Users: CollectionConfig = {
       method: 'get',
       handler: async (req, res) => {
         const cookies = parseCookies(req);
-        if (!cookies['koa.sess'])
+        if (!cookies['koa.sess']) {
           return res.status(200).send(AuthState.MISSING_COOKIE);
+        }
 
         const user = req.user as SessionUser;
         if (!user) return res.status(200).send(AuthState.MISSING_ACCESS);
 
         res.status(200).send(AuthState.AUTHENTICATED);
+      },
+    },
+    {
+      path: '/request-access',
+      method: 'post',
+      handler: async (req, res) => {
+        const {message} = req.body;
+
+        const userId = await getUserIdFromRequest(req);
+
+        const gqlBody = {
+          query: `mutation RequestAccess { requestAccess(userId: "${userId}", message: "${message}") }`,
+          operationName: 'RequestAccess',
+        };
+
+        const internalBackend = process.env.INTERNAL_BACKEND_URL;
+        const response = await fetch(`${internalBackend}/graphql`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(gqlBody),
+        });
+
+        const json = await response.json();
+
+        // TODO typing
+        if (json.data?.requestAccess) {
+          return res.status(200).send('Ok');
+        }
+
+        res.status(400).send('Bad request');
       },
     },
   ],

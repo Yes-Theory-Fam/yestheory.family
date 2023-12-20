@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import autoprefixer from 'autoprefixer';
 import {type Config} from 'payload/config';
 import tailwindcss from 'tailwindcss';

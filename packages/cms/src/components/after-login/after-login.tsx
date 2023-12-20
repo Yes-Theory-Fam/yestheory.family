@@ -1,5 +1,8 @@
 import React, {type FC, useEffect, useState} from 'react';
-import {AuthState} from '../collections/users';
+import {AuthState} from '../../collections/users';
+import {AuthenticatedMishap} from './components/authenticated-mishap';
+import {MissingAccess} from './components/missing-access';
+import {MissingCookie} from './components/missing-cookie';
 
 const fetchAuthState = async (abort: AbortSignal) => {
   const response = await fetch('/api/users/auth-state', {signal: abort});
@@ -19,42 +22,6 @@ const useAuthState = () => {
   }, []);
 
   return authState;
-};
-
-const MissingCookie: FC = () => {
-  return (
-    <p>
-      You are not logged in on YTF. Click{' '}
-      <a
-        href={`${process.env.PAYLOAD_PUBLIC_WEB_FRONTEND_URL}/auth/payload-redirect`}
-      >
-        here
-      </a>{' '}
-      to log in through Discord.
-    </p>
-  );
-};
-
-const MissingAccess: FC = () => {
-  return (
-    <p>
-      You have not yet been given access to the backoffice. If you believe you
-      should be given access, please fill out this form. A member of the team
-      will get back to you!
-    </p>
-  );
-};
-
-const AuthenticatedMishap: FC = () => {
-  return (
-    <p>
-      Well, this should have been moving forward now actually. This is odd, you
-      shouldn&apos;t see this...
-      <br />
-      If you are actually seeing this, you probably know whom to contact.
-      Contact them!
-    </p>
-  );
 };
 
 export const AfterLogin: FC = () => {

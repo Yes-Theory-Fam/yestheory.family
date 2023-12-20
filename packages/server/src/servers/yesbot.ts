@@ -1,3 +1,10 @@
+import {buildHTTPExecutor} from '@graphql-tools/executor-http';
+import {stitchSchemas} from '@graphql-tools/stitch';
+import {
+  FilterRootFields,
+  PruneSchema,
+  schemaFromExecutor,
+} from '@graphql-tools/wrap';
 import {ApolloServer} from 'apollo-server-koa';
 import Koa, {type Middleware} from 'koa';
 import {buildSchemaSync} from 'type-graphql';
@@ -26,7 +33,7 @@ const requireValidToken: Middleware = async ({headers, res}, next) => {
 
 export const launchYesBotServer = async () => {
   const resolvers = await getResolvers(ResolverTarget.YESBOT);
-  const schema = buildSchemaSync({
+  const yesbotSchema = buildSchemaSync({
     directives: [ExportDirective],
     resolvers,
     container: Container,
@@ -40,8 +47,30 @@ export const launchYesBotServer = async () => {
   app.use(requireValidToken);
   app.proxy = !isDevelopment;
 
+  const cmsExecutor = buildHTTPExecutor({
+    endpoint: process.env.CMS_ENDPOINT,
+    headers: {
+      Authorization: `users API-Key ${process.env.CMS_API_KEY}`,
+    },
+  });
+  const cmsSchema = {
+    schema: await schemaFromExecutor(cmsExecutor),
+    executor: cmsExecutor,
+    transforms: [
+      new FilterRootFields(
+        (operation, name) => operation === 'Mutation' && name === 'createUser',
+      ),
+      new PruneSchema(),
+    ],
+  };
+
+  const stitchedSchema = stitchSchemas({
+    subschemas: [yesbotSchema, cmsSchema],
+    mergeDirectives: true,
+  });
+
   const server = new ApolloServer({
-    schema,
+    schema: stitchedSchema,
     // This is intended to be able to expose the schema for code generation in the CI. The introspection is proxied through yesbot-schema.ts
     introspection: true,
     csrfPrevention: true,

@@ -4,10 +4,10 @@ import {type SessionUser} from '../collections/users';
 export function allowUpdateDeleteOwner<TData>({
   req,
 }: AccessArgs<TData, SessionUser>) {
-  const {user} = req;
+  const user: SessionUser = req.user;
   if (!user) return false;
 
-  const roles = user.user.roles;
+  const roles = '_strategy' in user ? user.roles : user.user.roles;
 
   if (roles.includes('owner') || roles.includes('groupchats-admin')) {
     return true;

@@ -21,6 +21,9 @@ export interface User {
   roles?: ('owner' | 'groupchats-admin' | 'groupchats')[] | null;
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
 }
 export interface Groupchat {
   id: number;
@@ -66,7 +69,6 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

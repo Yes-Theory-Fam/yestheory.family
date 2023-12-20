@@ -6,7 +6,7 @@ import {buildConfig, type Config} from 'payload/config';
 import {GroupchatKeywords} from './collections/groupchat-keywords';
 import {Groupchats} from './collections/groupchats';
 import {Users} from './collections/users';
-import {AfterLogin} from './components/after-login';
+import {AfterLogin} from './components/after-login/after-login';
 import {searchTokenByAuthenticatedQuery} from './graphql/queries/search-token-by-authenticated';
 import {externals} from './plugins/externals';
 import {tailwind} from './plugins/tailwind';
