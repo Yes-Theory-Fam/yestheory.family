@@ -21,9 +21,9 @@ cms:
     secrets:
       - name: PAYLOAD_SECRET
         value:
-      - name: INITIAL_ADMIN_MAIL
+      - name: INITIAL_ADMIN_ID
         value:
-      - name: INITIAL_ADMIN_PASSWORD
+      - name: PAYLOAD_API_KEY
         value:
       - name: DATABASE_URI
         value: postgres://username:password@ytf-database-service:5432/payload
@@ -53,6 +53,10 @@ backend:
       - name: DISCORD_CLIENT_SECRET
         value:
       - name: YESBOT_API_TOKEN
+        value:
+      - name: DISCORD_ADMIN_ID
+        value:
+      - name: CMS_API_KEY
         value:
 
 typesense:
