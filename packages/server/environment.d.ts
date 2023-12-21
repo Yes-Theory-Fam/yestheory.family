@@ -4,8 +4,10 @@ declare namespace NodeJS {
 
     PRISMA_DATABASE_URL: string;
     FRONTEND_HOST: string;
+
     DISCORD_BOT_TOKEN: string;
     DISCORD_TARGET_GUILD: string;
+    DISCORD_ADMIN_ID: string;
 
     BACKEND_PORT: string;
 
@@ -16,5 +18,6 @@ declare namespace NodeJS {
     DISCORD_SCOPES: string;
 
     CMS_ENDPOINT: string;
+    CMS_API_KEY: string;
   }
 }

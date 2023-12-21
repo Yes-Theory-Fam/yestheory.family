@@ -51,7 +51,7 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
             Only Facebook groups and Instagram pages are available without{' '}
             <Link
               href='#'
-              onClick={navigateToLogin}
+              onClick={() => navigateToLogin()}
               className='underline decoration-brand-500'
             >
               logging in with Discord

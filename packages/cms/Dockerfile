@@ -9,6 +9,9 @@ COPY .yarnrc.yml yarn.lock package.json ./
 COPY packages/cms/ ./packages/cms
 
 WORKDIR /app/packages/cms
+
+ARG PAYLOAD_PUBLIC_WEB_FRONTEND_URL
+
 RUN yarn workspaces focus && \
     yarn build
 

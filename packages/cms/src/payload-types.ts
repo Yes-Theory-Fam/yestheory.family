@@ -17,17 +17,13 @@ export interface Config {
   globals: {};
 }
 export interface User {
-  id: number;
+  id: string;
+  roles?: ('owner' | 'groupchats-admin' | 'groupchats')[] | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
 }
 export interface Groupchat {
   id: number;
@@ -37,6 +33,7 @@ export interface Groupchat {
   url: string;
   keywords: (number | GroupchatKeyword)[];
   promoted: number;
+  owners?: (string | User)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -50,7 +47,7 @@ export interface PayloadPreference {
   id: number;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:

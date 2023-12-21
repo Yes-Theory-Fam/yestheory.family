@@ -2,11 +2,22 @@ import {upsert} from './upsert';
 
 export const seedUsers = async () => {
   await upsert({
-    key: 'email',
+    key: 'id',
     collection: 'users',
     data: {
-      email: process.env.INITIAL_ADMIN_MAIL ?? 'admin@example.com',
-      password: process.env.INITIAL_ADMIN_PASSWORD ?? '123456',
+      id: process.env.INITIAL_ADMIN_ID,
+      roles: ['owner'],
+    },
+  });
+
+  await upsert({
+    key: 'id',
+    collection: 'users',
+    data: {
+      id: 'yesbot',
+      enableAPIKey: true,
+      apiKey: process.env.PAYLOAD_API_KEY,
+      roles: ['owner'],
     },
   });
 };
