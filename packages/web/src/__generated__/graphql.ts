@@ -142,12 +142,14 @@ export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
   operationName: string,
   operationType?: string,
+  variables?: any,
 ) => Promise<T>;
 
 const defaultWrapper: SdkFunctionWrapper = (
   action,
   _operationName,
   _operationType,
+  variables,
 ) => action();
 
 export function getSdk(
@@ -167,6 +169,7 @@ export function getSdk(
           }),
         "ServerState",
         "query",
+        variables,
       );
     },
     BuddyProjectState(
@@ -182,6 +185,7 @@ export function getSdk(
           ),
         "BuddyProjectState",
         "query",
+        variables,
       );
     },
     BuddyProjectSignUp(
@@ -197,6 +201,7 @@ export function getSdk(
           ),
         "BuddyProjectSignUp",
         "mutation",
+        variables,
       );
     },
     TypesenseApiKey(
@@ -212,6 +217,7 @@ export function getSdk(
           ),
         "TypesenseApiKey",
         "query",
+        variables,
       );
     },
     CurrentUser(
@@ -226,6 +232,7 @@ export function getSdk(
           }),
         "CurrentUser",
         "query",
+        variables,
       );
     },
     Logout(
@@ -240,6 +247,7 @@ export function getSdk(
           }),
         "Logout",
         "mutation",
+        variables,
       );
     },
   };

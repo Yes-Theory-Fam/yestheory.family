@@ -1,12 +1,15 @@
+import {ApolloServer} from '@apollo/server';
+import {koaMiddleware} from '@as-integrations/koa';
 import {delegateToSchema} from '@graphql-tools/delegate';
 import {buildHTTPExecutor} from '@graphql-tools/executor-http';
 import {stitchSchemas} from '@graphql-tools/stitch';
 import {schemaFromExecutor} from '@graphql-tools/wrap';
-import {ApolloServer, gql} from 'apollo-server-koa';
+import cors from '@koa/cors';
 import {Guild} from 'discord.js';
 import grant from 'grant';
 import {OperationTypeNode} from 'graphql/language/ast';
 import Koa, {type Context} from 'koa';
+import bodyParser from 'koa-bodyparser';
 import mount from 'koa-mount';
 import koaSession from 'koa-session';
 import {type BuildSchemaOptions, buildSchemaSync} from 'type-graphql';
@@ -59,7 +62,7 @@ export const launchPublicServer = async () => {
   const stitchedSchema = stitchSchemas({
     subschemas: [publicServerSchema],
     mergeDirectives: true,
-    typeDefs: gql`
+    typeDefs: `#graphql
       extend type Query {
         groupchatSearchToken: String!
       }
@@ -82,7 +85,56 @@ export const launchPublicServer = async () => {
     },
   });
 
-  const port = process.env['BACKEND_PORT'] ?? 5000;
+  const server = new ApolloServer({
+    schema: stitchedSchema,
+    plugins: [
+      {
+        async requestDidStart() {
+          return {
+            async willSendResponse(requestContext) {
+              const response = requestContext;
+
+              const discordAuthError =
+                response.errors?.filter(
+                  (e) => e.message === discordAuthErrorCode,
+                ) ?? [];
+              for (const authError of discordAuthError) {
+                // When the operation requires Discord authentication, we want to return a special code to indicate to the
+                // frontend that re-authentication is required.
+                if (authError.extensions) {
+                  authError.extensions.code = discordAuthErrorCode;
+                }
+              }
+
+              const authErrors =
+                response.errors?.filter((e) =>
+                  e.message.startsWith('Access denied!'),
+                ) ?? [];
+              const user = (requestContext.contextValue as YtfApolloContext)
+                .user;
+
+              for (const authError of authErrors) {
+                const code = user ? 'UNAUTHORIZED' : 'UNAUTHENTICATED';
+
+                if (authError.extensions) authError.extensions.code = code;
+              }
+
+              const unknownErrors =
+                response.errors?.filter(
+                  (e) =>
+                    !discordAuthError.includes(e) && !authErrors.includes(e),
+                ) ?? [];
+              if (unknownErrors.length > 0) {
+                logger.error('Error executing graphql resolver', unknownErrors);
+              }
+            },
+          };
+        },
+      },
+    ],
+  });
+  await server.start();
+
   const koaGrant = grant.koa();
   const app = new Koa();
   app.keys = ['grant'];
@@ -90,61 +142,28 @@ export const launchPublicServer = async () => {
   app.use(koaSession(sessionConfig, app));
   app.use(mount('/oauth', koaGrant(grantConfig)));
   app.use(authenticationRouter.routes());
+  app.use(bodyParser());
+  app.use(cors({origin: process.env.FRONTEND_HOST, credentials: true}));
+  app.use(
+    mount(
+      '/graphql',
+      koaMiddleware(server, {
+        context: async (req): Promise<YtfApolloContext> => {
+          const ctx: Context = req.ctx;
+          const maybeUser = ctx.session?.user;
+          const maybeAuth = ctx.session?.auth;
 
-  const server = new ApolloServer({
-    schema: stitchedSchema,
-    context: (req): YtfApolloContext => {
-      const ctx: Context = req.ctx;
-      const maybeUser = ctx.session?.user;
-      const maybeAuth = ctx.session?.auth;
+          return {
+            user: maybeUser,
+            auth: maybeAuth,
+            requestContext: ctx,
+          };
+        },
+      }),
+    ),
+  );
 
-      return {
-        user: maybeUser,
-        auth: maybeAuth,
-        requestContext: ctx,
-      };
-    },
-    formatResponse: (response, reqContext) => {
-      const discordAuthError =
-        response.errors?.filter((e) => e.message === discordAuthErrorCode) ??
-        [];
-      for (const authError of discordAuthError) {
-        // When the operation requires Discord authentication, we want to return a special code to indicate to the
-        // frontend that re-authentication is required.
-        if (authError.extensions) {
-          authError.extensions.code = discordAuthErrorCode;
-        }
-      }
-
-      const authErrors =
-        response.errors?.filter((e) =>
-          e.message.startsWith('Access denied!'),
-        ) ?? [];
-      const user = (reqContext.context as YtfApolloContext).user;
-
-      for (const authError of authErrors) {
-        const code = user ? 'UNAUTHORIZED' : 'UNAUTHENTICATED';
-
-        if (authError.extensions) authError.extensions.code = code;
-      }
-
-      const unknownErrors =
-        response.errors?.filter(
-          (e) => !discordAuthError.includes(e) && !authErrors.includes(e),
-        ) ?? [];
-      if (unknownErrors.length > 0) {
-        logger.error('Error executing graphql resolver', unknownErrors);
-      }
-
-      return response;
-    },
-  });
-  await server.start();
-  server.applyMiddleware({
-    app,
-    cors: {origin: process.env.FRONTEND_HOST, credentials: true},
-  });
-
+  const port = process.env['BACKEND_PORT'] ?? 5000;
   app.listen({port}, () => logger.info(`Backend listening on port ${port}`));
 
   return app;

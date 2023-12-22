@@ -1,3 +1,5 @@
+import {ApolloServer} from '@apollo/server';
+import {koaMiddleware} from '@as-integrations/koa';
 import {buildHTTPExecutor} from '@graphql-tools/executor-http';
 import {stitchSchemas} from '@graphql-tools/stitch';
 import {
@@ -5,8 +7,9 @@ import {
   PruneSchema,
   schemaFromExecutor,
 } from '@graphql-tools/wrap';
-import {ApolloServer} from 'apollo-server-koa';
 import Koa, {type Middleware} from 'koa';
+import bodyParser from 'koa-bodyparser';
+import mount from 'koa-mount';
 import {buildSchemaSync} from 'type-graphql';
 import {Container} from 'typedi';
 import {isDevelopment} from '../config';
@@ -45,6 +48,7 @@ export const launchYesBotServer = async () => {
   const port = Number(process.env.BACKEND_PORT ?? 5000) + 1;
   const app = new Koa();
   app.use(requireValidToken);
+  app.use(bodyParser());
   app.proxy = !isDevelopment;
 
   const cmsExecutor = buildHTTPExecutor({
@@ -74,17 +78,30 @@ export const launchYesBotServer = async () => {
     // This is intended to be able to expose the schema for code generation in the CI. The introspection is proxied through yesbot-schema.ts
     introspection: true,
     csrfPrevention: true,
-    formatResponse: (response) => {
-      if (response.errors) {
-        logger.error('Error executing graphql resolver', response.errors);
-      }
+    plugins: [
+      {
+        async requestDidStart() {
+          return {
+            async willSendResponse(requestContext) {
+              const {response} = requestContext;
 
-      return response;
-    },
+              const errors =
+                response.body.kind === 'single'
+                  ? response.body.singleResult.errors
+                  : response.body.initialResult.errors;
+
+              if (errors) {
+                logger.error('Error executing graphql resolver', errors);
+              }
+            },
+          };
+        },
+      },
+    ],
   });
 
   await server.start();
-  server.applyMiddleware({app});
+  app.use(mount('/graphql', koaMiddleware(server)));
 
   app.listen({port}, () => logger.info(`Backend listening on port ${port}`));
 
