@@ -7828,7 +7828,7 @@ __metadata:
     ts-node: "npm:10.9.1"
     ts-node-dev: "npm:^2.0.0"
     typescript: "npm:^5.3.3"
-    typesense: "npm:^1.7.2"
+    typesense: "npm:^1.8.0-2"
   languageName: unknown
   linkType: soft
 
@@ -7937,7 +7937,7 @@ __metadata:
     tailwindcss: "npm:^3.4.0"
     tsconfig-paths-webpack-plugin: "npm:^4.1.0"
     typescript: "npm:5.3.3"
-    typesense: "npm:^1.7.2"
+    typesense: "npm:^1.8.0-2"
   languageName: unknown
   linkType: soft
 
@@ -8552,12 +8552,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.26.0":
-  version: 0.26.1
-  resolution: "axios@npm:0.26.1"
+"axios@npm:^1.6.0":
+  version: 1.6.2
+  resolution: "axios@npm:1.6.2"
   dependencies:
-    follow-redirects: "npm:^1.14.8"
-  checksum: 02863f4a4fd4e43ad6e0c8bc9d1359a0863c43cc57bda42ea21dfce34681e3211df193b2bf2e8ee10b2c3870ab8d6bed38a3cf80cd6e8ee17749b7d73ccd4752
+    follow-redirects: "npm:^1.15.0"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 612bc93f8f738a518e7c5f9de9cc782bcd36aac6bae279160ef6a10260378e21c1786520eab3336898e3d66e0839ebdf739f327fb6d0431baa4d3235703a7652
   languageName: node
   linkType: hard
 
@@ -12349,7 +12351,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.14.8":
+"follow-redirects@npm:^1.15.0":
   version: 1.15.3
   resolution: "follow-redirects@npm:1.15.3"
   peerDependenciesMeta:
@@ -15238,7 +15240,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loglevel@npm:^1.6.8, loglevel@npm:^1.8.0":
+"loglevel@npm:^1.6.8, loglevel@npm:^1.8.1":
   version: 1.8.1
   resolution: "loglevel@npm:1.8.1"
   checksum: 36a786082a7e4f1d962de330122291da3a102b88dbde81a45eb92a045c38b0903783958ba39dce641440c0413da303410e7f2565f897bccad828853bd5974c86
@@ -17822,7 +17824,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"proxy-from-env@npm:^1.0.0":
+"proxy-from-env@npm:^1.0.0, proxy-from-env@npm:^1.1.0":
   version: 1.1.0
   resolution: "proxy-from-env@npm:1.1.0"
   checksum: f0bb4a87cfd18f77bc2fba23ae49c3b378fb35143af16cc478171c623eebe181678f09439707ad80081d340d1593cd54a33a0113f3ccb3f4bc9451488780ee23
@@ -21109,15 +21111,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typesense@npm:^1.7.2":
-  version: 1.7.2
-  resolution: "typesense@npm:1.7.2"
+"typesense@npm:^1.8.0-2":
+  version: 1.8.0-2
+  resolution: "typesense@npm:1.8.0-2"
   dependencies:
-    axios: "npm:^0.26.0"
-    loglevel: "npm:^1.8.0"
+    axios: "npm:^1.6.0"
+    loglevel: "npm:^1.8.1"
   peerDependencies:
-    "@babel/runtime": ^7.17.2
-  checksum: 273ab21216fee1287a7c74b8994bdf70c94ab5190772687a3921044380f16637f31f97e919050716a9094703740ca89e5e243a8d777025d0137c7c06bbc50fc4
+    "@babel/runtime": ^7.23.2
+  checksum: f90c5e30f4f14195d63a30b896c334b22fde7ac897389153eb6873a2c614e242ad101c8c8b1d6dab6a3f6602ebc2b91dd011b1ebe00c43ddd7c8338467fac02f
   languageName: node
   linkType: hard
 
