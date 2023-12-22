@@ -8,7 +8,6 @@ import cors from '@koa/cors';
 import {Guild} from 'discord.js';
 import grant from 'grant';
 import {OperationTypeNode} from 'graphql/language/ast';
-import {gql} from 'graphql-tag';
 import Koa, {type Context} from 'koa';
 import bodyParser from 'koa-bodyparser';
 import mount from 'koa-mount';
@@ -63,7 +62,7 @@ export const launchPublicServer = async () => {
   const stitchedSchema = stitchSchemas({
     subschemas: [publicServerSchema],
     mergeDirectives: true,
-    typeDefs: gql`
+    typeDefs: `#graphql
       extend type Query {
         groupchatSearchToken: String!
       }
