@@ -9,7 +9,7 @@ import {Users} from './collections/users';
 import {AfterLogin} from './components/after-login/after-login';
 import {mimicUserOperationMutation} from './graphql/mutations/mimic-user-operation';
 import {mayOperateQuery} from './graphql/queries/may-operate';
-import {searchTokenByAuthenticatedQuery} from './graphql/queries/search-token-by-authenticated';
+import {groupchatSearchTokenQuery} from './graphql/queries/search-token-by-authenticated';
 import {externals} from './plugins/externals';
 import {tailwind} from './plugins/tailwind';
 import {mergeQueries} from './utils/merge-queries';
@@ -36,7 +36,7 @@ const config: Config = {
   plugins: [tailwind, externals],
   graphQL: {
     queries: mergeQueries<unknown, unknown>({
-      searchTokenByAuthenticated: searchTokenByAuthenticatedQuery,
+      groupchatSearchToken: groupchatSearchTokenQuery,
       mayOperate: mayOperateQuery,
     }),
     mutations: mergeQueries<unknown, unknown>({

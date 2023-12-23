@@ -6,13 +6,14 @@ import {type QueryFactory} from '../../utils/merge-queries';
 type GroupchatPlatform =
   GeneratedTypes['collections']['groupchats']['platform'];
 
-export const searchTokenByAuthenticatedQuery: QueryFactory<
-  string,
-  {isAuthenticated: boolean}
-> = (GraphQL) => ({
+export const groupchatSearchTokenQuery: QueryFactory<string, void> = (
+  GraphQL,
+) => ({
   type: GraphQL.GraphQLString,
-  args: {isAuthenticated: {type: GraphQL.GraphQLBoolean}},
-  resolve: async (_: unknown, {isAuthenticated}) => {
+  args: {},
+  resolve: async (_: unknown, __, context) => {
+    const isAuthenticated = !!context.req.user;
+
     const accessiblePlatforms: GroupchatPlatform[] = ['facebook'];
 
     if (isAuthenticated) {

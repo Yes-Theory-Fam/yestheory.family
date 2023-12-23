@@ -1,13 +1,15 @@
 import {ApolloServer} from '@apollo/server';
 import {koaMiddleware} from '@as-integrations/koa';
-import {delegateToSchema} from '@graphql-tools/delegate';
 import {buildHTTPExecutor} from '@graphql-tools/executor-http';
 import {stitchSchemas} from '@graphql-tools/stitch';
-import {schemaFromExecutor} from '@graphql-tools/wrap';
+import {
+  FilterRootFields,
+  PruneSchema,
+  schemaFromExecutor,
+} from '@graphql-tools/wrap';
 import cors from '@koa/cors';
 import {Guild} from 'discord.js';
 import grant from 'grant';
-import {OperationTypeNode} from 'graphql/language/ast';
 import Koa, {type Context} from 'koa';
 import bodyParser from 'koa-bodyparser';
 import mount from 'koa-mount';
@@ -29,6 +31,12 @@ import {
 import {type YtfApolloContext} from '../types';
 
 const logger = createServerLogger('server', 'public');
+
+const allowedPayloadOperations = {
+  Query: ['groupchatSearchToken'],
+  Mutation: <string[]>[],
+  Subscription: <string[]>[],
+};
 
 export const launchPublicServer = async () => {
   const additionalOptions: Partial<BuildSchemaOptions> = {};
@@ -53,36 +61,31 @@ export const launchPublicServer = async () => {
 
   const cmsExecutor = buildHTTPExecutor({
     endpoint: process.env.CMS_ENDPOINT,
+    credentials: 'include',
+    headers: (req) => {
+      const headers = {...req?.context?.requestContext.req.headers};
+      // The stitching / delegation fiddles with the actual content's length, so we just reset this header
+      //   to make sure the full body is parsed on the receiving end.
+      headers['content-length'] = undefined;
+
+      return headers;
+    },
   });
   const cmsSchema = {
     schema: await schemaFromExecutor(cmsExecutor),
     executor: cmsExecutor,
+    transforms: [
+      new FilterRootFields(
+        (operation, name) =>
+          allowedPayloadOperations[operation]?.includes(name) ?? false,
+      ),
+      new PruneSchema(),
+    ],
   };
 
   const stitchedSchema = stitchSchemas({
-    subschemas: [publicServerSchema],
+    subschemas: [publicServerSchema, cmsSchema],
     mergeDirectives: true,
-    typeDefs: `#graphql
-      extend type Query {
-        groupchatSearchToken: String!
-      }
-    `,
-    resolvers: {
-      Query: {
-        groupchatSearchToken: {
-          resolve(parent, _, context, info) {
-            return delegateToSchema({
-              schema: cmsSchema,
-              operation: OperationTypeNode.QUERY,
-              fieldName: 'searchTokenByAuthenticated',
-              args: {isAuthenticated: !!context.user},
-              context,
-              info,
-            });
-          },
-        },
-      },
-    },
   });
 
   const server = new ApolloServer({
