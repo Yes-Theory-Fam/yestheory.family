@@ -2,7 +2,7 @@ import {type GeneratedTypes} from 'payload';
 import parseCookies from 'payload/dist/utilities/parseCookies';
 import {type CollectionConfig} from 'payload/types';
 import {requireOneOf} from '../access/require-one-of';
-import {ytfAuthStrategy} from '../lib/auth-strategy';
+import {YtfAuthStrategy} from '../lib/auth-strategy';
 import {getUserIdFromRequest} from '../lib/get-user-id-from-request';
 
 type PayloadUser = GeneratedTypes['collections']['users'];
@@ -34,10 +34,7 @@ export const Users: CollectionConfig = {
     useAPIKey: true,
     disableLocalStrategy: true,
     strategies: [
-      {
-        name: 'ytf-discord-strategy',
-        strategy: ytfAuthStrategy,
-      },
+      {name: 'ytf-discord-auth-strategy', strategy: new YtfAuthStrategy()},
     ],
   },
   access: {
