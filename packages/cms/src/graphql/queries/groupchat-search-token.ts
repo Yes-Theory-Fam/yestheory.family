@@ -9,7 +9,7 @@ type GroupchatPlatform =
 export const groupchatSearchTokenQuery: QueryFactory<string, void> = (
   GraphQL,
 ) => ({
-  type: GraphQL.GraphQLString,
+  type: new GraphQL.GraphQLNonNull(GraphQL.GraphQLString),
   args: {},
   resolve: async (_: unknown, __, context) => {
     const isAuthenticated = !!context.req.user;
