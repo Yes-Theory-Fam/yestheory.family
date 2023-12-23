@@ -1,7 +1,7 @@
 import path from 'path';
 import {type Config} from 'payload/config';
 
-const externalModules = ['autoprefixer', 'tailwindcss'];
+const externalModules = ['autoprefixer', 'tailwindcss', 'passport-custom'];
 
 export const externals = (config: Config) => {
   const admin = (config.admin ??= {});
