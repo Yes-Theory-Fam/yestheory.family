@@ -74,7 +74,7 @@ export const useGroupchatSearch = (
 
   const fetchMore = useCallback(
     async (mode: 'append' | 'replace', page: number) => {
-      if (loading || (!hasNextPage && page != 1)) return;
+      if (loading || (!hasNextPage && mode === 'append')) return;
 
       setLoading(true);
       const [newChats, hasNext] = await fetchResults(
