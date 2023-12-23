@@ -1,4 +1,7 @@
-import {type MigrateUpArgs, type MigrateDownArgs} from '@payloadcms/db-postgres';
+import {
+  type MigrateUpArgs,
+  type MigrateDownArgs,
+} from '@payloadcms/db-postgres';
 import {sql} from 'drizzle-orm';
 
 export async function up({payload}: MigrateUpArgs): Promise<void> {
@@ -18,8 +21,18 @@ CREATE TABLE IF NOT EXISTS "users_roles" (
 );
 
 DROP INDEX IF EXISTS "email_idx";
+
+ALTER TABLE "payload_preferences_rels" DROP CONSTRAINT "payload_preferences_rels_users_id_users_id_fk";
+
 ALTER TABLE "users" ALTER COLUMN "id" SET DATA TYPE varchar;
 ALTER TABLE "payload_preferences_rels" ALTER COLUMN "users_id" SET DATA TYPE varchar;
+
+DO $$ BEGIN
+ ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_users_id_users_id_fk" FOREIGN KEY ("users_id") REFERENCES "users"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
 ALTER TABLE "users" ADD COLUMN "enable_a_p_i_key" boolean;
 ALTER TABLE "users" ADD COLUMN "api_key" varchar;
 ALTER TABLE "users" ADD COLUMN "api_key_index" varchar;
