@@ -7,6 +7,7 @@ import {
   PruneSchema,
   schemaFromExecutor,
 } from '@graphql-tools/wrap';
+import {isEnumType} from 'graphql/type';
 import Koa, {type Middleware} from 'koa';
 import bodyParser from 'koa-bodyparser';
 import mount from 'koa-mount';
@@ -21,6 +22,12 @@ import {
 } from '../services/resolvers/resolver-directive';
 
 const logger = createServerLogger('server', 'yesbot');
+
+const allowedPayloadOperations = {
+  Query: ['mayOperate'],
+  Mutation: ['createUser', 'mimicUserOperation'],
+  Subscription: <string[]>[],
+};
 
 const requireValidToken: Middleware = async ({headers, res}, next) => {
   const yesbotAuthHeader = headers['x-yesbot-authentication'] ?? '';
@@ -62,9 +69,10 @@ export const launchYesBotServer = async () => {
     executor: cmsExecutor,
     transforms: [
       new FilterRootFields(
-        (operation, name) => operation === 'Mutation' && name === 'createUser',
+        (operation, name) =>
+          allowedPayloadOperations[operation]?.includes(name) ?? false,
       ),
-      new PruneSchema(),
+      new PruneSchema({skipPruning: (n) => isEnumType(n)}),
     ],
   };
 

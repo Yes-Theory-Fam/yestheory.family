@@ -7,6 +7,8 @@ import {GroupchatKeywords} from './collections/groupchat-keywords';
 import {Groupchats} from './collections/groupchats';
 import {Users} from './collections/users';
 import {AfterLogin} from './components/after-login/after-login';
+import {mimicUserOperationMutation} from './graphql/mutations/mimic-user-operation';
+import {mayOperateQuery} from './graphql/queries/may-operate';
 import {searchTokenByAuthenticatedQuery} from './graphql/queries/search-token-by-authenticated';
 import {externals} from './plugins/externals';
 import {tailwind} from './plugins/tailwind';
@@ -33,8 +35,12 @@ const config: Config = {
   },
   plugins: [tailwind, externals],
   graphQL: {
-    queries: mergeQueries({
+    queries: mergeQueries<unknown, unknown>({
       searchTokenByAuthenticated: searchTokenByAuthenticatedQuery,
+      mayOperate: mayOperateQuery,
+    }),
+    mutations: mergeQueries<unknown, unknown>({
+      mimicUserOperation: mimicUserOperationMutation,
     }),
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },

@@ -1,5 +1,7 @@
+import type express from 'express';
 import type * as GraphQL from 'graphql';
-import {type Payload} from 'payload';
+import {type Payload, type RequestContext} from 'payload';
+import {type PayloadRequest} from 'payload/types';
 
 export type QueryFactory<TResult, TResolvedArgs> = (
   graphql: typeof GraphQL,
@@ -7,7 +9,11 @@ export type QueryFactory<TResult, TResolvedArgs> = (
 ) => {
   type?: GraphQL.GraphQLType;
   args: Record<string, unknown>;
-  resolve: (before: unknown, args: TResolvedArgs) => Promise<TResult> | TResult;
+  resolve: (
+    before: unknown,
+    args: TResolvedArgs,
+    context: {req: PayloadRequest; res: express.Response},
+  ) => Promise<TResult> | TResult;
 };
 
 /**
