@@ -50,7 +50,8 @@
     "tailwindcss": "^3.4.0",
     "ts-node": "10.9.1",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite-plugin-node-polyfills": "^0.18.0"
   },
   "prettier": "@atmina/linting/prettier"
 }
