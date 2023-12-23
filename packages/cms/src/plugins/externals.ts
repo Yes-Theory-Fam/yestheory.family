@@ -1,6 +1,5 @@
 import path from 'path';
 import {type Config} from 'payload/config';
-import {nodePolyfills} from 'vite-plugin-node-polyfills';
 
 const externalModules = ['autoprefixer', 'tailwindcss'];
 
@@ -20,17 +19,17 @@ export const externals = (config: Config) => {
 
     const replacements = externalModules.map((m) => ({
       find: m,
-      replacement: path.resolve(__dirname, './external-empty-mock.js'),
+      replacement: path.resolve(__dirname, './mocks/empty.js'),
     }));
 
     aliasArray.push(...replacements);
-
-    const plugins = viteConfig.plugins ?? [];
-    const pluginsWithPolyfills = [...plugins, nodePolyfills()];
+    aliasArray.push({
+      find: '../lib/auth-strategy',
+      replacement: path.resolve(__dirname, './mocks/auth-strategy.js'),
+    });
 
     const merged = {
       ...viteConfig,
-      plugins: pluginsWithPolyfills,
       resolve: {...(viteConfig.resolve ?? {}), alias: aliasArray},
     };
 
