@@ -2,8 +2,7 @@ import {type GeneratedTypes} from 'payload';
 import {type Access} from 'payload/config';
 import {NotFound} from 'payload/errors';
 import {type CollectionConfig, type PayloadRequest} from 'payload/types';
-import {type PayloadUser} from '../../collections/users';
-import {toRequestUser} from '../../lib/auth-strategy';
+import {type PayloadUser, toRequestUser} from '../../collections/users';
 import {type QueryFactory} from '../../utils/merge-queries';
 
 type CollectionKey = keyof GeneratedTypes['collections'];

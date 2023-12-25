@@ -1,16 +1,9 @@
 import type e from 'express';
 import passport from 'passport';
-import payload, {type GeneratedTypes} from 'payload';
+import payload from 'payload';
 import {NotFound} from 'payload/errors';
+import {toRequestUser} from '../collections/users';
 import {getUserIdFromRequest} from './get-user-id-from-request';
-
-export const toRequestUser = (
-  user: GeneratedTypes['collections']['users'],
-) => ({
-  collection: 'users',
-  id: user.id,
-  user,
-});
 
 export class YtfAuthStrategy extends passport.Strategy {
   name = 'ytf-discord-auth-strategy';

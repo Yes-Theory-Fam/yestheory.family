@@ -28,6 +28,14 @@ export const enum AuthState {
   LOADING = 'LOADING',
 }
 
+export const toRequestUser = (
+  user: GeneratedTypes['collections']['users'],
+) => ({
+  collection: 'users',
+  id: user.id,
+  user,
+});
+
 export const Users: CollectionConfig = {
   slug: 'users',
   auth: {
