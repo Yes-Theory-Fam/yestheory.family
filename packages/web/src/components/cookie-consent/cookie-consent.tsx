@@ -10,6 +10,10 @@ const cookieAcceptName = 'ytf-cookie-consent';
 
 export const CookieConsent: FC = () => {
   useEffect(() => {
+    const path = window.location.pathname;
+
+    if (path === '/legal/imprint' || path === '/legal/privacy') return;
+
     const cookies = Cookie.parse(document.cookie);
     const hasAcceptedCookies = !!cookies[cookieAcceptName];
 
