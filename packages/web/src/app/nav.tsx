@@ -20,7 +20,7 @@ export const Nav: FC<NavProps> = ({user}) => {
         {text: 'Buddy Project', href: '/buddyproject'},
         {text: 'Groupchats', href: '/groupchats'},
       ]}
-      onLoginButtonClick={navigateToLogin}
+      onLoginButtonClick={() => navigateToLogin()}
       menuItems={[
         {
           key: 'logout',
