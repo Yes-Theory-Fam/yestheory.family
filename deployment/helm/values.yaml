@@ -27,6 +27,8 @@ cms:
         value:
       - name: DATABASE_URI
         value: postgres://username:password@ytf-database-service:5432/payload
+      - name: YESBOT_API_AUTH_TOKEN
+        value:
 
 web:
   deployment:

@@ -98,7 +98,10 @@ export const Users: CollectionConfig = {
         const internalBackend = process.env.INTERNAL_BACKEND_URL;
         const response = await fetch(`${internalBackend}/graphql`, {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Yesbot-Authentication': process.env.YESBOT_API_AUTH_TOKEN,
+          },
           body: JSON.stringify(gqlBody),
         });
 
