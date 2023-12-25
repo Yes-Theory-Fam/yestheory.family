@@ -34,5 +34,5 @@ export const getUserIdFromRequest = async (req: Request) => {
 
   const body = (await response.json()) as MeQueryResult;
 
-  return body.data?.me.id;
+  return body.data?.me?.id;
 };

@@ -5,7 +5,7 @@ import {requireOneOf} from '../access/require-one-of';
 import {YtfAuthStrategy} from '../lib/auth-strategy';
 import {getUserIdFromRequest} from '../lib/get-user-id-from-request';
 
-type PayloadUser = GeneratedTypes['collections']['users'];
+export type PayloadUser = GeneratedTypes['collections']['users'];
 
 export type WebSessionUser = {
   collection: 'users';

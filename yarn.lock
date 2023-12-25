@@ -7819,7 +7819,6 @@ __metadata:
     express: "npm:^4.18.2"
     node-cron: "npm:^3.0.3"
     payload: "npm:^2.5.0"
-    postcss-loader: "npm:^7.3.3"
     prettier: "npm:^3.1.1"
     react: "npm:^18.2.0"
     react-hook-form: "npm:^7.49.2"
@@ -17457,7 +17456,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-loader@npm:^7.0.2, postcss-loader@npm:^7.3.3":
+"postcss-loader@npm:^7.0.2":
   version: 7.3.3
   resolution: "postcss-loader@npm:7.3.3"
   dependencies:

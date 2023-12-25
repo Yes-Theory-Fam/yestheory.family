@@ -3,6 +3,7 @@ import {type CollectionConfig} from 'payload/types';
 import {allowUpdateDeleteOwner} from '../access/allow-update-delete-owner';
 import {requireOneOf} from '../access/require-one-of';
 import {typesenseClient} from '../lib/typesense';
+import {type GroupchatKeyword} from '../payload-types';
 
 export const Groupchats: CollectionConfig = {
   slug: 'groupchats',
@@ -57,8 +58,6 @@ export const Groupchats: CollectionConfig = {
       type: 'relationship',
       hasMany: true,
       relationTo: 'groupchat-keywords',
-      required: true,
-      minRows: 1,
       maxRows: 6,
     },
     {
@@ -104,10 +103,19 @@ export const Groupchats: CollectionConfig = {
       async ({doc, context}) => {
         if ('dataseeder' in context && context.dataseeder) return;
 
-        const keywords = await payload.find({
-          collection: 'groupchat-keywords',
-          where: {id: {equals: doc.keywords.join(',')}},
-        });
+        const keywords =
+          doc.keywords.length > 0
+            ? await payload.find({
+                collection: 'groupchat-keywords',
+                where: {
+                  id: {
+                    in: doc.keywords.map((k: number | GroupchatKeyword) =>
+                      typeof k === 'number' ? k : k.id,
+                    ),
+                  },
+                },
+              })
+            : {docs: []};
 
         const typesenseDoc = {
           ...doc,

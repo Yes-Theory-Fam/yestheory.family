@@ -74,7 +74,7 @@ export const useGroupchatSearch = (
 
   const fetchMore = useCallback(
     async (mode: 'append' | 'replace', page: number) => {
-      if (loading || (!hasNextPage && page != 1)) return;
+      if (loading || (!hasNextPage && mode === 'append')) return;
 
       setLoading(true);
       const [newChats, hasNext] = await fetchResults(
@@ -96,10 +96,10 @@ export const useGroupchatSearch = (
 
   useEffect(() => {
     void fetchMore('replace', 1);
-    // We want to call this on initial render or when queryText and platforms change. fetchMore changes in more
-    // instances. This deps array is intentional.
+    // We want to call this on initial render, when the client changes (i.e. when the apiKey changes due to logout)
+    //   or when queryText and platforms change. fetchMore changes in more instances. This deps array is intentional.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryText, platforms]);
+  }, [queryText, platforms, client]);
 
   useEffect(() => {
     let tripped = false;

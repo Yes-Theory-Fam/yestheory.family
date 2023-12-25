@@ -4,7 +4,9 @@ import payload, {type GeneratedTypes} from 'payload';
 import {NotFound} from 'payload/errors';
 import {getUserIdFromRequest} from './get-user-id-from-request';
 
-const toRequestUser = (user: GeneratedTypes['collections']['users']) => ({
+export const toRequestUser = (
+  user: GeneratedTypes['collections']['users'],
+) => ({
   collection: 'users',
   id: user.id,
   user,
