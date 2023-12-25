@@ -11,6 +11,7 @@ import {mimicUserOperationMutation} from './graphql/mutations/mimic-user-operati
 import {groupchatSearchTokenQuery} from './graphql/queries/groupchat-search-token';
 import {mayOperateQuery} from './graphql/queries/may-operate';
 import {externals} from './plugins/externals';
+import {safeAsyncEndpoints} from './plugins/safe-async-endpoints';
 import {tailwind} from './plugins/tailwind';
 import {mergeQueries} from './utils/merge-queries';
 
@@ -33,7 +34,7 @@ const config: Config = {
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
-  plugins: [tailwind, externals],
+  plugins: [tailwind, externals, safeAsyncEndpoints],
   graphQL: {
     queries: mergeQueries<unknown, unknown>({
       groupchatSearchToken: groupchatSearchTokenQuery,
