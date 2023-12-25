@@ -1,6 +1,6 @@
 import type express from 'express';
 import type * as GraphQL from 'graphql';
-import {type Payload, type RequestContext} from 'payload';
+import {type Payload} from 'payload';
 import {type PayloadRequest} from 'payload/types';
 
 export type QueryFactory<TResult, TResolvedArgs> = (
