@@ -31,7 +31,7 @@ export const postProcess = async (
     groupchat.url = parsedUrl.toString();
 
     if (knownUrls.has(groupchat.url)) {
-      console.debug(`Skipping known URL ${groupchat.url}`);
+      console.info(`Skipping known URL ${groupchat.url}`);
       continue;
     }
 
