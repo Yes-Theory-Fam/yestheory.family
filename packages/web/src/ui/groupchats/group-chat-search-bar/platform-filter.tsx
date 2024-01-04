@@ -1,28 +1,36 @@
 import {type FC} from 'react';
+import {type Groupchat_Platform} from '../../../__generated__/graphql';
 import {ToggleButton} from '../../common/toggle-button/toggle-button';
-import {type GroupChatPlatform} from '../group-chat-result/group-chat-result';
 
-// TODO fetch these from Payload
-const allPlatforms: GroupChatPlatform[] = [
-  'discord',
-  'facebook',
-  'signal',
-  'telegram',
-  'whatsapp',
-];
-
-const platformLabels: Record<GroupChatPlatform, string> = {
+const platformLabels: Record<Groupchat_Platform, string> = {
   discord: 'Discord',
   facebook: 'Facebook',
+  instagram: 'Instagram',
   signal: 'Signal',
   telegram: 'Telegram',
   whatsapp: 'WhatsApp',
 };
 
 export type PlatformFilterProps = {
-  selectedPlatforms: GroupChatPlatform[];
-  onPlatformToggle: (platform: GroupChatPlatform) => void;
+  selectedPlatforms: Groupchat_Platform[];
+  onPlatformToggle: (platform: Groupchat_Platform) => void;
 };
+
+const arrayOfAll =
+  <T,>() =>
+  <U extends T[]>(
+    array: U & ([T] extends [U[number]] ? unknown : 'Invalid') & {0: T},
+  ) =>
+    array;
+
+const allPlatforms = arrayOfAll<Groupchat_Platform>()([
+  'discord',
+  'facebook',
+  'instagram',
+  'signal',
+  'telegram',
+  'whatsapp',
+]);
 
 export const PlatformFilter: FC<PlatformFilterProps> = ({
   onPlatformToggle,

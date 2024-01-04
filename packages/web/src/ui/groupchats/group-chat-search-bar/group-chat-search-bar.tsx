@@ -1,11 +1,11 @@
 import {type FC} from 'react';
-import {type GroupChatPlatform} from '../index';
+import type {Groupchat_Platform} from '../../../__generated__/graphql';
 import {PlatformFilter} from './platform-filter';
 import {SearchInput} from './search-input';
 
 type SearchChangeArgs = {
   query: string;
-  platforms: GroupChatPlatform[];
+  platforms: Groupchat_Platform[];
 };
 
 export type GroupChatSearchBarProps = {
@@ -16,7 +16,7 @@ export type GroupChatSearchBarProps = {
 type SearchReducerAction =
   | {type: 'clearQuery'}
   | {type: 'setQuery'; query: string}
-  | {type: 'togglePlatform'; platform: GroupChatPlatform};
+  | {type: 'togglePlatform'; platform: Groupchat_Platform};
 
 const searchReducer = (
   state: SearchChangeArgs,

@@ -6,15 +6,16 @@ import {
 } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import {type FC, Fragment, useState} from 'react';
-import {type GroupChatPlatform, GroupChatResult} from 'ui/groupchats';
+import {GroupChatResult} from 'ui/groupchats';
 import {GroupChatSearchBar} from 'ui/groupchats/client';
+import type {Groupchat_Platform} from '../../../__generated__/graphql';
 import {navigateToLogin} from '../../../context/user/navigate-to-login';
 import {useGroupchatSearch} from './use-groupchat-search';
 
 export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
   const [search, setSearch] = useState<{
     query: string;
-    platforms: GroupChatPlatform[];
+    platforms: Groupchat_Platform[];
   }>({query: '', platforms: []});
 
   const {loading, groupchats} = useGroupchatSearch(

@@ -1,8 +1,8 @@
 import {useState, useEffect, useCallback} from 'react';
 import {type SearchClient} from 'typesense';
+import type {Groupchat_Platform} from '../../../__generated__/graphql';
 import {useTypesense} from '../../../context/typesense';
 import {useDebouncedValue} from '../../../lib/hooks/use-debounced-value';
-import {type GroupChatPlatform} from '../../../ui/groupchats';
 
 export type GroupchatResult = {
   id: string;
@@ -10,7 +10,7 @@ export type GroupchatResult = {
   keywords: string[];
   url: string;
   description: string;
-  platform: GroupChatPlatform;
+  platform: Groupchat_Platform;
   promoted: number;
 };
 
@@ -18,7 +18,7 @@ const pageSize = 15;
 
 const fetchResults = async (
   queryText: string,
-  platforms: GroupChatPlatform[],
+  platforms: Groupchat_Platform[],
   searchClient: SearchClient,
   page = 1,
 ): Promise<[GroupchatResult[], hasNext: boolean]> => {
@@ -61,7 +61,7 @@ export type UseGroupchatSearchReturn = {
 
 export const useGroupchatSearch = (
   queryText: string,
-  platforms: GroupChatPlatform[],
+  platforms: Groupchat_Platform[],
 ): UseGroupchatSearchReturn => {
   const {client} = useTypesense();
 
