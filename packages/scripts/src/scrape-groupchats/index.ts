@@ -1,5 +1,4 @@
 import prompts from '@posva/prompts';
-import {Presets, SingleBar} from 'cli-progress';
 import {config} from 'dotenv';
 import {createInPayload} from './create-in-payload.js';
 import {postProcess} from './post-process.js';
