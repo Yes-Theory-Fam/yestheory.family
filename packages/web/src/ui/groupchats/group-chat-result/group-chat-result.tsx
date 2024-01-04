@@ -3,6 +3,8 @@ import {
   SiDiscordHex,
   SiFacebook,
   SiFacebookHex,
+  SiInstagram,
+  SiInstagramHex,
   SiSignal,
   SiSignalHex,
   SiTelegram,
@@ -12,6 +14,7 @@ import {
 } from '@icons-pack/react-simple-icons';
 import {type FC, type PropsWithChildren} from 'react';
 import {twMerge} from 'tailwind-merge';
+import type {Groupchat_Platform} from '../../../__generated__/graphql';
 import {Button} from '../../common/button/button';
 import gridClasses from './group-chat-result.module.css';
 
@@ -21,16 +24,8 @@ const KeywordBadge: FC<PropsWithChildren> = ({children}) => (
   </span>
 );
 
-// TODO get this from the generated graphql stuff
-export type GroupChatPlatform =
-  | 'facebook'
-  | 'whatsapp'
-  | 'signal'
-  | 'telegram'
-  | 'discord';
-
 export type GroupChatResultProps = {
-  platform: GroupChatPlatform;
+  platform: Groupchat_Platform;
   name: string;
   description?: string;
   keywords: string[];
@@ -45,12 +40,13 @@ type IconDefinition = {
   color: string;
 };
 
-const platformIcons: Record<GroupChatPlatform, IconDefinition> = {
+const platformIcons: Record<Groupchat_Platform, IconDefinition> = {
+  discord: {Icon: SiDiscord, color: SiDiscordHex},
   facebook: {Icon: SiFacebook, color: SiFacebookHex},
-  whatsapp: {Icon: SiWhatsapp, color: SiWhatsappHex},
+  instagram: {Icon: SiInstagram, color: SiInstagramHex},
   signal: {Icon: SiSignal, color: SiSignalHex},
   telegram: {Icon: SiTelegram, color: SiTelegramHex},
-  discord: {Icon: SiDiscord, color: SiDiscordHex},
+  whatsapp: {Icon: SiWhatsapp, color: SiWhatsappHex},
 };
 
 export const GroupChatResult: FC<GroupChatResultProps> = ({
@@ -79,8 +75,8 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
         <Icon color={color} className='sm:h-10 sm:w-10' />
       </div>
 
-      <p className={twMerge(gridClasses.title, 'font-bold')}>
-        {name}
+      <p className={twMerge(gridClasses.title, 'font-bold capitalize')}>
+        {name.toLowerCase()}
         {promoted ? (
           <span className='ml-1 text-xs font-normal text-gray-500'>
             (Promoted)

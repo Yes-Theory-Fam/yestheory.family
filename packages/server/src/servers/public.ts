@@ -10,6 +10,7 @@ import {
 import cors from '@koa/cors';
 import {Guild} from 'discord.js';
 import grant from 'grant';
+import {isEnumType} from 'graphql/type';
 import Koa, {type Context} from 'koa';
 import bodyParser from 'koa-bodyparser';
 import mount from 'koa-mount';
@@ -79,7 +80,7 @@ export const launchPublicServer = async () => {
         (operation, name) =>
           allowedPayloadOperations[operation]?.includes(name) ?? false,
       ),
-      new PruneSchema(),
+      new PruneSchema({skipPruning: (type) => isEnumType(type)}),
     ],
   };
 

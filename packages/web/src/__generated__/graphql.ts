@@ -24,7 +24,61 @@ export type Incremental<T> =
 
 export type BuddyProjectStatus = "MATCHED" | "NOT_SIGNED_UP" | "SIGNED_UP";
 
+export type GroupchatUpdate_Platform_MutationInput =
+  | "discord"
+  | "facebook"
+  | "instagram"
+  | "signal"
+  | "telegram"
+  | "whatsapp";
+
+export type Groupchat_Platform =
+  | "discord"
+  | "facebook"
+  | "instagram"
+  | "signal"
+  | "telegram"
+  | "whatsapp";
+
+export type Groupchat_Platform_Input =
+  | "discord"
+  | "facebook"
+  | "instagram"
+  | "signal"
+  | "telegram"
+  | "whatsapp";
+
+export type Groupchat_Platform_MutationInput =
+  | "discord"
+  | "facebook"
+  | "instagram"
+  | "signal"
+  | "telegram"
+  | "whatsapp";
+
+export type PayloadPreferenceUpdate_UserRelationshipInputRelationTo = "users";
+
+export type PayloadPreference_UserRelationshipInputRelationTo = "users";
+
+export type PayloadPreference_User_RelationTo = "users";
+
+export type PayloadPreference_User_Relation_RelationTo = "users";
+
 export type SignUpResult = "FAILURE" | "FULL_SUCCESS" | "SUCCESS_DMS_CLOSED";
+
+export type UserUpdate_Roles_MutationInput =
+  | "groupchats"
+  | "groupchats_admin"
+  | "owner";
+
+export type User_Roles = "groupchats" | "groupchats_admin" | "owner";
+
+export type User_Roles_Input = "groupchats" | "groupchats_admin" | "owner";
+
+export type User_Roles_MutationInput =
+  | "groupchats"
+  | "groupchats_admin"
+  | "owner";
 
 export type ServerStateQueryVariables = Exact<{ [key: string]: never }>;
 
