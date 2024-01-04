@@ -128,9 +128,9 @@ export const Groupchats: CollectionConfig = {
         if (!req.user) return res.status(401).send('Unauthorized');
 
         const first = req.body[0];
-        const permission = await Groupchats.access.create({req, data: first});
+        const hasPermission = await requireOneOf()({req, data: first});
 
-        if (typeof permission !== 'boolean' || !permission) {
+        if (typeof hasPermission !== 'boolean' || !hasPermission) {
           return res.status(403).send('Forbidden');
         }
 
