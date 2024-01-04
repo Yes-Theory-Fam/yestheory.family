@@ -69,6 +69,12 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
           </Fragment>
         ))}
 
+        {groupchats.length === 0 && (
+          <div className='mt-6 flex flex-col items-center text-xl'>
+            No groupchats found.
+          </div>
+        )}
+
         {loading && 'Loading...'}
       </div>
     </div>
