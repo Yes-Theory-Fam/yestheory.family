@@ -2,6 +2,17 @@
   "name": "@yestheory.family/scripts",
   "packageManager": "yarn@4.0.2",
   "type": "module",
+  "scripts": {
+    "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . --write"
+  },
+  "dependencies": {
+    "@posva/prompts": "^2.4.4",
+    "dotenv": "^16.3.1",
+    "node-html-parser": "^6.1.12"
+  },
   "devDependencies": {
     "@atmina/linting": "^2.0.1",
     "@types/cli-progress": "^3.11.5",
@@ -11,16 +22,5 @@
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
-  "scripts": {
-    "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
-    "prettier:check": "prettier . --check",
-    "prettier:fix": "prettier . --write"
-  },
-  "prettier": "@atmina/linting/prettier",
-  "dependencies": {
-    "@posva/prompts": "^2.4.4",
-    "dotenv": "^16.3.1",
-    "node-html-parser": "^6.1.12"
-  }
+  "prettier": "@atmina/linting/prettier"
 }
