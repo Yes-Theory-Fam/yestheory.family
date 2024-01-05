@@ -1,110 +1,140 @@
-# Fullstack TypeScript Boilerplate
+# yestheory.family
 
-This project provides a monorepo setup for a Fullstack TypeScript project and comes with the following:
+This project contains all parts (deducting [YesBot](https://github.com/Yes-Theory-Fam/yesbot-ts)) running
+on https://yestheory.family.
 
-## Server
+The aim of this project is to provide the community of YouTube channel [Yes Theory](https://www.youtube.com/@YesTheory)
+with a proper community hub, that shows what this community is capable of in blogs and a photo-gallery and provides both
+people new to the community and established members with ways of engaging with other members through features like a
+group-chat search and a meetup calendar as well as events like the Buddy Project.
 
-- [Koa](https://github.com/koajs/koa/)
-- [Apollo GraphQL Server](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-server-koa/)
-- [TypeGraphQL](https://github.com/MichalLytek/type-graphql/)
-- [Prisma ORM](https://github.com/prisma/prisma/)
+## Architecture
 
-## Web
+There are a lot of moving parts to this, following is a
 
-- [React](https://github.com/facebook/react/)
-- [TailwindCSS](https://github.com/chakra-ui/chakra-ui/)
-- [Next.js](https://github.com/vercel/next.js/)
-- [graphql-request](<!-- TODO update reference -->) 
-- [graphql-code-generator](https://github.com/dotansimha/graphql-code-generator/)
-- [Storybook](https://github.com/storybookjs/storybook/)
-- [Chromatic](https://github.com/chromaui/chromatic-cli)
+```mermaid
+---
+title: Architecture
+---
 
-## Tooling
+classDiagram
+    Database <|-- `Payload CMS`: stores data in
+    Database <|-- `Node.js Backend`: stores data in
+    `Payload CMS` <|-- `Node.js Backend`: proxies requests to
+    `Payload CMS` <|-- `YesBot`: manages access for
+    `Typesense` <|-- `Payload CMS`: syncs group-chats to
+    `Typesense` <|-- `Next.js Frontend`: searches group-chats in
+    `Discord` <|-- `Next.js Frontend`: authenticates with
+    `Node.js Backend` <|-- `Next.js Frontend`: makes requests to
+    `Node.js Backend` <|-- `YesBot`: makes requests to
 
-- [Prettier](https://github.com/prettier/prettier/)
-- [ESLint](https://github.com/eslint/eslint/)
-- [Docker](https://github.com/moby/moby)
-- [GitHub Actions](https://github.com/features/actions)
-- [Helm](https://helm.sh)
-- [ArgoCD](https://argo-cd.readthedocs.io) (under the hood)
+    class `Payload CMS` {
+        https: //admin.yestheory.family
+        Groupchats
+    }
+    class `Node.js Backend` {
+        Buddy Project
+    }
+    class `Next.js Frontend` {
+        https: //yestheory.family
+    }
+    class `Typesense` {
+        Groupchat Search
+    }
+    class `Database` {
+        Payload Database
+        Backend Database
+    }
+    class `YesBot` {
+    }
+    class `Discord` {
+        Authentication
+    }
+```
 
-## How do I use this?
+The parts of the diagram are explained in further detail below:
 
-0. Clone this repository
+### Discord
 
-1. Create the env files mentioned in [.env files](#env-files). For a starter setup you can just copy the .example files
-   to their name without the .example (for Chromatic, see the [general steps below](#general)).
+Discord is used as the authentication provider. This comes from several reasons:
 
-2. **Local development**:  
-   Run `yarn install`, then `yarn server:generate` and use one of the [available scripts](#available-scripts)!
-   Everything should just work together in the setup you download (Note: `yarn web:generate` requires the backend to be
-   running because the code generator loads the schema directly from the server).
+1. The main developer is admin of the [Discord community](https://discord.gg/yestheory)
+2. The main developer also maintains YesBot which allows tight integration of the two systems
+3. Several features make for easy and convenient integrations with Discord
 
-3. **Docker setup**:
-   Run `docker-compose up`, wait for the images to build, then have a look at the [ports](#ports), where the built
-   production instances will be running (Note: The docker setup is not suitable for development as it doesn't use
-   volumes, storybook won't be launched in containers either).
+More OAuth providers *might* be integrated in the future but due to the relatively tight integration with Discord, this
+may prove to be challenging.
 
-### Required steps for an actual project
+### Database
 
-If you are building a serious project with this, there are a few additional changes required to get everything running
-smoothly:
+The [PostgreSQL](https://www.postgresql.org/) database server contains two separate databases, one used by the Payload
+CMS, the other used by the custom
+Node.js backend for storing various data.
 
-#### General
+### Typesense
 
-You should follow these steps whenever you start a new project with this boilerplate.
+[Typesense](https://typesense.org) is a lightweight search engine similar to ElasticSearch and is used for performant
+search across group-chats (and in the future possibly other entities).
 
-- Replace `@yestheory.family/` with `@<projectname>/` in all package.json files
-- Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `docker-compose.yml`
-  and `docker-compose.yml`
-- Create a new project on [Chromatic](https://www.chromatic.com/) and place your project token in `packages/web/.env`
-  as `CHROMATIC_PROJECT_TOKEN=token`
+Typesense data is currently managed from the Payload CMS (mirroring CUD-operations) and requested from the frontend
+directly with a scoped API-Key.
 
-#### GitHub Actions
+### Payload CMS
 
-You should follow these steps when you have this repository on GitHub and want to use Actions as CI/CD tool.
+[Payload CMS](https://payloadcms.com) is a CMS that allows for easy CRUD-operations on TypeScript-defined entities. It's
+used for managing group-chats and could in the future be extended to things like blogs, newsletters and other entities.
 
-- Replace `fullstack-typescript-boilerplate-example` with your actual project's name in `.github/workflows/build.yml`
-- Create three Docker repositories on [Docker Hub](https://hub.docker.com), named `<name>-migration`, `<name>-server`
-  and `<name>-web` replacing `<name>` with your project's name
-- Go to your repository > Settings > Secrets and create these secrets:
-    - `CHROMATIC_PROJECT_TOKEN` - contains the Chromatic token for the project
-    - `DOCKERHUB_USERNAME` - contains the username you created the repositories in
-    - `DOCKERHUB_TOKEN` - contains a Docker Hub access token
+The admin interface of Payload is exposed at https://admin.yestheory.family and uses a custom authentication-scheme that
+reuses the credentials from the main frontend. A user's access must be approved by an admin through Discord (a user
+without access is prompted for a message which then allows the admin to approve or decline that request).
+
+### YesBot
+
+[YesBot](https://github.com/Yes-Theory-Fam/yesbot-ts) (not part of this repository) handles all inputs from Discord.
+*Note:* Outputs *to* Discord (e.g. sending messages) may also be done by the Node.js Backend.
+
+### Next.js Frontend
+
+The Next.js frontend does all the rendering and is hosted on https://yestheory.family. It sends GraphQL requests during
+the SSR-phase and is largely server rendered.
+
+### Node.js Backend
+
+The Node.js backend primarily acts as a data juggler. It hosts two major GraphQL services, one intended for public
+consumption and a second one not exposed to the public web intended for consumption by YesBot. It handles cookie-based
+authentication through Discord, acts as entrypoint for YesBot into the rest of the system and exposes specific parts of
+Payload's GraphQL schema on both of the services. The pure schema of the YesBot service (which itself is not public) is
+publicly exposed for use in YesBot's CI pipelines.
+
+## Directory structure
+
+- `.github` contains the GitHub Actions definitions for this project
+- `deployment` contains a [Helm](https://helm.sh/) deployment
+- `packages` contains the various parts of the application, more information can be found in each package's `README.md`
 
 ## Available scripts
 
 The repository comes with a bunch of yarn scripts you can run to do several things. The most important ones are
 available from the root directory of the project and listed here:
 
+`yarn lint` - Fixes all fixable linting issues through Prettier and ESLint  
 `yarn eslint:check` - Runs linting in all packages.  
 `yarn eslint:write` - Runs linting in all packages and fixes auto-fixable problems.  
 `yarn format:check` - Runs prettier on the entire project and reports styling issues.  
 `yarn format:write` - Runs prettier on the entire project and fixes styling issues.  
-`yarn server:dev` - Runs the backend for development (using ts-node-dev).  
-`yarn server:generate` - Generates backend source and packages using prisma.  
-`yarn storybook` - Runs and opens the Storybook project.  
-`yarn test` - Runs the test script in all workspaces.  
-`yarn web:dev` - Runs the next frontend for development.  
-`yarn web:generate`* - Generates GraphQL types and hooks for the frontend.
 
-`*` - This script requires the backend to be running on `http://localhost:5000/graphql` because the code generator loads
-the schema directly from the server.
+More scripts are available in each package and will be listed in the respective `README.md`.
 
 ## `.env` files
 
-Currently, the boilerplate utilizes several `.env` files (I am not too happy about it, feel free to open an issue for
-suggesting an approach to only use one):
+This project uses a fair number of `.env` files:
 
 - `.env` contains environment variables used in the [Docker setup](#docker)
-- `packages/server/.env` contains environment variables local to the server package, currently only used for providing
-  the `PRISMA_DATABASE_URL` variable to prisma
-- `packages/web/.env` contains the chromatic project token
-- `packages/web/.env.local` contains variables usable in
-  Next.js ([docs](https://nextjs.org/docs/basic-features/environment-variables))
+- `packages/*/.env` contains the environment variables used for the respective package
+  - *for the `web` package, the file is called `.env.local`*
 
 For all used `.env` files listed above, there is a `.env.example` file in this repository that you can copy to `./.env`
-and adapt to your needs.
+and adapt to your needs. Each example file has the available variables documented.
 
 ## Docker
 
@@ -114,25 +144,20 @@ The server and web packages have been dockerized, and a docker-compose setup usi
 
 The docker-compose setup expects a series of environment variables to be set:
 
-`DATABASE_HOST` - The host on which to find the database on  
 `DATABASE_DB_NAME` - The name of the database to use  
 `DATABASE_USER` - The user to use for database login  
 `DATABASE_PASSWORD` - The password to use for database login  
-`BACKEND_PORT`* - The port to run the backend on (default: 5000)  
-`BACKEND_HOST` - The hostname used inside the docker-network to connect to the server (default: server)
-
-`*` This value is used during build-time of the container already to expose the correct port. If you change it, you have
-to rebuild the container!
 
 ## Ports
 
-The boilerplate currently uses the following ports:
+The project currently uses the following ports:
 
-| Port | Service |
-|------|---------|
-| 3000 | Next.js |
-| 5000 | Backend* |
-| 5432 | Database |
-| 6006 | Storybook |
-
-`*` The port can be changed using the `BACKEND_PORT` environment variable.
+| Port | Service                 |
+|------|-------------------------|
+| 3000 | Next.js                 |
+| 3001 | Payload CMS             |
+| 5000 | Backend (Public facing) |
+| 5001 | Backend (YesBot facing) |
+| 5002 | Backend (YesBot schema) |
+| 5433 | Database                |
+| 6006 | Storybook               |

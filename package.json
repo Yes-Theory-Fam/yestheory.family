@@ -2,18 +2,11 @@
   "name": "yestheory.family",
   "private": true,
   "scripts": {
-    "e2e:open": "yarn workspace @yestheory.family/web e2e:open",
-    "e2e:run": "yarn workspace @yestheory.family/web e2e:run",
+    "lint": "yarn eslint:fix && yarn prettier:fix",
     "eslint:check": "yarn workspaces foreach --all --parallel run eslint:check",
     "eslint:fix": "yarn workspaces foreach --all --parallel run eslint:fix",
     "prettier:check": "yarn workspaces foreach --all --parallel run prettier:check",
-    "prettier:fix": "yarn workspaces foreach --all --parallel run prettier:fix",
-    "server:dev": "yarn workspace @yestheory.family/server start",
-    "server:generate": "yarn workspace @yestheory.family/server generate",
-    "storybook": "yarn workspace @yestheory.family/web storybook",
-    "test": "yarn workspaces foreach --all --parallel run test",
-    "web:dev": "yarn workspace @yestheory.family/web dev",
-    "web:generate": "yarn workspace @yestheory.family/web codegen"
+    "prettier:fix": "yarn workspaces foreach --all --parallel run prettier:fix"
   },
   "workspaces": [
     "packages/*"
