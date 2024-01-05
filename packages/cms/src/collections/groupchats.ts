@@ -1,9 +1,20 @@
-import payload, {type Payload} from 'payload';
+import payload, {type GeneratedTypes, type Payload} from 'payload';
 import {type CollectionConfig} from 'payload/types';
 import {allowUpdateDeleteOwner} from '../access/allow-update-delete-owner';
 import {requireOneOf} from '../access/require-one-of';
 import {typesenseClient} from '../lib/typesense';
 import {type GroupchatKeyword} from '../payload-types';
+
+type GroupchatPlatform =
+  GeneratedTypes['collections']['groupchats']['platform'];
+const platformUrlMatchers: Record<GroupchatPlatform, RegExp> = {
+  discord: /^https:\/\/(?:www\.)?discord\.(com|gg)\//i,
+  instagram: /^https:\/\/(?:www\.)?instagram\.com\//i,
+  facebook: /^https:\/\/(?:www\.)?facebook\.com\//i,
+  signal: /^https:\/\/(?:www\.)?signal\.group\//i,
+  telegram: /^https:\/\/(?:www\.)?t\.me\//i,
+  whatsapp: /^https:\/\/chat\.whatsapp\.com\//i,
+};
 
 export const Groupchats: CollectionConfig = {
   slug: 'groupchats',
@@ -74,6 +85,16 @@ export const Groupchats: CollectionConfig = {
           },
         ],
       },
+      validate: (url, {data}) => {
+        const urlMatcher = platformUrlMatchers[data.platform];
+        const match = (url as string).match(urlMatcher);
+
+        if (!match) {
+          return 'The URL must be a valid invite link for the selected platform!';
+        }
+
+        return true;
+      },
     },
     {
       name: 'keywords',
@@ -135,11 +156,21 @@ export const Groupchats: CollectionConfig = {
         }
 
         for (const chat of req.body) {
-          await req.payload.create({
-            collection: 'groupchats',
-            data: chat,
-            user: req.user,
-          });
+          try {
+            await req.payload.create({
+              collection: 'groupchats',
+              data: chat,
+              user: req.user,
+            });
+          } catch (e) {
+            req.payload.logger.error(
+              `Failed creating groupchat ${JSON.stringify(
+                chat,
+                null,
+                2,
+              )} in batch-endpoint: `,
+            );
+          }
         }
 
         res.status(200).send('Ok');
