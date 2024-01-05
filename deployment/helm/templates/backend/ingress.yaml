@@ -7,6 +7,11 @@ metadata:
     kubernetes.io/ingress.class: {{ .Values.ingress.class }}
     kubernetes.io/tls-acme: 'true'
     cert-manager.io/cluster-issuer: {{ .Values.ingress.issuer }}
+    {{- if .Values.ingress.basicAuth.enabled }}
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication required - Work in Progress'
+    {{- end }}
   labels:
     app: backend-ingress
 spec:

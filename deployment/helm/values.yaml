@@ -6,6 +6,9 @@ imagePullSecrets:
 ingress:
   class: public
   issuer: letsencrypt-prod
+  basicAuth:
+    enabled: false
+    htpasswdEntry: foo:$apr1$example
 
 common:
   baseDomain: yestheory.family
