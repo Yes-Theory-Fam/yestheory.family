@@ -1,0 +1,9 @@
+{{- if .Values.ingress.basicAuth.enabled }}
+apiVersion: v1
+kind: Secret
+data:
+  auth: {{ .Values.ingress.basicAuth.htpasswdEntry | toString | b64enc }}
+metadata:
+  name: basic-auth
+  namespace: {{ .Release.Namespace }}
+{{- end }}
