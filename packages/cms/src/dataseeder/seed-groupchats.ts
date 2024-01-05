@@ -28,7 +28,7 @@ export const seedGroupchats = async () => {
       name: 'Yes Famburg',
       description: 'Hamburgs YesFam group on WhatsApp',
       platform: 'whatsapp',
-      url: 'https://example.com',
+      url: 'https://chat.whatsapp.com/example',
       keywords: [keywords['Hamburg'], keywords['Germany'], keywords['Europe']],
       promoted: 0,
     },

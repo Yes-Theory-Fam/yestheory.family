@@ -28,10 +28,16 @@ export interface User {
 export interface Groupchat {
   id: number;
   name: string;
-  platform: 'discord' | 'facebook' | 'signal' | 'telegram' | 'whatsapp';
+  platform:
+    | 'discord'
+    | 'facebook'
+    | 'instagram'
+    | 'signal'
+    | 'telegram'
+    | 'whatsapp';
   description?: string | null;
   url: string;
-  keywords: (number | GroupchatKeyword)[];
+  keywords?: (number | GroupchatKeyword)[] | null;
   promoted: number;
   owners?: (string | User)[] | null;
   updatedAt: string;
