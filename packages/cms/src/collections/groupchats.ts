@@ -8,12 +8,12 @@ import {type GroupchatKeyword} from '../payload-types';
 type GroupchatPlatform =
   GeneratedTypes['collections']['groupchats']['platform'];
 const platformUrlMatchers: Record<GroupchatPlatform, RegExp> = {
-  discord: /^https:\/\/(?:www\.)?discord\.(com|gg)\//i,
-  instagram: /^https:\/\/(?:www\.)?instagram\.com\//i,
-  facebook: /^https:\/\/(?:www\.)?facebook\.com\//i,
-  signal: /^https:\/\/(?:www\.)?signal\.group\//i,
-  telegram: /^https:\/\/(?:www\.)?t\.me\//i,
-  whatsapp: /^https:\/\/chat\.whatsapp\.com\//i,
+  discord: /^https?:\/\/(?:www\.)?discord\.(com|gg)\//i,
+  instagram: /^https?:\/\/(?:www\.)?instagram\.com\//i,
+  facebook: /^https?:\/\/(?:www\.)?facebook\.com\//i,
+  signal: /^https?:\/\/(?:www\.)?signal\.group\//i,
+  telegram: /^https?:\/\/(?:www\.)?t\.me\//i,
+  whatsapp: /^https?:\/\/chat\.whatsapp\.com\//i,
 };
 
 export const Groupchats: CollectionConfig = {
@@ -34,6 +34,8 @@ export const Groupchats: CollectionConfig = {
       type: 'text',
       required: true,
       validate: async (nameValue, {data, payload}) => {
+        if (!nameValue) return 'This field is required.';
+
         // We need to run local operations with certain auth, so we skip if payload is not available
         if (!payload) return true;
 
@@ -81,11 +83,17 @@ export const Groupchats: CollectionConfig = {
               return `https://${value}`;
             }
 
+            if (value?.startsWith('http:')) {
+              return 'https' + value.substring(4);
+            }
+
             return value;
           },
         ],
       },
       validate: (url, {data}) => {
+        if (!url) return 'This field is required.';
+
         const urlMatcher = platformUrlMatchers[data.platform];
         const match = (url as string).match(urlMatcher);
 
