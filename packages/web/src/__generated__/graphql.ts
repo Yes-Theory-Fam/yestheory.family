@@ -142,6 +142,23 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
 
 export type LogoutMutation = { __typename?: "Mutation"; logout: boolean };
 
+export type FeaturesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type FeaturesQuery = {
+  __typename?: "Query";
+  Features?: {
+    __typename?: "Features";
+    docs?: Array<{
+      __typename?: "Feature";
+      id?: number | null;
+      name: string;
+      enabled?: boolean | null;
+      navPath?: string | null;
+      pathPrefix: string;
+    } | null> | null;
+  } | null;
+};
+
 export const ServerStateDocument = gql`
   query ServerState {
     me {
@@ -189,6 +206,19 @@ export const CurrentUserDocument = gql`
 export const LogoutDocument = gql`
   mutation Logout {
     logout
+  }
+`;
+export const FeaturesDocument = gql`
+  query Features {
+    Features {
+      docs {
+        id
+        name
+        enabled
+        navPath
+        pathPrefix
+      }
+    }
   }
 `;
 
@@ -301,6 +331,21 @@ export function getSdk(
           }),
         "Logout",
         "mutation",
+        variables,
+      );
+    },
+    Features(
+      variables?: FeaturesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<FeaturesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<FeaturesQuery>(FeaturesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "Features",
+        "query",
         variables,
       );
     },

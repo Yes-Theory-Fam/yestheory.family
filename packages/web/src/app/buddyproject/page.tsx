@@ -3,6 +3,7 @@ import {Image} from 'ui';
 import {InfoGrid} from 'ui/buddyproject';
 import {ScrollToActionContainer} from 'ui/client';
 import {buddyProjectSvg, yesbotBuddyProjectWebp} from '../../../assets';
+import {ensureNavEnabled} from '../../lib/features/features';
 import {graphqlWithHeaders} from '../../lib/graphql/client';
 import {BuddyProjectButton} from './components/buddy-project-button';
 
@@ -44,6 +45,8 @@ const CTA = () => {
 };
 
 const Page = async () => {
+  await ensureNavEnabled('buddyproject');
+
   const x = await graphqlWithHeaders((sdk) => sdk.ServerState());
 
   const currentUser = x.me;

@@ -2,24 +2,22 @@
 
 import {useRouter} from 'next/navigation';
 import {type FC} from 'react';
-import {Navigation} from 'ui';
+import {Navigation, type NavLinkDefinition} from 'ui';
 import {type CurrentUserQuery} from '../__generated__/graphql';
 import {logout} from '../context/user/logout-server-action';
 import {navigateToLogin} from '../context/user/navigate-to-login';
 
 export type NavProps = {
   user: Exclude<CurrentUserQuery['me'], null>;
+  routes: NavLinkDefinition[];
 };
 
-export const Nav: FC<NavProps> = ({user}) => {
+export const Nav: FC<NavProps> = ({user, routes}) => {
   const router = useRouter();
 
   return (
     <Navigation
-      links={[
-        {text: 'Buddy Project', href: '/buddyproject'},
-        {text: 'Groupchats', href: '/groupchats'},
-      ]}
+      links={routes}
       onLoginButtonClick={() => navigateToLogin()}
       menuItems={[
         {

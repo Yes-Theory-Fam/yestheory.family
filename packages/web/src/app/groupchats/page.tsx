@@ -2,6 +2,7 @@ import {type Metadata} from 'next';
 import {Heading} from 'ui';
 import {TypesenseProvider} from '../../context/typesense';
 import {getIsLoggedIn} from '../../context/user/user';
+import {ensureNavEnabled} from '../../lib/features/features';
 import {graphqlWithHeaders} from '../../lib/graphql/client';
 import {GroupChatSearch} from './components/group-chat-search';
 
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 const GroupChats = async () => {
+  await ensureNavEnabled('groupchats');
+
   const isLoggedIn = await getIsLoggedIn();
   const apiKey = await graphqlWithHeaders((sdk) => sdk.TypesenseApiKey());
 

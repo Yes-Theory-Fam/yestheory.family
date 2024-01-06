@@ -34,7 +34,7 @@ import {type YtfApolloContext} from '../types';
 const logger = createServerLogger('server', 'public');
 
 const allowedPayloadOperations = {
-  Query: ['groupchatSearchToken'],
+  Query: ['groupchatSearchToken', 'Features'],
   Mutation: <string[]>[],
   Subscription: <string[]>[],
 };
