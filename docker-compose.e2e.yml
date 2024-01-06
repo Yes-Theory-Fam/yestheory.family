@@ -7,9 +7,13 @@ services:
       POSTGRES_USER: ytfe2e
       POSTGRES_PASSWORD: ytfe2e
       POSTGRES_DB: ytfe2e
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ytfe2e"]
+      start_period: 2s
+      interval: 1s
 
   server:
-    image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:pr-266
     hostname: server
     ports:
       - "5000:5000"
@@ -28,11 +32,13 @@ services:
 
       CMS_ENDPOINT: "http://cms:3001/api/graphql"
     depends_on:
-      - cms
-      - postgres
+      cms:
+        condition: 'service_healthy'
+      postgres:
+        condition: 'service_healthy'
 
   web:
-    image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:pr-266
     environment:
       SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
       FRONTEND_URL: http://web:3000
@@ -42,7 +48,7 @@ services:
       - server
 
   cms:
-    image: ghcr.io/yes-theory-fam/yestheory-family-cms:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-cms:pr-266
     environment:
       DATABASE_URI: "postgresql://ytfe2e:ytfe2e@postgres:5432/payload?schema=public"
       ENABLE_DATASEEDER: "true"
@@ -53,10 +59,18 @@ services:
       TYPESENSE_API_URL: http://typesense:8108
       SERVER_URL: http://localhost:3001
       FRONTEND_URL: http://web:3000
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail http://localhost:3001/admin > /dev/null || exit 1"]
+      start_period: 5s
+      interval: 1s
+      retries: 10
     ports:
       - "3001:3001"
     depends_on:
-      - typesense
+      postgres:
+        condition: 'service_healthy'
+      typesense:
+        condition: 'service_started'
 
   typesense:
     image: typesense/typesense:0.25.1
