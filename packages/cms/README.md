@@ -1,19 +1,15 @@
-# cms
+# @yestheory.family/cms
 
-This project was created using create-payload-app using the blank template.
+This package contains the Payload CMS hosted at https://admin.yestheory.family.
 
-## How to Use
+## Important commands
 
-`yarn dev` will start up your application and reload on any changes.
+- `yarn dev` runs the CMS in development mode, restarting on changes
+- `yarn seed` inserts some basic data including an initial user based on the .env file into the database
+- `yarn generate:types` generates TypeScript types based on the collection definitions (can be imported
+  as `import { type GeneratedTypes } from "payload";`)
 
-### Docker
+## Requirements
 
-If you have docker and docker-compose installed, you can run `docker-compose up`
-
-To build the docker image, run `docker build -t my-tag .`
-
-Ensure you are passing all needed environment variables when starting up your container via `--env-file` or setting them with your deployment.
-
-The 3 typical env vars will be `DATABASE_URI`, `PAYLOAD_SECRET`, and `PAYLOAD_CONFIG_PATH`
-
-`docker run --env-file .env -p 3000:3000 my-tag`
+- Needs both the database and typesense running to start
+- Needs Node.js Backend launched after it to authenticate requests
