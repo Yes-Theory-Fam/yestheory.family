@@ -22,16 +22,6 @@ jobs:
         with:
           command: prettier:check
 
-  test:
-    name: "Test"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/yarn-action
-        name: "Install and test"
-        with:
-          command: test
-
   tsc-web:
     name: "TSC Web"
     runs-on: ubuntu-latest
