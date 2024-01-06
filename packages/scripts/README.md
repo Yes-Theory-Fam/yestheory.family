@@ -4,8 +4,8 @@ This package contains one-off scripts that are not bundled into any running appl
 
 ## Important commands
 
-- `yarn tsx path/to/script` runs the given script 
+-   `yarn tsx path/to/script` runs the given script
 
 ## Requirements
 
-- Depend on the script
+-   Depend on the script

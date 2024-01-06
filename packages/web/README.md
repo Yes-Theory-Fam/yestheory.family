@@ -4,13 +4,13 @@ This package contains the Next.js Frontend that is displayed to the user when vi
 
 ## Important commands
 
-- `yarn codegen` regenerates code based on the .graphql files in the package
-- `yarn dev` runs the frontend in development mode, hot-reloading on changes (runs `yarn codegen` on first start)
-- `yarn storybook` runs Storybook in development mode, hot-reloading on changes
+-   `yarn codegen` regenerates code based on the .graphql files in the package
+-   `yarn dev` runs the frontend in development mode, hot-reloading on changes (runs `yarn codegen` on first start)
+-   `yarn storybook` runs Storybook in development mode, hot-reloading on changes
 
 ## Requirements
 
-*These requirements are for running the actual frontend; they don't apply to running Storybook*
+_These requirements are for running the actual frontend; they don't apply to running Storybook_
 
-- A running backend (required because the codegen fetches its schema from there)
-- Typesense running when searching through group-chats
+-   A running backend (required because the codegen fetches its schema from there)
+-   Typesense running when searching through group-chats
