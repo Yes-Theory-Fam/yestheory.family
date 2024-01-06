@@ -29,6 +29,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@answeroverflow/discordjs-mock@npm:^0.0.13":
+  version: 0.0.13
+  resolution: "@answeroverflow/discordjs-mock@npm:0.0.13"
+  dependencies:
+    discord.js: "npm:^14.8.0"
+  peerDependencies:
+    discord.js: ^14.7.1
+  checksum: 57867dccee6a7cc4697ed74a3fa025edd72fab7f781647970c7fb59dd7cc4bc2463afcd58794f69bd8c98237c6818488e9bbf266945ec2ab3a12673029edbee9
+  languageName: node
+  linkType: hard
+
 "@antfu/ni@npm:0.21.8":
   version: 0.21.8
   resolution: "@antfu/ni@npm:0.21.8"
@@ -8021,6 +8032,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@yestheory.family/server@workspace:packages/server"
   dependencies:
+    "@answeroverflow/discordjs-mock": "npm:^0.0.13"
     "@apollo/server": "npm:^4.9.5"
     "@as-integrations/koa": "npm:^1.1.1"
     "@atmina/linting": "npm:^2.0.1"
@@ -10838,7 +10850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord.js@npm:14.14.1":
+"discord.js@npm:14.14.1, discord.js@npm:^14.8.0":
   version: 14.14.1
   resolution: "discord.js@npm:14.14.1"
   dependencies:
