@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "generate": "prisma generate",
-    "lint": "yarn run lint:fix && yarn run prettier:fix",
+    "lint": "yarn run eslint:fix && yarn run prettier:fix",
     "postinstall": "prisma generate",
     "dev": "ts-node-dev --files src/index.ts",
     "test": "echo server: ok",

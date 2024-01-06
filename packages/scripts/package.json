@@ -3,6 +3,7 @@
   "packageManager": "yarn@4.0.2",
   "type": "module",
   "scripts": {
+    "lint": "yarn eslint:fix && yarn prettier:fix",
     "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
     "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
     "prettier:check": "prettier . --check",
