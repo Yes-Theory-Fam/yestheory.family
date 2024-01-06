@@ -8,9 +8,13 @@ with a proper community hub, that shows what this community is capable of in blo
 people new to the community and established members with ways of engaging with other members through features like a
 group-chat search and a meetup calendar as well as events like the Buddy Project.
 
+## Contributing
+
+Interested in contributing? Take a look at the [contribution guide](CONTRIBUTING.md)!
+
 ## Architecture
 
-There are a lot of moving parts to this, following is a
+There are a lot of moving parts to this, following is a shitty architecture diagram!
 
 ```mermaid
 ---
@@ -18,8 +22,8 @@ title: Architecture
 ---
 
 classDiagram
-    Database <|-- `Payload CMS`: stores data in
-    Database <|-- `Node.js Backend`: stores data in
+    `Database` <|-- `Payload CMS`: stores data in
+    `Database` <|-- `Node.js Backend`: stores data in
     `Payload CMS` <|-- `Node.js Backend`: proxies requests to
     `Payload CMS` <|-- `YesBot`: manages access for
     `Typesense` <|-- `Payload CMS`: syncs group-chats to
@@ -29,14 +33,14 @@ classDiagram
     `Node.js Backend` <|-- `YesBot`: makes requests to
 
     class `Payload CMS` {
-        https: //admin.yestheory.family
+        https://admin.yestheory.family
         Groupchats
     }
     class `Node.js Backend` {
         Buddy Project
     }
     class `Next.js Frontend` {
-        https: //yestheory.family
+        https://yestheory.family
     }
     class `Typesense` {
         Groupchat Search
@@ -56,7 +60,7 @@ The parts of the diagram are explained in further detail below:
 
 ### Discord
 
-Discord is used as the authentication provider. This comes from several reasons:
+Discord is used as the authentication provider. This is for several reasons:
 
 1. The main developer is admin of the [Discord community](https://discord.gg/yestheory)
 2. The main developer also maintains YesBot which allows tight integration of the two systems
@@ -68,12 +72,11 @@ may prove to be challenging.
 ### Database
 
 The [PostgreSQL](https://www.postgresql.org/) database server contains two separate databases, one used by the Payload
-CMS, the other used by the custom
-Node.js backend for storing various data.
+CMS, the other used by the custom Node.js backend for storing various data.
 
 ### Typesense
 
-[Typesense](https://typesense.org) is a lightweight search engine similar to ElasticSearch and is used for performant
+[Typesense](https://typesense.org) is a lightweight search engine similar to ElasticSearch and used for performant
 search across group-chats (and in the future possibly other entities).
 
 Typesense data is currently managed from the Payload CMS (mirroring CUD-operations) and requested from the frontend
@@ -86,7 +89,7 @@ used for managing group-chats and could in the future be extended to things like
 
 The admin interface of Payload is exposed at https://admin.yestheory.family and uses a custom authentication-scheme that
 reuses the credentials from the main frontend. A user's access must be approved by an admin through Discord (a user
-without access is prompted for a message which then allows the admin to approve or decline that request).
+without access is prompted for a message which is then sent to an admin to approve or decline that request).
 
 ### YesBot
 

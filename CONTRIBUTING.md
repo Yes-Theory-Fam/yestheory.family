@@ -4,7 +4,7 @@ Thanks for being interested in contributing! This document contains guidance on 
 
 ## Requirements
 
-To work on this project, you will need the following things
+To work on this project, you will need the following things:
 
 1. [Docker](https://docker.com) for running a database and typesense locally
 2. A [Discord application](https://discord.com/developers/applications)
