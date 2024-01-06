@@ -1,5 +1,5 @@
 {
-  "name": "e2e",
+  "name": "@yestheory.family/e2e",
   "devDependencies": {
     "@atmina/linting": "^2.0.1",
     "@playwright/test": "^1.40.1",
