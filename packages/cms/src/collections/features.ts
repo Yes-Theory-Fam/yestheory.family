@@ -5,6 +5,7 @@ import {requireOneOf} from '../access/require-one-of';
 export const Features: CollectionConfig = {
   slug: 'feature',
   access: {
+    read: () => true,
     create: requireOneOf(),
     update: requireOneOf(),
     delete: requireOneOf(),
