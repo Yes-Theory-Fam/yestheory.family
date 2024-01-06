@@ -4,17 +4,18 @@ import {type ReadonlyRequestCookies} from 'next/dist/server/web/spec-extension/a
 import {cookies} from 'next/headers';
 import {graphqlWithHeaders} from '../../lib/graphql/client';
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-
 const deleteCookie = (cookies: ReadonlyRequestCookies, name: string) => {
+  const url = new URL(process.env.FRONTEND_URL);
+  const domain = url.hostname;
+
   cookies.set({
     name,
+    domain,
     value: '',
     expires: 0,
     maxAge: 0,
     sameSite: 'none',
-    secure: !isDevelopment,
-    domain: '.yestheory.family',
+    secure: true,
   });
 };
 
