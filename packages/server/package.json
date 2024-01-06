@@ -7,7 +7,7 @@
     "generate": "prisma generate",
     "lint": "yarn run lint:fix && yarn run prettier:fix",
     "postinstall": "prisma generate",
-    "start": "ts-node-dev --files src/index.ts",
+    "dev": "ts-node-dev --files src/index.ts",
     "test": "echo server: ok",
     "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
     "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
