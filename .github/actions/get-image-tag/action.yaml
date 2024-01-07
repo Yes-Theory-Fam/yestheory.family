@@ -1,0 +1,20 @@
+name: Get Image Tag
+description: Fetches the expected docker image tag for the current workflow
+
+outputs:
+  tag:
+    description: 'The tag that was determined'
+    value: ${{ steps.tag-cleaner.outputs.tag }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: docker-metadata
+      uses: docker/metadata-action@v5
+      with:
+        images: ghcr.io/yes-theory-fam/yestheory-family-${{ inputs.sub-project }}
+    - id: tag-cleaner
+      env:
+        TAG: ${{ steps.docker-metadata.outputs.tags }}
+      run: echo "tag=$(echo $TAG | sed -r 's/^.*?:([^,]*)(,.*)?$/\1/g')" >> $GITHUB_OUTPUT
+      shell: bash
