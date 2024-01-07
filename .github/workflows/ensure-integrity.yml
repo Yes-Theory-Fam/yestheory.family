@@ -3,6 +3,8 @@ on:
   pull_request: null
   push:
     branches: [master]
+  merge_group:
+    types: [ checks_requested ]
 env:
   OWNER: yes-theory-fam
 
