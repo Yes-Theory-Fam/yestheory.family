@@ -1,5 +1,4 @@
 import {type GeneratedTypes} from 'payload';
-import parseCookies from 'payload/dist/utilities/parseCookies';
 import {type CollectionConfig} from 'payload/types';
 import {hiddenUnlessOwner} from '../access/hidden-unless-owner';
 import {requireOneOf} from '../access/require-one-of';
