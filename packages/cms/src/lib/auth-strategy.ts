@@ -3,13 +3,13 @@ import passport from 'passport';
 import payload from 'payload';
 import {NotFound} from 'payload/errors';
 import {toRequestUser} from '../collections/users';
-import {getUserIdFromRequest} from './get-user-id-from-request';
+import {getAuthStateFromRequest} from './get-auth-state-from-request';
 
 export class YtfAuthStrategy extends passport.Strategy {
   name = 'ytf-discord-auth-strategy';
 
   async _authenticate(req: e.Request): Promise<void> {
-    const userId = await getUserIdFromRequest(req);
+    const {userId} = await getAuthStateFromRequest(req);
 
     if (!userId) return this.fail();
 

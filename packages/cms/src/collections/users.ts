@@ -1,10 +1,9 @@
 import {type GeneratedTypes} from 'payload';
-import parseCookies from 'payload/dist/utilities/parseCookies';
 import {type CollectionConfig} from 'payload/types';
 import {hiddenUnlessOwner} from '../access/hidden-unless-owner';
 import {requireOneOf} from '../access/require-one-of';
 import {YtfAuthStrategy} from '../lib/auth-strategy';
-import {getUserIdFromRequest} from '../lib/get-user-id-from-request';
+import {getAuthStateFromRequest} from '../lib/get-auth-state-from-request';
 
 export type PayloadUser = GeneratedTypes['collections']['users'];
 
@@ -69,10 +68,8 @@ export const Users: CollectionConfig = {
       path: '/auth-state',
       method: 'get',
       handler: async (req, res) => {
-        const cookies = parseCookies(req);
-        if (!cookies['koa.sess']) {
-          return res.status(200).send(AuthState.MISSING_COOKIE);
-        }
+        const {isLoggedIn} = await getAuthStateFromRequest(req);
+        if (!isLoggedIn) return res.status(200).send(AuthState.MISSING_COOKIE);
 
         const user = req.user as SessionUser;
         if (!user) return res.status(200).send(AuthState.MISSING_ACCESS);
@@ -86,7 +83,7 @@ export const Users: CollectionConfig = {
       handler: async (req, res) => {
         const {message} = req.body;
 
-        const userId = await getUserIdFromRequest(req);
+        const {userId} = await getAuthStateFromRequest(req);
 
         const gqlBody = {
           query: `mutation RequestAccess { requestAccess(userId: "${userId}", message: "${message}") }`,

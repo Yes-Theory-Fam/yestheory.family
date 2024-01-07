@@ -13,6 +13,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: ./.github/actions/get-image-tag
+      id: image-tag
     - uses: bots-house/ghcr-delete-image-action@v1.0.0
       continue-on-error: true
       if: ${{ github.event_name == 'pull_request' }}
@@ -20,4 +22,4 @@ runs:
         owner: yes-theory-fam
         name: yestheory-family-${{ inputs.sub-project }}
         token: ${{ inputs.token }}
-        tag: ${{ format('pr-{0}', github.event.pull_request.number) }}
+        tag: ${{ steps.image-tag.outputs.tag }}

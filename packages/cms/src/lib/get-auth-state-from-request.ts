@@ -6,17 +6,21 @@ type MeQueryMe = null | {id: string};
 type MeQueryData = null | {me: MeQueryMe};
 type MeQueryResult = {data: MeQueryData};
 
+type AuthState = {userId: string | null; isLoggedIn: boolean};
+
 const backend = process.env.BACKEND_URL ?? 'http://localhost:5000';
 
 const expressToFetchHeaders = (incoming: IncomingHttpHeaders): HeadersInit => {
   return {Cookie: incoming.cookie};
 };
 
-export const getUserIdFromRequest = async (req: Request) => {
+export const getAuthStateFromRequest = async (
+  req: Request,
+): Promise<AuthState> => {
   const cookies = parseCookies(req);
   const koaSess = cookies['koa.sess'];
 
-  if (!koaSess) return null;
+  if (!koaSess) return {isLoggedIn: false, userId: null};
 
   const gqlBody = {
     query: 'query Me {\n\tme {\n\t\tid\n\t}\n}\n',
@@ -34,5 +38,8 @@ export const getUserIdFromRequest = async (req: Request) => {
 
   const body = (await response.json()) as MeQueryResult;
 
-  return body.data?.me?.id;
+  const userId = body.data?.me?.id ?? null;
+  const isLoggedIn = !!body.data?.me;
+
+  return {userId, isLoggedIn};
 };
