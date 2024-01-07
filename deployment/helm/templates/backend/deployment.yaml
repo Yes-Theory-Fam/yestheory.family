@@ -33,7 +33,17 @@ spec:
               containerPort: 5001
             - name: yesbot-schema
               containerPort: 5002
-
+          livenessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            exec:
+              command:
+                - wget
+                - '--post-data=""'
+                - http://localhost:5002/_yesbot-schema
+                - '-O'
+                - /dev/null
+                - '-q'
           env:
             - name: NODE_ENV
               value: production
