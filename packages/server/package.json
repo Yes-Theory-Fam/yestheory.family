@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "generate": "prisma generate",
-    "lint": "yarn run lint:fix && yarn run prettier:fix",
+    "lint": "yarn run eslint:fix && yarn run prettier:fix",
     "postinstall": "prisma generate",
     "dev": "ts-node-dev --files src/index.ts",
     "test": "echo server: ok",
@@ -15,6 +15,7 @@
     "prettier:fix": "prettier . --write"
   },
   "dependencies": {
+    "@answeroverflow/discordjs-mock": "^0.0.13",
     "@apollo/server": "^4.9.5",
     "@as-integrations/koa": "^1.1.1",
     "@discordjs/rest": "2.2.0",

@@ -3,6 +3,7 @@ import {viteBundler} from '@payloadcms/bundler-vite';
 import {postgresAdapter} from '@payloadcms/db-postgres';
 import {slateEditor} from '@payloadcms/richtext-slate';
 import {buildConfig, type Config} from 'payload/config';
+import {Features} from './collections/features';
 import {GroupchatKeywords} from './collections/groupchat-keywords';
 import {Groupchats} from './collections/groupchats';
 import {Users} from './collections/users';
@@ -26,7 +27,7 @@ const config: Config = {
     },
   },
   editor: slateEditor({}),
-  collections: [Users, Groupchats, GroupchatKeywords],
+  collections: [Users, Groupchats, GroupchatKeywords, Features],
   db: postgresAdapter({
     migrationDir: path.resolve(__dirname, 'migrations'),
     pool: {connectionString: process.env.DATABASE_URI},

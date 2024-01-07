@@ -7,7 +7,7 @@
     "chromatic": "env-cmd -f .env.local chromatic",
     "codegen": "graphql-codegen",
     "dev": "yarn codegen && yarn next",
-    "lint": "yarn run lint:fix && yarn run prettier:fix",
+    "lint": "yarn run eslint:fix && yarn run prettier:fix",
     "start": "next start",
     "test": "echo web: ok",
     "storybook": "storybook dev -p 6006",

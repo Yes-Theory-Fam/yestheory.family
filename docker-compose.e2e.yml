@@ -7,6 +7,10 @@ services:
       POSTGRES_USER: ytfe2e
       POSTGRES_PASSWORD: ytfe2e
       POSTGRES_DB: ytfe2e
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ytfe2e"]
+      start_period: 2s
+      interval: 1s
 
   server:
     image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
@@ -22,14 +26,20 @@ services:
       DISCORD_BOT_TOKEN: skipped
       DISCORD_TARGET_GUILD: skipped
 
+      DISCORD_ADMIN_ID: skipped
+      YESBOT_API_TOKEN: yesbot-api-token
+
       DISCORD_CLIENT_ID: skipped
       DISCORD_CLIENT_SECRET: skipped
       DISCORD_SCOPES: skipped
 
       CMS_ENDPOINT: "http://cms:3001/api/graphql"
+      CMS_API_KEY: e2e-api-key
     depends_on:
-      - cms
-      - postgres
+      cms:
+        condition: 'service_healthy'
+      postgres:
+        condition: 'service_healthy'
 
   web:
     image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
@@ -44,19 +54,28 @@ services:
   cms:
     image: ghcr.io/yes-theory-fam/yestheory-family-cms:COMMIT_HASH
     environment:
-      DATABASE_URI: "postgresql://ytfe2e:ytfe2e@postgres:5432/payload?schema=public"
       ENABLE_DATASEEDER: "true"
       PAYLOAD_SECRET: asdfghjkl
-      INITIAL_ADMIN_MAIL: admin@example.com
-      INITIAL_ADMIN_PASSWORD: example
+      DATABASE_URI: "postgresql://ytfe2e:ytfe2e@postgres:5432/payload?schema=public"
       TYPESENSE_API_KEY: 1234567890
       TYPESENSE_API_URL: http://typesense:8108
-      SERVER_URL: http://localhost:3001
-      FRONTEND_URL: http://web:3000
+      BACKEND_URL: http://server:5000
+      INTERNAL_BACKEND_URL: http://server:5001
+      YESBOT_API_AUTH_TOKEN: yesbot-api-token
+      INITIAL_ADMIN_ID: skipped
+      PAYLOAD_API_KEY: e2e-api-key
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail http://localhost:3001/admin > /dev/null || exit 1"]
+      start_period: 5s
+      interval: 1s
+      retries: 10
     ports:
       - "3001:3001"
     depends_on:
-      - typesense
+      postgres:
+        condition: 'service_healthy'
+      typesense:
+        condition: 'service_started'
 
   typesense:
     image: typesense/typesense:0.25.1

@@ -11,6 +11,7 @@ export interface Config {
     users: User;
     groupchats: Groupchat;
     'groupchat-keywords': GroupchatKeyword;
+    feature: Feature;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -46,6 +47,15 @@ export interface Groupchat {
 export interface GroupchatKeyword {
   id: number;
   value?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Feature {
+  id: number;
+  name: string;
+  pathPrefix: string;
+  navPath?: string | null;
+  enabled?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }

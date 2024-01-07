@@ -29,6 +29,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@answeroverflow/discordjs-mock@npm:^0.0.13":
+  version: 0.0.13
+  resolution: "@answeroverflow/discordjs-mock@npm:0.0.13"
+  dependencies:
+    discord.js: "npm:^14.8.0"
+  peerDependencies:
+    discord.js: ^14.7.1
+  checksum: 57867dccee6a7cc4697ed74a3fa025edd72fab7f781647970c7fb59dd7cc4bc2463afcd58794f69bd8c98237c6818488e9bbf266945ec2ab3a12673029edbee9
+  languageName: node
+  linkType: hard
+
 "@antfu/ni@npm:0.21.8":
   version: 0.21.8
   resolution: "@antfu/ni@npm:0.21.8"
@@ -8000,6 +8011,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@yestheory.family/e2e@workspace:packages/e2e":
+  version: 0.0.0-use.local
+  resolution: "@yestheory.family/e2e@workspace:packages/e2e"
+  dependencies:
+    "@atmina/linting": "npm:^2.0.1"
+    "@playwright/test": "npm:^1.40.1"
+    "@types/eslint": "npm:^8.56.0"
+    "@types/node": "npm:^20.10.5"
+    dotenv: "npm:^16.3.1"
+    eslint: "npm:^8.56.0"
+    prettier: "npm:^3.1.1"
+  languageName: unknown
+  linkType: soft
+
 "@yestheory.family/scripts@workspace:packages/scripts":
   version: 0.0.0-use.local
   resolution: "@yestheory.family/scripts@workspace:packages/scripts"
@@ -8021,6 +8046,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@yestheory.family/server@workspace:packages/server"
   dependencies:
+    "@answeroverflow/discordjs-mock": "npm:^0.0.13"
     "@apollo/server": "npm:^4.9.5"
     "@as-integrations/koa": "npm:^1.1.1"
     "@atmina/linting": "npm:^2.0.1"
@@ -10838,7 +10864,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord.js@npm:14.14.1":
+"discord.js@npm:14.14.1, discord.js@npm:^14.8.0":
   version: 14.14.1
   resolution: "discord.js@npm:14.14.1"
   dependencies:
@@ -11158,20 +11184,6 @@ __metadata:
   checksum: f421adabf3c512bad00fbffd4d0f2e620787df38e81cd9a96ef6b1c96607457d60e7c25391b733ccd5f2a56d7f4179526915e34ec103e9398d7dcfa9bfca95ce
   languageName: node
   linkType: hard
-
-"e2e@workspace:packages/e2e":
-  version: 0.0.0-use.local
-  resolution: "e2e@workspace:packages/e2e"
-  dependencies:
-    "@atmina/linting": "npm:^2.0.1"
-    "@playwright/test": "npm:^1.40.1"
-    "@types/eslint": "npm:^8.56.0"
-    "@types/node": "npm:^20.10.5"
-    dotenv: "npm:^16.3.1"
-    eslint: "npm:^8.56.0"
-    prettier: "npm:^3.1.1"
-  languageName: unknown
-  linkType: soft
 
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0

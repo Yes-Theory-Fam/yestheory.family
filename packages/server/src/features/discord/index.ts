@@ -1,3 +1,4 @@
+import {mockClient, mockGuild} from '@answeroverflow/discordjs-mock';
 import {Client, type Guild, IntentsBitField} from 'discord.js';
 import {createServerLogger} from '../../services/logging/log';
 
@@ -35,6 +36,13 @@ export const initialize = async (skipLogin = false): Promise<DiscordValues> => {
   logger.debug('Client is ready, fetching guild!');
   const guild = await client.guilds.fetch(guildId);
   logger.info('Client initialized!');
+
+  return {client, guild};
+};
+
+export const initializeMock = async (): Promise<DiscordValues> => {
+  const client = mockClient();
+  const guild = mockGuild(client);
 
   return {client, guild};
 };

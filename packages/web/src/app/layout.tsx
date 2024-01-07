@@ -3,6 +3,7 @@ import {type PropsWithChildren, Suspense} from 'react';
 import {Footer} from 'ui';
 import {CookieConsent} from '../components/cookie-consent/cookie-consent';
 import {getCurrentUser} from '../context/user/user';
+import {getNavRoutes} from '../lib/features/features';
 import {Nav} from './nav';
 import {Providers} from './providers';
 
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({children}: PropsWithChildren) => {
   const user = await getCurrentUser();
+  const routes = await getNavRoutes();
 
   return (
     <html lang='en'>
@@ -50,7 +52,7 @@ const RootLayout = async ({children}: PropsWithChildren) => {
           <Providers user={user}>
             <CookieConsent />
             <div className='flex min-h-screen flex-col justify-between'>
-              <Nav user={user} />
+              <Nav user={user} routes={routes} />
 
               <main className='mx-auto w-full max-w-7xl px-4 md:px-8'>
                 {children}

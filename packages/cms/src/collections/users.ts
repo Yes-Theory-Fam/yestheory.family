@@ -1,6 +1,7 @@
 import {type GeneratedTypes} from 'payload';
 import parseCookies from 'payload/dist/utilities/parseCookies';
 import {type CollectionConfig} from 'payload/types';
+import {hiddenUnlessOwner} from '../access/hidden-unless-owner';
 import {requireOneOf} from '../access/require-one-of';
 import {YtfAuthStrategy} from '../lib/auth-strategy';
 import {getUserIdFromRequest} from '../lib/get-user-id-from-request';
@@ -49,22 +50,19 @@ export const Users: CollectionConfig = {
     create: requireOneOf(),
     update: requireOneOf(),
     delete: requireOneOf(),
-    read: ({req, id}) => {
+    read: ({req}) => {
       const {user} = req;
       if (!user?.user) return false;
 
       const {roles} = user.user;
       if (roles.includes('owner')) return true;
 
-      // Setting it up this way, hides the users collection from the UI while still allowing the /me endpoint to
-      //   function.
-      if (id) return user.user.id === id;
-
-      return false;
+      return true;
     },
   },
   admin: {
     useAsTitle: 'id',
+    hidden: hiddenUnlessOwner,
   },
   endpoints: [
     {

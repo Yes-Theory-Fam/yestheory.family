@@ -34,7 +34,7 @@ import {type YtfApolloContext} from '../types';
 const logger = createServerLogger('server', 'public');
 
 const allowedPayloadOperations = {
-  Query: ['groupchatSearchToken'],
+  Query: ['groupchatSearchToken', 'Features'],
   Mutation: <string[]>[],
   Subscription: <string[]>[],
 };
@@ -42,14 +42,9 @@ const allowedPayloadOperations = {
 export const launchPublicServer = async () => {
   const additionalOptions: Partial<BuildSchemaOptions> = {};
 
-  // TODO find a reasonably neat way of providing the required secrets to the CI for e2e tests
-  if (process.env.IS_E2E) {
-    additionalOptions.authChecker = () => false;
-  } else {
-    // @ts-expect-error Guild is not considered a Constructable by typedi because it has a private constructor; it still works to resolve the dependency though
-    const guild = Container.get<Guild>(Guild);
-    additionalOptions.authChecker = authChecker(guild);
-  }
+  // @ts-expect-error Guild is not considered a Constructable by typedi because it has a private constructor; it still works to resolve the dependency though
+  const guild = Container.get<Guild>(Guild);
+  additionalOptions.authChecker = authChecker(guild);
 
   const resolvers = await getResolvers(ResolverTarget.PUBLIC);
 

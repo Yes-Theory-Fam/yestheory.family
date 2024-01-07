@@ -17,6 +17,8 @@ RUN yarn workspaces focus && \
 
 FROM base as runtime
 
+RUN apk add curl --no-cache
+
 ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=packages/cms/dist/payload.config.js
 
