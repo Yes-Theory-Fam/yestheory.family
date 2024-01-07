@@ -20,6 +20,12 @@ spec:
           ports:
             - name: next
               containerPort: 3000
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            httpGet:
+              path: /
+              port: 3000
           env:
             - name: SERVER_BACKEND_GRAPHQL_URL
               value: http://ytf-backend-service/graphql

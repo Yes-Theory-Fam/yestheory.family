@@ -22,6 +22,12 @@ spec:
           ports:
             - name: typesense
               containerPort: 8108
+          livenessProbe:
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            httpGet:
+              path: /health
+              port: 8108
           env:
             - name: TYPESENSE_DATA_DIR
               value: /data
