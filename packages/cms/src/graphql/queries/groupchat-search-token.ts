@@ -1,5 +1,6 @@
 import {type GeneratedTypes} from 'payload';
 import {apiKey} from '../../dataseeder/seed-typesense-key';
+import {getAuthStateFromRequest} from '../../lib/get-auth-state-from-request';
 import {typesenseClient} from '../../lib/typesense';
 import {type QueryFactory} from '../../utils/merge-queries';
 
@@ -12,11 +13,11 @@ export const groupchatSearchTokenQuery: QueryFactory<string, void> = (
   type: new GraphQL.GraphQLNonNull(GraphQL.GraphQLString),
   args: {},
   resolve: async (_: unknown, __, context) => {
-    const isAuthenticated = !!context.req.user;
+    const {isLoggedIn} = await getAuthStateFromRequest(context.req);
 
     const accessiblePlatforms: GroupchatPlatform[] = ['facebook'];
 
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       accessiblePlatforms.push('discord', 'signal', 'telegram', 'whatsapp');
     }
 
