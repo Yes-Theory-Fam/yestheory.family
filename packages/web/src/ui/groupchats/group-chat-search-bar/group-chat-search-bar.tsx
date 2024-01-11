@@ -41,7 +41,7 @@ export const GroupChatSearchBar: FC<GroupChatSearchBarProps> = ({
   search,
   onSearchChange,
 }) => (
-  <div className='container mx-auto max-w-4xl'>
+  <div className='container mx-auto max-w-4xl space-y-2'>
     <SearchInput
       onChange={(newValue) =>
         onSearchChange(
