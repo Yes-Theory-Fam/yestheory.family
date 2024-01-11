@@ -8035,6 +8035,7 @@ __metadata:
     "@types/eslint": "npm:^8.56.1"
     dotenv: "npm:^16.3.1"
     eslint: "npm:^8.56.0"
+    html-entities: "npm:^2.4.0"
     node-html-parser: "npm:^6.1.12"
     prettier: "npm:^3.1.1"
     tsx: "npm:^4.7.0"
@@ -13640,7 +13641,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-entities@npm:^2.1.0":
+"html-entities@npm:^2.1.0, html-entities@npm:^2.4.0":
   version: 2.4.0
   resolution: "html-entities@npm:2.4.0"
   checksum: 646f2f19214bad751e060ceef4df98520654a1d0cd631b55d45504df2f0aaf8a14d8c0a5a4f92b353be298774d856157ac2d04a031d78889c9011892078ca157
