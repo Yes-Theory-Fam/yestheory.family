@@ -129,8 +129,10 @@ export const Groupchats: CollectionConfig = {
       type: 'number',
       min: 0,
       max: 100,
-      required: true,
       defaultValue: 0,
+      access: {
+        read: requireOneOf('groupchats-admin'),
+      },
       admin: {
         description:
           'This value may be used to push results. A value of 0 means no promotion. Any value between 1 and 100 may be used to order promoted groupchats.',
@@ -221,6 +223,7 @@ export const Groupchats: CollectionConfig = {
         const typesenseDoc = {
           ...sanitized,
           id: doc.id.toString(),
+          promoted: doc.promoted ?? 0,
           showUnauthenticated: doc.showUnauthenticated ?? false,
           keywords: keywords.docs.map((k) => k.value),
         };
