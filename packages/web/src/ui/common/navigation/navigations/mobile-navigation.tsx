@@ -25,20 +25,22 @@ interface MobileHeadlineProps {
     Omit<SVGProps<SVGSVGElement>, 'ref'> & {title?: string; titleId?: string}
   >;
   onClick: () => void;
+  name: string;
 }
 
 const MobileHeadline: FC<MobileHeadlineProps> = ({
   logoVariant,
   icon: Icon,
   onClick,
+  name,
 }) => {
   return (
     <div className='flex items-center justify-between p-4 md:hidden'>
-      <Link hideUnderline href='/'>
+      <Link hideUnderline href='/' aria-label='Home'>
         <Logo variant={logoVariant} size='small' />
       </Link>
 
-      <button className='p-2' onClick={onClick}>
+      <button className='p-2' onClick={onClick} aria-label={name}>
         <Icon className='h-6 w-6' />
       </button>
     </div>
@@ -69,6 +71,7 @@ export const MobileNavigation: FC<NavigationProps> = ({
         logoVariant='color'
         icon={Bars3Icon}
         onClick={() => setIsOpen(true)}
+        name='Menu'
       />
 
       <AnimatePresence>
@@ -91,6 +94,7 @@ export const MobileNavigation: FC<NavigationProps> = ({
                 logoVariant='white'
                 icon={XMarkIcon}
                 onClick={() => setIsOpen(false)}
+                name='Close menu'
               />
             </div>
 
