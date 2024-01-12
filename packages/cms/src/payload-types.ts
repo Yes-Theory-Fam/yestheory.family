@@ -39,6 +39,7 @@ export interface Groupchat {
   description?: string | null;
   url: string;
   keywords?: (number | GroupchatKeyword)[] | null;
+  showUnauthenticated?: boolean | null;
   promoted: number;
   owners?: (string | User)[] | null;
   updatedAt: string;

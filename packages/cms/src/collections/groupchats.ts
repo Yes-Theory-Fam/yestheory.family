@@ -71,6 +71,19 @@ export const Groupchats: CollectionConfig = {
         {label: 'WhatsApp', value: 'whatsapp'},
       ],
     },
+    {
+      name: 'showUnauthenticated',
+      type: 'checkbox',
+      label: 'Show to unauthenticated users?',
+      defaultValue: false,
+      admin: {
+        description:
+          'This potentially allows bots to scrape this groupchat from the page. If you have measures to prevent botting, you can select this for more visibility.',
+        // Facebook groups / Instagram profiles are always shown, so we just hide this checkbox in that case
+        condition: (data) =>
+          data.platform && !['facebook', 'instagram'].includes(data.platform),
+      },
+    },
     {name: 'description', type: 'text'},
     {
       name: 'url',
@@ -92,6 +105,9 @@ export const Groupchats: CollectionConfig = {
         ],
       },
       validate: (url, {data}) => {
+        // Validate only server-side to allow beforeValidate to run properly before this.
+        if (typeof window !== 'undefined') return true;
+
         if (!url) return 'This field is required.';
 
         const urlMatcher = platformUrlMatchers[data.platform];
@@ -116,8 +132,10 @@ export const Groupchats: CollectionConfig = {
       type: 'number',
       min: 0,
       max: 100,
-      required: true,
       defaultValue: 0,
+      access: {
+        read: requireOneOf('groupchats-admin'),
+      },
       admin: {
         description:
           'This value may be used to push results. A value of 0 means no promotion. Any value between 1 and 100 may be used to order promoted groupchats.',
@@ -208,6 +226,8 @@ export const Groupchats: CollectionConfig = {
         const typesenseDoc = {
           ...sanitized,
           id: doc.id.toString(),
+          promoted: doc.promoted ?? 0,
+          showUnauthenticated: doc.showUnauthenticated ?? false,
           keywords: keywords.docs.map((k) => k.value),
         };
         await typesenseClient

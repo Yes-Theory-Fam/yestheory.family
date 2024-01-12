@@ -33,6 +33,7 @@ const scrapeFromWix = async (url: string): Promise<Groupchat[]> => {
     return {
       url,
       name: a.innerText,
+      showUnauthenticated: true,
     };
   });
 };

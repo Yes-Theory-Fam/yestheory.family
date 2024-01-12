@@ -40,6 +40,10 @@ const schema: CollectionCreateSchema = {
       facet: true,
     },
     {
+      name: 'showUnauthenticated',
+      type: 'bool',
+    },
+    {
       name: 'promoted',
       type: 'int32',
     },
@@ -73,9 +77,10 @@ const syncGroupchatsToTypesense = async () => {
     });
 
     const typesenseChats = groupchats.map(
-      ({id, createdAt, updatedAt, keywords, ...rest}) => ({
+      ({id, createdAt, updatedAt, keywords, showUnauthenticated, ...rest}) => ({
         ...rest,
         id: id.toString(),
+        showUnauthenticated: showUnauthenticated ?? false,
         keywords:
           keywords?.map((keyword) =>
             typeof keyword === 'object' ? keyword.value : undefined,
