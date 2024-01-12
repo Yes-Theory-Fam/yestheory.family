@@ -34,16 +34,8 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
         <p>Not seeing what you are looking for?</p>
         <p>
           <InformationCircleIcon className='mr-2 inline-block h-6 w-6 text-brand-800' />
-          Ask the group&apos;s admin to shoot me a message{' '}
-          <a
-            className='underline decoration-brand-500'
-            href='https://discord.com/users/290193372407136256'
-            target='_blank'
-            rel='noreferrer'
-          >
-            over on Discord
-          </a>{' '}
-          to get the group on here!
+          Ask the group&apos;s admin to head over{' '}
+          <a href={process.env.NEXT_PUBLIC_PAYLOAD_URL}>here</a>!
         </p>
 
         {!isLoggedIn && (
