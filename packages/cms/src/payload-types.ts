@@ -29,7 +29,13 @@ export interface User {
 export interface Groupchat {
   id: number;
   name: string;
-  platform: 'discord' | 'facebook' | 'instagram' | 'signal' | 'telegram' | 'whatsapp';
+  platform:
+    | 'discord'
+    | 'facebook'
+    | 'instagram'
+    | 'signal'
+    | 'telegram'
+    | 'whatsapp';
   description?: string | null;
   url: string;
   keywords?: (number | GroupchatKeyword)[] | null;
@@ -80,7 +86,6 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

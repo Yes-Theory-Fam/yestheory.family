@@ -1,5 +1,4 @@
 import {type GeneratedTypes} from 'payload';
-import {type Access} from 'payload/config';
 import {type FieldAccess, type TypeWithID} from 'payload/types';
 import {type SessionUser} from '../collections/users';
 
