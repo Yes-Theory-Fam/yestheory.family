@@ -35,7 +35,14 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
         <p>
           <InformationCircleIcon className='mr-2 inline-block h-6 w-6 text-brand-800' />
           Ask the group&apos;s admin to head over{' '}
-          <a href={process.env.NEXT_PUBLIC_PAYLOAD_URL}>here</a>!
+          <a
+            href={process.env.NEXT_PUBLIC_PAYLOAD_URL}
+            target='_blank'
+            rel='nofollow noreferrer'
+          >
+            here
+          </a>
+          !
         </p>
 
         {!isLoggedIn && (
