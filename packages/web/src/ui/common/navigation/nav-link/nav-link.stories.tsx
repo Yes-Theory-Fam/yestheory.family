@@ -11,7 +11,7 @@ const config = {
   },
   decorators: [
     (Story) => (
-      <div className='flex'>
+      <div className='inline-flex'>
         <Story />
       </div>
     ),

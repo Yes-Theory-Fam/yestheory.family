@@ -38,12 +38,14 @@ spec:
             periodSeconds: 10
             exec:
               command:
-                - wget
-                - '--post-data=""'
-                - http://localhost:5002/_yesbot-schema
-                - '-O'
-                - /dev/null
-                - '-q'
+                - curl
+                - '-X'
+                - POST
+                - '-H'
+                - 'Content-Type: application/json'
+                - '-d'
+                - '{"query": "query test { Features { docs { id } } }"}'
+                - http://localhost:5000/graphql
           env:
             - name: NODE_ENV
               value: production

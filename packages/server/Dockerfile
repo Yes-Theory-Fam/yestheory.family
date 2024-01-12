@@ -38,6 +38,8 @@ RUN yarn prisma generate && yarn build
 FROM node:20.9-alpine
 WORKDIR /app
 
+RUN apk add curl --no-cache
+
 # Copy relevant data from builder
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/packages/server/dist ./dist
