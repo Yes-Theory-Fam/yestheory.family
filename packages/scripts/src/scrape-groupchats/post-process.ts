@@ -1,3 +1,4 @@
+import {decode} from 'html-entities';
 import {type Groupchat, type ProcessedGroupchat} from './groupchat.js';
 import {handleBitLy} from './platform-handlers/bit-ly.js';
 import {handleLinkTree} from './platform-handlers/link-tree.js';
@@ -60,6 +61,9 @@ export const postProcess = async (
       );
       continue;
     }
+
+    // We might scrape things like &amp;
+    groupchat.name = decode(groupchat.name);
 
     validPlatformGroupchats.push({...groupchat, platform});
   }

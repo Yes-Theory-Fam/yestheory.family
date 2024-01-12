@@ -17,11 +17,15 @@ export const DesktopNavigation: FC<NavigationProps> = ({
   }, [links]);
 
   return (
-    <div className='mx-auto hidden h-28 w-full max-w-7xl items-center gap-12 px-6 md:flex'>
+    <div className='mx-auto hidden h-28 w-full max-w-7xl items-center gap-8 px-6 md:flex'>
       <Link hideUnderline className='mr-auto' href='/'>
         <Logo variant='color' size='medium' />
       </Link>
       {navLinks}
+      <div className='h-full py-10'>
+        <div className='h-full w-px bg-gray-500' />
+      </div>
+
       {user ? (
         <Profile variant='desktop' user={user} menuItems={menuItems} />
       ) : (
