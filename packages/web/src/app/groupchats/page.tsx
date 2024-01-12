@@ -8,6 +8,8 @@ import {GroupChatSearch} from './components/group-chat-search';
 
 export const metadata: Metadata = {
   title: 'Groupchats',
+  description:
+    'Search the many groupchats of the Yes Fam to engage with the community',
 };
 
 const GroupChats = async () => {
