@@ -10,9 +10,17 @@ import {GroupChatSearchBar} from 'ui/groupchats/client';
 import type {Groupchat_Platform} from '../../../__generated__/graphql';
 import {navigateToLogin} from '../../../context/user/navigate-to-login';
 import {Link} from '../../../ui';
-import {useGroupchatSearch} from './use-groupchat-search';
+import {type GroupchatResult, useGroupchatSearch} from './use-groupchat-search';
 
-export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
+export type GroupChatSearchProps = {
+  isLoggedIn: boolean;
+  initialGroupchats: GroupchatResult[];
+};
+
+export const GroupChatSearch: FC<GroupChatSearchProps> = ({
+  isLoggedIn,
+  initialGroupchats,
+}) => {
   const [search, setSearch] = useState<{
     query: string;
     platforms: Groupchat_Platform[];
@@ -21,6 +29,7 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
   const {loading, groupchats} = useGroupchatSearch(
     search.query,
     search.platforms,
+    initialGroupchats,
   );
 
   return (

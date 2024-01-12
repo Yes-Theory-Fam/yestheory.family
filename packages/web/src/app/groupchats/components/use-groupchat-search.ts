@@ -1,8 +1,8 @@
 import {useState, useEffect, useCallback} from 'react';
-import {type SearchClient} from 'typesense';
 import type {Groupchat_Platform} from '../../../__generated__/graphql';
 import {useTypesense} from '../../../context/typesense';
 import {useDebouncedValue} from '../../../lib/hooks/use-debounced-value';
+import {fetchResults} from './fetch-groupchats';
 
 export type GroupchatResult = {
   id: string;
@@ -14,46 +14,6 @@ export type GroupchatResult = {
   promoted: number;
 };
 
-const pageSize = 15;
-
-const fetchResults = async (
-  queryText: string,
-  platforms: Groupchat_Platform[],
-  searchClient: SearchClient,
-  page = 1,
-): Promise<[GroupchatResult[], hasNext: boolean]> => {
-  const filterBy =
-    platforms.length === 0 ? '' : `platform:[${platforms.join(',')}]`;
-
-  const {
-    hits,
-    found,
-    page: returnedPage,
-  } = await searchClient
-    .collections<GroupchatResult>('groupchats')
-    .documents()
-    .search(
-      {
-        q: queryText,
-        query_by: 'name,keywords,description',
-        filter_by: filterBy,
-        sort_by: 'promoted:desc',
-        per_page: pageSize,
-        page,
-      },
-      {},
-    );
-
-  const results =
-    hits
-      ?.map((h) => h.document)
-      .filter((x): x is GroupchatResult => 'name' in x) ?? [];
-
-  const hasNext = returnedPage * pageSize < found;
-
-  return [results, hasNext];
-};
-
 export type UseGroupchatSearchReturn = {
   groupchats: GroupchatResult[];
   loading: boolean;
@@ -62,13 +22,14 @@ export type UseGroupchatSearchReturn = {
 export const useGroupchatSearch = (
   queryText: string,
   platforms: Groupchat_Platform[],
+  initialGroupchats: GroupchatResult[],
 ): UseGroupchatSearchReturn => {
   const {client} = useTypesense();
 
   const [nextPage, setNextPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [chats, setChats] = useState<GroupchatResult[]>([]);
+  const [chats, setChats] = useState<GroupchatResult[]>(initialGroupchats);
 
   queryText = useDebouncedValue(queryText, 300);
 
