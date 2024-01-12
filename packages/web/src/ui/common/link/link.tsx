@@ -30,7 +30,7 @@ export const Link: FC<PropsWithChildren<LinkProps>> = ({
     <NextLink
       className={colorVariants(
         variant,
-        'border-b-2 border-transparent no-underline',
+        'border-b-2 border-transparent underline',
         active && (inverted ? 'border-white' : 'border-brand-800'),
         inverted && 'text-white',
         !hideUnderline &&

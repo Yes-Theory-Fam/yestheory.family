@@ -4,12 +4,12 @@ import {
   ExclamationTriangleIcon,
   InformationCircleIcon,
 } from '@heroicons/react/20/solid';
-import Link from 'next/link';
 import {type FC, Fragment, useState} from 'react';
 import {GroupChatResult} from 'ui/groupchats';
 import {GroupChatSearchBar} from 'ui/groupchats/client';
 import type {Groupchat_Platform} from '../../../__generated__/graphql';
 import {navigateToLogin} from '../../../context/user/navigate-to-login';
+import {Link} from '../../../ui';
 import {useGroupchatSearch} from './use-groupchat-search';
 
 export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
@@ -35,13 +35,13 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
         <p>
           <InformationCircleIcon className='mr-2 inline-block h-6 w-6 text-brand-800' />
           Ask the group&apos;s admin to head over{' '}
-          <a
+          <Link
             href={process.env.NEXT_PUBLIC_PAYLOAD_URL}
             target='_blank'
             rel='nofollow noreferrer'
           >
             here
-          </a>
+          </Link>
           !
         </p>
 
@@ -49,11 +49,7 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
           <p>
             <ExclamationTriangleIcon className='mr-2 inline-block h-6 w-6 text-warning' />
             Only specific chats are available without{' '}
-            <Link
-              href='#'
-              onClick={() => navigateToLogin()}
-              className='underline decoration-brand-500'
-            >
+            <Link href='#' onClick={() => navigateToLogin()}>
               logging in with Discord
             </Link>
             .
