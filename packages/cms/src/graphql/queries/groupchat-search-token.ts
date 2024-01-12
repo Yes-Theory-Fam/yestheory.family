@@ -15,13 +15,15 @@ export const groupchatSearchTokenQuery: QueryFactory<string, void> = (
   resolve: async (_: unknown, __, context) => {
     const {isLoggedIn} = await getAuthStateFromRequest(context.req);
 
-    const accessiblePlatforms: GroupchatPlatform[] = ['facebook'];
+    const accessiblePlatforms: GroupchatPlatform[] = ['facebook', 'instagram'];
 
     if (isLoggedIn) {
       accessiblePlatforms.push('discord', 'signal', 'telegram', 'whatsapp');
     }
 
-    const filterBy = `platform:=[${accessiblePlatforms.join(',')}]`;
+    const filterBy = `platform:=[${accessiblePlatforms.join(
+      ',',
+    )}] || showUnauthenticated: true`;
 
     return typesenseClient
       .keys()

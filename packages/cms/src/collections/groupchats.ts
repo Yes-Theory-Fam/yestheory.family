@@ -71,6 +71,19 @@ export const Groupchats: CollectionConfig = {
         {label: 'WhatsApp', value: 'whatsapp'},
       ],
     },
+    {
+      name: 'showUnauthenticated',
+      type: 'checkbox',
+      label: 'Show to unauthenticated users?',
+      defaultValue: false,
+      admin: {
+        description:
+          'This potentially allows bots to scrape this groupchat from the page. If you have measures to prevent botting, you can select this for more visibility.',
+        // Facebook groups / Instagram profiles are always shown, so we just hide this checkbox in that case
+        condition: (data) =>
+          data.platform && !['facebook', 'instagram'].includes(data.platform),
+      },
+    },
     {name: 'description', type: 'text'},
     {
       name: 'url',
@@ -208,6 +221,7 @@ export const Groupchats: CollectionConfig = {
         const typesenseDoc = {
           ...sanitized,
           id: doc.id.toString(),
+          showUnauthenticated: doc.showUnauthenticated ?? false,
           keywords: keywords.docs.map((k) => k.value),
         };
         await typesenseClient

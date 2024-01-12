@@ -49,7 +49,7 @@ export const GroupChatSearch: FC<{isLoggedIn: boolean}> = ({isLoggedIn}) => {
         {!isLoggedIn && (
           <p>
             <ExclamationTriangleIcon className='mr-2 inline-block h-6 w-6 text-warning' />
-            Only Facebook groups and Instagram pages are available without{' '}
+            Only specific chats are available without{' '}
             <Link
               href='#'
               onClick={() => navigateToLogin()}
