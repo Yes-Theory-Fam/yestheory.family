@@ -105,6 +105,9 @@ export const Groupchats: CollectionConfig = {
         ],
       },
       validate: (url, {data}) => {
+        // Validate only server-side to allow beforeValidate to run properly before this.
+        if (typeof window !== 'undefined') return true;
+
         if (!url) return 'This field is required.';
 
         const urlMatcher = platformUrlMatchers[data.platform];
