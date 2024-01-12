@@ -12,7 +12,7 @@ module.exports = {
         'image-right': '15px 15px 60px #0067ff40',
       },
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'],
+        sans: ['var(--font-roboto)', 'sans-serif'],
       },
       height: {
         header: '600px',

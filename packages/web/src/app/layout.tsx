@@ -1,4 +1,5 @@
 import {type Metadata} from 'next';
+import {Roboto} from 'next/font/google';
 import {type PropsWithChildren, Suspense} from 'react';
 import {Footer} from 'ui';
 import {CookieConsent} from '../components/cookie-consent/cookie-consent';
@@ -8,6 +9,14 @@ import {Nav} from './nav';
 import {Providers} from './providers';
 
 import '../../styles/globals.css';
+
+const roboto = Roboto({
+  weight: ['400', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-roboto',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.FRONTEND_URL),
@@ -40,7 +49,7 @@ const RootLayout = async ({children}: PropsWithChildren) => {
   const routes = await getNavRoutes();
 
   return (
-    <html lang='en'>
+    <html lang='en' className={roboto.variable}>
       <head>
         <link rel='manifest' href='/site.webmanifest' />
         <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#154eff' />
