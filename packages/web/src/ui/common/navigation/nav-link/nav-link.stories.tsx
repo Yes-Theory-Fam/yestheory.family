@@ -1,45 +1,57 @@
-import {type StoryFn, type Meta} from '@storybook/react';
+import {type Meta, type StoryObj} from '@storybook/react';
 import {type NavLinkDefinition} from '../navigation.types';
 import {NavLink} from './nav-link';
 
-export default {
+const config = {
   title: 'Common/Navigation/NavLink',
   component: NavLink,
+  args: {
+    href: '/example',
+    text: 'Example',
+  },
+  decorators: [
+    (Story) => (
+      <div className='flex'>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<NavLinkDefinition>;
 
-const Template: StoryFn<NavLinkDefinition> = (args) => (
-  <NavLink {...args} href='/example' text='Example' />
-);
+export default config;
 
-export const LinkOnActiveSegment = Template.bind({});
-LinkOnActiveSegment.storyName = 'Link on active segment';
-LinkOnActiveSegment.parameters = {
-  nextjs: {
-    appDirectory: true,
-    navigation: {
-      segments: ['example'],
+export const LinkOnActiveSegment: StoryObj<typeof config> = {
+  name: 'Link on active segment',
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        segments: ['example'],
+      },
     },
   },
 };
 
-export const LinkOnInactiveSegment = Template.bind({});
-LinkOnInactiveSegment.storyName = 'Link on inactive segment';
-LinkOnInactiveSegment.parameters = {
-  nextjs: {
-    appDirectory: true,
-    navigation: {
-      segments: ['foo'],
+export const LinkOnInactiveSegment: StoryObj<typeof config> = {
+  name: 'Link on inactive segment',
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        segments: ['foo'],
+      },
     },
   },
 };
 
-export const LinkOnRootSegment = Template.bind({});
-LinkOnRootSegment.storyName = 'Link on root segment';
-LinkOnRootSegment.parameters = {
-  nextjs: {
-    appDirectory: true,
-    navigation: {
-      segments: [],
+export const LinkOnRootSegment: StoryObj<typeof config> = {
+  name: 'Link on root segment',
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        segments: [],
+      },
     },
   },
 };
