@@ -30,6 +30,6 @@ spec:
             - name: SERVER_BACKEND_GRAPHQL_URL
               value: http://ytf-backend-service/graphql
             - name: TYPESENSE_DIRECT_URL
-              value: http://ytf-typesense-service
+              value: http://ytf-typesense-service:8108
             - name: FRONTEND_URL
               value: https://{{ .Values.common.baseDomain }}
