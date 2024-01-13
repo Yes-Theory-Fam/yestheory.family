@@ -21,7 +21,7 @@ export const NavLink: FC<NavLinkDefinition> = ({href, text, ...rest}) => {
     <Link
       {...rest}
       href={href}
-      className='uppercase'
+      className='uppercase no-underline'
       variant='black'
       active={active}
     >

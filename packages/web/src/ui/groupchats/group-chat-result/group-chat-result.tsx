@@ -99,7 +99,7 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
         href={url}
         className={twMerge(
           gridClasses.join,
-          'sm:self-center sm:justify-self-end',
+          'w-max sm:self-center sm:justify-self-end',
         )}
         target='_blank'
         rel='noreferrer'
