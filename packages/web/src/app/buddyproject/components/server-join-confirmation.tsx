@@ -25,7 +25,12 @@ export const ServerJoinConfirmationModal = createNiceModal(() => {
   ] satisfies ModalActionButton[];
 
   return (
-    <Modal title='Just to be sure!' onCancel={cancel} actions={actions}>
+    <Modal
+      title='Just to be sure!'
+      ariaTitle='Server Join confirmation'
+      onCancel={cancel}
+      actions={actions}
+    >
       <p>
         To join the Buddy project, you have to join the Yes Fam Discord server.
         Continue?

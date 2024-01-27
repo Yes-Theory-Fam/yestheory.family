@@ -426,7 +426,8 @@
           "name": "description",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "''"
         },
         "enabled": {
           "name": "enabled",

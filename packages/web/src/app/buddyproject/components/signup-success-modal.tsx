@@ -18,7 +18,12 @@ export const SignupSuccessModal = createNiceModal<{hasDmsClosed: boolean}>(
     ];
 
     return (
-      <Modal title='Everything went well!' onCancel={close} actions={actions}>
+      <Modal
+        title='Everything went well!'
+        ariaTitle='Success'
+        onCancel={close}
+        actions={actions}
+      >
         <p>
           You are now signed up to the Buddy Project! YesBot will message you
           soon with your buddy and the questions. Until then, feel free to
