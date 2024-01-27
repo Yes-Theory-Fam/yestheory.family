@@ -9,6 +9,7 @@
 export interface Config {
   collections: {
     users: User;
+    media: Media;
     groupchats: Groupchat;
     'groupchat-keywords': GroupchatKeyword;
     feature: Feature;
@@ -26,21 +27,26 @@ export interface User {
   apiKey?: string | null;
   apiKeyIndex?: string | null;
 }
+export interface Media {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
 export interface Groupchat {
   id: number;
   name: string;
-  platform:
-    | 'discord'
-    | 'facebook'
-    | 'instagram'
-    | 'signal'
-    | 'telegram'
-    | 'whatsapp';
+  platform: 'discord' | 'facebook' | 'instagram' | 'signal' | 'telegram' | 'whatsapp';
+  showUnauthenticated?: boolean | null;
   description?: string | null;
   url: string;
   keywords?: (number | GroupchatKeyword)[] | null;
-  showUnauthenticated?: boolean | null;
-  promoted: number;
+  promoted?: number | null;
   owners?: (string | User)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -56,6 +62,8 @@ export interface Feature {
   name: string;
   pathPrefix: string;
   navPath?: string | null;
+  teaserImage: number | Media;
+  description: string;
   enabled?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -86,6 +94,7 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

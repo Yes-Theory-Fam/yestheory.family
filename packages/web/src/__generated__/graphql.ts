@@ -80,6 +80,29 @@ export type User_Roles_MutationInput =
   | "groupchats_admin"
   | "owner";
 
+export type HomepageFeaturesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type HomepageFeaturesQuery = {
+  __typename?: "Query";
+  Features?: {
+    __typename?: "Features";
+    docs?: Array<{
+      __typename?: "Feature";
+      id?: number | null;
+      name: string;
+      navPath?: string | null;
+      description: string;
+      teaserImage: {
+        __typename?: "Media";
+        id?: number | null;
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      };
+    } | null> | null;
+  } | null;
+};
+
 export type ServerStateQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ServerStateQuery = {
@@ -159,6 +182,24 @@ export type FeaturesQuery = {
   } | null;
 };
 
+export const HomepageFeaturesDocument = gql`
+  query HomepageFeatures {
+    Features(where: { enabled: { equals: true } }) {
+      docs {
+        id
+        name
+        navPath
+        description
+        teaserImage {
+          id
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`;
 export const ServerStateDocument = gql`
   query ServerState {
     me {
@@ -241,6 +282,22 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper,
 ) {
   return {
+    HomepageFeatures(
+      variables?: HomepageFeaturesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<HomepageFeaturesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<HomepageFeaturesQuery>(
+            HomepageFeaturesDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        "HomepageFeatures",
+        "query",
+        variables,
+      );
+    },
     ServerState(
       variables?: ServerStateQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,

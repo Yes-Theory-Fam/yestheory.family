@@ -6,6 +6,7 @@ import {buildConfig, type Config} from 'payload/config';
 import {Features} from './collections/features';
 import {GroupchatKeywords} from './collections/groupchat-keywords';
 import {Groupchats} from './collections/groupchats';
+import {Media} from './collections/media';
 import {Users} from './collections/users';
 import {AfterLogin} from './components/after-login/after-login';
 import {mimicUserOperationMutation} from './graphql/mutations/mimic-user-operation';
@@ -27,7 +28,7 @@ const config: Config = {
     },
   },
   editor: slateEditor({}),
-  collections: [Users, Groupchats, GroupchatKeywords, Features],
+  collections: [Users, Media, Groupchats, GroupchatKeywords, Features],
   db: postgresAdapter({
     migrationDir: path.resolve(__dirname, 'migrations'),
     pool: {connectionString: process.env.DATABASE_URI},
@@ -46,6 +47,7 @@ const config: Config = {
     }),
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
+  serverURL: process.env.SERVER_URL,
 };
 
 export default buildConfig(config);

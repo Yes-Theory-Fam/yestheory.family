@@ -1,0 +1,16 @@
+query HomepageFeatures {
+  Features(where: {enabled: {equals: true}}) {
+    docs {
+      id
+      name
+      navPath
+      description
+      teaserImage {
+        id
+        url
+        width
+        height
+      }
+    }
+  }
+}

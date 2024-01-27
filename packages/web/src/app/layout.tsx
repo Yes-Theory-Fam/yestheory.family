@@ -63,9 +63,7 @@ const RootLayout = async ({children}: PropsWithChildren) => {
             <div className='flex min-h-screen flex-col justify-between'>
               <Nav user={user} routes={routes} />
 
-              <main className='mx-auto w-full max-w-7xl px-4 md:px-8'>
-                {children}
-              </main>
+              <main>{children}</main>
               <div className='bg-white pt-6'>
                 <Footer
                   links={[

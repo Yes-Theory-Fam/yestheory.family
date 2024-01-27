@@ -29,8 +29,22 @@ export const Features: CollectionConfig = {
       name: 'navPath',
       type: 'text',
       hooks: {
-        beforeValidate: [({value, data}) => value ?? data.pathPrefix],
+        beforeValidate: [
+          ({value, data}) => value ?? data.pathPrefix,
+          ({value}) => (value.startsWith('/') ? value : '/' + value),
+        ],
       },
+    },
+    {
+      name: 'teaserImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'text',
+      required: true,
     },
     {
       name: 'enabled',
