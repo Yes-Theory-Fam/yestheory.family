@@ -165,3 +165,5 @@ build
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
+
+src/media/
