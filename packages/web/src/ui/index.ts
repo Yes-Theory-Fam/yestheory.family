@@ -1,4 +1,5 @@
 export * from './common/button/button';
+export * from './common/container/container';
 export * from './common/footer/footer';
 export * from './common/heading/heading';
 export * from './common/image/image';

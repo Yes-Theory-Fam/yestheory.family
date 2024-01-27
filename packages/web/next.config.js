@@ -9,6 +9,23 @@ const config = (phase) => ({
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3001',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.staging.yestheory.family',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.yestheory.family',
+      },
+    ],
+  },
   rewrites: () => [
     {
       source: '/graphql',

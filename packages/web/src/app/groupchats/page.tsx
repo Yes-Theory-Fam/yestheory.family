@@ -1,5 +1,5 @@
 import {type Metadata} from 'next';
-import {Heading} from 'ui';
+import {Container, Heading} from 'ui';
 import {getTypesenseClient, TypesenseProvider} from '../../context/typesense';
 import {getIsLoggedIn} from '../../context/user/user';
 import {ensureNavEnabled} from '../../lib/features/features';
@@ -34,16 +34,18 @@ const GroupChats = async () => {
   const initialGroupchats = await getInitialGroupchats(apiKey);
 
   return (
-    <div className='mt-28'>
-      <Heading frontText='Group' blueText='chats' />
+    <Container>
+      <div className='mt-28'>
+        <Heading frontText='Group' blueText='chats' />
 
-      <TypesenseProvider apiKey={apiKey}>
-        <GroupChatSearch
-          initialGroupchats={initialGroupchats}
-          isLoggedIn={isLoggedIn}
-        />
-      </TypesenseProvider>
-    </div>
+        <TypesenseProvider apiKey={apiKey}>
+          <GroupChatSearch
+            initialGroupchats={initialGroupchats}
+            isLoggedIn={isLoggedIn}
+          />
+        </TypesenseProvider>
+      </div>
+    </Container>
   );
 };
 

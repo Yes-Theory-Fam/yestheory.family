@@ -7,5 +7,5 @@ test('has title', async ({page}) => {
   await expect(page).toHaveTitle(/YesTheory Family/);
 
   await page.getByRole('button', {name: 'Accept'}).click();
-  await expect(page.getByText('We are happy to have you')).toBeVisible();
+  await expect(page.getByText('Dive in')).toBeVisible();
 });

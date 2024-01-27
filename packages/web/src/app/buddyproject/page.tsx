@@ -1,5 +1,5 @@
 import {type Metadata} from 'next';
-import {Image} from 'ui';
+import {Container, Image} from 'ui';
 import {InfoGrid} from 'ui/buddyproject';
 import {ScrollToActionContainer} from 'ui/client';
 import {buddyProjectSvg, yesbotBuddyProjectWebp} from '../../../assets';
@@ -64,14 +64,16 @@ const Page = async () => {
   return (
     <>
       <CTA />
-      <div className='mx-auto my-6 flex min-h-[75vh] flex-col items-center justify-center gap-8'>
-        <InfoGrid state={status} buddyName={buddy?.username ?? 'Unmatched'} />
-        <BuddyProjectButton
-          state={status}
-          isLoggedIn={isLoggedIn}
-          isOnServer={isOnServer}
-        />
-      </div>
+      <Container>
+        <div className='mx-auto my-6 flex min-h-[75vh] flex-col items-center justify-center gap-8'>
+          <InfoGrid state={status} buddyName={buddy?.username ?? 'Unmatched'} />
+          <BuddyProjectButton
+            state={status}
+            isLoggedIn={isLoggedIn}
+            isOnServer={isOnServer}
+          />
+        </div>
+      </Container>
     </>
   );
 };

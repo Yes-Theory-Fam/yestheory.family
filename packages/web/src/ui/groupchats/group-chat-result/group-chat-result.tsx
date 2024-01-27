@@ -55,7 +55,6 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
   description,
   keywords,
   url,
-  promoted,
 }) => {
   const {Icon, color} = platformIcons[platform];
   const maxKeywords = 3;
@@ -77,11 +76,6 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
 
       <p className={twMerge(gridClasses.title, 'font-bold capitalize')}>
         {name.toLowerCase()}
-        {promoted ? (
-          <span className='ml-1 text-xs font-normal text-gray-500'>
-            (Promoted)
-          </span>
-        ) : undefined}
       </p>
 
       <div className={twMerge(gridClasses.meta, 'space-x-2')}>
