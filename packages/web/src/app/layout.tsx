@@ -62,7 +62,6 @@ const RootLayout = async ({children}: PropsWithChildren) => {
             <CookieConsent />
             <div className='flex min-h-screen flex-col justify-between'>
               <Nav user={user} routes={routes} />
-
               <main>{children}</main>
               <div className='bg-white pt-6'>
                 <Footer

@@ -13,6 +13,7 @@ export const ModalStory: StoryObj<typeof config> = {
   name: 'Modal',
   args: {
     title: 'I am a modal',
+    ariaTitle: 'I am a modal',
     onCancel: undefined,
     actions: [{text: 'Interesting', onClick: action('Interesting clicked')}],
     children: (

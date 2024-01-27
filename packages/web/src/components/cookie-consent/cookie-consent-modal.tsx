@@ -38,7 +38,7 @@ export const CookieConsentModal = createNiceModal(() => {
   ] satisfies ModalActionButton[];
 
   return (
-    <Modal title='Real quick!' actions={actions}>
+    <Modal title='Real quick!' actions={actions} ariaTitle='Cookie consent'>
       <p>
         This website uses cookies to function. We promise to only use cookies
         that are required to make the website functional!

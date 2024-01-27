@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS "feature_rels" (
 	"media_id" integer
 );
 
-ALTER TABLE "feature" ADD COLUMN "description" varchar NOT NULL;
+ALTER TABLE "feature" ADD COLUMN "description" varchar NOT NULL DEFAULT '';
 CREATE INDEX IF NOT EXISTS "created_at_idx" ON "media" ("created_at");
 CREATE UNIQUE INDEX IF NOT EXISTS "filename_idx" ON "media" ("filename");
 CREATE INDEX IF NOT EXISTS "order_idx" ON "feature_rels" ("order");
