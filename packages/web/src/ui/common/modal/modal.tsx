@@ -20,12 +20,14 @@ export type ModalActionButton = Omit<ButtonProps, 'children'> & {
 
 export type ModalProps = {
   title: string;
+  ariaTitle: string;
   actions: ModalActionButton[];
   onCancel?: () => void;
 };
 
 export const Modal = ({
   title,
+  ariaTitle,
   onCancel,
   actions,
   children,
@@ -33,7 +35,10 @@ export const Modal = ({
   <Root open={true}>
     <Portal>
       <Overlay className='fixed inset-0 z-50 bg-gray-500/30 backdrop-blur-sm'>
-        <Content className='relative inset-0 top-1/2 mx-auto flex max-w-2xl -translate-y-1/2 flex-col items-start justify-between gap-6 rounded bg-white p-4 shadow-lg md:p-8'>
+        <Content
+          aria-label={ariaTitle}
+          className='relative inset-0 top-1/2 mx-auto flex max-w-2xl -translate-y-1/2 flex-col items-start justify-between gap-6 rounded bg-white p-4 shadow-lg md:p-8'
+        >
           <Title asChild>
             <Heading size='h3' frontText={title} />
           </Title>
