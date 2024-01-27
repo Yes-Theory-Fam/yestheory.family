@@ -1,4 +1,9 @@
+const analyzerPlugin = require('@next/bundle-analyzer');
 const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
+
+const withBundleAnalyzer = analyzerPlugin({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 /** @returns {import("next").NextConfig} */
 const config = (phase) => ({
@@ -56,4 +61,4 @@ const config = (phase) => ({
   ],
 });
 
-module.exports = (...args) => config(...args);
+module.exports = (...args) => withBundleAnalyzer(config(...args));
