@@ -67,7 +67,6 @@ metadata:
   name: cms-media-upload
   namespace: {{ .Release.Namespace }}
 spec:
-  storageClassName: microk8s-hostpath
   accessModes:
     - ReadWriteOnce
   resources:
