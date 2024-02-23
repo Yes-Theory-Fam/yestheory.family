@@ -34,16 +34,16 @@ const MobileHeadline: FC<MobileHeadlineProps> = ({
   onClick,
   name,
 }) => (
-    <div className='flex items-center justify-between p-4 md:hidden'>
-      <Link hideUnderline href='/' aria-label='Home'>
-        <Logo variant={logoVariant} size='small' />
-      </Link>
+  <div className='flex items-center justify-between p-4 md:hidden'>
+    <Link hideUnderline href='/' aria-label='Home'>
+      <Logo variant={logoVariant} size='small' />
+    </Link>
 
-      <button className='p-2' onClick={onClick} aria-label={name}>
-        <Icon className='size-6' />
-      </button>
-    </div>
-  );
+    <button className='p-2' onClick={onClick} aria-label={name}>
+      <Icon className='size-6' />
+    </button>
+  </div>
+);
 
 export const MobileNavigation: FC<NavigationProps> = ({
   onLoginButtonClick,
@@ -57,9 +57,10 @@ export const MobileNavigation: FC<NavigationProps> = ({
   // Close the menu when selectedSegments (= the current route) changes
   useEffect(() => setIsOpen(false), [selectedSegmentsString]);
 
-  const navLinks = useMemo(() => links.map((l) => (
-      <NavLink key={l.href.toString()} {...l} inverted />
-    )), [links]);
+  const navLinks = useMemo(
+    () => links.map((l) => <NavLink key={l.href.toString()} {...l} inverted />),
+    [links],
+  );
 
   return (
     <>

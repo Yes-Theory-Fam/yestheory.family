@@ -11,17 +11,17 @@ export const metadata: Metadata = {
 };
 
 const Page: FC = () => (
-    <>
-      <Parallax />
-      <div className='bg-white pt-8'>
-        <Container className='sm:py-8'>
-          <div className='flex flex-col gap-10 px-4'>
-            <Intro />
-            <Features />
-          </div>
-        </Container>
-      </div>
-    </>
-  );
+  <>
+    <Parallax />
+    <div className='bg-white pt-8'>
+      <Container className='sm:py-8'>
+        <div className='flex flex-col gap-10 px-4'>
+          <Intro />
+          <Features />
+        </div>
+      </Container>
+    </div>
+  </>
+);
 
 export default Page;

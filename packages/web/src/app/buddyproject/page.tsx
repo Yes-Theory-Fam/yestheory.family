@@ -24,23 +24,23 @@ export const metadata: Metadata = {
 };
 
 const CTA = () => (
-    <ScrollToActionContainer text='Get involved'>
-      <div className='mx-auto w-full gap-2.5 px-6 lg:w-1/2'>
-        <Image
-          priority
-          src={buddyProjectSvg}
-          alt='Buddy Project Logo'
-          className='mx-auto'
-          height={320}
-          width={700}
-        />
-        <p className='mx-auto max-w-full text-center text-2xl md:max-w-[60%]'>
-          Great things come to those who are willing to risk rejection and put
-          themselves out there.
-        </p>
-      </div>
-    </ScrollToActionContainer>
-  );
+  <ScrollToActionContainer text='Get involved'>
+    <div className='mx-auto w-full gap-2.5 px-6 lg:w-1/2'>
+      <Image
+        priority
+        src={buddyProjectSvg}
+        alt='Buddy Project Logo'
+        className='mx-auto'
+        height={320}
+        width={700}
+      />
+      <p className='mx-auto max-w-full text-center text-2xl md:max-w-[60%]'>
+        Great things come to those who are willing to risk rejection and put
+        themselves out there.
+      </p>
+    </div>
+  </ScrollToActionContainer>
+);
 
 const Page = async () => {
   await ensureNavEnabled('buddyproject');

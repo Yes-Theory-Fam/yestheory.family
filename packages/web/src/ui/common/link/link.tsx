@@ -26,16 +26,16 @@ export const Link: FC<PropsWithChildren<LinkProps>> = ({
   hideUnderline,
   ...rest
 }) => (
-    <NextLink
-      className={colorVariants(
-        variant,
-        'border-b-2 border-transparent underline',
-        active && (inverted ? 'border-white' : 'border-brand-800'),
-        inverted && 'text-white',
-        !hideUnderline &&
-          (inverted ? 'hover:border-white' : 'hover:border-brand-800'),
-        className,
-      )}
-      {...rest}
-    />
-  );
+  <NextLink
+    className={colorVariants(
+      variant,
+      'border-b-2 border-transparent underline',
+      active && (inverted ? 'border-white' : 'border-brand-800'),
+      inverted && 'text-white',
+      !hideUnderline &&
+        (inverted ? 'hover:border-white' : 'hover:border-brand-800'),
+      className,
+    )}
+    {...rest}
+  />
+);

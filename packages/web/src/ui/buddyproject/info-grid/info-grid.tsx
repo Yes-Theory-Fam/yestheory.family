@@ -12,21 +12,21 @@ import {
 } from '../steps';
 
 const InfoHeader: FC = () => (
-    <div className='flex flex-col'>
-      <Heading
-        frontText={'Find a stranger\n'}
-        blueText='Discover a friend'
-        className='normal-case'
-        center={false}
-        size='h2'
-      />
-      <SectionHeading text='Hi!' />
-      <p>
-        An opportunity to get to know a person miles away from you, building a
-        new friendship, and discovering a new way of living, what’s not to like?
-      </p>
-    </div>
-  );
+  <div className='flex flex-col'>
+    <Heading
+      frontText={'Find a stranger\n'}
+      blueText='Discover a friend'
+      className='normal-case'
+      center={false}
+      size='h2'
+    />
+    <SectionHeading text='Hi!' />
+    <p>
+      An opportunity to get to know a person miles away from you, building a new
+      friendship, and discovering a new way of living, what’s not to like?
+    </p>
+  </div>
+);
 
 const states = {
   MATCHED: ({buddyName}: {buddyName: string}) => (

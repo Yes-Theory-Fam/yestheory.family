@@ -51,7 +51,8 @@ const rootLogger = createLogger(loggerOpts);
 export const createServerLogger = (
   kind: string,
   program: string,
-): winston.Logger => rootLogger.child({
+): winston.Logger =>
+  rootLogger.child({
     kind,
     program,
   });

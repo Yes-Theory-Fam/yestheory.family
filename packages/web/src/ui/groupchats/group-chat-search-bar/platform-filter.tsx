@@ -36,14 +36,14 @@ export const PlatformFilter: FC<PlatformFilterProps> = ({
   onPlatformToggle,
   selectedPlatforms,
 }) => (
-    <div className='flex max-w-[calc(100vw_-_var(--scrollbar-width))] justify-start gap-3 overflow-x-auto py-4'>
-      {allPlatforms.map((p) => (
-        <ToggleButton
-          key={p}
-          label={platformLabels[p]}
-          checked={selectedPlatforms.includes(p)}
-          onChange={() => onPlatformToggle(p)}
-        />
-      ))}
-    </div>
-  );
+  <div className='flex max-w-[calc(100vw_-_var(--scrollbar-width))] justify-start gap-3 overflow-x-auto py-4'>
+    {allPlatforms.map((p) => (
+      <ToggleButton
+        key={p}
+        label={platformLabels[p]}
+        checked={selectedPlatforms.includes(p)}
+        onChange={() => onPlatformToggle(p)}
+      />
+    ))}
+  </div>
+);
