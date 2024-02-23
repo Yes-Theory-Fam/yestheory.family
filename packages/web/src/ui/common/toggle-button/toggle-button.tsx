@@ -12,8 +12,7 @@ export const ToggleButton: FC<ToggleButtonProps> = ({
   label,
   onChange,
   ...rest
-}) => {
-  return (
+}) => (
     <label className='group cursor-pointer'>
       <input
         type='checkbox'
@@ -26,4 +25,3 @@ export const ToggleButton: FC<ToggleButtonProps> = ({
       </span>
     </label>
   );
-};

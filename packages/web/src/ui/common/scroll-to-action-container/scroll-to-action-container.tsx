@@ -40,7 +40,7 @@ export const ScrollToActionContainer: FC<
         onClick={scrollToContent}
       >
         <p className='text-xs uppercase'>{text}</p>
-        <ChevronDownIcon className='h-6 w-6' />
+        <ChevronDownIcon className='size-6' />
       </button>
     </div>
   );

@@ -35,8 +35,7 @@ const allPlatforms = arrayOfAll<Groupchat_Platform>()([
 export const PlatformFilter: FC<PlatformFilterProps> = ({
   onPlatformToggle,
   selectedPlatforms,
-}) => {
-  return (
+}) => (
     <div className='flex max-w-[calc(100vw_-_var(--scrollbar-width))] justify-start gap-3 overflow-x-auto py-4'>
       {allPlatforms.map((p) => (
         <ToggleButton
@@ -48,4 +47,3 @@ export const PlatformFilter: FC<PlatformFilterProps> = ({
       ))}
     </div>
   );
-};

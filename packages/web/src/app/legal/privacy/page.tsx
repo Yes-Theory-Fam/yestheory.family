@@ -1,8 +1,7 @@
 import {type FC} from 'react';
 import {Heading, Link} from 'ui';
 
-const Privacy: FC = () => {
-  return (
+const Privacy: FC = () => (
     <>
       <Heading frontText='Privacy Policy' size='h2' />
       <Heading frontText='1. An overview of data protection' size='h3' />
@@ -511,6 +510,5 @@ const Privacy: FC = () => {
       </p>
     </>
   );
-};
 
 export default Privacy;

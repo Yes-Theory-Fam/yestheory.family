@@ -3,8 +3,7 @@
 import {type FC} from 'react';
 import {Heading, Link} from 'ui';
 
-const Imprint: FC = () => {
-  return (
+const Imprint: FC = () => (
     <>
       <Heading frontText='Site Notice' size='h2' />
 
@@ -64,6 +63,5 @@ const Imprint: FC = () => {
       </p>
     </>
   );
-};
 
 export default Imprint;

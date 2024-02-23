@@ -11,8 +11,7 @@ export type LoginButtonProps = {
 export const LoginButton: FC<LoginButtonProps> = ({
   inverted = false,
   onClick,
-}) => {
-  return (
+}) => (
     <Button
       variant={inverted ? 'outlined' : 'solid'}
       size='small'
@@ -21,11 +20,10 @@ export const LoginButton: FC<LoginButtonProps> = ({
     >
       <DiscordLogo
         className={twMerge(
-          'transition-fill h-5 w-5 duration-300',
+          'transition-fill size-5 duration-300',
           inverted ? 'fill-brand-800 group-hover:fill-white' : 'fill-white',
         )}
       />
       Sign in with Discord
     </Button>
   );
-};

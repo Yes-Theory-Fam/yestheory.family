@@ -11,8 +11,7 @@ import {
   WaitForMatchStep,
 } from '../steps';
 
-const InfoHeader: FC = () => {
-  return (
+const InfoHeader: FC = () => (
     <div className='flex flex-col'>
       <Heading
         frontText={'Find a stranger\n'}
@@ -28,7 +27,6 @@ const InfoHeader: FC = () => {
       </p>
     </div>
   );
-};
 
 const states = {
   MATCHED: ({buddyName}: {buddyName: string}) => (
@@ -67,7 +65,7 @@ export const InfoGrid: FC<InfoGridProps> = ({state, buddyName}) => {
       <div className='self-center lg:col-span-2'>
         <InfoHeader />
       </div>
-      <div className='relative flex h-full min-h-[400px] w-full max-w-[700px] items-center justify-center lg:min-h-[unset]'>
+      <div className='relative flex size-full min-h-[400px] max-w-[700px] items-center justify-center lg:min-h-[unset]'>
         <Image
           src={yesbotBuddyProjectWebp}
           alt='Illustration of YesBot delivering a letter with a heart on it to a postbox with the Discord logo on it'

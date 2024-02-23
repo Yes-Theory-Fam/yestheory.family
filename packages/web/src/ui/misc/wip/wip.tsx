@@ -3,8 +3,7 @@ import {Image, Button, Heading, Link} from 'ui';
 import {underConstructionWebp} from '../../../../assets';
 import {BackLink} from '../back-link';
 
-export const Wip: FC = () => {
-  return (
+export const Wip: FC = () => (
     <div className='mt-16 flex items-center justify-center md:mt-24'>
       <div className='flex w-10/12 flex-col gap-12'>
         <div className='mx-auto max-w-md p-6'>
@@ -42,4 +41,3 @@ export const Wip: FC = () => {
       </div>
     </div>
   );
-};

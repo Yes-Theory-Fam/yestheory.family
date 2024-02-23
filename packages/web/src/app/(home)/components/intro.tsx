@@ -1,8 +1,7 @@
 import type {FC} from 'react';
 import {Heading} from '../../../ui';
 
-export const Intro: FC = () => {
-  return (
+export const Intro: FC = () => (
     <div>
       <Heading
         frontText='Welcome to'
@@ -18,4 +17,3 @@ export const Intro: FC = () => {
       </p>
     </div>
   );
-};

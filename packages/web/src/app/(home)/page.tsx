@@ -10,8 +10,7 @@ export const metadata: Metadata = {
     'Welcome to the Yes Fam! The community around well-known YouTube channel Yes Theory.',
 };
 
-const Page: FC = () => {
-  return (
+const Page: FC = () => (
     <>
       <Parallax />
       <div className='bg-white pt-8'>
@@ -24,6 +23,5 @@ const Page: FC = () => {
       </div>
     </>
   );
-};
 
 export default Page;

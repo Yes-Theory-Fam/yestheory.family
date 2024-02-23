@@ -23,7 +23,7 @@ export const SearchInput: FC<SearchInputProps> = ({onChange}) => {
         onClick={focusInput}
         className='flex items-center justify-center bg-brand-800 px-3 py-2 transition-colors group-focus-within/searchbar:bg-transparent'
       >
-        <MagnifyingGlassIcon className='h-5 w-5 text-white transition-colors group-focus-within/searchbar:text-brand-800' />
+        <MagnifyingGlassIcon className='size-5 text-white transition-colors group-focus-within/searchbar:text-brand-800' />
       </div>
     </div>
   );

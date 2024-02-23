@@ -6,8 +6,7 @@ export type MatchedStepProps = {
   buddyName: string;
 };
 
-export const MatchedStep: FC<MatchedStepProps> = ({buddyName}) => {
-  return (
+export const MatchedStep: FC<MatchedStepProps> = ({buddyName}) => (
     <Step heading='You were matched!'>
       <p>
         Great news! You have been matched by YesBot and your buddy is{' '}
@@ -24,4 +23,3 @@ export const MatchedStep: FC<MatchedStepProps> = ({buddyName}) => {
       </p>
     </Step>
   );
-};

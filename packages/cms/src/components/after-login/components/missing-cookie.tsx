@@ -1,7 +1,6 @@
 import React, {type FC} from 'react';
 
-export const MissingCookie: FC = () => {
-  return (
+export const MissingCookie: FC = () => (
     <p>
       You are not logged in on YTF. Click{' '}
       <a
@@ -12,4 +11,3 @@ export const MissingCookie: FC = () => {
       to log in through Discord.
     </p>
   );
-};

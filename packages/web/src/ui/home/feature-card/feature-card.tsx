@@ -16,8 +16,7 @@ export type FeatureCardProps = {
   inverted: boolean;
 };
 
-export const FeatureCard: FC<FeatureCardProps> = ({feature, inverted}) => {
-  return (
+export const FeatureCard: FC<FeatureCardProps> = ({feature, inverted}) => (
     <div
       className={twMerge(
         'flex flex-col gap-6 sm:min-h-96 sm:gap-14',
@@ -49,4 +48,3 @@ export const FeatureCard: FC<FeatureCardProps> = ({feature, inverted}) => {
       </div>
     </div>
   );
-};

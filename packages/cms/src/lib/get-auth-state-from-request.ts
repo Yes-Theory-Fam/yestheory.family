@@ -10,9 +10,7 @@ type AuthState = {userId: string | null; isLoggedIn: boolean};
 
 const backend = process.env.BACKEND_URL ?? 'http://localhost:5000';
 
-const expressToFetchHeaders = (incoming: IncomingHttpHeaders): HeadersInit => {
-  return {Cookie: incoming.cookie};
-};
+const expressToFetchHeaders = (incoming: IncomingHttpHeaders): HeadersInit => ({Cookie: incoming.cookie});
 
 export const getAuthStateFromRequest = async (
   req: Request,

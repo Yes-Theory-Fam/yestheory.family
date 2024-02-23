@@ -5,8 +5,7 @@ import CloudBig from '../../../../assets/cloudBig.webp';
 import CloudBot from '../../../../assets/cloudBot.webp';
 import MountainDude from '../../../../assets/dude-on-mountain.webp';
 
-export const Parallax: FC = () => {
-  return (
+export const Parallax: FC = () => (
     <div className='relative h-screen overflow-hidden'>
       <div className='fixed inset-0 -z-50 flex items-center justify-center'>
         <div
@@ -51,4 +50,3 @@ export const Parallax: FC = () => {
       <ScrollToActionContainer text='Dive in' />
     </div>
   );
-};

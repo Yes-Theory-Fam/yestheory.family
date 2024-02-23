@@ -9,8 +9,7 @@ import {
 
 export type FooterProps = {links: FooterLinkDefinition[]};
 
-export const Footer: FC<FooterProps> = ({links}) => {
-  return (
+export const Footer: FC<FooterProps> = ({links}) => (
     <footer className='flex flex-col items-center gap-2 bg-white py-4'>
       <Logo />
       <FooterLinkRow links={links} />
@@ -18,4 +17,3 @@ export const Footer: FC<FooterProps> = ({links}) => {
       <Copyright />
     </footer>
   );
-};

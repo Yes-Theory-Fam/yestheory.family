@@ -25,8 +25,7 @@ export const Link: FC<PropsWithChildren<LinkProps>> = ({
   inverted = false,
   hideUnderline,
   ...rest
-}) => {
-  return (
+}) => (
     <NextLink
       className={colorVariants(
         variant,
@@ -40,4 +39,3 @@ export const Link: FC<PropsWithChildren<LinkProps>> = ({
       {...rest}
     />
   );
-};

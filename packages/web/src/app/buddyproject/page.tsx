@@ -23,8 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CTA = () => {
-  return (
+const CTA = () => (
     <ScrollToActionContainer text='Get involved'>
       <div className='mx-auto w-full gap-2.5 px-6 lg:w-1/2'>
         <Image
@@ -42,7 +41,6 @@ const CTA = () => {
       </div>
     </ScrollToActionContainer>
   );
-};
 
 const Page = async () => {
   await ensureNavEnabled('buddyproject');

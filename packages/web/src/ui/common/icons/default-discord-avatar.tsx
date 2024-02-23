@@ -6,8 +6,7 @@ export type DefaultDiscordAvatarProps = {
 
 export const DefaultDiscordAvatar: FC<DefaultDiscordAvatarProps> = ({
   className,
-}) => {
-  return (
+}) => (
     <svg className={`inline-block ${className}`} viewBox='0 0 127.14 96.36'>
       <path
         fill='#fff'
@@ -15,4 +14,3 @@ export const DefaultDiscordAvatar: FC<DefaultDiscordAvatarProps> = ({
       />
     </svg>
   );
-};

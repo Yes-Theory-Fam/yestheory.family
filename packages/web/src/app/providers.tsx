@@ -9,11 +9,9 @@ export type ProvidersProps = PropsWithChildren<{
   user: User | null;
 }>;
 
-export const Providers: FC<ProvidersProps> = ({user, children}) => {
-  return (
+export const Providers: FC<ProvidersProps> = ({user, children}) => (
     <NiceModal.Provider>
       <ScrollbarWidthProvider />
       <UserProvider user={user}>{children}</UserProvider>
     </NiceModal.Provider>
   );
-};

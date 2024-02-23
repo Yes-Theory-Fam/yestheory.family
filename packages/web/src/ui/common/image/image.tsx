@@ -14,11 +14,9 @@ const shadowVariants = variants(
 export type ImageProps = NextImageProps &
   VariantProp<typeof shadowVariants, 'shadow'>;
 
-export const Image: FC<ImageProps> = ({className, shadow, ...rest}) => {
-  return (
+export const Image: FC<ImageProps> = ({className, shadow, ...rest}) => (
     <NextImage
       {...rest}
       className={shadowVariants(shadow, 'rounded-2xl', className)}
     />
   );
-};

@@ -22,5 +22,5 @@ export const CookieConsent: FC = () => {
     }
   }, []);
 
-  return <></>;
+  return null;
 };
