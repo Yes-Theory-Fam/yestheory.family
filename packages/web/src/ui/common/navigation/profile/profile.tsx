@@ -29,16 +29,16 @@ export const Profile: FC<ProfileProps> = ({user, variant, menuItems}) => {
       <Trigger className='relative flex cursor-pointer flex-col items-start gap-1 outline-none'>
         <span className={twMerge(textColor, 'text-xs')}>Logged in as:</span>
         <div className='flex items-center gap-2'>
-          <div className='relative h-12 w-12'>
+          <div className='relative size-12'>
             {avatarUrl ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img src={avatarUrl} alt={username} className='rounded-full' />
             ) : (
-              <div className='flex h-full w-full items-center justify-center rounded-full bg-[#5865F2]'>
-                <DefaultDiscordAvatar className='h-7 w-7 text-white' />
+              <div className='flex size-full items-center justify-center rounded-full bg-[#5865F2]'>
+                <DefaultDiscordAvatar className='size-7 text-white' />
               </div>
             )}
-            <div className='absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-[green]' />
+            <div className='absolute bottom-0 right-0 size-3 rounded-full border-2 border-white bg-[green]' />
           </div>
           <span className={tagColor}>{username}</span>
         </div>

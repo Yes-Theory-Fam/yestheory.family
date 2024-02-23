@@ -32,7 +32,7 @@ export const Modal = ({
   actions,
   children,
 }: PropsWithChildren<ModalProps>) => (
-  <Root open={true}>
+  <Root open>
     <Portal>
       <Overlay className='fixed inset-0 z-50 bg-gray-500/30 backdrop-blur-sm'>
         <Content
@@ -51,7 +51,7 @@ export const Modal = ({
                 className='absolute right-4 top-4 p-2'
                 aria-label='Close'
               >
-                <XMarkIcon className='h-8 w-8 text-gray-600' />
+                <XMarkIcon className='size-8 text-gray-600' />
               </button>
             </Close>
           )}

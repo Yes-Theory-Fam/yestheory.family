@@ -42,7 +42,7 @@ export const GroupChatSearch: FC<GroupChatSearchProps> = ({
       <div className='flex flex-col gap-2'>
         <p>Not seeing what you are looking for?</p>
         <p>
-          <InformationCircleIcon className='mr-2 inline-block h-6 w-6 text-brand-800' />
+          <InformationCircleIcon className='mr-2 inline-block size-6 text-brand-800' />
           Ask the group&apos;s admin to head over{' '}
           <Link
             href={process.env.NEXT_PUBLIC_PAYLOAD_URL}
@@ -56,7 +56,7 @@ export const GroupChatSearch: FC<GroupChatSearchProps> = ({
 
         {!isLoggedIn && (
           <p>
-            <ExclamationTriangleIcon className='mr-2 inline-block h-6 w-6 text-warning' />
+            <ExclamationTriangleIcon className='mr-2 inline-block size-6 text-warning' />
             Only specific chats are available without{' '}
             <Link href='#' onClick={() => navigateToLogin()}>
               logging in with Discord

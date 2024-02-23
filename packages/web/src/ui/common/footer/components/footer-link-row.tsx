@@ -15,10 +15,8 @@ const definitionToLink = (definition: FooterLinkDefinition) => {
   );
 };
 
-export const FooterLinkRow: FC<FooterLinkRowProps> = ({links}) => {
-  return (
-    <div className='flex flex-col items-center gap-2 md:flex-row md:gap-8'>
-      {links.map(definitionToLink)}
-    </div>
-  );
-};
+export const FooterLinkRow: FC<FooterLinkRowProps> = ({links}) => (
+  <div className='flex flex-col items-center gap-2 md:flex-row md:gap-8'>
+    {links.map(definitionToLink)}
+  </div>
+);

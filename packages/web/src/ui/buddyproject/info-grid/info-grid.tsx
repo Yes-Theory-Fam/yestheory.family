@@ -11,24 +11,22 @@ import {
   WaitForMatchStep,
 } from '../steps';
 
-const InfoHeader: FC = () => {
-  return (
-    <div className='flex flex-col'>
-      <Heading
-        frontText={'Find a stranger\n'}
-        blueText='Discover a friend'
-        className='normal-case'
-        center={false}
-        size='h2'
-      />
-      <SectionHeading text='Hi!' />
-      <p>
-        An opportunity to get to know a person miles away from you, building a
-        new friendship, and discovering a new way of living, what’s not to like?
-      </p>
-    </div>
-  );
-};
+const InfoHeader: FC = () => (
+  <div className='flex flex-col'>
+    <Heading
+      frontText={'Find a stranger\n'}
+      blueText='Discover a friend'
+      className='normal-case'
+      center={false}
+      size='h2'
+    />
+    <SectionHeading text='Hi!' />
+    <p>
+      An opportunity to get to know a person miles away from you, building a new
+      friendship, and discovering a new way of living, what’s not to like?
+    </p>
+  </div>
+);
 
 const states = {
   MATCHED: ({buddyName}: {buddyName: string}) => (
@@ -67,7 +65,7 @@ export const InfoGrid: FC<InfoGridProps> = ({state, buddyName}) => {
       <div className='self-center lg:col-span-2'>
         <InfoHeader />
       </div>
-      <div className='relative flex h-full min-h-[400px] w-full max-w-[700px] items-center justify-center lg:min-h-[unset]'>
+      <div className='relative flex size-full min-h-[400px] max-w-[700px] items-center justify-center lg:min-h-[unset]'>
         <Image
           src={yesbotBuddyProjectWebp}
           alt='Illustration of YesBot delivering a letter with a heart on it to a postbox with the Discord logo on it'

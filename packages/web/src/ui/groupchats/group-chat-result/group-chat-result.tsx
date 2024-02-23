@@ -71,7 +71,7 @@ export const GroupChatResult: FC<GroupChatResultProps> = ({
       <div
         className={twMerge(gridClasses.icon, 'self-center justify-self-center')}
       >
-        <Icon color={color} className='sm:h-10 sm:w-10' />
+        <Icon color={color} className='sm:size-10' />
       </div>
 
       <p className={twMerge(gridClasses.title, 'font-bold capitalize')}>

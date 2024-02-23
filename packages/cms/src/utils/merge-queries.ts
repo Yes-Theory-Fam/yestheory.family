@@ -37,10 +37,11 @@ export type QueryFactory<TResult, TResolvedArgs> = (
  *   }
  * })
  */
-export const mergeQueries = <TResult, TResolvedArgs>(
-  queryFactories: Record<string, QueryFactory<TResult, TResolvedArgs>>,
-) => {
-  return (graphql: typeof GraphQL, payload: Payload) => {
+export const mergeQueries =
+  <TResult, TResolvedArgs>(
+    queryFactories: Record<string, QueryFactory<TResult, TResolvedArgs>>,
+  ) =>
+  (graphql: typeof GraphQL, payload: Payload) => {
     const queries: {
       [key: string]: ReturnType<QueryFactory<TResult, TResolvedArgs>>;
     } = {};
@@ -51,4 +52,3 @@ export const mergeQueries = <TResult, TResolvedArgs>(
 
     return queries;
   };
-};

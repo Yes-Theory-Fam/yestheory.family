@@ -16,18 +16,16 @@ export const TextareaField: FC<TextareaFieldProps> = ({
   className,
   inputClassName,
   ...formProps
-}) => {
-  return (
-    <div className={clsx('textarea field-type w-full', className)}>
-      <label className='textarea-outer'>
-        <div className='textarea-inner'>
-          <textarea
-            className={clsx('textarea-element', inputClassName)}
-            {...on()}
-            {...formProps}
-          />
-        </div>
-      </label>
-    </div>
-  );
-};
+}) => (
+  <div className={clsx('textarea field-type w-full', className)}>
+    <label className='textarea-outer'>
+      <div className='textarea-inner'>
+        <textarea
+          className={clsx('textarea-element', inputClassName)}
+          {...on()}
+          {...formProps}
+        />
+      </div>
+    </label>
+  </div>
+);

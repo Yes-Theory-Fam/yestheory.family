@@ -8,12 +8,8 @@ export type ContainerProps = {
 export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   className,
   children,
-}) => {
-  return (
-    <div
-      className={twMerge('mx-auto w-full max-w-7xl px-4 md:px-8', className)}
-    >
-      {children}
-    </div>
-  );
-};
+}) => (
+  <div className={twMerge('mx-auto w-full max-w-7xl px-4 md:px-8', className)}>
+    {children}
+  </div>
+);

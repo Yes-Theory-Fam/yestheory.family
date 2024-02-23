@@ -10,20 +10,18 @@ export const metadata: Metadata = {
     'Welcome to the Yes Fam! The community around well-known YouTube channel Yes Theory.',
 };
 
-const Page: FC = () => {
-  return (
-    <>
-      <Parallax />
-      <div className='bg-white pt-8'>
-        <Container className='sm:py-8'>
-          <div className='flex flex-col gap-10 px-4'>
-            <Intro />
-            <Features />
-          </div>
-        </Container>
-      </div>
-    </>
-  );
-};
+const Page: FC = () => (
+  <>
+    <Parallax />
+    <div className='bg-white pt-8'>
+      <Container className='sm:py-8'>
+        <div className='flex flex-col gap-10 px-4'>
+          <Intro />
+          <Features />
+        </div>
+      </Container>
+    </div>
+  </>
+);
 
 export default Page;
