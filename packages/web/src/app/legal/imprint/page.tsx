@@ -15,9 +15,9 @@ const Imprint: FC = () => {
       <p>
         Michel von Varendorff
         <br />
-        Schönhauser Allee 163
+        Meitnerstraße 8
         <br />
-        10435 Berlin
+        30627 Hanover
       </p>
 
       <Heading frontText='Contact' size='h3' />
@@ -35,9 +35,9 @@ const Imprint: FC = () => {
       <p>
         Michel von Varendorff
         <br />
-        Schönhauser Allee 163
+        Meitnerstraße 8
         <br />
-        10435 Berlin
+        30627 Hanover
       </p>
 
       <Heading frontText='EU dispute resolution' size='h3' />

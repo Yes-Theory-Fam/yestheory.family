@@ -128,9 +128,9 @@ const Privacy: FC = () => {
       <p>
         Michel von Varendorff
         <br />
-        Schönhauser Allee 163
+        Meitnerstraße 8
         <br />
-        10435 Berlin
+        30627 Hannover
       </p>
       <p>E-mail: michelvonv@me.com</p>
       <p>
