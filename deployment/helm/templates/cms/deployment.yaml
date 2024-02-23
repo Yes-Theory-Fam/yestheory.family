@@ -26,6 +26,9 @@ spec:
             httpGet:
               path: /admin
               port: 3001
+          volumeMounts:
+            - mountPath: /app/packages/cms/dist/media
+              name: cms-media-upload
           env:
             - name: ENABLE_DATASEEDER
               value: "true"
@@ -51,3 +54,22 @@ spec:
                 secretKeyRef:
                   name: ytf-typesense-secret
                   key: TYPESENSE_API_KEY
+      volumes:
+        - name: cms-media-upload
+          persistentVolumeClaim:
+            claimName: cms-media-upload
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: cms-media-upload
+  namespace: {{ .Release.Namespace }}
+spec:
+  storageClassName: microk8s.io/hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
