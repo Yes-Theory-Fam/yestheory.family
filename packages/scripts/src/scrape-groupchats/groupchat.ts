@@ -4,4 +4,7 @@ export type Groupchat = {
   showUnauthenticated?: boolean;
 };
 
-export type ProcessedGroupchat = Groupchat & {platform: string};
+export type ProcessedGroupchat = Groupchat & {
+  platform: string;
+  showUnauthenticated: boolean;
+};

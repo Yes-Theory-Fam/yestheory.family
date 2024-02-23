@@ -65,7 +65,11 @@ export const postProcess = async (
     // We might scrape things like &amp;
     groupchat.name = decode(groupchat.name);
 
-    validPlatformGroupchats.push({...groupchat, platform});
+    validPlatformGroupchats.push({
+      ...groupchat,
+      platform,
+      showUnauthenticated: true,
+    });
   }
 
   return validPlatformGroupchats;
