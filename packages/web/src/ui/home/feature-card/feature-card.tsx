@@ -25,14 +25,16 @@ export const FeatureCard: FC<FeatureCardProps> = ({feature, inverted}) => {
       )}
     >
       <div className='relative flex flex-1 items-center justify-center'>
-        <Image
-          src={feature.teaserImage.url!}
-          height={feature.teaserImage.height!}
-          width={feature.teaserImage.width!}
-          shadow={inverted ? 'left' : 'right'}
-          alt=''
-          className='object-contain'
-        />
+        <Link href={feature.navPath!} hideUnderline>
+          <Image
+            src={feature.teaserImage.url!}
+            height={feature.teaserImage.height!}
+            width={feature.teaserImage.width!}
+            shadow={inverted ? 'left' : 'right'}
+            alt=''
+            className='object-contain'
+          />
+        </Link>
       </div>
       <div className='flex flex-1 flex-col justify-center gap-3'>
         <Heading size='h3' frontText={feature.name} />
