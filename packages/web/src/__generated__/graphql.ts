@@ -1,5 +1,4 @@
-import { GraphQLClient } from "graphql-request";
-import { GraphQLClientRequestHeaders } from "graphql-request/build/cjs/types";
+import { GraphQLClient, RequestOptions } from "graphql-request";
 import gql from "graphql-tag";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -21,6 +20,7 @@ export type Incremental<T> =
   | {
       [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
     };
+type GraphQLClientRequestHeaders = RequestOptions["requestHeaders"];
 
 export type BuddyProjectStatus = "MATCHED" | "NOT_SIGNED_UP" | "SIGNED_UP";
 
@@ -274,7 +274,7 @@ const defaultWrapper: SdkFunctionWrapper = (
   action,
   _operationName,
   _operationType,
-  variables,
+  _variables,
 ) => action();
 
 export function getSdk(

@@ -14,7 +14,7 @@ export const Wip: FC = () => (
         />
       </div>
       <Heading frontText='Work in progress' />
-      <div className='flex max-w-6xl flex-col items-start gap-8 text-left md:items-center md:text-center'>
+      <div className='mx-auto flex max-w-6xl flex-col items-start gap-8 text-left md:items-center md:text-center'>
         <p>Hey! We are happy to have you around :)</p>
         <p>
           Please note that this page is under heavy construction so new features
