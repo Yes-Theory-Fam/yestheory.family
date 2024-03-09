@@ -5,7 +5,7 @@ export const Intro: FC = () => (
   <div>
     <Heading
       frontText='Welcome to'
-      blueText=' YesTheory '
+      blueText=' Yes Theory '
       backText='family'
       size='h2'
       className='text-center'
