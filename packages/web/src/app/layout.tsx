@@ -21,8 +21,8 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.FRONTEND_URL),
   title: {
-    absolute: 'YesTheory Family',
-    template: '%s - YesTheory Family',
+    absolute: 'Yes Theory Family',
+    template: '%s - Yes Theory Family',
   },
   icons: {
     icon: [
