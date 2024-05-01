@@ -89,7 +89,7 @@ services:
       - "typesense-data:/data"
 
   playwright:
-    image: mcr.microsoft.com/playwright:v1.42.1-focal
+    image: mcr.microsoft.com/playwright:v1.43.1-focal
     entrypoint: "/bin/bash"
     command: "./wait-for-it.sh -t 30 --strict server:5000 -- ./install-and-run.sh"
     working_dir: /e2e

@@ -84,7 +84,7 @@ export const MobileNavigation: FC<NavigationProps> = ({
               transform: 'translateX(100%)',
               transitionProperty: 'transform',
             }}
-            className='fixed inset-0 z-[50] bg-brand-800'
+            className='fixed inset-0 z-50 bg-brand-800'
           >
             <div className='flex flex-col text-white'>
               <MobileHeadline

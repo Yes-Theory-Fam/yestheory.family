@@ -12,17 +12,17 @@
   "dependencies": {
     "@posva/prompts": "^2.4.4",
     "dotenv": "^16.4.5",
-    "html-entities": "^2.4.0",
-    "node-html-parser": "^6.1.12"
+    "html-entities": "^2.5.2",
+    "node-html-parser": "^6.1.13"
   },
   "devDependencies": {
-    "@atmina/linting": "^2.1.2",
+    "@atmina/linting": "^2.2.0",
     "@types/cli-progress": "^3.11.5",
-    "@types/eslint": "^8.56.3",
+    "@types/eslint": "^8.56.10",
     "eslint": "^8.56.0",
     "prettier": "^3.2.5",
-    "tsx": "^4.7.1",
-    "typescript": "^5.3.3"
+    "tsx": "^4.8.2",
+    "typescript": "^5.4.5"
   },
   "prettier": "@atmina/linting/prettier"
 }

@@ -7,6 +7,7 @@ const config = {
   tags: ['autodocs'],
   args: {
     label: 'Toggle me!',
+    onChange: () => undefined,
   },
 } satisfies Meta<ToggleButtonProps>;
 
