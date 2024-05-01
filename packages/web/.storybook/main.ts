@@ -8,12 +8,12 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
   ],
-  framework: {
-    name: '@storybook/nextjs',
-    options: {},
-  },
+  framework: '@storybook/nextjs',
   docs: {
     autodocs: 'tag',
+  },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
   },
   webpackFinal: (config) => {
     config.resolve ??= {};
@@ -27,4 +27,5 @@ const config: StorybookConfig = {
     return config;
   },
 };
+
 export default config;

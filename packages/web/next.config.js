@@ -1,9 +1,7 @@
 const analyzerPlugin = require('@next/bundle-analyzer');
 const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
 
-const withBundleAnalyzer = analyzerPlugin({
-  enabled: process.env.ANALYZE === 'true',
-});
+const withBundleAnalyzer = analyzerPlugin();
 
 /** @returns {import("next").NextConfig} */
 const config = (phase) => ({
@@ -31,7 +29,7 @@ const config = (phase) => ({
       },
     ],
   },
-  rewrites: () => [
+  rewrites: async () => [
     {
       source: '/graphql',
       destination: 'http://localhost:5000/graphql',
@@ -45,7 +43,7 @@ const config = (phase) => ({
       destination: 'http://localhost:5000/oauth/:slug*',
     },
   ],
-  headers: () => [
+  headers: async () => [
     {
       source: '/:path*',
       headers: [
@@ -61,4 +59,7 @@ const config = (phase) => ({
   ],
 });
 
-module.exports = (...args) => withBundleAnalyzer(config(...args));
+module.exports = (...args) =>
+  process.env.ANALYZE === 'true'
+    ? withBundleAnalyzer(config(...args))
+    : config(...args);

@@ -36,7 +36,7 @@ export const ScrollToActionContainer: FC<
     >
       {children}
       <button
-        className='left absolute bottom-3 left-[50%] flex -translate-x-1/2 cursor-pointer flex-col items-center text-brand-800'
+        className='left absolute bottom-3 left-1/2 flex -translate-x-1/2 cursor-pointer flex-col items-center text-brand-800'
         onClick={scrollToContent}
       >
         <p className='text-xs uppercase'>{text}</p>
