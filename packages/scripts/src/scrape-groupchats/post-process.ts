@@ -4,7 +4,7 @@ import {handleBitLy} from './platform-handlers/bit-ly.js';
 import {handleLinkTree} from './platform-handlers/link-tree.js';
 
 const platformDomainFinder =
-  /https?:\/\/.*?(facebook.com|instagram.com|chat.whatsapp.com|discord.gg|discord.com|t.me).*$/i;
+  /https?:\/\/(?:.*?\.)?(facebook\.com|instagram\.com|chat\.whatsapp\.com|discord\.gg|discord\.com|t\.me)(?:\/.*)?$/i;
 
 const domainMap: Record<string, string> = {
   'facebook.com': 'facebook',
