@@ -2,6 +2,7 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import {postgresAdapter} from '@payloadcms/db-postgres';
 import {slateEditor} from '@payloadcms/richtext-slate';
+import {PHASE_PRODUCTION_BUILD} from 'next/constants';
 import {buildConfig, type Config} from 'payload/config';
 import sharp from 'sharp';
 import {Features} from './app/(payload)/collections/features';
@@ -30,6 +31,8 @@ const config: Config = {
     },
   },
   onInit: async (payload) => {
+    if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) return;
+
     // TODO wait for drizzle to resolve this and run migrations prior to JS container
     //   https://github.com/drizzle-team/drizzle-orm/issues/819
     // await payload.db.migrate();

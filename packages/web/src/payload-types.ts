@@ -58,13 +58,7 @@ export interface Media {
 export interface Groupchat {
   id: number;
   name: string;
-  platform:
-    | 'discord'
-    | 'facebook'
-    | 'instagram'
-    | 'signal'
-    | 'telegram'
-    | 'whatsapp';
+  platform: 'discord' | 'facebook' | 'instagram' | 'signal' | 'telegram' | 'whatsapp';
   showUnauthenticated?: boolean | null;
   description?: string | null;
   url: string;
