@@ -1,5 +1,4 @@
 import type * as GraphQL from 'graphql';
-import {type GraphQLFieldResolver} from 'graphql';
 import {type Config} from 'payload/config';
 import {type PayloadRequest} from 'payload/types';
 
@@ -12,7 +11,7 @@ export type QueryFactory<TResult, TResolvedArgs> = (
 ) => {
   type?: GraphQL.GraphQLType;
   args: Record<string, unknown>;
-  resolve: GraphQLFieldResolver<
+  resolve: GraphQL.GraphQLFieldResolver<
     unknown,
     {req: PayloadRequest},
     TResolvedArgs,

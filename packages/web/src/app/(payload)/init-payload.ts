@@ -11,7 +11,6 @@ export const initPayload = async (
   console.info('Ensuring database exists');
   // await ensureDbExists();
 
-
   return await payload.init({
     ...additionalOptions,
   });

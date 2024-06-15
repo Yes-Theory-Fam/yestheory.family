@@ -8,7 +8,7 @@ import {seedUsers} from './seed-users';
 
 export const main = async () => {
   await initPayload({
-    config: await import('../../../payload.config').then(m => m.default)
+    config: await import('../../../payload.config').then((m) => m.default),
   });
 
   await seedUsers();
