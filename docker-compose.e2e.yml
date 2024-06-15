@@ -33,7 +33,7 @@ services:
       DISCORD_CLIENT_SECRET: skipped
       DISCORD_SCOPES: skipped
 
-      CMS_ENDPOINT: "http://cms:3001/api/graphql"
+      CMS_ENDPOINT: "http://web:3000/api/graphql"
       CMS_API_KEY: e2e-api-key
     depends_on:
       cms:
@@ -50,32 +50,6 @@ services:
       - "3000:3000"
     depends_on:
       - server
-
-  cms:
-    image: ghcr.io/yes-theory-fam/yestheory-family-cms:COMMIT_HASH
-    environment:
-      ENABLE_DATASEEDER: "true"
-      PAYLOAD_SECRET: asdfghjkl
-      DATABASE_URI: "postgresql://ytfe2e:ytfe2e@postgres:5432/payload?schema=public"
-      TYPESENSE_API_KEY: 1234567890
-      TYPESENSE_API_URL: http://typesense:8108
-      BACKEND_URL: http://server:5000
-      INTERNAL_BACKEND_URL: http://server:5001
-      YESBOT_API_AUTH_TOKEN: yesbot-api-token
-      INITIAL_ADMIN_ID: skipped
-      PAYLOAD_API_KEY: e2e-api-key
-    healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail http://localhost:3001/admin > /dev/null || exit 1"]
-      start_period: 5s
-      interval: 1s
-      retries: 10
-    ports:
-      - "3001:3001"
-    depends_on:
-      postgres:
-        condition: 'service_healthy'
-      typesense:
-        condition: 'service_started'
 
   typesense:
     image: typesense/typesense:0.25.1

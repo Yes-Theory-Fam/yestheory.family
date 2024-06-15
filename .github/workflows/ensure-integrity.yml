@@ -34,7 +34,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           build-args: |
             FRONTEND_URL=${{ github.ref == 'refs/heads/master' && 'https://staging.yestheory.family' || 'https://yestheory.family' }}
-            NEXT_PUBLIC_PAYLOAD_URL=${{ github.ref == 'refs/heads/master' && 'https://admin.staging.yestheory.family' || 'https://admin.yestheory.family' }}
 
   docker-build-cms:
     name: "Docker Build CMS"
@@ -46,8 +45,6 @@ jobs:
         with:
           sub-project: cms
           token: ${{ secrets.GITHUB_TOKEN }}
-          build-args: |
-            PAYLOAD_PUBLIC_WEB_FRONTEND_URL=${{ github.ref == 'refs/heads/master' && 'https://staging.yestheory.family' || 'https://yestheory.family' }}
 
   chromatic-deployment:
     name: "Chromatic Deployment"

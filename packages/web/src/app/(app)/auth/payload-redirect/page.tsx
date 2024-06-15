@@ -5,7 +5,7 @@ import {navigateToLogin} from '../../../../context/user/navigate-to-login';
 
 const PayloadRedirect: FC = () => {
   useEffect(() => {
-    navigateToLogin(process.env.NEXT_PUBLIC_PAYLOAD_URL);
+    navigateToLogin('/admin');
   }, []);
 
   return (

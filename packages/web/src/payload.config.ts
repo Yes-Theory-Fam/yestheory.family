@@ -54,7 +54,7 @@ const config: Config = {
       mimicUserOperation: mimicUserOperationMutation,
     }),
   },
-  serverURL: process.env.SERVER_URL,
+  serverURL: process.env.FRONTEND_URL,
   sharp,
 };
 

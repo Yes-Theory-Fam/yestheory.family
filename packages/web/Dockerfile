@@ -22,7 +22,6 @@ FROM node:20.9-alpine AS builder
 WORKDIR /app
 
 ARG FRONTEND_URL
-ARG NEXT_PUBLIC_PAYLOAD_URL
 
 # Copy node_modules and other side products from deps
 COPY --from=deps /app/packages/web/ ./packages/web/

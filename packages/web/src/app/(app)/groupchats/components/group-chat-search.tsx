@@ -44,11 +44,7 @@ export const GroupChatSearch: FC<GroupChatSearchProps> = ({
         <p>
           <InformationCircleIcon className='mr-2 inline-block size-6 text-brand-800' />
           Ask the group&apos;s admin to head over{' '}
-          <Link
-            href={process.env.NEXT_PUBLIC_PAYLOAD_URL}
-            target='_blank'
-            rel='nofollow noreferrer'
-          >
+          <Link href='/admin' target='_blank' rel='nofollow noreferrer'>
             here
           </Link>
           !
