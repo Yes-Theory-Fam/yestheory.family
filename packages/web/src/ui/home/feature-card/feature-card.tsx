@@ -7,7 +7,12 @@ import {Heading} from '../../common/heading/heading';
 import {Image} from '../../common/image/image';
 
 export type FeatureCardProps = {
-  feature: Feature;
+  feature: Omit<
+    Feature,
+    'teaserImage' | 'id' | 'updatedAt' | 'createdAt' | 'pathPrefix'
+  > & {
+    teaserImage: Omit<Media, 'updatedAt' | 'createdAt'>;
+  };
   inverted: boolean;
 };
 

@@ -10,7 +10,7 @@ import {Groupchats} from './app/(payload)/collections/groupchats';
 import {Media} from './app/(payload)/collections/media';
 import {Users} from './app/(payload)/collections/users';
 import {AfterLogin} from './app/(payload)/components/after-login/after-login';
-import {setupGroupchatSync} from './app/(payload)/cron-jobs/groupchat-sync';
+import {setupCronJobs} from './app/(payload)/cron-jobs';
 import {mimicUserOperationMutation} from './app/(payload)/graphql/mutations/mimic-user-operation';
 import {groupchatSearchTokenQuery} from './app/(payload)/graphql/queries/groupchat-search-token';
 import {mayOperateQuery} from './app/(payload)/graphql/queries/may-operate';
@@ -33,7 +33,7 @@ const config: Config = {
     // TODO wait for drizzle to resolve this and run migrations prior to JS container
     //   https://github.com/drizzle-team/drizzle-orm/issues/819
     // await payload.db.migrate();
-    void setupGroupchatSync(payload);
+    void setupCronJobs(payload);
   },
   editor: slateEditor({}),
   collections: [Users, Media, Groupchats, GroupchatKeywords, Features],

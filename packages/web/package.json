@@ -76,6 +76,7 @@
     "graphql-request": "^6.1.0",
     "graphql-scalars": "1.22.2",
     "next": "15.0.0-rc.0",
+    "node-cron": "^3.0.3",
     "payload": "3.0.0-beta.45",
     "pg": "^8.11.5",
     "pg-connection-string": "^2.6.4",

@@ -52,10 +52,9 @@ export const Users: CollectionConfig = {
     delete: requireOneOf(),
     read: ({req}) => {
       const {user} = req;
-      if (!user?.user) return false;
+      if (!user) return false;
 
-      const {roles} = user.user;
-      if (roles.includes('owner')) return true;
+      if (user.roles.includes('owner')) return true;
 
       return true;
     },

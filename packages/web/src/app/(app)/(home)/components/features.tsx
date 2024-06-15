@@ -1,4 +1,4 @@
-import {FeatureCard} from 'ui/home';
+import {FeatureCard, type FeatureCardProps} from 'ui/home';
 import {payload} from '../../../../lib/payload';
 
 export const Features = async () => {
@@ -12,7 +12,11 @@ export const Features = async () => {
   return (
     <>
       {enabledFeatures.map((f, i) => (
-        <FeatureCard key={f.id} feature={f} inverted={i % 2 == 1} />
+        <FeatureCard
+          key={f.id}
+          feature={f as FeatureCardProps['feature']}
+          inverted={i % 2 == 1}
+        />
       ))}
     </>
   );

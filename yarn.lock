@@ -8203,6 +8203,7 @@ __metadata:
     graphql-request: "npm:^6.1.0"
     graphql-scalars: "npm:1.22.2"
     next: "npm:15.0.0-rc.0"
+    node-cron: "npm:^3.0.3"
     payload: "npm:3.0.0-beta.45"
     pg: "npm:^8.11.5"
     pg-connection-string: "npm:^2.6.4"
@@ -16428,7 +16429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-cron@npm:3.0.3":
+"node-cron@npm:3.0.3, node-cron@npm:^3.0.3":
   version: 3.0.3
   resolution: "node-cron@npm:3.0.3"
   dependencies:

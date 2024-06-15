@@ -35,17 +35,6 @@ jobs:
           build-args: |
             FRONTEND_URL=${{ github.ref == 'refs/heads/master' && 'https://staging.yestheory.family' || 'https://yestheory.family' }}
 
-  docker-build-cms:
-    name: "Docker Build CMS"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/docker-build
-        name: "Build Container"
-        with:
-          sub-project: cms
-          token: ${{ secrets.GITHUB_TOKEN }}
-
   chromatic-deployment:
     name: "Chromatic Deployment"
     runs-on: ubuntu-latest
