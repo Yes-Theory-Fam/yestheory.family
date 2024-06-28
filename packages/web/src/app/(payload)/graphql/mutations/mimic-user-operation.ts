@@ -1,7 +1,5 @@
 import {GraphQLJSON} from '@payloadcms/graphql/types';
-import {type GeneratedTypes} from 'payload';
-import {NotFound} from 'payload/errors';
-import type {CollectionConfig} from 'payload/types';
+import {type GeneratedTypes, type CollectionConfig, NotFound} from 'payload';
 import {type PayloadUser} from '../../collections/users';
 import {type QueryFactory} from '../../utils/merge-queries';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React, {type FC, useEffect, useState} from 'react';
-import {AuthState} from '../../collections/users';
+import {AuthState} from "../../lib/auth-state";
 import {AuthenticatedMishap} from './components/authenticated-mishap';
 import {MissingAccess} from './components/missing-access';
 import {MissingCookie} from './components/missing-cookie';

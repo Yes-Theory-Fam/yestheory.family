@@ -1,7 +1,7 @@
 import {type Metadata} from 'next';
 import {Roboto} from 'next/font/google';
 import {type PropsWithChildren, Suspense} from 'react';
-import {Footer} from 'ui';
+import {Footer, type NavLinkDefinition} from 'ui';
 import {CookieConsent} from '../../components/cookie-consent/cookie-consent';
 import {getCurrentUser} from '../../context/user/user';
 import {getNavRoutes} from '../../lib/features/features';
@@ -17,6 +17,8 @@ const roboto = Roboto({
   preload: true,
   variable: '--font-roboto',
 });
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.FRONTEND_URL),
@@ -46,7 +48,8 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({children}: PropsWithChildren) => {
   const user = await getCurrentUser();
-  const routes = await getNavRoutes();
+  // TODO figure out why I am not allowed to check with payload here...
+  const routes: NavLinkDefinition[] = [] /*await getNavRoutes()*/;
 
   return (
     <html lang='en' className={roboto.variable}>

@@ -1,5 +1,4 @@
-import {type GeneratedTypes, type Payload} from 'payload';
-import {type CollectionConfig, type ValidateOptions} from 'payload/types';
+import {type GeneratedTypes, type Payload, type CollectionConfig, type ValidateOptions} from 'payload';
 import {type Groupchat, type GroupchatKeyword} from '../../../payload-types';
 import {allowUpdateDeleteOwner} from '../access/allow-update-delete-owner';
 import {requireOneOf} from '../access/require-one-of';
@@ -211,15 +210,15 @@ export const Groupchats: CollectionConfig = {
         const keywords =
           doc.keywords.length > 0
             ? await req.payload.find({
-                collection: 'groupchat-keywords',
-                where: {
-                  id: {
-                    in: doc.keywords.map((k: number | GroupchatKeyword) =>
-                      typeof k === 'number' ? k : k.id,
-                    ),
-                  },
+              collection: 'groupchat-keywords',
+              where: {
+                id: {
+                  in: doc.keywords.map((k: number | GroupchatKeyword) =>
+                    typeof k === 'number' ? k : k.id,
+                  ),
                 },
-              })
+              },
+            })
             : {docs: []};
 
         const {owners, ...sanitized} = doc;

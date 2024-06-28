@@ -1,5 +1,4 @@
-import {type AuthStrategyFunction} from 'payload/auth';
-import {NotFound} from 'payload/errors';
+import {type AuthStrategyFunction, NotFound} from 'payload';
 import {toRequestUser} from '../collections/users';
 import {getAuthStateFromHeaders} from './get-auth-state-from-headers';
 

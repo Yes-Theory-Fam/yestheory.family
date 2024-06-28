@@ -1,4 +1,4 @@
-import {type CollectionConfig} from 'payload/types';
+import {type CollectionConfig} from 'payload';
 import {hiddenUnlessOwner} from '../access/hidden-unless-owner';
 import {requireOneOf} from '../access/require-one-of';
 

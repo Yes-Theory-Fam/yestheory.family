@@ -6,6 +6,8 @@ import React from 'react';
 import configPromise from '@payload-config';
 import './styles/tailwind.css';
 
+export const dynamic = 'force-dynamic';
+
 type Args = {
   children: React.ReactNode;
 };

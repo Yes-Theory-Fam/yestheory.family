@@ -1,4 +1,4 @@
-import {type ClientUser} from 'payload/auth';
+import {type ClientUser} from 'payload';
 import {type SessionUser} from '../collections/users';
 
 export const hiddenUnlessOwner = ({user}: {user: ClientUser}) => {

@@ -1,9 +1,9 @@
-import {type GeneratedTypes} from 'payload';
-import {type CollectionConfig} from 'payload/types';
+import {type GeneratedTypes,type CollectionConfig} from 'payload';
 import {hiddenUnlessOwner} from '../access/hidden-unless-owner';
 import {requireOneOf} from '../access/require-one-of';
 import {ytfAuthStrategy} from '../lib/auth-strategy';
 import {getAuthStateFromHeaders} from '../lib/get-auth-state-from-headers';
+import { AuthState } from '../lib/auth-state';
 
 export type PayloadUser = GeneratedTypes['collections']['users'];
 
@@ -20,13 +20,6 @@ export type APIKeyUser = {
 };
 
 export type SessionUser = WebSessionUser | APIKeyUser;
-
-export const enum AuthState {
-  MISSING_COOKIE = 'MISSING_COOKIE',
-  MISSING_ACCESS = 'MISSING_ACCESS',
-  AUTHENTICATED = 'AUTHENTICATED',
-  LOADING = 'LOADING',
-}
 
 export const toRequestUser = (
   user: GeneratedTypes['collections']['users'],

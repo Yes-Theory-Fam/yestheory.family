@@ -1,6 +1,5 @@
 import type * as GraphQL from 'graphql';
-import {type Config} from 'payload/config';
-import {type PayloadRequest} from 'payload/types';
+import {type Config, type PayloadRequest} from 'payload';
 
 type GraphQLExtension = NonNullable<NonNullable<Config['graphQL']>['queries']>;
 type GraphQLExtensionContext = Parameters<GraphQLExtension>[1];

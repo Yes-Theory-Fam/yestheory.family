@@ -61,6 +61,8 @@ const config = (phase) => ({
   ],
 });
 
+// TODO configure payload.config.ts -> csrf
+
 module.exports = (...args) => {
   const inner =
     process.env.ANALYZE === 'true'

@@ -1,4 +1,4 @@
-import {parseCookies} from 'payload/auth';
+import {parseCookies} from 'payload';
 
 type MeQueryMe = null | {id: string};
 type MeQueryData = null | {me: MeQueryMe};

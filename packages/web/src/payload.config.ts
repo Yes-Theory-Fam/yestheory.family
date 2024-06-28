@@ -2,8 +2,7 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import {postgresAdapter} from '@payloadcms/db-postgres';
 import {slateEditor} from '@payloadcms/richtext-slate';
-import {PHASE_PRODUCTION_BUILD} from 'next/constants';
-import {buildConfig, type Config} from 'payload/config';
+import {buildConfig, type Config} from 'payload';
 import sharp from 'sharp';
 import {Features} from './app/(payload)/collections/features';
 import {GroupchatKeywords} from './app/(payload)/collections/groupchat-keywords';
@@ -15,13 +14,13 @@ import {setupCronJobs} from './app/(payload)/cron-jobs';
 import {mimicUserOperationMutation} from './app/(payload)/graphql/mutations/mimic-user-operation';
 import {groupchatSearchTokenQuery} from './app/(payload)/graphql/queries/groupchat-search-token';
 import {mayOperateQuery} from './app/(payload)/graphql/queries/may-operate';
-import {ensureDbExists} from './app/(payload)/utils/ensure-db-exists';
+// import {ensureDbExists} from './app/(payload)/utils/ensure-db-exists';
 import {mergeQueries} from './app/(payload)/utils/merge-queries';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-await ensureDbExists();
+// await ensureDbExists();
 
 const config: Config = {
   admin: {
@@ -31,8 +30,6 @@ const config: Config = {
     },
   },
   onInit: async (payload) => {
-    if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) return;
-
     // TODO wait for drizzle to resolve this and run migrations prior to JS container
     //   https://github.com/drizzle-team/drizzle-orm/issues/819
     // await payload.db.migrate();
@@ -47,7 +44,7 @@ const config: Config = {
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || 'lemmebuild?',
   graphQL: {
     queries: mergeQueries<unknown, never>({
       groupchatSearchToken: groupchatSearchTokenQuery,

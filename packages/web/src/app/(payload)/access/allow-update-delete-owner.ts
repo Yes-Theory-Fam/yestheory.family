@@ -1,4 +1,4 @@
-import {type AccessArgs} from 'payload/config';
+import {type AccessArgs} from 'payload';
 
 export function allowUpdateDeleteOwner<TData>({req}: AccessArgs<TData>) {
   const user = req.user;

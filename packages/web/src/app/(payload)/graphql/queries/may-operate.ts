@@ -1,7 +1,4 @@
-import {type GeneratedTypes} from 'payload';
-import {type Access} from 'payload/config';
-import {NotFound} from 'payload/errors';
-import {type CollectionConfig, type PayloadRequest} from 'payload/types';
+import {type GeneratedTypes,type Access, NotFound, type CollectionConfig, type PayloadRequest } from 'payload';
 import {type PayloadUser, toRequestUser} from '../../collections/users';
 import {type QueryFactory} from '../../utils/merge-queries';
 
