@@ -44,6 +44,15 @@ services:
     environment:
       SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
       FRONTEND_URL: http://web:3000
+      PAYLOAD_SECRET: e2e-secret
+      DATABASE_URI: postgresql://ytfe2e:ytfe2e@postgres:5432/payload?schema=public
+      TYPESENSE_API_URL: http://typesense:8108
+      TYPESENSE_API_KEY: 1234567890
+      BACKEND_URL: http://server:5000
+      INTERNAL_BACKEND_URL: http://server:5001
+      YESBOT_API_AUTH_TOKEN: yesbot-api-token
+      INITIAL_ADMIN_ID: 1234567890
+      PAYLOAD_API_KEY: e2e-api-key
     ports:
       - "3000:3000"
     depends_on:

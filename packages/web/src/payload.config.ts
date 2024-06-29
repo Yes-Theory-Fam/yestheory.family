@@ -25,6 +25,14 @@ if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD) {
   await ensureDbExists();
 }
 
+/*
+  TODO plan for the deployment:
+   1. Disable the clean job of the CI
+   2. Reconfigure Argo to target that image and deployment branch
+   3. See what goes poof
+   4. Fix that
+   5. Merge
+ */
 const config: Config = {
   admin: {
     user: Users.slug,
