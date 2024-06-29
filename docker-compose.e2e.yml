@@ -36,8 +36,6 @@ services:
       CMS_ENDPOINT: "http://web:3000/api/graphql"
       CMS_API_KEY: e2e-api-key
     depends_on:
-      cms:
-        condition: 'service_healthy'
       postgres:
         condition: 'service_healthy'
 
@@ -74,7 +72,6 @@ services:
     depends_on:
       - web
       - server
-      - cms
       - postgres
       - typesense
 
