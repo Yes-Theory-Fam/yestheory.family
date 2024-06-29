@@ -48,7 +48,7 @@ const config: Config = {
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  secret: process.env.PAYLOAD_SECRET || 'lemmebuild?',
+  secret: process.env.PAYLOAD_SECRET || '',
   graphQL: {
     queries: mergeQueries<unknown, never>({
       groupchatSearchToken: groupchatSearchTokenQuery,

@@ -43,7 +43,7 @@ ENV NODE_ENV production
 
 COPY --from=builder /app/node_modules/ ./node_modules
 # TODO look into standalone output builds
-COPY --from=builder /app/packages/web/next.config.js ./packages/web/
+COPY --from=builder /app/packages/web/next.config.cjs ./packages/web/
 COPY --from=builder /app/packages/web/.next/ ./packages/web/.next/
 COPY --from=builder /app/packages/web/public/ ./packages/web/public/
 COPY --from=builder /app/packages/web/package.json ./packages/web/
