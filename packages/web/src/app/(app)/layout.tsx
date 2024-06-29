@@ -20,7 +20,7 @@ const roboto = Roboto({
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
+export const generateMetadata = (): Metadata => ({
   metadataBase: new URL(process.env.FRONTEND_URL),
   title: {
     absolute: 'Yes Theory Family',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       url: '/apple-touch-icon.png',
     },
   },
-};
+});
 
 const RootLayout = async ({children}: PropsWithChildren) => {
   const user = await getCurrentUser();

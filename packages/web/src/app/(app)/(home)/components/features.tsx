@@ -1,7 +1,8 @@
 import {FeatureCard, type FeatureCardProps} from 'ui/home';
-import {payload} from '../../../../lib/payload';
+import {getPayload} from '../../../../lib/payload';
 
 export const Features = async () => {
+  const payload = await getPayload();
   const features = await payload.find({
     collection: 'feature',
     depth: 2,

@@ -1,9 +1,10 @@
 import {notFound} from 'next/navigation';
 import {type Feature} from '../../payload-types';
 import {type NavLinkDefinition} from '../../ui';
-import {payload} from '../payload';
+import {getPayload} from '../payload';
 
 const getFeatures = async (): Promise<Feature[]> => {
+  const payload = await getPayload();
   const featuresResult = await payload.find({collection: 'feature'});
 
   return featuresResult?.docs ?? [];
