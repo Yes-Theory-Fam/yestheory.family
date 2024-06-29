@@ -1,4 +1,4 @@
-import {type GeneratedTypes,type FieldAccess, type TypeWithID} from 'payload';
+import {type GeneratedTypes, type FieldAccess, type TypeWithID} from 'payload';
 import {type SessionUser} from '../collections/users';
 
 type Role = GeneratedTypes['collections']['users']['roles'][number];

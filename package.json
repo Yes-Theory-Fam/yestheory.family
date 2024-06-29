@@ -13,7 +13,8 @@
   ],
   "resolutions": {
     "react-test-renderer": "18.2.0",
-    "ts-node": "10.9.1"
+    "ts-node": "10.9.1",
+    "@payloadcms/graphql@npm:3.0.0-beta.55": "patch:@payloadcms/graphql@npm%3A3.0.0-beta.55#~/.yarn/patches/@payloadcms-graphql-npm-3.0.0-beta.55-27e9ac4479.patch"
   },
   "packageManager": "yarn@4.0.2"
 }

@@ -1,0 +1,12 @@
+diff --git a/dist/exports/types.js b/dist/exports/types.js
+index 2fe1b45aff53a41694b647c8cb1212e0edd6b014..1a82b4dd74a6dd5524f6c2ef856a5d68829005df 100644
+--- a/dist/exports/types.js
++++ b/dist/exports/types.js
+@@ -1,5 +1,5 @@
+ export { GraphQLJSON, GraphQLJSONObject } from '../packages/graphql-type-json/index.js';
+ export { buildPaginatedListType } from '../schema/buildPaginatedListType.js';
+-export { default as GraphQL } from 'graphql';
++export * as GraphQL from 'graphql';
+ 
+ //# sourceMappingURL=types.js.map
+\ No newline at end of file

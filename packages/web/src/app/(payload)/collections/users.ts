@@ -1,9 +1,9 @@
-import {type GeneratedTypes,type CollectionConfig} from 'payload';
+import {type GeneratedTypes, type CollectionConfig} from 'payload';
 import {hiddenUnlessOwner} from '../access/hidden-unless-owner';
 import {requireOneOf} from '../access/require-one-of';
+import {AuthState} from '../lib/auth-state';
 import {ytfAuthStrategy} from '../lib/auth-strategy';
 import {getAuthStateFromHeaders} from '../lib/get-auth-state-from-headers';
-import { AuthState } from '../lib/auth-state';
 
 export type PayloadUser = GeneratedTypes['collections']['users'];
 

@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 const RootLayout = async ({children}: PropsWithChildren) => {
   const user = await getCurrentUser();
   // TODO figure out why I am not allowed to check with payload here...
-  const routes: NavLinkDefinition[] = [] /*await getNavRoutes()*/;
+  const routes: NavLinkDefinition[] = await getNavRoutes();
 
   return (
     <html lang='en' className={roboto.variable}>

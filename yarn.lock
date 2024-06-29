@@ -4633,6 +4633,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@payloadcms/graphql@patch:@payloadcms/graphql@npm%3A3.0.0-beta.55#~/.yarn/patches/@payloadcms-graphql-npm-3.0.0-beta.55-27e9ac4479.patch":
+  version: 3.0.0-beta.55
+  resolution: "@payloadcms/graphql@patch:@payloadcms/graphql@npm%3A3.0.0-beta.55#~/.yarn/patches/@payloadcms-graphql-npm-3.0.0-beta.55-27e9ac4479.patch::version=3.0.0-beta.55&hash=21dfb7"
+  dependencies:
+    graphql-scalars: "npm:1.22.2"
+    pluralize: "npm:8.0.0"
+    ts-essentials: "npm:7.0.3"
+  peerDependencies:
+    graphql: ^16.8.1
+    payload: 3.0.0-beta.55
+  bin:
+    payload-graphql: bin.js
+  checksum: 4f71c3606a2a08a403935e8f776a6398f12d03fbe510a5574a306f64da4cfc557a40261e21a5b9aa9f9cded60ad12cf4582cd1ee8b9a30e24a46e867287909f7
+  languageName: node
+  linkType: hard
+
 "@payloadcms/next@npm:3.0.0-beta.55":
   version: 3.0.0-beta.55
   resolution: "@payloadcms/next@npm:3.0.0-beta.55"
