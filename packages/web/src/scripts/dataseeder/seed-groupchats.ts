@@ -1,4 +1,4 @@
-import {type Groupchat} from '../../../payload-types';
+import {type Groupchat} from '../../payload-types';
 import {upsert} from './upsert';
 
 const keywords: Record<string, number> = {};

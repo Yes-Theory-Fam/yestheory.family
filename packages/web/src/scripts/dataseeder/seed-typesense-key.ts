@@ -1,4 +1,4 @@
-import {typesenseClient} from '../lib/typesense';
+import {typesenseClient} from '../../app/(payload)/lib/typesense';
 
 export const apiKey = 'yestheory-family-typesense-search-key';
 

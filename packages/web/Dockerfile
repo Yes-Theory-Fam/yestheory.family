@@ -46,6 +46,7 @@ COPY --from=builder /app/node_modules/ ./node_modules
 COPY --from=builder /app/packages/web/next.config.cjs ./packages/web/
 COPY --from=builder /app/packages/web/.next/ ./packages/web/.next/
 COPY --from=builder /app/packages/web/public/ ./packages/web/public/
+COPY --from=builder /app/packages/web/build/ ./packages/web/buidl/
 COPY --from=builder /app/packages/web/package.json ./packages/web/
 
 COPY yarn.lock package.json ./
@@ -53,5 +54,8 @@ COPY yarn.lock package.json ./
 EXPOSE 3000
 
 RUN npx next telemetry disable
+
 WORKDIR /app/packages/web
-CMD ["yarn", "start"]
+COPY packages/web/docker-entrypoint.sh ./packages/web
+
+CMD ["./docker-entrypoint.sh"]

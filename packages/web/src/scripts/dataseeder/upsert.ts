@@ -1,4 +1,7 @@
-import payload, {type GeneratedTypes} from 'payload';
+import {type GeneratedTypes, getPayload} from 'payload';
+import config from '@payload-config';
+
+const payload = await getPayload({config});
 
 type CollectionKey = keyof GeneratedTypes['collections'];
 type CreateOptions<T extends CollectionKey> = Parameters<

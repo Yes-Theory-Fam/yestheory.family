@@ -1,4 +1,4 @@
-import {type User} from '../../../payload-types';
+import {type User} from '../../payload-types';
 import {upsert} from './upsert';
 
 export const seedUsers = async () => {

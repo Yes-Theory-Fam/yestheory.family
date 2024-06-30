@@ -13,7 +13,7 @@ services:
       interval: 1s
 
   server:
-    image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:pr-300
     hostname: server
     ports:
       - "5000:5000"
@@ -40,7 +40,7 @@ services:
         condition: 'service_healthy'
 
   web:
-    image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:pr-300
     environment:
       SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
       FRONTEND_URL: http://web:3000

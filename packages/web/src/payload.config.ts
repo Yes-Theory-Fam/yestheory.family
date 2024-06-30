@@ -15,15 +15,10 @@ import {setupCronJobs} from './app/(payload)/cron-jobs';
 import {mimicUserOperationMutation} from './app/(payload)/graphql/mutations/mimic-user-operation';
 import {groupchatSearchTokenQuery} from './app/(payload)/graphql/queries/groupchat-search-token';
 import {mayOperateQuery} from './app/(payload)/graphql/queries/may-operate';
-import {ensureDbExists} from './app/(payload)/utils/ensure-db-exists';
 import {mergeQueries} from './app/(payload)/utils/merge-queries';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD) {
-  await ensureDbExists();
-}
 
 /*
   TODO plan for the deployment:

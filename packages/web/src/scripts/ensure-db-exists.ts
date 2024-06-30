@@ -1,7 +1,7 @@
 import Postgres from 'pg';
 import PgConnectionString from 'pg-connection-string';
 
-export const ensureDbExists = async () => {
+const ensureDbExists = async () => {
   const uri = process.env.DATABASE_URI ?? '';
   const {database, user, password, host, port} = PgConnectionString.parse(uri);
 
@@ -21,3 +21,5 @@ export const ensureDbExists = async () => {
 
   await client.end();
 };
+
+void ensureDbExists();
