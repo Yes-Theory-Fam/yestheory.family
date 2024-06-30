@@ -13,7 +13,7 @@ services:
       interval: 1s
 
   server:
-    image: ghcr.io/yes-theory-fam/yestheory-family-server:COMMIT_HASH
+    image: ghcr.io/yes-theory-fam/yestheory-family-server:pr-300
     hostname: server
     ports:
       - "5000:5000"
@@ -33,49 +33,31 @@ services:
       DISCORD_CLIENT_SECRET: skipped
       DISCORD_SCOPES: skipped
 
-      CMS_ENDPOINT: "http://cms:3001/api/graphql"
+      CMS_ENDPOINT: "http://web:3000/api/graphql"
       CMS_API_KEY: e2e-api-key
     depends_on:
-      cms:
-        condition: 'service_healthy'
       postgres:
         condition: 'service_healthy'
 
   web:
-    image: ghcr.io/yes-theory-fam/yestheory-family-web:COMMIT_HASH
+    # TODO revert
+    image: ghcr.io/yes-theory-fam/yestheory-family-web:pr-300
     environment:
       SERVER_BACKEND_GRAPHQL_URL: http://server:5000/graphql
       FRONTEND_URL: http://web:3000
+      PAYLOAD_SECRET: e2e-secret
+      DATABASE_URI: postgresql://ytfe2e:ytfe2e@postgres:5432/payload?schema=public
+      TYPESENSE_API_URL: http://typesense:8108
+      TYPESENSE_API_KEY: 1234567890
+      BACKEND_URL: http://server:5000
+      INTERNAL_BACKEND_URL: http://server:5001
+      YESBOT_API_AUTH_TOKEN: yesbot-api-token
+      INITIAL_ADMIN_ID: 1234567890
+      PAYLOAD_API_KEY: e2e-api-key
     ports:
       - "3000:3000"
     depends_on:
       - server
-
-  cms:
-    image: ghcr.io/yes-theory-fam/yestheory-family-cms:COMMIT_HASH
-    environment:
-      ENABLE_DATASEEDER: "true"
-      PAYLOAD_SECRET: asdfghjkl
-      DATABASE_URI: "postgresql://ytfe2e:ytfe2e@postgres:5432/payload?schema=public"
-      TYPESENSE_API_KEY: 1234567890
-      TYPESENSE_API_URL: http://typesense:8108
-      BACKEND_URL: http://server:5000
-      INTERNAL_BACKEND_URL: http://server:5001
-      YESBOT_API_AUTH_TOKEN: yesbot-api-token
-      INITIAL_ADMIN_ID: skipped
-      PAYLOAD_API_KEY: e2e-api-key
-    healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail http://localhost:3001/admin > /dev/null || exit 1"]
-      start_period: 5s
-      interval: 1s
-      retries: 10
-    ports:
-      - "3001:3001"
-    depends_on:
-      postgres:
-        condition: 'service_healthy'
-      typesense:
-        condition: 'service_started'
 
   typesense:
     image: typesense/typesense:0.25.1
@@ -89,7 +71,7 @@ services:
       - "typesense-data:/data"
 
   playwright:
-    image: mcr.microsoft.com/playwright:v1.43.1-focal
+    image: mcr.microsoft.com/playwright:v1.45.0-focal
     entrypoint: "/bin/bash"
     command: "./wait-for-it.sh -t 30 --strict server:5000 -- ./install-and-run.sh"
     working_dir: /e2e
@@ -100,7 +82,6 @@ services:
     depends_on:
       - web
       - server
-      - cms
       - postgres
       - typesense
 

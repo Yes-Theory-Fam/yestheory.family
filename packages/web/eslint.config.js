@@ -1,12 +1,16 @@
-const storybookPlugin = require('eslint-plugin-storybook');
+import next from '@atmina/linting/eslint/next.js';
+import recommended from '@atmina/linting/eslint/recommended.js';
+import tailwind from '@atmina/linting/eslint/tailwind.js';
+import officialNext from '@next/eslint-plugin-next';
+import storybookPlugin from 'eslint-plugin-storybook';
 
 /**
  * @type {import('eslint').Linter.FlatConfig[]}
  */
-module.exports = [
-  ...require('@atmina/linting/eslint/recommended'),
-  require('@atmina/linting/eslint/tailwind'),
-  require('@atmina/linting/eslint/next')(require('@next/eslint-plugin-next')),
+const config = [
+  ...recommended,
+  tailwind,
+  next(officialNext),
   {
     plugins: {storybook: storybookPlugin},
     files: [
@@ -25,3 +29,5 @@ module.exports = [
     },
   },
 ];
+
+export default config;

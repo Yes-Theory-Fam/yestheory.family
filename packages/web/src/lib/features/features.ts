@@ -1,15 +1,13 @@
 import {notFound} from 'next/navigation';
+import {type Feature} from '../../payload-types';
 import {type NavLinkDefinition} from '../../ui';
-import {type FeaturesQuery, graphqlWithHeaders} from '../graphql/client';
-
-type Defined<T> = Exclude<T, null | undefined>;
-type Features = Defined<Defined<FeaturesQuery['Features']>['docs']>;
-type Feature = Defined<Features[number]>;
+import {getPayload} from '../payload';
 
 const getFeatures = async (): Promise<Feature[]> => {
-  const data = await graphqlWithHeaders((sdk) => sdk.Features());
+  const payload = await getPayload();
+  const featuresResult = await payload.find({collection: 'feature'});
 
-  return (data.Features?.docs ?? []).filter((f): f is Feature => !!f);
+  return featuresResult?.docs ?? [];
 };
 
 const isNavEnabled = async (path: string): Promise<boolean> => {

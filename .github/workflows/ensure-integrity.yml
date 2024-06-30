@@ -34,20 +34,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           build-args: |
             FRONTEND_URL=${{ github.ref == 'refs/heads/master' && 'https://staging.yestheory.family' || 'https://yestheory.family' }}
-            NEXT_PUBLIC_PAYLOAD_URL=${{ github.ref == 'refs/heads/master' && 'https://admin.staging.yestheory.family' || 'https://admin.yestheory.family' }}
-
-  docker-build-cms:
-    name: "Docker Build CMS"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/docker-build
-        name: "Build Container"
-        with:
-          sub-project: cms
-          token: ${{ secrets.GITHUB_TOKEN }}
-          build-args: |
-            PAYLOAD_PUBLIC_WEB_FRONTEND_URL=${{ github.ref == 'refs/heads/master' && 'https://staging.yestheory.family' || 'https://yestheory.family' }}
 
   chromatic-deployment:
     name: "Chromatic Deployment"
@@ -70,7 +56,7 @@ jobs:
 
   e2e-test:
     name: "Playwright E2E-Test"
-    needs: [ docker-build-server, docker-build-web, docker-build-cms ]
+    needs: [ docker-build-server, docker-build-web ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -90,7 +76,7 @@ jobs:
 
       - name: Run e2e tests
         run: |
-          docker-compose -f docker-compose.e2e.yml up --no-build -d server cms web
+          docker-compose -f docker-compose.e2e.yml up --no-build -d server web
           docker-compose -f docker-compose.e2e.yml run playwright
           docker-compose -f docker-compose.e2e.yml down
 # TODO upload artifacts like videos / reports
@@ -113,10 +99,4 @@ jobs:
         uses: ./.github/actions/delete-image
         with:
           sub-project: web
-          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
-
-      - name: Delete cms image
-        uses: ./.github/actions/delete-image
-        with:
-          sub-project: cms
           token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}

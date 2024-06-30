@@ -34,8 +34,6 @@ spec:
               value: "true"
             - name: FRONTEND_URL
               value: https://{{ .Values.common.baseDomain }}
-            - name: SERVER_URL
-              value: "https://admin.{{ .Values.common.baseDomain }}"
             - name: TYPESENSE_API_URL
               value: "http://ytf-typesense-service:8108"
             - name: BACKEND_URL

@@ -3,6 +3,5 @@ declare namespace NodeJS {
     NODE_ENV: 'development' | 'production' | 'test';
     SERVER_BACKEND_GRAPHQL_URL: string;
     FRONTEND_URL: string;
-    NEXT_PUBLIC_PAYLOAD_URL: string;
   }
 }
