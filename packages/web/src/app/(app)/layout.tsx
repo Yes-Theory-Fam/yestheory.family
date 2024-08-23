@@ -20,8 +20,10 @@ const roboto = Roboto({
 
 export const dynamic = 'force-dynamic';
 
-export const generateMetadata = (): Metadata => ({
-  metadataBase: new URL(process.env.FRONTEND_URL),
+export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_FRONTEND_URL ?? 'http://localhost:3000',
+  ),
   title: {
     absolute: 'Yes Theory Family',
     template: '%s - Yes Theory Family',
@@ -44,11 +46,10 @@ export const generateMetadata = (): Metadata => ({
       url: '/apple-touch-icon.png',
     },
   },
-});
+};
 
 const RootLayout = async ({children}: PropsWithChildren) => {
   const user = await getCurrentUser();
-  // TODO figure out why I am not allowed to check with payload here...
   const routes: NavLinkDefinition[] = await getNavRoutes();
 
   return (

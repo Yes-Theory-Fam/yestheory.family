@@ -1,11 +1,17 @@
-const analyzerPlugin = require('@next/bundle-analyzer');
-const {withPayload} = require('@payloadcms/next/withPayload');
-const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
+import analyzerPlugin from '@next/bundle-analyzer';
+import {withPayload} from '@payloadcms/next/withPayload';
+import {PHASE_DEVELOPMENT_SERVER} from 'next/constants.js';
+import {
+  type NextConfig,
+  type normalizeConfig,
+} from 'next/dist/server/config-shared';
 
 const withBundleAnalyzer = analyzerPlugin();
 
-/** @returns {import("next").NextConfig} */
-const config = (phase) => ({
+type NextConfigFunctionArguments = Parameters<typeof normalizeConfig>;
+const config: (...args: NextConfigFunctionArguments) => NextConfig = (
+  phase,
+) => ({
   productionBrowserSourceMaps: true,
   typescript: {
     ignoreBuildErrors: true,
@@ -61,9 +67,7 @@ const config = (phase) => ({
   ],
 });
 
-// TODO configure payload.config.ts -> csrf
-
-module.exports = (...args) => {
+const configFunction = (...args: NextConfigFunctionArguments) => {
   const inner =
     process.env.ANALYZE === 'true'
       ? withBundleAnalyzer(config(...args))
@@ -71,3 +75,5 @@ module.exports = (...args) => {
 
   return withPayload(inner);
 };
+
+export default configFunction;

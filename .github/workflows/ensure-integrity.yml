@@ -33,7 +33,7 @@ jobs:
           sub-project: web
           token: ${{ secrets.GITHUB_TOKEN }}
           build-args: |
-            FRONTEND_URL=${{ github.ref == 'refs/heads/master' && 'https://staging.yestheory.family' || 'https://yestheory.family' }}
+            NEXT_PUBLIC_FRONTEND_URL=${{ github.ref == 'refs/heads/master' && 'https://staging.yestheory.family' || 'https://yestheory.family' }}
 
   chromatic-deployment:
     name: "Chromatic Deployment"
@@ -81,22 +81,22 @@ jobs:
           docker-compose -f docker-compose.e2e.yml down
 # TODO upload artifacts like videos / reports
 
-  remove-test-containers:
-    name: "Clean"
-    # Run even if e2e-test failed
-    if: ${{ always() }}
-    needs: e2e-test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Delete server image
-        uses: ./.github/actions/delete-image
-        with:
-          sub-project: server
-          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
-
-      - name: Delete web image
-        uses: ./.github/actions/delete-image
-        with:
-          sub-project: web
-          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
+#  remove-test-containers:
+#    name: "Clean"
+#    # Run even if e2e-test failed
+#    if: ${{ always() }}
+#    needs: e2e-test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Delete server image
+#        uses: ./.github/actions/delete-image
+#        with:
+#          sub-project: server
+#          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}
+#
+#      - name: Delete web image
+#        uses: ./.github/actions/delete-image
+#        with:
+#          sub-project: web
+#          token: ${{ secrets.PR_IMAGE_DELETION_SECRET }}

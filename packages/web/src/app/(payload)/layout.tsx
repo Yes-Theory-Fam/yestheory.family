@@ -5,6 +5,7 @@ import {RootLayout} from '@payloadcms/next/layouts';
 import React from 'react';
 import configPromise from '@payload-config';
 import './styles/tailwind.css';
+import {importMap} from './admin/importMap';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +14,9 @@ type Args = {
 };
 
 const Layout = ({children}: Args) => (
-  <RootLayout config={configPromise}>{children}</RootLayout>
+  <RootLayout config={configPromise} importMap={importMap}>
+    {children}
+  </RootLayout>
 );
 
 export default Layout;

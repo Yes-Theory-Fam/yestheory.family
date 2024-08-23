@@ -1,7 +1,6 @@
-import {type GeneratedTypes, getPayload} from 'payload';
-import config from '@payload-config';
+import {type GeneratedTypes, getPayload, type Payload} from 'payload';
 
-const payload = await getPayload({config});
+declare const payload: Payload;
 
 type CollectionKey = keyof GeneratedTypes['collections'];
 type CreateOptions<T extends CollectionKey> = Parameters<
@@ -23,6 +22,9 @@ type UpsertArgs<T extends CollectionKey> = {
 export const upsert = async <T extends CollectionKey>(
   optionsAndKey: UpsertArgs<T>,
 ) => {
+  const config = await import('@payload-config');
+  const payload = await getPayload({config: config.default});
+
   const {key, ...options} = optionsAndKey;
   const firstKey: CollectionField<T> = Array.isArray(key) ? key[0] : key;
   const keyValue = options.data[firstKey];

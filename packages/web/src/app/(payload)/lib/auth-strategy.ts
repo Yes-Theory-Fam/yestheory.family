@@ -8,7 +8,7 @@ export const ytfAuthStrategy: AuthStrategyFunction = async ({
 }) => {
   const {userId} = await getAuthStateFromHeaders(headers);
 
-  if (!userId) return null;
+  if (!userId) return {user: null};
 
   try {
     const payloadUser = await payload.findByID({
@@ -16,10 +16,10 @@ export const ytfAuthStrategy: AuthStrategyFunction = async ({
       collection: 'users',
     });
 
-    return toRequestUser(payloadUser);
+    return {user: toRequestUser(payloadUser)};
   } catch (e) {
     if (e instanceof NotFound) {
-      return null;
+      return {user: null};
     }
 
     throw e;

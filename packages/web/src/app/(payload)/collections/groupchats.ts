@@ -37,7 +37,18 @@ export const Groupchats: CollectionConfig = {
       name: 'name',
       type: 'text',
       required: true,
-      validate: async (nameValue, {data, req}) => {
+      validate: async (
+        nameValue,
+        {
+          data,
+          req,
+        }: ValidateOptions<
+          Groupchat,
+          unknown,
+          object,
+          string | string[] | undefined
+        >,
+      ) => {
         if (!nameValue) return 'This field is required.';
 
         // We need to run local operations with certain auth, so we skip if payload is not available
@@ -67,12 +78,13 @@ export const Groupchats: CollectionConfig = {
       type: 'select',
       required: true,
       options: [
+        // TODO sort alphabetically once https://github.com/payloadcms/payload/pull/7514 is fixed for good
         {label: 'Discord', value: 'discord'},
         {label: 'Facebook', value: 'facebook'},
-        {label: 'Instagram', value: 'instagram'},
         {label: 'Signal', value: 'signal'},
         {label: 'Telegram', value: 'telegram'},
         {label: 'WhatsApp', value: 'whatsapp'},
+        {label: 'Instagram', value: 'instagram'},
       ],
     },
     {
@@ -108,7 +120,17 @@ export const Groupchats: CollectionConfig = {
           },
         ],
       },
-      validate: (url, {data}: ValidateOptions<Groupchat, unknown, object>) => {
+      validate: (
+        url,
+        {
+          data,
+        }: ValidateOptions<
+          Groupchat,
+          unknown,
+          object,
+          string | string[] | undefined
+        >,
+      ) => {
         if (!data.platform) return true;
         if (!url) return 'This field is required.';
 
