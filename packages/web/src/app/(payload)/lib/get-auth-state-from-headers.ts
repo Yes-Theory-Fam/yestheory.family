@@ -6,7 +6,8 @@ type MeQueryResult = {data: MeQueryData};
 
 type AuthState = {userId: string | null; isLoggedIn: boolean};
 
-const backend = process.env.BACKEND_URL ?? 'http://localhost:5000';
+const backend =
+  process.env.SERVER_BACKEND_GRAPHQL_URL ?? 'http://localhost:5000/graphql';
 
 const expressToFetchHeaders = (incoming: Headers): HeadersInit => ({
   Cookie: incoming.get('cookie') ?? '',
@@ -25,7 +26,7 @@ export const getAuthStateFromHeaders = async (
     operationName: 'Me',
   };
 
-  const response = await fetch(`${backend}/graphql`, {
+  const response = await fetch(backend, {
     method: 'POST',
     headers: {
       ...expressToFetchHeaders(headers),
