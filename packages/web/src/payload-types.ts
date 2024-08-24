@@ -82,7 +82,13 @@ export interface Media {
 export interface Groupchat {
   id: number;
   name: string;
-  platform: 'discord' | 'facebook' | 'signal' | 'telegram' | 'whatsapp' | 'instagram';
+  platform:
+    | 'discord'
+    | 'facebook'
+    | 'signal'
+    | 'telegram'
+    | 'whatsapp'
+    | 'instagram';
   showUnauthenticated?: boolean | null;
   description?: string | null;
   url: string;
@@ -158,7 +164,6 @@ export interface PayloadMigration {
 export interface Auth {
   [k: string]: unknown;
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

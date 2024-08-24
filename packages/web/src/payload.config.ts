@@ -20,14 +20,6 @@ import {migrations} from './migrations';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-/*
-  TODO plan for the deployment:
-   1. Disable the clean job of the CI
-   2. Reconfigure Argo to target that image and deployment branch
-   3. See what goes poof
-   4. Fix that
-   5. Merge
- */
 const config: Config = {
   admin: {
     importMap: {

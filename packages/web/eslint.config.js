@@ -28,6 +28,12 @@ const config = [
       ...storybookPlugin.configs.recommended.overrides[1].rules,
     },
   },
+  {
+    files: ['src/app/(payload)/admin/importMap.js'],
+    rules: {
+      'import/no-unresolved': 'off',
+    },
+  },
 ];
 
 export default config;

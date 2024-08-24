@@ -71,12 +71,8 @@
           "name": "users_roles_parent_fk",
           "tableFrom": "users_roles",
           "tableTo": "users",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -429,12 +425,8 @@
           "name": "groupchats_rels_parent_fk",
           "tableFrom": "groupchats_rels",
           "tableTo": "groupchats",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -442,12 +434,8 @@
           "name": "groupchats_rels_groupchat_keywords_fk",
           "tableFrom": "groupchats_rels",
           "tableTo": "groupchat_keywords",
-          "columnsFrom": [
-            "groupchat_keywords_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["groupchat_keywords_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -455,12 +443,8 @@
           "name": "groupchats_rels_users_fk",
           "tableFrom": "groupchats_rels",
           "tableTo": "users",
-          "columnsFrom": [
-            "users_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["users_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -603,12 +587,8 @@
           "name": "feature_teaser_image_id_media_id_fk",
           "tableFrom": "feature",
           "tableTo": "media",
-          "columnsFrom": [
-            "teaser_image_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["teaser_image_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -776,12 +756,8 @@
           "name": "payload_preferences_rels_parent_fk",
           "tableFrom": "payload_preferences_rels",
           "tableTo": "payload_preferences",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -789,12 +765,8 @@
           "name": "payload_preferences_rels_users_fk",
           "tableFrom": "payload_preferences_rels",
           "tableTo": "users",
-          "columnsFrom": [
-            "users_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["users_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -865,11 +837,7 @@
     "public.enum_users_roles": {
       "name": "enum_users_roles",
       "schema": "public",
-      "values": [
-        "owner",
-        "groupchats-admin",
-        "groupchats"
-      ]
+      "values": ["owner", "groupchats-admin", "groupchats"]
     },
     "public.enum_groupchats_platform": {
       "name": "enum_groupchats_platform",

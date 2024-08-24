@@ -1,6 +1,10 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import {
+  type MigrateUpArgs,
+  type MigrateDownArgs,
+  sql,
+} from '@payloadcms/db-postgres';
 
-export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({payload}: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    DROP TABLE "feature_rels";
   ALTER TABLE "users_roles" DROP CONSTRAINT "users_roles_parent_id_users_id_fk";
@@ -83,10 +87,10 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "payload_preferences_rels_order_idx" ON "payload_preferences_rels" USING btree ("order");
   CREATE INDEX IF NOT EXISTS "payload_preferences_rels_parent_idx" ON "payload_preferences_rels" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "payload_preferences_rels_path_idx" ON "payload_preferences_rels" USING btree ("path");
-  CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");`)
+  CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");`);
 }
 
-export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
+export async function down({payload}: MigrateDownArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    CREATE TABLE IF NOT EXISTS "feature_rels" (
   	"id" serial PRIMARY KEY NOT NULL,
@@ -198,5 +202,5 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "path_idx" ON "payload_preferences_rels" USING btree ("path");
   CREATE INDEX IF NOT EXISTS "created_at_idx" ON "payload_migrations" USING btree ("created_at");
   ALTER TABLE "media" DROP COLUMN IF EXISTS "thumbnail_u_r_l";
-  ALTER TABLE "feature" DROP COLUMN IF EXISTS "teaser_image_id";`)
+  ALTER TABLE "feature" DROP COLUMN IF EXISTS "teaser_image_id";`);
 }
