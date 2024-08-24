@@ -1,6 +1,5 @@
 import {
   type GeneratedTypes,
-  type Payload,
   type CollectionConfig,
   type ValidateOptions,
 } from 'payload';
@@ -54,7 +53,7 @@ export const Groupchats: CollectionConfig = {
         // We need to run local operations with certain auth, so we skip if payload is not available
         if (!req.payload) return true;
 
-        const matchingGroupchats = await (req.payload as Payload).find({
+        const matchingGroupchats = await req.payload.find({
           collection: 'groupchats',
           where: {
             name: {equals: nameValue},

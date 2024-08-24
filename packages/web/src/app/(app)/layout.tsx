@@ -1,7 +1,7 @@
 import {type Metadata} from 'next';
 import {Roboto} from 'next/font/google';
 import {type PropsWithChildren, Suspense} from 'react';
-import {Footer, type NavLinkDefinition} from 'ui';
+import {Footer} from 'ui';
 import {CookieConsent} from '../../components/cookie-consent/cookie-consent';
 import {getCurrentUser} from '../../context/user/user';
 import {getNavRoutes} from '../../lib/features/features';
@@ -17,8 +17,6 @@ const roboto = Roboto({
   preload: true,
   variable: '--font-roboto',
 });
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -50,7 +48,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({children}: PropsWithChildren) => {
   const user = await getCurrentUser();
-  const routes: NavLinkDefinition[] = await getNavRoutes();
+  const routes = await getNavRoutes();
 
   return (
     <html lang='en' className={roboto.variable}>

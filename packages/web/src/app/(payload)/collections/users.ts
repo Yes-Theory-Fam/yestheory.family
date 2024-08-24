@@ -26,8 +26,6 @@ export const toRequestUser = (
 ) => ({
   collection: 'users',
   ...user,
-  // Not a fan of this but it's required to be a valid type for AuthStrategyFunction for now
-  email: '',
 });
 
 export const Users: CollectionConfig = {
