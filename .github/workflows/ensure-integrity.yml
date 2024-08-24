@@ -76,9 +76,9 @@ jobs:
 
       - name: Run e2e tests
         run: |
-          docker-compose -f docker-compose.e2e.yml up --no-build -d server web
-          docker-compose -f docker-compose.e2e.yml run playwright
-          docker-compose -f docker-compose.e2e.yml down
+          docker compose -f docker-compose.e2e.yml up --no-build -d server web
+          docker compose -f docker-compose.e2e.yml run playwright
+          docker compose -f docker-compose.e2e.yml down
 # TODO upload artifacts like videos / reports
 
 #  remove-test-containers:
