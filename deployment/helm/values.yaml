@@ -14,12 +14,11 @@ common:
   baseDomain: yestheory.family
   certName: cert
 
-cms:
+web:
   deployment:
     image:
-      name: ghcr.io/yes-theory-fam/yestheory-family-cms
+      name: ghcr.io/yes-theory-fam/yestheory-family-web
       tag: latest
-
   secret:
     secrets:
       - name: PAYLOAD_SECRET
@@ -32,12 +31,6 @@ cms:
         value: postgres://username:password@ytf-database-service:5432/payload
       - name: YESBOT_API_AUTH_TOKEN
         value:
-
-web:
-  deployment:
-    image:
-      name: ghcr.io/yes-theory-fam/yestheory-family-web
-      tag: latest
 
 backend:
   deployment:

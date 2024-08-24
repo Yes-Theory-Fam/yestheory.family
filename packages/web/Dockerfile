@@ -21,8 +21,8 @@ RUN yarn workspaces focus
 FROM node:20.9-alpine AS builder
 WORKDIR /app
 
-ARG FRONTEND_URL
-ARG NEXT_PUBLIC_PAYLOAD_URL
+ARG NEXT_PUBLIC_FRONTEND_URL
+ENV NEXT_PUBLIC_FRONTEND_URL=$NEXT_PUBLIC_FRONTEND_URL
 
 # Copy node_modules and other side products from deps
 COPY --from=deps /app/packages/web/ ./packages/web/
@@ -44,9 +44,10 @@ ENV NODE_ENV production
 
 COPY --from=builder /app/node_modules/ ./node_modules
 # TODO look into standalone output builds
-COPY --from=builder /app/packages/web/next.config.js ./packages/web/
+COPY --from=builder /app/packages/web/next.config.ts ./packages/web/
 COPY --from=builder /app/packages/web/.next/ ./packages/web/.next/
 COPY --from=builder /app/packages/web/public/ ./packages/web/public/
+COPY --from=builder /app/packages/web/build/ ./packages/web/build/
 COPY --from=builder /app/packages/web/package.json ./packages/web/
 
 COPY yarn.lock package.json ./
@@ -54,5 +55,8 @@ COPY yarn.lock package.json ./
 EXPOSE 3000
 
 RUN npx next telemetry disable
+
 WORKDIR /app/packages/web
-CMD ["yarn", "start"]
+COPY packages/web/docker-entrypoint.sh ./
+
+CMD ["./docker-entrypoint.sh"]

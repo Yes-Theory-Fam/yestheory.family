@@ -35,3 +35,7 @@ yarn-error.log*
 
 # Generated graphql files
 schema.graphql
+
+# Uploaded payload
+media/
+src/app/(payload)/media/

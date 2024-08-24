@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: ['./src/**/*.{ts,tsx}'],
   future: {hoverOnlyWhenSupported: true},
   theme: {
@@ -66,3 +66,5 @@ module.exports = {
     },
   },
 };
+
+export default config;

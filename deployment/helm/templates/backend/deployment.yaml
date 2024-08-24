@@ -52,7 +52,7 @@ spec:
             - name: DISCORD_SCOPES
               value: "identify,guilds.join"
             - name: CMS_ENDPOINT
-              value: "http://ytf-cms-service/api/graphql"
+              value: "http://ytf-web-service/api/graphql"
             - name: FRONTEND_HOST
               value: https://{{ .Values.common.baseDomain }}
 
