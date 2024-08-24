@@ -29,11 +29,11 @@ const config: (...args: NextConfigFunctionArguments) => NextConfig = (
       },
       {
         protocol: 'https',
-        hostname: 'admin.staging.yestheory.family',
+        hostname: 'staging.yestheory.family',
       },
       {
         protocol: 'https',
-        hostname: 'admin.yestheory.family',
+        hostname: 'yestheory.family',
       },
     ],
   },
