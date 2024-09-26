@@ -54,8 +54,8 @@ const Page = async () => {
   const emptyState = {status: 'NOT_SIGNED_UP', buddy: null} as const;
 
   const state = isLoggedIn
-    ? (await graphqlWithHeaders((sdk) => sdk.BuddyProjectState()))
-        .getBuddyProjectStatus ?? emptyState
+    ? ((await graphqlWithHeaders((sdk) => sdk.BuddyProjectState()))
+        .getBuddyProjectStatus ?? emptyState)
     : emptyState;
   const {status, buddy} = state;
 
