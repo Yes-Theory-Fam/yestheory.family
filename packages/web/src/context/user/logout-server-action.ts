@@ -22,7 +22,7 @@ const deleteCookie = (cookies: ReadonlyRequestCookies, name: string) => {
 export const logout = async () => {
   await graphqlWithHeaders((sdk) => sdk.Logout({}));
 
-  const cks = cookies();
+  const cks = await cookies();
   deleteCookie(cks, 'koa.sess');
   deleteCookie(cks, 'koa.sess.sig');
 };

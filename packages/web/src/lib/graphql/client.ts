@@ -4,8 +4,8 @@ import {headers} from 'next/headers';
 import {notFound} from 'next/navigation';
 import {getSdk, type Sdk} from '../../__generated__/graphql';
 
-export const getGraphqlClient = () => {
-  const requestHeaders = headers();
+export const getGraphqlClient = async () => {
+  const requestHeaders = await headers();
 
   if (!process.env.SERVER_BACKEND_GRAPHQL_URL) {
     if (process.env.NODE_ENV !== 'production') {
@@ -42,7 +42,7 @@ export const getGraphqlClient = () => {
 export const graphqlWithHeaders = async <T>(
   cb: (sdk: Sdk) => Promise<T>,
 ): Promise<T> => {
-  const client = getGraphqlClient();
+  const client = await getGraphqlClient();
 
   return await cb(client);
 };
