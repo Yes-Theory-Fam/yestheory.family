@@ -7,12 +7,12 @@ FROM base AS deps
 WORKDIR /app
 
 # Copy yarn data
-COPY .yarn/ ./.yarn/
 COPY .yarnrc.yml ./
 COPY yarn.lock package.json ./
 
 # Copy package.jsons of all related packages
 COPY packages/server/package.json ./packages/server/
+COPY packages/server/prisma ./packages/server/prisma
 
 # Install dependencies for the workspace
 WORKDIR /app/packages/server
@@ -27,12 +27,11 @@ COPY --from=deps /app/packages/server /app/packages/server
 COPY --from=deps /app/node_modules /app/node_modules
 
 # Copy dependency information and source, then build
-COPY yarn.lock .
-COPY package.json .
+COPY yarn.lock package.json .yarnrc.yml .
 COPY packages/server /app/packages/server
 WORKDIR /app/packages/server
 
-RUN yarn prisma generate && yarn build
+RUN yarn build
 
 # Build the actual running server
 FROM base

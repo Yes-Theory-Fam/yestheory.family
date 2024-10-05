@@ -4,12 +4,9 @@ RUN apk add --no-cache libc6-compat && \
 
 # Install dependencies only when needed
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copy yarn data
-COPY .yarn/ ./.yarn/
 COPY .yarnrc.yml ./
 COPY yarn.lock package.json ./
 
@@ -31,8 +28,7 @@ COPY --from=deps /app/packages/web/ ./packages/web/
 COPY --from=deps /app/node_modules/ ./node_modules/
 
 # Copy dependency information and source, then build
-COPY yarn.lock .
-COPY package.json .
+COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/web/ ./packages/web
 WORKDIR /app/packages/web
 
@@ -52,7 +48,7 @@ COPY --from=builder /app/packages/web/public/ ./packages/web/public/
 COPY --from=builder /app/packages/web/build/ ./packages/web/build/
 COPY --from=builder /app/packages/web/package.json ./packages/web/
 
-COPY yarn.lock package.json ./
+COPY yarn.lock .yarnrc.yml package.json ./
 
 EXPOSE 3000
 

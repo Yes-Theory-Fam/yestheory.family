@@ -72,6 +72,8 @@ export class MatchingCron {
 
   private static async explainUnfortunateCircumstances(firstMessage: Message) {
     await firstMessage.delete();
+    if (!firstMessage.channel.isSendable()) return;
+
     await firstMessage.channel.send(
       'Right, this one is going to be disappointing... I had already matched you ' +
         'but your match had their DMs disabled, so I had to rollback everything.\n\n' +
