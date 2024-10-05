@@ -1,4 +1,4 @@
-FROM node:20.9-alpine as base
+FROM node:20.9-alpine AS base
 RUN apk add --no-cache libc6-compat && \
     corepack enable
 
@@ -21,7 +21,7 @@ FROM base AS builder
 WORKDIR /app
 
 ARG NEXT_PUBLIC_FRONTEND_URL
-ENV NEXT_PUBLIC_FRONTEND_URL=$NEXT_PUBLIC_FRONTEND_URL
+ENV NEXT_PUBLIC_FRONTEND_URL $NEXT_PUBLIC_FRONTEND_URL
 
 # Copy node_modules and other side products from deps
 COPY --from=deps /app/packages/web/ ./packages/web/

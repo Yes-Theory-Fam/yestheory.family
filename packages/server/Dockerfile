@@ -1,4 +1,4 @@
-FROM node:20.9-alpine as base
+FROM node:20.9-alpine AS base
 RUN apk add --no-cache libc6-compat && \
     corepack enable
 
@@ -27,7 +27,7 @@ COPY --from=deps /app/packages/server /app/packages/server
 COPY --from=deps /app/node_modules /app/node_modules
 
 # Copy dependency information and source, then build
-COPY yarn.lock package.json .yarnrc.yml .
+COPY yarn.lock package.json .yarnrc.yml ./
 COPY packages/server /app/packages/server
 WORKDIR /app/packages/server
 
@@ -49,8 +49,8 @@ COPY ./packages/server/docker-entrypoint.sh /app/docker-entrypoint.sh
 
 # Set environment data, export and launch
 ARG BACKEND_PORT=5000
-ENV BACKEND_PORT=$BACKEND_PORT
-ENV NODE_ENV="production"
+ENV BACKEND_PORT $BACKEND_PORT
+ENV NODE_ENV "production"
 
 EXPOSE $BACKEND_PORT
 
