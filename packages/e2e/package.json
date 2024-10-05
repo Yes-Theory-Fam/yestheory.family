@@ -2,12 +2,12 @@
   "name": "@yestheory.family/e2e",
   "devDependencies": {
     "@atmina/linting": "^2.2.0",
-    "@playwright/test": "^1.43.1",
-    "@types/eslint": "^8.56.10",
-    "@types/node": "^20.12.7",
+    "@playwright/test": "^1.47.2",
+    "@types/eslint": "^8.56.12",
+    "@types/node": "^22.7.3",
     "dotenv": "^16.4.5",
-    "eslint": "^8.56.0",
-    "prettier": "^3.2.5"
+    "eslint": "^8.57.1",
+    "prettier": "^3.3.3"
   },
   "scripts": {
     "lint": "yarn run eslint:fix && yarn run prettier:fix",

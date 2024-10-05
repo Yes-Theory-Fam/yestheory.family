@@ -10,6 +10,9 @@ import {Providers} from './providers';
 
 import '../../../styles/globals.css';
 
+// TODO see if we can get rid of this again in the future
+export const dynamic = 'force-dynamic';
+
 const roboto = Roboto({
   weight: ['400', '900'],
   subsets: ['latin'],

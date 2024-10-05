@@ -37,7 +37,7 @@ export const Groupchats: CollectionConfig = {
       type: 'text',
       required: true,
       validate: async (
-        nameValue,
+        nameValue: string | string[] | undefined | null,
         {
           data,
           req,
@@ -120,7 +120,7 @@ export const Groupchats: CollectionConfig = {
         ],
       },
       validate: (
-        url,
+        url: string | string[] | undefined | null,
         {
           data,
         }: ValidateOptions<
