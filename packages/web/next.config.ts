@@ -20,6 +20,7 @@ const config: (...args: NextConfigFunctionArguments) => NextConfig = (
     ignoreDuringBuilds: true,
   },
   images: {
+    dangerouslyAllowLocalIP: phase === PHASE_DEVELOPMENT_SERVER,
     remotePatterns: [
       {
         protocol: 'http',

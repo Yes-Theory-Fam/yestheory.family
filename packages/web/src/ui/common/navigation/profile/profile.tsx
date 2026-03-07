@@ -26,7 +26,7 @@ export const Profile: FC<ProfileProps> = ({user, variant, menuItems}) => {
 
   return (
     <Root modal={false}>
-      <Trigger className='relative flex cursor-pointer flex-col items-start gap-1 outline-none'>
+      <Trigger className='relative flex cursor-pointer flex-col items-start gap-1 outline-hidden'>
         <span className={twMerge(textColor, 'text-xs')}>Logged in as:</span>
         <div className='flex items-center gap-2'>
           <div className='relative size-12'>
@@ -49,11 +49,11 @@ export const Profile: FC<ProfileProps> = ({user, variant, menuItems}) => {
       <Portal>
         <Content
           align='start'
-          className='absolute top-full z-50 flex w-min min-w-[120px] flex-col rounded-md border border-gray-200 bg-white py-2 shadow'
+          className='absolute top-full z-50 flex w-min min-w-[120px] flex-col rounded-md border border-gray-200 bg-white py-2 shadow-sm'
         >
           {menuItems.map((i) => (
             <Item
-              className='cursor-pointer bg-white px-4 py-2 text-left text-gray-800 hover:bg-gray-100 hover:outline-none'
+              className='cursor-pointer bg-white px-4 py-2 text-left text-gray-800 hover:bg-gray-100 hover:outline-hidden'
               onClick={() => i.onClick?.()}
               key={i.key}
             >

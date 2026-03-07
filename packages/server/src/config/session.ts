@@ -1,5 +1,5 @@
 import {URL} from 'url';
-import {type opts} from 'koa-session';
+import {type SessionOptions} from 'koa-session';
 import {isDevelopment} from './index';
 
 const frontend = process.env.FRONTEND_HOST;
@@ -12,12 +12,14 @@ const getRootDomain = (urlString: string) => {
 
 export const domain = getRootDomain(frontend);
 
-const sessionConfig: Partial<opts> = {
-  key: 'koa.sess',
-  secure: !isDevelopment,
-  sameSite: 'none',
-  path: '/',
-  domain,
-};
+const sessionConfig: Partial<SessionOptions & {path: string; domain: string}> =
+  {
+    key: 'koa.sess',
+    secure: !isDevelopment,
+    sameSite: isDevelopment ? '' : 'none',
+    path: '/',
+    domain,
+    httpOnly: true,
+  };
 
 export default sessionConfig;

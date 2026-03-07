@@ -12,7 +12,7 @@ const shadowVariants = variants(
 );
 
 export type ImageProps = NextImageProps &
-  VariantProp<typeof shadowVariants, 'shadow'>;
+  VariantProp<typeof shadowVariants, 'shadow-sm'>;
 
 export const Image: FC<ImageProps> = ({className, shadow, ...rest}) => (
   <NextImage

@@ -18,7 +18,7 @@ import koaSession from 'koa-session';
 import {type BuildSchemaOptions, buildSchemaSync} from 'type-graphql';
 import {Container} from 'typedi';
 import {isDevelopment} from '../config';
-import grantConfig from '../config/grant';
+import grantConfig, {grantRoutePrefix} from '../config/grant';
 import sessionConfig from '../config/session';
 import {authenticationRouter} from '../features';
 import {discordAuthErrorCode} from '../features/auth/auth-service';
@@ -139,7 +139,7 @@ export const launchPublicServer = async () => {
   app.keys = ['grant'];
   app.proxy = !isDevelopment;
   app.use(koaSession(sessionConfig, app));
-  app.use(mount('/oauth', koaGrant(grantConfig)));
+  app.use(mount(grantRoutePrefix, koaGrant(grantConfig)));
   app.use(authenticationRouter.routes());
   app.use(bodyParser());
   app.use(cors({origin: process.env.FRONTEND_HOST, credentials: true}));

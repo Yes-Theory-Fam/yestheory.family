@@ -15,7 +15,7 @@ export const SearchInput: FC<SearchInputProps> = ({onChange}) => {
       <input
         placeholder='Search a group'
         ref={inputRef}
-        className='peer w-full bg-transparent px-3 py-2 outline-none'
+        className='peer w-full bg-transparent px-3 py-2 outline-hidden'
         onChange={(e) => onChange(e.target.value)}
         autoFocus
       />

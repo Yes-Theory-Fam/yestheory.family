@@ -1,7 +1,7 @@
 import path from 'path';
 import {fileURLToPath} from 'url';
 import {postgresAdapter} from '@payloadcms/db-postgres';
-import {slateEditor} from '@payloadcms/richtext-slate';
+import {lexicalEditor} from '@payloadcms/richtext-lexical';
 import {PHASE_PRODUCTION_BUILD} from 'next/constants';
 import {buildConfig, type Config} from 'payload';
 import sharp from 'sharp';
@@ -23,7 +23,7 @@ const dirname = path.dirname(filename);
 const config: Config = {
   admin: {
     importMap: {
-      baseDir: path.resolve(dirname, '../app/(payload)'),
+      baseDir: path.resolve(dirname, './app/(payload)'),
     },
     user: Users.slug,
     components: {
@@ -39,7 +39,7 @@ const config: Config = {
     if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) return;
     void setupCronJobs(payload);
   },
-  editor: slateEditor({}),
+  editor: lexicalEditor({}),
   collections: [Users, Media, Groupchats, GroupchatKeywords, Features],
   db: postgresAdapter({
     migrationDir: path.resolve(dirname, 'migrations'),

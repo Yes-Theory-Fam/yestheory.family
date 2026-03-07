@@ -54,7 +54,7 @@ const RootLayout = async ({children}: PropsWithChildren) => {
   const routes = await getNavRoutes();
 
   return (
-    <html lang='en' className={roboto.variable}>
+    <html lang='en' className={`${roboto.variable} antialiased`}>
       <head>
         <link rel='manifest' href='/site.webmanifest' />
         <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#154eff' />
