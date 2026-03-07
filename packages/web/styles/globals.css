@@ -1,7 +1,80 @@
-body {
-  @apply text-gray-600;
+@import "tailwindcss";
+
+@theme {
+	--color-*: initial;
+	--color-white: #ffffff;
+	--color-black: #000000;
+	--color-transparent: #00000000;
+	--color-warning: #ffc940;
+
+	--color-brand-50: #e2f4ff;
+	--color-brand-100: #bae2ff;
+	--color-brand-200: #88d1ff;
+	--color-brand-300: #47beff;
+	--color-brand-400: #00aeff;
+	--color-brand-500: #009eff;
+	--color-brand-600: #008eff;
+	--color-brand-700: #007aff;
+	--color-brand-800: #0167ff;
+	--color-brand-900: #2341e0;
+
+	--color-gray-50: #f7f7f7;
+	--color-gray-100: #eeeeee;
+	--color-gray-200: #dcdcdc;
+	--color-gray-300: #b8b8b8;
+	--color-gray-400: #999999;
+	--color-gray-500: #707070;
+	--color-gray-600: #474747;
+	--color-gray-700: #3d3d3d;
+	--color-gray-800: #2a2a2a;
+	--color-gray-900: #0f0f0f;
+
+	--background-image-button-shadow: radial-gradient(
+		#0167ff -15%,
+		rgba(0, 0, 0, 0) 72%
+	);
+
+	--shadow-image-left: -15px 15px 60px #0067ff40;
+	--shadow-image-right: 15px 15px 60px #0067ff40;
+
+	--font-sans: var(--font-roboto), sans-serif;
+
+	--height-header: 600px;
+
+	--leading-0: 0;
+
+	--animate-fade-in: fade-in 100ms linear;
+
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}
+
+@layer base {
+	body {
+		@apply text-gray-600;
+	}
+}

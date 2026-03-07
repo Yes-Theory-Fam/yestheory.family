@@ -1,20 +1,13 @@
 {
   "name": "@yestheory.family/e2e",
   "devDependencies": {
-    "@atmina/linting": "^2.2.0",
     "@playwright/test": "^1.47.2",
-    "@types/eslint": "^8.56.12",
     "@types/node": "^22.7.3",
-    "dotenv": "^16.4.5",
-    "eslint": "^8.57.1",
-    "prettier": "^3.3.3"
+    "dotenv": "^16.4.5"
   },
   "scripts": {
-    "lint": "yarn run eslint:fix && yarn run prettier:fix",
-    "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
-    "prettier:check": "prettier . --check",
-    "prettier:fix": "prettier . --write"
+    "lint": "biome check --write --unsafe",
+    "lint:check": "biome check"
   },
   "prettier": "@atmina/linting/prettier"
 }

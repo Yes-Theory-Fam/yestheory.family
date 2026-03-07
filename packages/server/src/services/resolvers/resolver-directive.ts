@@ -1,95 +1,95 @@
-import path from 'path';
-import {glob} from 'glob';
-import {type NonEmptyArray, Resolver as OriginalResolver} from 'type-graphql';
-import {Service} from 'typedi';
-import {createServerLogger} from '../logging/log';
+import path from "node:path";
+import { glob } from "glob";
+import { type NonEmptyArray, Resolver as OriginalResolver } from "type-graphql";
+import { Service } from "typedi";
+import { createServerLogger } from "../logging/log";
 
-type Class = {new (...args: never[]): unknown};
+type Class = { new (...args: never[]): unknown };
 type OriginalResolverArgument = Parameters<typeof OriginalResolver>[0];
 
-export const enum ResolverTarget {
-  YESBOT = 'YESBOT',
-  PUBLIC = 'PUBLIC',
+export enum ResolverTarget {
+	YESBOT = "YESBOT",
+	PUBLIC = "PUBLIC",
 }
 
 const resolvers: Record<ResolverTarget, Class[]> = {
-  [ResolverTarget.YESBOT]: [],
-  [ResolverTarget.PUBLIC]: [],
+	[ResolverTarget.YESBOT]: [],
+	[ResolverTarget.PUBLIC]: [],
 };
 
-const logger = createServerLogger('services', 'resolver');
+const logger = createServerLogger("services", "resolver");
 
 export const Resolver = (
-  resolverTarget: ResolverTarget | ResolverTarget[],
-  args?: OriginalResolverArgument,
+	resolverTarget: ResolverTarget | ResolverTarget[],
+	args?: OriginalResolverArgument,
 ) => {
-  const resolverTargets = Array.isArray(resolverTarget)
-    ? resolverTarget
-    : [resolverTarget];
+	const resolverTargets = Array.isArray(resolverTarget)
+		? resolverTarget
+		: [resolverTarget];
 
-  return <U extends Class>(target: U): U => {
-    logger.debug(`Adding resolver '${target.name}'`);
+	return <U extends Class>(target: U): U => {
+		logger.debug(`Adding resolver '${target.name}'`);
 
-    for (const singleResolverTarget of resolverTargets) {
-      resolvers[singleResolverTarget].push(target);
-    }
+		for (const singleResolverTarget of resolverTargets) {
+			resolvers[singleResolverTarget].push(target);
+		}
 
-    Service()(target);
+		Service()(target);
 
-    if (args) OriginalResolver(args)(target);
-    else OriginalResolver()(target);
+		if (args) OriginalResolver(args)(target);
+		else OriginalResolver()(target);
 
-    return target;
-  };
+		return target;
+	};
 };
 
 const collectResolvers = async (): Promise<void> => {
-  logger.info('Collecting resolvers');
+	logger.info("Collecting resolvers");
 
-  const extension = process.env.NODE_ENV === 'production' ? '.js' : '.ts';
-  const baseDirectory = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
+	const extension = process.env.NODE_ENV === "production" ? ".js" : ".ts";
+	const baseDirectory = process.env.NODE_ENV === "production" ? "dist" : "src";
 
-  let matches: string[];
+	let matches: string[];
 
-  try {
-    matches = await glob(`${baseDirectory}/features/**/*${extension}`);
-  } catch (e) {
-    logger.error('Error loading resolvers: ', e);
-    throw e;
-  }
+	try {
+		matches = await glob(`${baseDirectory}/features/**/*${extension}`);
+	} catch (e) {
+		logger.error("Error loading resolvers: ", e);
+		throw e;
+	}
 
-  const importPromises = matches.map((p) => {
-    const split = p.split('.');
-    split.unshift();
-    const modulePath = path.join(process.cwd(), split.join('.'));
+	const importPromises = matches.map((p) => {
+		const split = p.split(".");
+		split.unshift();
+		const modulePath = path.join(process.cwd(), split.join("."));
 
-    return import(modulePath);
-  });
+		return import(modulePath);
+	});
 
-  try {
-    await Promise.all(importPromises);
-  } catch (e) {
-    logger.error('Error loading resolvers: ', e);
-    throw e;
-  }
+	try {
+		await Promise.all(importPromises);
+	} catch (e) {
+		logger.error("Error loading resolvers: ", e);
+		throw e;
+	}
 
-  logger.debug('Loading complete!');
+	logger.debug("Loading complete!");
 };
 
 export const getResolvers = async (
-  target: ResolverTarget,
+	target: ResolverTarget,
 ): Promise<NonEmptyArray<Class>> => {
-  const resolversForTarget = resolvers[target];
+	const resolversForTarget = resolvers[target];
 
-  if (resolversForTarget.length === 0) {
-    await collectResolvers();
-  }
+	if (resolversForTarget.length === 0) {
+		await collectResolvers();
+	}
 
-  if (resolversForTarget.length === 0) {
-    throw new Error(
-      'No resolver was loaded, make sure at least one resolver is tagged with the Resolver decorator from the service directory!',
-    );
-  }
+	if (resolversForTarget.length === 0) {
+		throw new Error(
+			"No resolver was loaded, make sure at least one resolver is tagged with the Resolver decorator from the service directory!",
+		);
+	}
 
-  return resolversForTarget as NonEmptyArray<Class>;
+	return resolversForTarget as NonEmptyArray<Class>;
 };

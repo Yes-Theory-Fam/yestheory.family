@@ -1,4 +1,4 @@
-import {getPayloadHMR} from '@payloadcms/next/utilities';
-import config from '@payload-config';
+import config from "@payload-config";
+import { getPayload as getPayloadOriginal } from "payload";
 
-export const getPayload = () => getPayloadHMR({config});
+export const getPayload = () => getPayloadOriginal({ config });

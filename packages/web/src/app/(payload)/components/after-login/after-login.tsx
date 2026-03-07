@@ -1,41 +1,41 @@
-'use client';
+"use client";
 
-import React, {type FC, useEffect, useState} from 'react';
-import {AuthState} from '../../lib/auth-state';
-import {AuthenticatedMishap} from './components/authenticated-mishap';
-import {MissingAccess} from './components/missing-access';
-import {MissingCookie} from './components/missing-cookie';
+import { type FC, useEffect, useState } from "react";
+import { AuthState } from "../../lib/auth-state";
+import { AuthenticatedMishap } from "./components/authenticated-mishap";
+import { MissingAccess } from "./components/missing-access";
+import { MissingCookie } from "./components/missing-cookie";
 
 const fetchAuthState = async (abort: AbortSignal) => {
-  const response = await fetch('/api/users/auth-state', {signal: abort});
+	const response = await fetch("/api/users/auth-state", { signal: abort });
 
-  return (await response.text()) as AuthState;
+	return (await response.text()) as AuthState;
 };
 
 const useAuthState = () => {
-  const [authState, setAuthState] = useState<AuthState>(AuthState.LOADING);
+	const [authState, setAuthState] = useState<AuthState>(AuthState.LOADING);
 
-  useEffect(() => {
-    const abortController = new AbortController();
+	useEffect(() => {
+		const abortController = new AbortController();
 
-    fetchAuthState(abortController.signal).then(setAuthState);
+		fetchAuthState(abortController.signal).then(setAuthState);
 
-    return () => abortController.abort();
-  }, []);
+		return () => abortController.abort();
+	}, []);
 
-  return authState;
+	return authState;
 };
 
 export const AfterLogin: FC = () => {
-  const authState = useAuthState();
+	const authState = useAuthState();
 
-  if (authState === AuthState.LOADING) return null;
+	if (authState === AuthState.LOADING) return null;
 
-  return (
-    <div className='flex flex-col items-center text-xl leading-loose'>
-      {authState === AuthState.MISSING_COOKIE && <MissingCookie />}
-      {authState === AuthState.MISSING_ACCESS && <MissingAccess />}
-      {authState === AuthState.AUTHENTICATED && <AuthenticatedMishap />}
-    </div>
-  );
+	return (
+		<div className="flex flex-col items-center text-xl leading-loose">
+			{authState === AuthState.MISSING_COOKIE && <MissingCookie />}
+			{authState === AuthState.MISSING_ACCESS && <MissingAccess />}
+			{authState === AuthState.AUTHENTICATED && <AuthenticatedMishap />}
+		</div>
+	);
 };

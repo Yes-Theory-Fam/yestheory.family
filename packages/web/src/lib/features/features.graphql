@@ -1,11 +1,11 @@
 query Features {
-  Features {
-    docs {
-      id
-      name
-      enabled
-      navPath
-      pathPrefix
-    }
-  }
+	Features {
+		docs {
+			id
+			name
+			enabled
+			navPath
+			pathPrefix
+		}
+	}
 }

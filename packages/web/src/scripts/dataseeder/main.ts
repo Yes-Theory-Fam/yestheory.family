@@ -1,19 +1,19 @@
-import {config} from 'dotenv';
-import {typesenseReady} from '../../app/(payload)/lib/typesense';
-import {seedGroupchats} from './seed-groupchats';
-import {seedTypesenseKey} from './seed-typesense-key';
-import {seedUsers} from './seed-users';
+import { config } from "dotenv";
+import { typesenseReady } from "../../app/(payload)/lib/typesense";
+import { seedGroupchats } from "./seed-groupchats";
+import { seedTypesenseKey } from "./seed-typesense-key";
+import { seedUsers } from "./seed-users";
 
 export const main = async () => {
-  config({path: '.env.local'});
+	config({ path: ".env.local" });
 
-  await seedUsers();
-  await seedGroupchats();
+	await seedUsers();
+	await seedGroupchats();
 
-  await typesenseReady();
-  await seedTypesenseKey();
+	await typesenseReady();
+	await seedTypesenseKey();
 
-  process.exit();
+	process.exit();
 };
 
 void main();

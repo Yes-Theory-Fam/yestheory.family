@@ -1,2 +1,2 @@
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/utilities";
+@import "tailwindcss/theme";

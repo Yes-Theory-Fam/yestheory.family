@@ -1,19 +1,19 @@
-import {useIsomorphicLayoutEffect} from 'framer-motion';
-import {type FC} from 'react';
+import { useIsomorphicLayoutEffect } from "framer-motion";
+import type { FC } from "react";
 
 export const ScrollbarWidthProvider: FC = () => {
-  useIsomorphicLayoutEffect(() => {
-    if (typeof window === 'undefined') return;
+	useIsomorphicLayoutEffect(() => {
+		if (typeof window === "undefined") return;
 
-    const windowInnerWidth = window.innerWidth;
-    const clientWidth = document.body.clientWidth;
+		const windowInnerWidth = window.innerWidth;
+		const clientWidth = document.body.clientWidth;
 
-    const scrollbarWidth = windowInnerWidth - clientWidth;
-    document.documentElement.style.setProperty(
-      '--scrollbar-width',
-      `${scrollbarWidth}px`,
-    );
-  }, []);
+		const scrollbarWidth = windowInnerWidth - clientWidth;
+		document.documentElement.style.setProperty(
+			"--scrollbar-width",
+			`${scrollbarWidth}px`,
+		);
+	}, []);
 
-  return null;
+	return null;
 };

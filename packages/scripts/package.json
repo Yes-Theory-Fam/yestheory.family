@@ -3,11 +3,8 @@
   "packageManager": "yarn@4.0.2",
   "type": "module",
   "scripts": {
-    "lint": "yarn eslint:fix && yarn prettier:fix",
-    "eslint:check": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "eslint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
-    "prettier:check": "prettier . --check",
-    "prettier:fix": "prettier . --write"
+    "lint": "biome check --write --unsafe",
+    "lint:check": "biome check"
   },
   "dependencies": {
     "@posva/prompts": "^2.4.4",
@@ -16,13 +13,9 @@
     "node-html-parser": "^6.1.13"
   },
   "devDependencies": {
-    "@atmina/linting": "^2.2.0",
     "@types/cli-progress": "^3.11.6",
-    "@types/eslint": "^8.56.12",
-    "eslint": "^8.57.1",
-    "prettier": "^3.3.3",
     "tsx": "^4.19.1",
-    "typescript": "^5.6.2"
+    "typescript": "^5.9.3"
   },
   "prettier": "@atmina/linting/prettier"
 }

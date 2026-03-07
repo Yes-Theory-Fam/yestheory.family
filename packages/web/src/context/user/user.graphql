@@ -1,13 +1,13 @@
 query CurrentUser {
-  me @export(exportName: "User") {
-    __typename
-    id
-    username
-    avatarUrl
-    isOnServer
-  }
+	me @export(exportName: "User") {
+		__typename
+		id
+		username
+		avatarUrl
+		isOnServer
+	}
 }
 
 mutation Logout {
-  logout
+	logout
 }

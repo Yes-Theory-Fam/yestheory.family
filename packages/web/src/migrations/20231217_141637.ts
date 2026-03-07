@@ -1,11 +1,11 @@
 import {
-  type MigrateUpArgs,
-  type MigrateDownArgs,
-  sql,
-} from '@payloadcms/db-postgres';
+	type MigrateDownArgs,
+	type MigrateUpArgs,
+	sql,
+} from "@payloadcms/db-postgres";
 
-export async function up({payload}: MigrateUpArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
 
     CREATE TABLE IF NOT EXISTS "groupchats_rels"
     (
@@ -76,8 +76,8 @@ DO
 `);
 }
 
-export async function down({payload}: MigrateDownArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
 
 CREATE TABLE IF NOT EXISTS "groupchats_keywords" (
 	"_order" integer NOT NULL,

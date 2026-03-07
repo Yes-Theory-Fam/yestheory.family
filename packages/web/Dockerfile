@@ -21,7 +21,7 @@ FROM base AS builder
 WORKDIR /app
 
 ARG NEXT_PUBLIC_FRONTEND_URL
-ENV NEXT_PUBLIC_FRONTEND_URL $NEXT_PUBLIC_FRONTEND_URL
+ENV NEXT_PUBLIC_FRONTEND_URL=$NEXT_PUBLIC_FRONTEND_URL
 
 # Copy node_modules and other side products from deps
 COPY --from=deps /app/packages/web/ ./packages/web/
@@ -38,7 +38,7 @@ RUN yarn build
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 COPY --from=builder /app/node_modules/ ./node_modules
 # TODO look into standalone output builds

@@ -1,25 +1,25 @@
 query ServerState {
-  me {
-    isOnServer
-  }
+	me {
+		isOnServer
+	}
 }
 
 query BuddyProjectState {
-  getBuddyProjectStatus {
-    buddy {
-      userId
-      username
-    }
-    status
-  }
+	getBuddyProjectStatus {
+		buddy {
+			userId
+			username
+		}
+		status
+	}
 }
 
 mutation BuddyProjectSignUp {
-  buddyProjectSignUp {
-    result
+	buddyProjectSignUp {
+		result
 
-    status {
-      status
-    }
-  }
+		status {
+			status
+		}
+	}
 }

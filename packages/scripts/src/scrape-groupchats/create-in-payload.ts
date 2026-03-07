@@ -1,4 +1,4 @@
-import {type ProcessedGroupchat} from './groupchat.js';
+import type { ProcessedGroupchat } from "./groupchat.js";
 
 export const createInPayload = async (
   groupchats: ProcessedGroupchat[],
@@ -6,9 +6,9 @@ export const createInPayload = async (
   apiKey: string,
 ) => {
   const response = await fetch(`${apiUrl}/groupchats/create-many`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `users API-Key ${apiKey}`,
     },
     body: JSON.stringify(groupchats),

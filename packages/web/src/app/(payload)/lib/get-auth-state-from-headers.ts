@@ -1,44 +1,44 @@
-import {parseCookies} from 'payload';
+import { parseCookies } from "payload";
 
-type MeQueryMe = null | {id: string};
-type MeQueryData = null | {me: MeQueryMe};
-type MeQueryResult = {data: MeQueryData};
+type MeQueryMe = null | { id: string };
+type MeQueryData = null | { me: MeQueryMe };
+type MeQueryResult = { data: MeQueryData };
 
-type AuthState = {userId: string | null; isLoggedIn: boolean};
+type AuthState = { userId: string | null; isLoggedIn: boolean };
 
 const backend =
-  process.env.SERVER_BACKEND_GRAPHQL_URL ?? 'http://localhost:5000/graphql';
+	process.env.SERVER_BACKEND_GRAPHQL_URL ?? "http://localhost:5000/graphql";
 
 const expressToFetchHeaders = (incoming: Headers): HeadersInit => ({
-  Cookie: incoming.get('cookie') ?? '',
+	Cookie: incoming.get("cookie") ?? "",
 });
 
 export const getAuthStateFromHeaders = async (
-  headers: Headers,
+	headers: Headers,
 ): Promise<AuthState> => {
-  const cookies = parseCookies(headers);
-  const koaSess = cookies.get('koa.sess');
+	const cookies = parseCookies(headers);
+	const koaSess = cookies.get("koa.sess");
 
-  if (!koaSess) return {isLoggedIn: false, userId: null};
+	if (!koaSess) return { isLoggedIn: false, userId: null };
 
-  const gqlBody = {
-    query: 'query Me {\n\tme {\n\t\tid\n\t}\n}\n',
-    operationName: 'Me',
-  };
+	const gqlBody = {
+		query: "query Me {\n\tme {\n\t\tid\n\t}\n}\n",
+		operationName: "Me",
+	};
 
-  const response = await fetch(backend, {
-    method: 'POST',
-    headers: {
-      ...expressToFetchHeaders(headers),
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(gqlBody),
-  });
+	const response = await fetch(backend, {
+		method: "POST",
+		headers: {
+			...expressToFetchHeaders(headers),
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(gqlBody),
+	});
 
-  const body = (await response.json()) as MeQueryResult;
+	const body = (await response.json()) as MeQueryResult;
 
-  const userId = body.data?.me?.id ?? null;
-  const isLoggedIn = !!body.data?.me;
+	const userId = body.data?.me?.id ?? null;
+	const isLoggedIn = !!body.data?.me;
 
-  return {userId, isLoggedIn};
+	return { userId, isLoggedIn };
 };

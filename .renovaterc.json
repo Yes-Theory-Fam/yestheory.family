@@ -1,46 +1,26 @@
 {
   "enabled": false,
-  "schedule": [
-    "every weekend"
-  ],
-  "extends": [
-    "config:base"
-  ],
+  "schedule": ["every weekend"],
+  "extends": ["config:base"],
   "rangeStrategy": "pin",
-  "labels": [
-    "renovate"
-  ],
+  "labels": ["renovate"],
   "lockFileMaintenance": {
     "enabled": true
   },
-  "enabledManagers": [
-    "npm",
-    "dockerfile"
-  ],
+  "enabledManagers": ["npm", "dockerfile"],
   "packageRules": [
     {
-      "matchPackageNames": [
-        "prisma",
-        "typegraphql-prisma"
-      ],
-      "labels": [
-        "renovate",
-        "prisma"
-      ],
+      "matchPackageNames": ["prisma", "typegraphql-prisma"],
+      "labels": ["renovate", "prisma"],
       "groupName": "prisma packages"
     },
     {
-      "matchPackageNames": [
-        "ts-jest",
-        "jest"
-      ],
+      "matchPackageNames": ["ts-jest", "jest"],
       "groupName": "jest packages"
     },
     {
       "rangeStrategy": "replace",
-      "matchPackageNames": [
-        "@types/node"
-      ],
+      "matchPackageNames": ["@types/node"],
       "fileMatch": [
         "(^|/)\\.nvmrc$",
         "(^|/|\\.)Dockerfile$",

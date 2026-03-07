@@ -1,18 +1,18 @@
-import {decode} from 'html-entities';
-import {type Groupchat, type ProcessedGroupchat} from './groupchat.js';
-import {handleBitLy} from './platform-handlers/bit-ly.js';
-import {handleLinkTree} from './platform-handlers/link-tree.js';
+import { decode } from "html-entities";
+import type { Groupchat, ProcessedGroupchat } from "./groupchat.js";
+import { handleBitLy } from "./platform-handlers/bit-ly.js";
+import { handleLinkTree } from "./platform-handlers/link-tree.js";
 
 const platformDomainFinder =
   /https?:\/\/(?:.*?\.)?(facebook\.com|instagram\.com|chat\.whatsapp\.com|discord\.gg|discord\.com|t\.me)(?:\/.*)?$/i;
 
 const domainMap: Record<string, string> = {
-  'facebook.com': 'facebook',
-  'instagram.com': 'instagram',
-  'chat.whatsapp.com': 'whatsapp',
-  'discord.gg': 'discord',
-  'discord.com': 'discord',
-  't.me': 'telegram',
+  "facebook.com": "facebook",
+  "instagram.com": "instagram",
+  "chat.whatsapp.com": "whatsapp",
+  "discord.gg": "discord",
+  "discord.com": "discord",
+  "t.me": "telegram",
 };
 
 export const postProcess = async (
@@ -28,7 +28,7 @@ export const postProcess = async (
     }
 
     const parsedUrl = new URL(groupchat.url);
-    parsedUrl.search = '';
+    parsedUrl.search = "";
     groupchat.url = parsedUrl.toString();
 
     if (knownUrls.has(groupchat.url)) {

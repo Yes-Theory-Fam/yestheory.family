@@ -2,11 +2,9 @@
   "name": "yestheory.family",
   "private": true,
   "scripts": {
-    "lint": "yarn eslint:fix && yarn prettier:fix",
-    "eslint:check": "yarn workspaces foreach --all --parallel run eslint:check",
-    "eslint:fix": "yarn workspaces foreach --all --parallel run eslint:fix",
-    "prettier:check": "yarn workspaces foreach --all --parallel run prettier:check",
-    "prettier:fix": "yarn workspaces foreach --all --parallel run prettier:fix"
+    "lint": "yarn workspaces foreach --all --parallel run lint",
+    "lint:check": "yarn workspaces foreach --all --parallel run lint:check",
+    "lint:ci": "biome ci packages/*"
   },
   "workspaces": [
     "packages/*"
@@ -15,5 +13,8 @@
     "react-test-renderer": "18.2.0",
     "ts-node": "10.9.1"
   },
-  "packageManager": "yarn@4.5.0+sha512.837566d24eec14ec0f5f1411adb544e892b3454255e61fdef8fd05f3429480102806bac7446bc9daff3896b01ae4b62d00096c7e989f1596f2af10b927532f39"
+  "packageManager": "yarn@4.5.0+sha512.837566d24eec14ec0f5f1411adb544e892b3454255e61fdef8fd05f3429480102806bac7446bc9daff3896b01ae4b62d00096c7e989f1596f2af10b927532f39",
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.6"
+  }
 }
