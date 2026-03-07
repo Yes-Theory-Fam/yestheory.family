@@ -49,8 +49,8 @@ COPY ./packages/server/docker-entrypoint.sh /app/docker-entrypoint.sh
 
 # Set environment data, export and launch
 ARG BACKEND_PORT=5000
-ENV BACKEND_PORT $BACKEND_PORT
-ENV NODE_ENV "production"
+ENV BACKEND_PORT=$BACKEND_PORT
+ENV NODE_ENV="production"
 
 EXPOSE $BACKEND_PORT
 

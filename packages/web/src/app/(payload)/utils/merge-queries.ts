@@ -1,21 +1,21 @@
-import type * as GraphQL from 'graphql';
-import {type Config, type PayloadRequest} from 'payload';
+import type * as GraphQL from "graphql";
+import type { Config, PayloadRequest } from "payload";
 
-type GraphQLExtension = NonNullable<NonNullable<Config['graphQL']>['queries']>;
+type GraphQLExtension = NonNullable<NonNullable<Config["graphQL"]>["queries"]>;
 type GraphQLExtensionContext = Parameters<GraphQLExtension>[1];
 
 export type QueryFactory<TResult, TResolvedArgs> = (
-  graphql: typeof GraphQL,
-  context: GraphQLExtensionContext,
+	graphql: typeof GraphQL,
+	context: GraphQLExtensionContext,
 ) => {
-  type?: GraphQL.GraphQLType;
-  args: Record<string, unknown>;
-  resolve: GraphQL.GraphQLFieldResolver<
-    unknown,
-    {req: PayloadRequest},
-    TResolvedArgs,
-    TResult | Promise<TResult>
-  >;
+	type?: GraphQL.GraphQLType;
+	args: Record<string, unknown>;
+	resolve: GraphQL.GraphQLFieldResolver<
+		unknown,
+		{ req: PayloadRequest },
+		TResolvedArgs,
+		TResult | Promise<TResult>
+	>;
 };
 
 /**
@@ -40,17 +40,17 @@ export type QueryFactory<TResult, TResolvedArgs> = (
  * })
  */
 export const mergeQueries =
-  <TResult, TResolvedArgs>(
-    queryFactories: Record<string, QueryFactory<TResult, TResolvedArgs>>,
-  ): GraphQLExtension =>
-  (graphql, context) => {
-    const queries: {
-      [key: string]: ReturnType<QueryFactory<TResult, TResolvedArgs>>;
-    } = {};
+	<TResult, TResolvedArgs>(
+		queryFactories: Record<string, QueryFactory<TResult, TResolvedArgs>>,
+	): GraphQLExtension =>
+	(graphql, context) => {
+		const queries: {
+			[key: string]: ReturnType<QueryFactory<TResult, TResolvedArgs>>;
+		} = {};
 
-    for (const [name, factory] of Object.entries(queryFactories)) {
-      queries[name] = factory(graphql, context);
-    }
+		for (const [name, factory] of Object.entries(queryFactories)) {
+			queries[name] = factory(graphql, context);
+		}
 
-    return queries;
-  };
+		return queries;
+	};

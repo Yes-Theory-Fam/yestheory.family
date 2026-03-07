@@ -1,4 +1,4 @@
-import {type GuildBasedChannel} from 'discord.js';
+import type { GuildBasedChannel } from "discord.js";
 
 export const oddQuestions = `1. What were the highest and lowest points in your life so far respectively?
 3. What is the one thing that you regret saying ”no” to?
@@ -34,7 +34,7 @@ export const evenQuestions = `
 30. Write down a list of 3 things you’ve learned from your buddy during this conversation and share the list with your buddy.`;
 
 export const intro = (
-  buddyId: string,
-  channel: GuildBasedChannel | undefined,
+	buddyId: string,
+	channel: GuildBasedChannel | undefined,
 ) =>
-  `Your buddy is <@${buddyId}>! *Only shows up as numbers and symbols? Have a look at ${channel} to find help.*`;
+	`Your buddy is <@${buddyId}>! *Only shows up as numbers and symbols? Have a look at ${channel} to find help.*`;

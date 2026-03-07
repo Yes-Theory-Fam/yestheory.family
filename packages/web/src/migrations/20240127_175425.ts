@@ -1,11 +1,11 @@
 import {
-  type MigrateUpArgs,
-  type MigrateDownArgs,
-  sql,
-} from '@payloadcms/db-postgres';
+	type MigrateDownArgs,
+	type MigrateUpArgs,
+	sql,
+} from "@payloadcms/db-postgres";
 
-export async function up({payload}: MigrateUpArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
 
 CREATE TABLE IF NOT EXISTS "media" (
 	"id" serial PRIMARY KEY NOT NULL,
@@ -47,8 +47,8 @@ END $$;
 `);
 }
 
-export async function down({payload}: MigrateDownArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
 
 DROP TABLE "media";
 DROP TABLE "feature_rels";

@@ -1,16 +1,16 @@
-import {type CollectionConfig} from 'payload';
+import type { CollectionConfig } from "payload";
 
 export const GroupchatKeywords: CollectionConfig = {
-  slug: 'groupchat-keywords',
-  admin: {
-    useAsTitle: 'value',
-    hidden: true,
-  },
-  fields: [
-    {
-      name: 'value',
-      type: 'text',
-      label: 'Keyword',
-    },
-  ],
+	slug: "groupchat-keywords",
+	admin: {
+		useAsTitle: "value",
+		hidden: true,
+	},
+	fields: [
+		{
+			name: "value",
+			type: "text",
+			label: "Keyword",
+		},
+	],
 };

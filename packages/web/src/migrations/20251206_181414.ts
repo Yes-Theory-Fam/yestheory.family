@@ -1,11 +1,11 @@
 import {
-  type MigrateUpArgs,
-  type MigrateDownArgs,
-  sql,
-} from '@payloadcms/db-postgres';
+	type MigrateDownArgs,
+	type MigrateUpArgs,
+	sql,
+} from "@payloadcms/db-postgres";
 
-export async function up({payload}: MigrateUpArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
    CREATE TABLE "payload_locked_documents" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"global_slug" varchar,
@@ -59,8 +59,8 @@ export async function up({payload}: MigrateUpArgs): Promise<void> {
   CREATE INDEX "payload_migrations_updated_at_idx" ON "payload_migrations" USING btree ("updated_at");`);
 }
 
-export async function down({payload}: MigrateDownArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
    ALTER TABLE "payload_locked_documents" DISABLE ROW LEVEL SECURITY;
   ALTER TABLE "payload_locked_documents_rels" DISABLE ROW LEVEL SECURITY;
   DROP TABLE "payload_locked_documents" CASCADE;

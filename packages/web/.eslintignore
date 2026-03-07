@@ -1,4 +1,0 @@
-.next
-src/__generated__
-**/*.generated.ts
-storybook-static

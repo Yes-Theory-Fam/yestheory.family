@@ -1,58 +1,58 @@
-import type winston from 'winston';
-import {createLogger, format, transports} from 'winston';
+import type winston from "winston";
+import { createLogger, format, transports } from "winston";
 
 const USE_COLORS = process.stdout.isTTY;
 const SHOW_TIMESTAMP = process.stdout.isTTY;
 
-const fmt = format.printf(({level, message, timestamp, ...meta}) => {
-  const {kind, program, ...fields} = meta;
+const fmt = format.printf(({ level, message, timestamp, ...meta }) => {
+	const { kind, program, ...fields } = meta;
 
-  let out = '';
-  if (SHOW_TIMESTAMP) {
-    out += `${timestamp} `;
-  }
+	let out = "";
+	if (SHOW_TIMESTAMP) {
+		out += `${timestamp} `;
+	}
 
-  // Add a json-kinda dict with metadata if present
-  if (Object.keys(fields).length > 0) {
-    return `${out}${level} [${kind}] [${program}]: ${message} ${JSON.stringify(
-      fields,
-    )}`;
-  }
-  return `${out}${level} [${kind}] [${program}]: ${message}`;
+	// Add a json-kinda dict with metadata if present
+	if (Object.keys(fields).length > 0) {
+		return `${out}${level} [${kind}] [${program}]: ${message} ${JSON.stringify(
+			fields,
+		)}`;
+	}
+	return `${out}${level} [${kind}] [${program}]: ${message}`;
 });
 
 const formatters: winston.Logform.Format[] = [];
 
 // If this is a TTY, enable colors
 if (USE_COLORS) {
-  formatters.push(format.colorize());
+	formatters.push(format.colorize());
 }
 
 // And some simple timestamps
 if (SHOW_TIMESTAMP) {
-  formatters.push(
-    format.timestamp({
-      format: 'HH:mm:ss.SSS',
-    }),
-  );
+	formatters.push(
+		format.timestamp({
+			format: "HH:mm:ss.SSS",
+		}),
+	);
 }
 
 // Lastly, add our own formatter.
 formatters.push(fmt);
 
 const loggerOpts: winston.LoggerOptions = {
-  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-  format: format.combine(...formatters),
-  transports: [new transports.Console()],
+	level: process.env.NODE_ENV === "production" ? "info" : "debug",
+	format: format.combine(...formatters),
+	transports: [new transports.Console()],
 };
 
 const rootLogger = createLogger(loggerOpts);
 
 export const createServerLogger = (
-  kind: string,
-  program: string,
+	kind: string,
+	program: string,
 ): winston.Logger =>
-  rootLogger.child({
-    kind,
-    program,
-  });
+	rootLogger.child({
+		kind,
+		program,
+	});

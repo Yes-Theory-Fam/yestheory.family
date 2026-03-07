@@ -1,20 +1,20 @@
-import {type GeneratedTypes, type FieldAccess, type TypeWithID} from 'payload';
-import {type SessionUser} from '../collections/users';
+import type { FieldAccess, GeneratedTypes, TypeWithID } from "payload";
+import type { SessionUser } from "../collections/users";
 
-type Role = GeneratedTypes['collections']['users']['roles'][number];
+type Role = GeneratedTypes["collections"]["users"]["roles"][number];
 
 export function requireOneOf(
-  ...args: Role[]
+	...args: Role[]
 ): FieldAccess<unknown & TypeWithID, SessionUser> {
-  return ({req}) => {
-    const user = req.user;
+	return ({ req }) => {
+		const user = req.user;
 
-    if (!user) {
-      return false;
-    }
+		if (!user) {
+			return false;
+		}
 
-    const argsWithOwner: Role[] = [...args, 'owner'];
+		const argsWithOwner: Role[] = [...args, "owner"];
 
-    return argsWithOwner.some((arg) => user.roles.includes(arg));
-  };
+		return argsWithOwner.some((arg) => user.roles.includes(arg));
+	};
 }

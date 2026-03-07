@@ -1,9 +1,9 @@
-import {type Groupchat} from '../groupchat.js';
-import {type GroupchatSourceFunction} from './source-function.js';
+import type { Groupchat } from "../groupchat.js";
+import type { GroupchatSourceFunction } from "./source-function.js";
 
 type SheetResponse = {
   range: string;
-  majorDimension: 'ROWS';
+  majorDimension: "ROWS";
   values: string[][];
 };
 
@@ -19,9 +19,9 @@ export const nlGoogleSheetSource: GroupchatSourceFunction = async () => {
     const name = row[0];
     const url = row[1];
 
-    if (!url.startsWith('http')) continue;
+    if (!url.startsWith("http")) continue;
 
-    groupchats.push({name, url});
+    groupchats.push({ name, url });
   }
 
   return groupchats;

@@ -1,11 +1,11 @@
 import {
-  type MigrateUpArgs,
-  type MigrateDownArgs,
-  sql,
-} from '@payloadcms/db-postgres';
+	type MigrateDownArgs,
+	type MigrateUpArgs,
+	sql,
+} from "@payloadcms/db-postgres";
 
-export async function up({payload}: MigrateUpArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
    DROP TABLE "feature_rels";
   ALTER TABLE "users_roles" DROP CONSTRAINT "users_roles_parent_id_users_id_fk";
   
@@ -90,8 +90,8 @@ export async function up({payload}: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");`);
 }
 
-export async function down({payload}: MigrateDownArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
    CREATE TABLE IF NOT EXISTS "feature_rels" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"order" integer,

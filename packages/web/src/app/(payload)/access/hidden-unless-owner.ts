@@ -1,12 +1,12 @@
-import {type ClientUser} from 'payload';
-import {type SessionUser} from '../collections/users';
+import type { ClientUser } from "payload";
+import type { SessionUser } from "../collections/users";
 
-export const hiddenUnlessOwner = ({user}: {user: ClientUser}) => {
-  const sessionUser = user as unknown as SessionUser;
-  if (!sessionUser) return false;
+export const hiddenUnlessOwner = ({ user }: { user: ClientUser }) => {
+	const sessionUser = user as unknown as SessionUser;
+	if (!sessionUser) return false;
 
-  const roles =
-    'roles' in sessionUser ? sessionUser.roles : sessionUser.user.roles;
+	const roles =
+		"roles" in sessionUser ? sessionUser.roles : sessionUser.user.roles;
 
-  return !roles.includes('owner');
+	return !roles.includes("owner");
 };

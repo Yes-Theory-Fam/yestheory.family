@@ -1,10 +1,10 @@
-import prompts from '@posva/prompts';
-import {config} from 'dotenv';
-import {createInPayload} from './create-in-payload.js';
-import {postProcess} from './post-process.js';
-import {nlGoogleSheetSource} from './sources/nl-google-sheet.js';
-import {type GroupchatSourceFunction} from './sources/source-function.js';
-import {wixSource} from './sources/wixsite.js';
+import prompts from "@posva/prompts";
+import { config } from "dotenv";
+import { createInPayload } from "./create-in-payload.js";
+import { postProcess } from "./post-process.js";
+import { nlGoogleSheetSource } from "./sources/nl-google-sheet.js";
+import type { GroupchatSourceFunction } from "./sources/source-function.js";
+import { wixSource } from "./sources/wixsite.js";
 
 config();
 
@@ -13,8 +13,8 @@ const sources: GroupchatSourceFunction[] = [wixSource, nlGoogleSheetSource];
 const main = async () => {
   const confirmedStart = (
     await prompts({
-      type: 'confirm',
-      name: 'confirm',
+      type: "confirm",
+      name: "confirm",
       message: `Starting scraping across ${sources.length} sources. Confirm?`,
       initial: true,
     })
@@ -22,17 +22,17 @@ const main = async () => {
 
   if (!confirmedStart) return;
 
-  const {payloadApiBaseUrl, payloadApiKey} = await prompts([
+  const { payloadApiBaseUrl, payloadApiKey } = await prompts([
     {
-      type: 'text',
-      name: 'payloadApiBaseUrl',
-      message: 'Payload API Base URL',
-      initial: 'http://localhost:3001/api',
+      type: "text",
+      name: "payloadApiBaseUrl",
+      message: "Payload API Base URL",
+      initial: "http://localhost:3001/api",
     },
     {
-      type: 'password',
-      name: 'payloadApiKey',
-      message: 'Payload API Key',
+      type: "password",
+      name: "payloadApiKey",
+      message: "Payload API Key",
     },
   ]);
 
@@ -46,7 +46,7 @@ const main = async () => {
 
   await createInPayload(processed, payloadApiBaseUrl, payloadApiKey);
 
-  console.info('Done inserting.');
+  console.info("Done inserting.");
 };
 
 await main();

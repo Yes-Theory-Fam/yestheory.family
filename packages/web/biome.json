@@ -1,0 +1,27 @@
+{
+	"root": false,
+	"$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
+	"css": { "parser": { "tailwindDirectives": true } },
+	"files": {
+		"includes": [
+			"**",
+			"!**/src/__generated__",
+			"!**/src/payload-types.ts",
+			"!**/src/app/(payload)/admin/importMap.js"
+		]
+	},
+	"linter": {
+		"rules": {
+			"nursery": {
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "warn",
+					"options": {
+						"attributes": ["class", "className"],
+						"functions": ["clsx", "cva", "tw", "twMerge", "tw.*"]
+					}
+				}
+			}
+		}
+	}
+}

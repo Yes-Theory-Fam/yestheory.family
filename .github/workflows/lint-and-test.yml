@@ -5,25 +5,15 @@ on:
     types: [ checks_requested ]
 
 jobs:
-  eslint:
-    name: "ESLint"
+  biome:
+    name: "Biome"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/yarn-action
         name: "Install and lint"
         with:
-          command: eslint:check
-
-  prettier:
-    name: "Prettier"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/yarn-action
-        name: "Install and check formatting"
-        with:
-          command: prettier:check
+          command: lint:ci
 
   tsc-web:
     name: "TSC Web"

@@ -1,11 +1,11 @@
 import {
-  type MigrateUpArgs,
-  type MigrateDownArgs,
-  sql,
-} from '@payloadcms/db-postgres';
+	type MigrateDownArgs,
+	type MigrateUpArgs,
+	sql,
+} from "@payloadcms/db-postgres";
 
-export async function up({payload}: MigrateUpArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
  CREATE TYPE "enum_users_roles" AS ENUM('owner', 'groupchats-admin', 'groupchats');
@@ -60,8 +60,8 @@ END $$;
 `);
 }
 
-export async function down({payload}: MigrateDownArgs): Promise<void> {
-  await payload.db.drizzle.execute(sql`
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
+	await payload.db.drizzle.execute(sql`
 
 ALTER TABLE "groupchats_rels" DROP CONSTRAINT "groupchats_rels_users_id_users_id_fk";
 

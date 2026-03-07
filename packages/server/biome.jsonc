@@ -1,0 +1,16 @@
+{
+	"root": false,
+	"linter": {
+		"rules": {
+			"correctness": {
+				// We require an ignore pattern for the autoloaded resolvers which is not possible atm: https://github.com/biomejs/biome/discussions/6381
+				"noUnusedVariables": "off"
+			}
+		}
+	},
+	"javascript": {
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
+		}
+	}
+}
